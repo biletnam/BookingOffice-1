@@ -29,6 +29,7 @@ public class AdministratorService {
 			t.setFlightId(f.getId());
 			t.setStatus(TicketStatus.FREE);
 			ticketDao.create(t);
+			//TODO check dates
 		}
 	}
 	

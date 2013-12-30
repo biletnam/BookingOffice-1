@@ -40,17 +40,15 @@ private static ReservationDAOImpl reservationDAOImpl;
 		
 		GregorianCalendar gcReservation = new GregorianCalendar(2013, Calendar.DECEMBER, 10, 4, 37, 0);
 		Timestamp dtReservation = new java.sql.Timestamp(gcReservation.getTime().getTime());
-		
-		GregorianCalendar gcPayment = new GregorianCalendar(2013, Calendar.DECEMBER, 10, 4, 40, 0);
-		Timestamp dtPayment = new java.sql.Timestamp(gcPayment.getTime().getTime());
+		boolean isPaid = true;
 		
 		r.setCustomerSurname(customerSurname);
 		r.setCustomerName(customerName);
 		r.setCustomerMiddlename(customerMiddlename);
 		r.setCustomerAddress(customerAddress);
 		r.setDateReservation(dtReservation);
-		//TODO transfer to TicketTest r.setDatePayment(dtPayment);		
-
+		r.setPaid(isPaid);
+		
 		reservationDAOImpl.create(r);
 		int id = r.getId();
 		Reservation rReaded = reservationDAOImpl.read(id);
@@ -61,7 +59,7 @@ private static ReservationDAOImpl reservationDAOImpl;
 		assertTrue(customerAddress.equals(rReaded.getCustomerAddress()));
 		
 		assertTrue(dtReservation.equals(rReaded.getDateReservation()));
-		//TODO transfer to TicketTest assertTrue(dtPayment.equals(rReaded.getDatePayment()));
+		assertTrue(isPaid == rReaded.isPaid());
 		
 		reservationDAOImpl.delete(r);
 	}
@@ -83,7 +81,7 @@ private static ReservationDAOImpl reservationDAOImpl;
 		assertTrue(r.getCustomerAddress().equals(rReaded.getCustomerAddress()));
 		
 		assertTrue(r.getDateReservation().equals(rReaded.getDateReservation()));
-		//TODO transfer to TicketTest assertTrue(r.getDatePayment().equals(rReaded.getDatePayment()));
+		assertTrue(r.isPaid() == rReaded.isPaid());
 		
 		customerSurname = "Surname1";
 		r.setCustomerSurname(customerSurname);
@@ -101,16 +99,15 @@ private static ReservationDAOImpl reservationDAOImpl;
 		
 		GregorianCalendar gcReservation = new GregorianCalendar(2013, Calendar.DECEMBER, 23, 4, 37, 0);
 		Timestamp dtReservation = new java.sql.Timestamp(gcReservation.getTime().getTime());
+		boolean isPaid = true;
 		
-		GregorianCalendar gcPayment = new GregorianCalendar(2013, Calendar.DECEMBER, 23, 4, 40, 0);
-		Timestamp dtPayment = new java.sql.Timestamp(gcPayment.getTime().getTime());
-		
+				
 		r.setCustomerSurname(customerSurname);
 		r.setCustomerName(customerName);
 		r.setCustomerMiddlename(customerMiddlename);
 		r.setCustomerAddress(customerAddress);
 		r.setDateReservation(dtReservation);
-		//TODO transfer to TicketTest r.setDatePayment(dtPayment);		
+		r.setPaid(isPaid);		
 
 		reservationDAOImpl.create(r);
 
@@ -129,9 +126,8 @@ private static ReservationDAOImpl reservationDAOImpl;
 		
 		GregorianCalendar gcReservation = new GregorianCalendar(2013, Calendar.DECEMBER, 5, 10, 00, 14);
 		Timestamp dtReservation = new java.sql.Timestamp(gcReservation.getTime().getTime());
+		boolean isPaid = true;
 		
-		GregorianCalendar gcPayment = new GregorianCalendar(2013, Calendar.DECEMBER, 6, 10, 00, 14);
-		Timestamp dtPayment = new java.sql.Timestamp(gcPayment.getTime().getTime());
 		
 		assertTrue(r.getId() == 2);
 		assertTrue(r.getCustomerSurname().equals("Surname2"));
@@ -140,7 +136,7 @@ private static ReservationDAOImpl reservationDAOImpl;
 		assertTrue(r.getCustomerAddress().equals("Address2"));
 		
 		assertTrue(r.getDateReservation().equals(dtReservation));
-		//TODO transfer to TicketTest assertTrue(r.getDatePayment().equals(dtPayment));
+		assertTrue(r.isPaid() == isPaid);
 	}
 
 	@Test
@@ -149,7 +145,7 @@ private static ReservationDAOImpl reservationDAOImpl;
 		GregorianCalendar gcReservation = new GregorianCalendar(2013, Calendar.DECEMBER, 6, 10, 00, 14);
 		Timestamp dtReservation = new java.sql.Timestamp(gcReservation.getTime().getTime());
 		
-		//Timestamp dtPayment = null;
+		boolean isPaid = false;
 		
 		assertTrue(listR.size() == 1);
 		assertTrue(listR.get(0).getId() == 3);
@@ -158,7 +154,7 @@ private static ReservationDAOImpl reservationDAOImpl;
 		assertTrue(listR.get(0).getCustomerMiddlename().equals("Middlename3"));
 		assertTrue(listR.get(0).getCustomerAddress().equals("Address3"));
 		assertTrue(listR.get(0).getDateReservation().equals(dtReservation));
-		//assertTrue(listR.get(0).getDatePayment().equals(dtPayment));
+		assertTrue(listR.get(0).isPaid() == isPaid);
 		
 	}
 
@@ -172,14 +168,14 @@ private static ReservationDAOImpl reservationDAOImpl;
 		String customerAddress = "Address6";
 		
 		Timestamp dtReservation = new java.sql.Timestamp(Calendar.getInstance().getTime().getTime());
-		Timestamp dtPayment = new java.sql.Timestamp(Calendar.getInstance().getTime().getTime());
+		boolean isPaid = true;
 		
 		r.setCustomerSurname(customerSurname);
 		r.setCustomerName(customerName);
 		r.setCustomerMiddlename(customerMiddlename);
 		r.setCustomerAddress(customerAddress);
 		r.setDateReservation(dtReservation);
-		//TODO transfer to TicketTest r.setDatePayment(dtPayment);		
+		r.setPaid(isPaid);		
 
 		reservationDAOImpl.create(r);
 		
@@ -191,7 +187,7 @@ private static ReservationDAOImpl reservationDAOImpl;
 		assertTrue(listR.get(0).getCustomerMiddlename().equals("Middlename6"));
 		assertTrue(listR.get(0).getCustomerAddress().equals("Address6"));
 		assertTrue(listR.get(0).getDateReservation().equals(dtReservation));
-		//TODO transfer to TicketTest assertTrue(listR.get(0).getDatePayment().equals(dtPayment));
+		assertTrue(listR.get(0).isPaid() == isPaid);
 		
 	}
 
