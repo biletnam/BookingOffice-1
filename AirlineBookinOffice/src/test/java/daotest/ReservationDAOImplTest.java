@@ -7,11 +7,12 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
 
+import model.Reservation;
+
 import org.junit.*;
 
 import dao.DAOFactory;
 import dao.ReservationDAOImpl;
-import entity.Reservation;
 
 public class ReservationDAOImplTest extends IntegrationTestBase {
 
@@ -48,7 +49,7 @@ private static ReservationDAOImpl reservationDAOImpl;
 		r.setCustomerMiddlename(customerMiddlename);
 		r.setCustomerAddress(customerAddress);
 		r.setDateReservation(dtReservation);
-		r.setDatePayment(dtPayment);		
+		//TODO transfer to TicketTest r.setDatePayment(dtPayment);		
 
 		reservationDAOImpl.create(r);
 		int id = r.getId();
@@ -60,7 +61,7 @@ private static ReservationDAOImpl reservationDAOImpl;
 		assertTrue(customerAddress.equals(rReaded.getCustomerAddress()));
 		
 		assertTrue(dtReservation.equals(rReaded.getDateReservation()));
-		assertTrue(dtPayment.equals(rReaded.getDatePayment()));
+		//TODO transfer to TicketTest assertTrue(dtPayment.equals(rReaded.getDatePayment()));
 		
 		reservationDAOImpl.delete(r);
 	}
@@ -82,7 +83,7 @@ private static ReservationDAOImpl reservationDAOImpl;
 		assertTrue(r.getCustomerAddress().equals(rReaded.getCustomerAddress()));
 		
 		assertTrue(r.getDateReservation().equals(rReaded.getDateReservation()));
-		assertTrue(r.getDatePayment().equals(rReaded.getDatePayment()));
+		//TODO transfer to TicketTest assertTrue(r.getDatePayment().equals(rReaded.getDatePayment()));
 		
 		customerSurname = "Surname1";
 		r.setCustomerSurname(customerSurname);
@@ -109,7 +110,7 @@ private static ReservationDAOImpl reservationDAOImpl;
 		r.setCustomerMiddlename(customerMiddlename);
 		r.setCustomerAddress(customerAddress);
 		r.setDateReservation(dtReservation);
-		r.setDatePayment(dtPayment);		
+		//TODO transfer to TicketTest r.setDatePayment(dtPayment);		
 
 		reservationDAOImpl.create(r);
 
@@ -139,7 +140,7 @@ private static ReservationDAOImpl reservationDAOImpl;
 		assertTrue(r.getCustomerAddress().equals("Address2"));
 		
 		assertTrue(r.getDateReservation().equals(dtReservation));
-		assertTrue(r.getDatePayment().equals(dtPayment));
+		//TODO transfer to TicketTest assertTrue(r.getDatePayment().equals(dtPayment));
 	}
 
 	@Test
@@ -178,7 +179,7 @@ private static ReservationDAOImpl reservationDAOImpl;
 		r.setCustomerMiddlename(customerMiddlename);
 		r.setCustomerAddress(customerAddress);
 		r.setDateReservation(dtReservation);
-		r.setDatePayment(dtPayment);		
+		//TODO transfer to TicketTest r.setDatePayment(dtPayment);		
 
 		reservationDAOImpl.create(r);
 		
@@ -190,7 +191,7 @@ private static ReservationDAOImpl reservationDAOImpl;
 		assertTrue(listR.get(0).getCustomerMiddlename().equals("Middlename6"));
 		assertTrue(listR.get(0).getCustomerAddress().equals("Address6"));
 		assertTrue(listR.get(0).getDateReservation().equals(dtReservation));
-		assertTrue(listR.get(0).getDatePayment().equals(dtPayment));
+		//TODO transfer to TicketTest assertTrue(listR.get(0).getDatePayment().equals(dtPayment));
 		
 	}
 

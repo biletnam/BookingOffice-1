@@ -2,10 +2,10 @@ package service;
 
 import java.util.List;
 
+import model.*;
 import dao.FlightDAO;
 import dao.ReservationDAO;
 import dao.TicketDAO;
-import entity.*;
 
 public class AdministratorService {
 	private FlightDAO flightDao;
@@ -25,7 +25,10 @@ public class AdministratorService {
 		flightDao.create(f);
 		for (int i = 0; i < ticketAmount; i++)
 		{
-			ticketDao.create(new Ticket(f.getId(), TicketStatus.FREE));
+			Ticket t = new Ticket();
+			t.setFlightId(f.getId());
+			t.setStatus(TicketStatus.FREE);
+			ticketDao.create(t);
 		}
 	}
 	
@@ -37,7 +40,10 @@ public class AdministratorService {
 		if (ticketAmountNew > ticketAmount) {
 			for (int i = 0; i < ticketAmountNew - ticketAmount; i++)
 			{
-				ticketDao.create(new Ticket(f.getId(), TicketStatus.FREE));
+				Ticket t = new Ticket();
+				t.setFlightId(f.getId());
+				t.setStatus(TicketStatus.FREE);
+				ticketDao.create(t);
 			}
 		}
 		else if (ticketAmountNew < ticketAmount) {

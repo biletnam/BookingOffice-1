@@ -1,4 +1,6 @@
-package entity;
+package model;
+
+import java.sql.Timestamp;
 
 import javax.persistence.*;
 
@@ -10,49 +12,52 @@ public class Ticket {
 	private int flightId;
 	private TicketStatus status;
 	private Integer reservationId; //TODO type?
-	
+	private Timestamp datePayment;
 	
 	public Ticket() {
 		super();
 	}
 
-
-	public Ticket(int flightId, TicketStatus status) {
+	public Ticket(int flightId, TicketStatus status, Integer reservationId,
+			Timestamp datePayment) {
 		super();
 		this.flightId = flightId;
 		this.status = status;
+		this.reservationId = reservationId;
+		this.datePayment = datePayment;
 	}
-
 
 	public int getFlightId() {
 		return flightId;
 	}
 
-
 	public void setFlightId(int flightId) {
 		this.flightId = flightId;
 	}
-
 
 	public TicketStatus getStatus() {
 		return status;
 	}
 
-
 	public void setStatus(TicketStatus status) {
 		this.status = status;
 	}
-
 
 	public Integer getReservationId() {
 		return reservationId;
 	}
 
-
 	public void setReservationId(Integer reservationId) {
 		this.reservationId = reservationId;
 	}
 
+	public Timestamp getDatePayment() {
+		return datePayment;
+	}
+
+	public void setDatePayment(Timestamp datePayment) {
+		this.datePayment = datePayment;
+	}
 
 	public int getId() {
 		return id;

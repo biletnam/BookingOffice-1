@@ -8,16 +8,17 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
 
+import model.Flight;
+import model.Reservation;
+import model.Ticket;
+import model.TicketStatus;
+
 import org.junit.*;
 
 import dao.DAOFactory;
 import dao.FlightDAOImpl;
 import dao.ReservationDAOImpl;
 import dao.TicketDAOImpl;
-import entity.Flight;
-import entity.Reservation;
-import entity.Ticket;
-import entity.TicketStatus;
 
 public class TicketDAOImplTest extends IntegrationTestBase {
 	private static TicketDAOImpl ticketDAOImpl;

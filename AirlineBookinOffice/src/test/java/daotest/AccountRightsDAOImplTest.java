@@ -4,14 +4,15 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 
+import model.Account;
+import model.AccountRights;
+import model.AccountRole;
+
 import org.junit.*;
 
 import dao.AccountDAOImpl;
 import dao.AccountRightsDAOImpl;
 import dao.DAOFactory;
-import entity.Account;
-import entity.AccountRights;
-import entity.AccountRole;
 
 public class AccountRightsDAOImplTest extends IntegrationTestBase {
 	private static AccountRightsDAOImpl accountRightsDAOImpl;

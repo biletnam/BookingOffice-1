@@ -7,10 +7,11 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
 
+import model.Flight;
+
 import org.junit.*;
 
 import dao.*;
-import entity.Flight;
 
 public class FlightDAOImplTest extends IntegrationTestBase {
 	private static FlightDAOImpl flightDAOImpl;

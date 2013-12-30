@@ -1,12 +1,12 @@
 package daotest;
 
 import static org.junit.Assert.assertTrue;
+import model.Account;
 
 import org.junit.*;
 
 import dao.AccountDAOImpl;
 import dao.DAOFactory;
-import entity.Account;
 
 public class AccountDAOImplTest extends IntegrationTestBase {
 	private static AccountDAOImpl accountDAOImpl;

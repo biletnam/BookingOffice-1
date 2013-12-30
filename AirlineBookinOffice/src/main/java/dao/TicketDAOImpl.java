@@ -8,11 +8,11 @@ import java.util.List;
 
 import javax.persistence.*;
 
-import entity.DataForReport;
-import entity.Flight;
-import entity.Reservation;
-import entity.Ticket;
-import entity.TicketStatus;
+import model.DataForReport;
+import model.Flight;
+import model.Reservation;
+import model.Ticket;
+import model.TicketStatus;
 
 public class TicketDAOImpl extends DAOFactory implements TicketDAO {
 	private EntityManager entityManager;

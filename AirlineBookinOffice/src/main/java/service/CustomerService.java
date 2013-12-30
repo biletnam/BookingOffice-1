@@ -3,8 +3,8 @@ package service;
 import java.sql.Date;
 import java.util.List;
 
+import model.*;
 import dao.*;
-import entity.*;
 
 
 public class CustomerService {

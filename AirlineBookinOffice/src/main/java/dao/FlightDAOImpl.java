@@ -7,7 +7,7 @@ import java.util.List;
 
 import javax.persistence.*;
 
-import entity.*;
+import model.*;
 
 
 public class FlightDAOImpl extends DAOFactory implements FlightDAO {

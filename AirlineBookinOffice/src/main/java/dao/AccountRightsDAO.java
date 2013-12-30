@@ -2,7 +2,7 @@ package dao;
 
 import java.util.*;
 
-import entity.*;
+import model.*;
 
 public interface AccountRightsDAO extends DAO<AccountRights> {
 	List<AccountRights> getAccountRights(Account account);

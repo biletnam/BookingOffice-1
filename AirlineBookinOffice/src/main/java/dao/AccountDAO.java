@@ -1,6 +1,6 @@
 package dao;
 
-import entity.*;
+import model.*;
 
 public interface AccountDAO extends DAO<Account> {
 	

@@ -5,8 +5,8 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
 
+import model.*;
 import dao.*;
-import entity.*;
 
 public class AccountantService {
 	private ReservationDAO reservationDao;
@@ -27,7 +27,7 @@ public class AccountantService {
 			int id = r.getId();
 			GregorianCalendar gc = (GregorianCalendar) Calendar.getInstance();
 			Timestamp now = (Timestamp) gc.getTime();
-			r.setDatePayment(now);
+			//TODO r.setDatePayment(now); set to all tickets of reservation datePayment
 			reservationDao.update(r);
 			List<Ticket> listT = ticketDao.getTicketsForReservation(r);
 			for (Ticket t : listT) {

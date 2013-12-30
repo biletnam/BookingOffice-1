@@ -8,7 +8,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
-import entity.Reservation;
+import model.Reservation;
 
 public class ReservationDAOImpl extends DAOFactory implements ReservationDAO {
 	private EntityManager entityManager;

@@ -1,4 +1,4 @@
-package entity;
+package model;
 
 import java.sql.Timestamp;
 
@@ -14,7 +14,7 @@ public class Reservation {
 	private String customerMiddlename;
 	private String customerAddress;
 	private Timestamp dateReservation;
-	private Timestamp datePayment;
+	private boolean isPaid;
 	
 	public Reservation() {
 		super();
@@ -22,14 +22,14 @@ public class Reservation {
 
 	public Reservation(String customerSurname, String customerName,
 			String customerMiddlename, String customerAddress,
-			Timestamp dateReservation, Timestamp datePayment) {
+			Timestamp dateReservation, boolean isPaid) {
 		super();
 		this.customerSurname = customerSurname;
 		this.customerName = customerName;
 		this.customerMiddlename = customerMiddlename;
 		this.customerAddress = customerAddress;
 		this.dateReservation = dateReservation;
-		this.datePayment = datePayment;
+		this.isPaid = isPaid;
 	}
 
 	public String getCustomerSurname() {
@@ -72,16 +72,18 @@ public class Reservation {
 		this.dateReservation = dateReservation;
 	}
 
-	public Timestamp getDatePayment() {
-		return datePayment;
+	public boolean isPaid() {
+		return isPaid;
 	}
 
-	public void setDatePayment(Timestamp datePayment) {
-		this.datePayment = datePayment;
+	public void setPaid(boolean isPaid) {
+		this.isPaid = isPaid;
 	}
 
 	public int getId() {
 		return id;
 	}
+
+
 	
 }

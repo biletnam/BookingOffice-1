@@ -6,8 +6,8 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
-import entity.Account;
-import entity.AccountRights;
+import model.Account;
+import model.AccountRights;
 
 
 public class AccountRightsDAOImpl extends DAOFactory implements AccountRightsDAO {

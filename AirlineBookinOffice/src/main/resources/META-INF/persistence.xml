@@ -6,11 +6,11 @@
 
 	<persistence-unit name="BookingOfficeTest" transaction-type="RESOURCE_LOCAL">
 		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
-		<class>entity.Flight</class>
-		<class>entity.Ticket</class>
-		<class>entity.Reservation</class>
-		<class>entity.Account</class>
-		<class>entity.AccountRights</class>
+		<class>model.Flight</class>
+		<class>model.Ticket</class>
+		<class>model.Reservation</class>
+		<class>model.Account</class>
+		<class>model.AccountRights</class>
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.EmbeddedDriver" />
 			<property name="javax.persistence.jdbc.url" value="jdbc:derby:..\BookingOfficeDBTest;create=true" />

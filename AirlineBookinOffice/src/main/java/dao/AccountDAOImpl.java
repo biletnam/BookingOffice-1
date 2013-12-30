@@ -2,7 +2,7 @@ package dao;
 
 import javax.persistence.EntityManager;
 
-import entity.Account;
+import model.Account;
 
 public class AccountDAOImpl extends DAOFactory implements AccountDAO {
 	private EntityManager entityManager;
