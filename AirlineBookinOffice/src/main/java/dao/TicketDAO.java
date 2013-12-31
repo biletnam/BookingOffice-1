@@ -6,8 +6,8 @@ import java.util.*;
 import model.*;
 
 public interface TicketDAO extends DAO<Ticket> {
-	long getAmountOfTicketsForStatus(Flight flight, TicketStatus ticketStatus);
-	List<Ticket> getTicketsForStatus(Flight flight, TicketStatus ticketStatus);
+	long getAmountOfTicketsForStatusForTheFlight(Flight flight, TicketStatus ticketStatus);
+	List<Ticket> getTicketsForStatusForTheFlight(Flight flight, TicketStatus ticketStatus);
 	List<Ticket> getTicketsForExpiredReservation();
 	List<Ticket> getTicketsForReservation(Reservation r);
 	void updateTicketsStatus(List<Ticket> tickets, TicketStatus ticketStatus);

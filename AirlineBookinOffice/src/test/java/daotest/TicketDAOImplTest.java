@@ -47,18 +47,21 @@ public class TicketDAOImplTest extends IntegrationTestBase {
 		int flightId = 1;
 		TicketStatus status = TicketStatus.BOOKED;
 		Integer reservationId = 3;
+		GregorianCalendar gcPayment = new GregorianCalendar(2013, Calendar.DECEMBER, 10, 4, 40, 0);
+		Timestamp dtPayment = new java.sql.Timestamp(gcPayment.getTime().getTime());
 		
 		t.setFlightId(flightId);
 		t.setStatus(status);
 		t.setReservationId(reservationId);
+		t.setDatePayment(dtPayment);
 		
-
 		ticketDAOImpl.create(t);
 		int id = t.getId();
 		Ticket tReaded = ticketDAOImpl.read(id);
 		assertTrue(id == tReaded.getId());
 		assertTrue(status.equals(tReaded.getStatus()));
 		assertTrue(reservationId == tReaded.getReservationId());
+		assertTrue(dtPayment.equals(tReaded.getDatePayment()));
 		
 		ticketDAOImpl.delete(t);
 	}
@@ -77,6 +80,7 @@ public class TicketDAOImplTest extends IntegrationTestBase {
 		assertTrue(t.getFlightId() == tReaded.getFlightId());
 		assertTrue(t.getStatus().equals(tReaded.getStatus()));
 		assertTrue(t.getReservationId().equals(tReaded.getReservationId()));
+		assertTrue(t.getDatePayment().equals(tReaded.getDatePayment()));
 		
 		status = TicketStatus.SOLD;
 		t.setStatus(status);
@@ -89,9 +93,12 @@ public class TicketDAOImplTest extends IntegrationTestBase {
 		Ticket t = new Ticket();
 		int flightId = 1;
 		TicketStatus status = TicketStatus.FREE;
+		GregorianCalendar gcPayment = new GregorianCalendar(2013, Calendar.DECEMBER, 23, 4, 40, 0);
+		Timestamp dtPayment = new java.sql.Timestamp(gcPayment.getTime().getTime());
 		
 		t.setFlightId(flightId);
 		t.setStatus(status);
+		t.setDatePayment(dtPayment);
 		
 		ticketDAOImpl.create(t);
 
@@ -107,11 +114,14 @@ public class TicketDAOImplTest extends IntegrationTestBase {
 	@Test
 	public void testRead() {
 		Ticket t = ticketDAOImpl.read(2);
+		GregorianCalendar gcPayment = new GregorianCalendar(2013, Calendar.DECEMBER, 5, 10, 00, 14);
+		Timestamp dtPayment = new java.sql.Timestamp(gcPayment.getTime().getTime());
 		
 		assertTrue(t.getId() == 2);
 		assertTrue(t.getFlightId() == 1);
 		assertTrue(t.getStatus().equals(TicketStatus.SOLD));
 		assertTrue(t.getReservationId().equals(1));
+		assertTrue(t.getDatePayment().equals(dtPayment));
 	}
 
 	@Test
@@ -153,17 +163,17 @@ public class TicketDAOImplTest extends IntegrationTestBase {
 	}
 
 	@Test
-	public void testGetAmountOfTicketsForStatus() {
+	public void testGetAmountOfTicketsForStatusForTheFlight() {
 		Flight f = flightDAOImpl.read(1);
-		long amount = ticketDAOImpl.getAmountOfTicketsForStatus(f, TicketStatus.FREE);
-		assertTrue(amount == 9);
+		long amount = ticketDAOImpl.getAmountOfTicketsForStatusForTheFlight(f, TicketStatus.FREE);
+		assertTrue(amount == 6);
 		
 	}
 
 	@Test
-	public void testGetTicketsForStatus() {
+	public void testGetTicketsForStatusForTheFlight() {
 		Flight f = flightDAOImpl.read(1);
-		List<Ticket> listT = ticketDAOImpl.getTicketsForStatus(f, TicketStatus.SOLD);
+		List<Ticket> listT = ticketDAOImpl.getTicketsForStatusForTheFlight(f, TicketStatus.SOLD);
 		assertTrue(listT.size() == 2);
 		assertTrue(listT.get(0).getId() == 1);
 		assertTrue(listT.get(0).getFlightId() == 1);

@@ -18,17 +18,6 @@ public class Account {
 		super();
 	}
 
-	public Account(String login, String psw, String surname, String name,
-			String middlename, boolean isActive) {
-		super();
-		this.login = login;
-		this.psw = psw;
-		this.surname = surname;
-		this.name = name;
-		this.middlename = middlename;
-		this.isActive = isActive;
-	}
-
 	public String getLogin() {
 		return login;
 	}

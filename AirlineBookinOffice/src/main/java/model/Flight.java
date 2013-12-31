@@ -23,20 +23,6 @@ public class Flight {
 		super();
 	}
 	
-	public Flight(Timestamp dateCreated, String flightNumber, String departure,
-			String arrival, Timestamp dateDeparture, Timestamp dateArrival,
-			int ticketAmount, double ticketPrice) {
-		super();
-		this.dateCreated = dateCreated;
-		this.flightNumber = flightNumber;
-		this.departure = departure;
-		this.arrival = arrival;
-		this.dateDeparture = dateDeparture;
-		this.dateArrival = dateArrival;
-		this.ticketAmount = ticketAmount;
-		this.ticketPrice = ticketPrice;
-	}
-
 	public Timestamp getDateCreated() {
 		return dateCreated;
 	}

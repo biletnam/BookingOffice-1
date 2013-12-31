@@ -18,15 +18,6 @@ public class Ticket {
 		super();
 	}
 
-	public Ticket(int flightId, TicketStatus status, Integer reservationId,
-			Timestamp datePayment) {
-		super();
-		this.flightId = flightId;
-		this.status = status;
-		this.reservationId = reservationId;
-		this.datePayment = datePayment;
-	}
-
 	public int getFlightId() {
 		return flightId;
 	}

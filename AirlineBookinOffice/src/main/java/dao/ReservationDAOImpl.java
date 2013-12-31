@@ -53,7 +53,7 @@ public class ReservationDAOImpl extends DAOFactory implements ReservationDAO {
 		gc.add(Calendar.DAY_OF_YEAR, -3);
 		Timestamp now = new Timestamp(gc.getTime().getTime());
 		
-		TypedQuery<Reservation> query = entityManager.createQuery("SELECT r FROM Reservation r where r.dateReservation < ?1 and r.datePayment = null", Reservation.class);
+		TypedQuery<Reservation> query = entityManager.createQuery("SELECT r FROM Reservation r where r.dateReservation < ?1 and r.isPaid = FALSE", Reservation.class);
 		List<Reservation> listR = null;
 		
 		query.setParameter(1, now);

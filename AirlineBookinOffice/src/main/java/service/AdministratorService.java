@@ -49,12 +49,12 @@ public class AdministratorService {
 		}
 		else if (ticketAmountNew < ticketAmount) {
 			long amountForDelete = ticketAmount - ticketAmountNew;
-			long amountFree = ticketDao.getAmountOfTicketsForStatus(f, TicketStatus.FREE);
+			long amountFree = ticketDao.getAmountOfTicketsForStatusForTheFlight(f, TicketStatus.FREE);
 			if (amountForDelete > amountFree) {
 				//TODO message for deleting flight
 				return;
 			} else if (amountForDelete < amountFree) {
-				List<Ticket> listT = ticketDao.getTicketsForStatus(f, TicketStatus.FREE);
+				List<Ticket> listT = ticketDao.getTicketsForStatusForTheFlight(f, TicketStatus.FREE);
 				int count = 0;
 				for (Ticket t : listT) {
 					ticketDao.delete(t);
@@ -78,7 +78,7 @@ public class AdministratorService {
 	}
 	
 	void deleteFlightFromTimeTable(Flight f) {
-		long amountUsed = ticketDao.getAmountOfTicketsForStatus(f, TicketStatus.BOOKED) + ticketDao.getAmountOfTicketsForStatus(f, TicketStatus.SOLD);
+		long amountUsed = ticketDao.getAmountOfTicketsForStatusForTheFlight(f, TicketStatus.BOOKED) + ticketDao.getAmountOfTicketsForStatusForTheFlight(f, TicketStatus.SOLD);
 		if (amountUsed == 0) {
 			flightDao.delete(f);
 		} else 

@@ -15,15 +15,6 @@ public class DataForReport {
 	
 	}
 
-	public DataForReport(Timestamp datePayment, String arrival, long ticketCount, double ticketPrice, double ticketSum) {
-		super();
-		this.datePayment = datePayment;
-		this.arrival = arrival;
-		this.ticketCount = ticketCount;
-		this.ticketPrice = ticketPrice;
-		this.ticketSum = ticketSum;
-	}
-
 	public Timestamp getDatePayment() {
 		return datePayment;
 	}

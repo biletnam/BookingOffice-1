@@ -16,12 +16,7 @@ public class AccountRights {
 		super();
 	}
 
-	public AccountRights(int accountId, AccountRole accountRole) {
-		super();
-		this.accountId = accountId;
-		this.accountRole = accountRole;
-	}
-
+	
 	public int getAccountId() {
 		return accountId;
 	}

@@ -62,21 +62,22 @@ public class TicketDAOImpl extends DAOFactory implements TicketDAO {
 	}
 
 	@Override
-	public long getAmountOfTicketsForStatus(Flight flight, TicketStatus ticketStatus) {
-		TypedQuery<Long> query = entityManager.createQuery("SELECT count(t.id) FROM Ticket t, Flight f WHERE t.flightId =f.id and t.status = ?1", Long.class);
+	public long getAmountOfTicketsForStatusForTheFlight(Flight flight, TicketStatus ticketStatus) {
+		TypedQuery<Long> query = entityManager.createQuery("SELECT count(t.id) FROM Ticket t WHERE t.status = ?1 and t.flightId = ?2", Long.class);
 		long amount = 0;
 		query.setParameter(1, ticketStatus);
+		query.setParameter(2, flight.getId());
 		amount = query.getSingleResult();
 		return amount;
 	}
 
 	@Override
-	public List<Ticket> getTicketsForStatus(Flight flight, TicketStatus ticketStatus) {
-		int id = flight.getId();
-		TypedQuery<Ticket> query = entityManager.createQuery("SELECT t FROM Ticket t WHERE t.flightId = ?1 and t.status = ?2", Ticket.class);
+	public List<Ticket> getTicketsForStatusForTheFlight(Flight flight, TicketStatus ticketStatus) {
+		
+		TypedQuery<Ticket> query = entityManager.createQuery("SELECT t FROM Ticket t WHERE t.status = ?1 and t.flightId = ?2", Ticket.class);
 		List<Ticket> listT = null;
-		query.setParameter(1, id);
-		query.setParameter(2, ticketStatus);
+		query.setParameter(1, ticketStatus);
+		query.setParameter(2, flight.getId());
 		listT = query.getResultList();
 		return listT;
 	}

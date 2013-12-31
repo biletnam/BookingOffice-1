@@ -20,18 +20,6 @@ public class Reservation {
 		super();
 	}
 
-	public Reservation(String customerSurname, String customerName,
-			String customerMiddlename, String customerAddress,
-			Timestamp dateReservation, boolean isPaid) {
-		super();
-		this.customerSurname = customerSurname;
-		this.customerName = customerName;
-		this.customerMiddlename = customerMiddlename;
-		this.customerAddress = customerAddress;
-		this.dateReservation = dateReservation;
-		this.isPaid = isPaid;
-	}
-
 	public String getCustomerSurname() {
 		return customerSurname;
 	}
