@@ -1,19 +1,22 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-	<parent>
-        <artifactId>BookingOffice</artifactId>
-        <groupId>nataliia.kukushkina</groupId>
-        <version>1.0</version>
-    </parent>
+	
     
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>JSF</groupId>
+<!-- 	<groupId>nataliia.kukushkina</groupId> -->
 	<artifactId>web-view</artifactId>
 	<packaging>war</packaging>
 	<version>0.0.1-SNAPSHOT</version>
 	
 	<name>BookingOffice webapp</name>
 	<url>http://maven.apache.org</url>
+	
+	<parent>
+        <artifactId>BookingOffice</artifactId>
+        <groupId>nataliia.kukushkina</groupId>
+        <version>1.0</version>
+    </parent>
+	
 	<dependencies>
 		<dependency>
 			<groupId>junit</groupId>
@@ -46,9 +49,14 @@
 			<artifactId>jsf-impl</artifactId>
 			<version>2.1.7</version>
 		</dependency>
+		<dependency>
+			<groupId>nataliia.kukushkina</groupId>
+			<artifactId>model</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
 	</dependencies>
 	<build>
-		<finalName>AirlineBookingOfficeJSF</finalName>
+		<finalName>BookingOfficeWebView</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
