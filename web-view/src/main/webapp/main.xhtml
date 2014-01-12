@@ -6,15 +6,26 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core">
 
-<ui:composition template="WEB-INF/templates/">
-	<ui:define name="header">
-	    Add your header here or delete to use the default
-	</ui:define>
+<ui:composition template="WEB-INF/templates/basic_template.xhtml">
+
 	<ui:define name="content">
-	    Add your content here or delete to use the default
-	</ui:define>
-	<ui:define name="footer">
-	    Add your footer here or delete to use the default
+		<h2>Customer page</h2>
+		<h:form>
+			<h:panelGrid columns="5">
+					<h:outputText value="Departure date:"></h:outputText>
+					<h:inputText id="dateDeparture" value="#{main.filterDateDeparture}">
+						<f:convertDateTime pattern="dd.MM.yyyy"></f:convertDateTime>
+					</h:inputText>
+					<h:outputText value="Arrival:"></h:outputText>
+					<h:inputText id="arrival" value="#{main.filterArrival}"></h:inputText>
+					<h:commandButton value="Submit" action="mainresult"></h:commandButton>
+					<h:message for="departureDate"></h:message>
+					<h:outputText value=""></h:outputText>
+					<h:message for="arrival"></h:message>
+					<h:outputText value=""></h:outputText>
+					<h:outputText value=""></h:outputText>
+			</h:panelGrid>
+		</h:form>
 	</ui:define>
 </ui:composition>
 </html>

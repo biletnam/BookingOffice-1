@@ -16,15 +16,21 @@
 <h:body>
 
 	<div id="header">
-		<ui:insert name="header">Header Section</ui:insert>
+		<ui:insert name="header">
+			<ui:include src="header.xhtml"></ui:include>
+		</ui:insert>
 	</div>
-	
+
 	<div id="content">
-		<ui:insert name="content">Main Content</ui:insert>
+		<ui:insert name="content">
+			<ui:include src="content.xhtml"></ui:include>
+		</ui:insert>
 	</div>
 
 	<div id="footer">
-		<ui:insert name="footer">Header Section</ui:insert>
+		<ui:insert name="footer">
+			<ui:include src="footer.xhtml"></ui:include>
+		</ui:insert>
 	</div>
 
 </h:body>
