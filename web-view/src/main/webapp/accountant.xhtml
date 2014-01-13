@@ -6,15 +6,46 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core">
 
-<ui:composition template="">
-	<ui:define name="header">
-	    Add your header here or delete to use the default
-	</ui:define>
+<ui:composition template="WEB-INF/templates/templateAuthorized.xhtml">
 	<ui:define name="content">
-	    Add your content here or delete to use the default
-	</ui:define>
-	<ui:define name="footer">
-	    Add your footer here or delete to use the default
+		<h3>Accountant page</h3>
+		<h:form>
+			Overdue reservations
+			<h:panelGrid columns="1">
+				<h:dataTable value="#{accountant.listOverdueReservations}"
+					var="reservation" styleClass="table" headerClass="tableHeader"
+					rowClasses="tableOddRow, tableEvenRow">
+
+					<h:column>
+						<f:facet name="header">Surname</f:facet>
+						<h:outputText value="#{reservation.customerSurname}"></h:outputText>
+					</h:column>
+					<h:column>
+						<f:facet name="header">Name</f:facet>
+						<h:outputText value="#{reservation.customerName}"></h:outputText>
+					</h:column>
+					<h:column>
+						<f:facet name="header">Middlename</f:facet>
+						<h:outputText value="#{reservation.customerMiddlename}"></h:outputText>
+					</h:column>
+					<h:column>
+						<f:facet name="header">Address</f:facet>
+						<h:outputText value="#{reservation.customerAddress}"></h:outputText>
+					</h:column>
+					<h:column>
+						<f:facet name="header">Reservation date</f:facet>
+						<h:outputText value="#{reservation.dateReservation}">
+							<f:convertDateTime pattern="dd.MM.yy HH:mm:ss"></f:convertDateTime>
+						</h:outputText>
+					</h:column>
+					<h:column>
+						<f:facet name="header">Is paid</f:facet>
+						<h:selectBooleanCheckbox value="#{reservation.isPaid}"></h:selectBooleanCheckbox>
+					</h:column>
+				</h:dataTable>
+				<h:commandButton value="Submit changes"></h:commandButton>
+			</h:panelGrid>
+		</h:form>
 	</ui:define>
 </ui:composition>
 </html>

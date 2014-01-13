@@ -19,6 +19,7 @@ public class MainBean implements Serializable {
 	private Date filterDateDeparture;
 	private String filterArrival;
 	private ArrayList<Flight> listFlights;
+	
 
 	public MainBean() {
 		super();
