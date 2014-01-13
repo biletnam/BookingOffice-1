@@ -9,7 +9,21 @@
 	<ui:define name="content">
 		<h:form>
 			<h3>Customer page</h3>
-			Flights is not found
+			<h:panelGrid columns="5">
+				<h:outputText value="Departure date"></h:outputText>
+				<h:inputText id="dateDeparture" value="#{main.filterDateDeparture}">
+					<f:convertDateTime pattern="dd.MM.yyyy"></f:convertDateTime>
+				</h:inputText>
+				<h:outputText value="Arrival"></h:outputText>
+				<h:inputText id="arrival" value="#{main.filterArrival}"></h:inputText>
+				<h:commandButton value="Find" action="#{main.findFlights}"></h:commandButton>
+				<h:message for="departureDate"></h:message>
+				<h:outputText value=""></h:outputText>
+				<h:message for="arrival"></h:message>
+				<h:outputText value=""></h:outputText>
+				<h:outputText value=""></h:outputText>
+			</h:panelGrid>
+			Flights are not found
 		</h:form>
 	</ui:define>
 </ui:composition>

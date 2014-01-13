@@ -30,6 +30,30 @@
 				<h:outputText value=""></h:outputText>
 			</h:panelGrid>
 			<h:commandButton value="View report" action="#{analytic.viewReport}"></h:commandButton>
+			Report 1
+			<h:dataTable value="#{analytic.listReport}" var="item"
+				styleClass="table" headerClass="tableHeader"
+				rowClasses="tableOddRow, tableEvenRow">
+
+				<h:column>
+					<f:facet name="header">Date</f:facet>
+					<h:outputText value="#{item.datePayment}">
+						<f:convertDateTime pattern="dd.MM.yy"></f:convertDateTime>
+					</h:outputText>
+				</h:column>
+				<h:column>
+					<f:facet name="header">Ticket count</f:facet>
+					<h:outputText value="#{item.ticketCount}"></h:outputText>
+				</h:column>
+				<h:column>
+					<f:facet name="header">Ticket price</f:facet>
+					<h:outputText value="#{item.ticketPrice}"></h:outputText>
+				</h:column>
+				<h:column>
+					<f:facet name="header">Departure date</f:facet>
+					<h:outputText value="#{item.ticketSum}"></h:outputText>
+				</h:column>
+			</h:dataTable>
 		</h:form>
 	</ui:define>
 </ui:composition>

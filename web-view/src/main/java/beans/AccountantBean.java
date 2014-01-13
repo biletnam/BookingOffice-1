@@ -62,8 +62,6 @@ public class AccountantBean implements Serializable {
 		r2.setDateReservation(dtReservation);
 		r2.setIsPaid(false);
 
-		
-
 		ArrayList<Reservation> list = new ArrayList<Reservation>();
 		list.add(r1);
 		list.add(r2);
