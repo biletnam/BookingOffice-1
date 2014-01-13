@@ -11,9 +11,14 @@
 <body>
 	<ui:composition>
 		<h2>Airline Booking Office</h2>
-		<h:link value="Administrator" outcome="list" />  
-		<h:link value="Accountant" outcome="addDepo" />
-		<h:link value="Analytic" outcome="addDepo" />
+		<h:form>
+			<h:panelGrid columns="5">
+				<h:link value="Administrator" outcome="administrator" />  
+				<h:link value="Accountant" outcome="accountant" />
+				<h:link value="Analytic" outcome="analytic" />
+				<h:link value="SecurityOfficer" outcome="securityOfficer" />
+			</h:panelGrid>
+		</h:form>
 	</ui:composition>
 </body>
 </html>
