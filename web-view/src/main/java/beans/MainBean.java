@@ -18,10 +18,12 @@ public class MainBean implements Serializable {
 	
 	private Date filterDateDeparture;
 	private String filterArrival;
-	private static ArrayList<Flight> listFlights;
+	private ArrayList<Flight> listFlights;
 	
 	public MainBean() {
 		super();
+		setListFlights(initializeListFlights());
+		
 	}
 
 	public Date getFilterDateDeparture() {
@@ -40,20 +42,20 @@ public class MainBean implements Serializable {
 		this.filterArrival = filterArrival;
 	}
 
-	public static ArrayList<Flight> getListFlights() {
+	public ArrayList<Flight> getListFlights() {
 		return listFlights;
 	}
 
-	public static void setListFlights(ArrayList<Flight> listFlights) {
-		MainBean.listFlights = listFlights;
+	public void setListFlights(ArrayList<Flight> listFlights) {
+		this.listFlights = listFlights;
 	}
 	
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
 
-	static {
-		listFlights = new ArrayList<Flight>();
+	private ArrayList<Flight> initializeListFlights() {
+		
 		Flight f1 = new Flight();
 		f1.setFlightNumber("PS-711");
 		f1.setDeparture("Kyiv");
@@ -69,8 +71,6 @@ public class MainBean implements Serializable {
 		f1.setDateArrival(dtArrival);
 		f1.setTicketAmount(10);
 		f1.setTicketAmount(1000);
-		
-		listFlights.add(f1);
 		
 		Flight f2 = new Flight();
 		f2.setFlightNumber("AQ-021");
@@ -88,7 +88,11 @@ public class MainBean implements Serializable {
 		f2.setTicketAmount(5);
 		f2.setTicketAmount(1500);
 		
-		listFlights.add(f2);		
+		ArrayList<Flight> list = new ArrayList<Flight>();
+		list.add(f1);
+		list.add(f2);
+		
+		return list;
 	}
 	
 }
