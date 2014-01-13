@@ -19,11 +19,10 @@ public class MainBean implements Serializable {
 	private Date filterDateDeparture;
 	private String filterArrival;
 	private ArrayList<Flight> listFlights;
+	private String message;
 	
 	public MainBean() {
 		super();
-		setListFlights(initializeListFlights());
-		
 	}
 
 	public Date getFilterDateDeparture() {
@@ -52,6 +51,14 @@ public class MainBean implements Serializable {
 	
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+	
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
 	}
 
 	private ArrayList<Flight> initializeListFlights() {
@@ -93,6 +100,31 @@ public class MainBean implements Serializable {
 		list.add(f2);
 		
 		return list;
+	}
+	
+	public String findFlights() {
+		
+		GregorianCalendar gcDeparture = new GregorianCalendar(2013, Calendar.DECEMBER, 24);
+		Date dtDeparture = gcDeparture.getTime();
+		
+		GregorianCalendar gcFilter = new GregorianCalendar();
+		gcFilter.setTime(filterDateDeparture);
+		
+		gcFilter.set(Calendar.HOUR_OF_DAY, 0);
+		gcFilter.set(Calendar.MINUTE, 0);
+		gcFilter.set(Calendar.SECOND, 0);
+		gcFilter.set(Calendar.MILLISECOND, 0);
+		
+		Date dateDeparture = gcFilter.getTime();
+		
+		if (dateDeparture.equals(dtDeparture) && filterArrival.equals("Roma"))
+		{
+			setListFlights(initializeListFlights());
+			return "findFlightsSuccessful";
+		}
+		else {
+			return "findFlightsFailed";
+		}
 	}
 	
 }
