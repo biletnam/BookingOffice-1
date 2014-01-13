@@ -120,10 +120,10 @@ public class MainBean implements Serializable {
 		if (dateDeparture.equals(dtDeparture) && filterArrival.equals("Roma"))
 		{
 			setListFlights(initializeListFlights());
-			return "findFlightsSuccessful";
+			return "mainFindFlightsSuccessful";
 		}
 		else {
-			return "findFlightsFailed";
+			return "mainFindFlightsFailed";
 		}
 	}
 	
