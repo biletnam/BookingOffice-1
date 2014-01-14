@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="WEB-INF/templates/templateAuthorized.xhtml">
+	<ui:define name="content">
+		<h3>Security officer page</h3>
+		<h:form>
+			<h:panelGrid columns="2">
+				<h:outputText value="Login"></h:outputText>
+				<h:outputText id="login" value="#{accountBean.login}"></h:outputText>
+				<h:outputText value="Password"></h:outputText>
+				<h:outputText id="psw" value="#{accountBean.psw}"></h:outputText>
+				<h:outputText value="Surname"></h:outputText>
+				<h:outputText id="surname" value="#{accountBean.surname}"></h:outputText>
+				<h:outputText value="Name"></h:outputText>
+				<h:outputText id="name" value="#{accountBean.name}"></h:outputText>
+				<h:outputText value="Middlename"></h:outputText>
+				<h:outputText id="middlename" value="#{accountBean.middlename}"></h:outputText>
+				<h:outputText value="Is Active"></h:outputText>
+				<h:outputText id="isActive" value="#{accountBean.isActive}"></h:outputText>
+				<h:outputText value="Account rights"></h:outputText>
+				<h:outputText id="accountRightsToString" value="#{accountBean.accountRightsToString}"></h:outputText>
+			</h:panelGrid>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

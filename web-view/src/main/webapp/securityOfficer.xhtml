@@ -9,38 +9,39 @@
 <ui:composition template="WEB-INF/templates/templateAuthorized.xhtml">
 	<ui:define name="content">
 		<h3>Security officer page</h3>
-		<h:panelGrid columns="1">
-			<h:dataTable value="#{securityOfficer.listAccounts}" var="account"
-				styleClass="table" headerClass="tableHeader"
-				rowClasses="tableOddRow, tableEvenRow">
+		<h:form>
+			<h:panelGrid columns="1">
+				<h:dataTable value="#{securityOfficer.listAccounts}" var="account"
+					styleClass="table" headerClass="tableHeader"
+					rowClasses="tableOddRow, tableEvenRow">
 
-				<h:column>
-					<f:facet name="header">Login</f:facet>
-					<h:link value="#{account.login}"></h:link>
-				</h:column>
-				<h:column>
-					<f:facet name="header">Password</f:facet>
-					<h:outputText value="#{account.psw}"></h:outputText>
-				</h:column>
-				<h:column>
-					<f:facet name="header">Surname</f:facet>
-					<h:outputText value="#{account.surname}"></h:outputText>
-				</h:column>
-				<h:column>
-					<f:facet name="header">Name</f:facet>
-					<h:outputText value="#{account.name}"></h:outputText>
-				</h:column>
-				<h:column>
-					<f:facet name="header">Middlename</f:facet>
-					<h:outputText value="#{account.middlename}"></h:outputText>
-				</h:column>
-				<h:column>
-					<f:facet name="header">Is active</f:facet>
-					<h:selectBooleanCheckbox value="#{account.isActive}"></h:selectBooleanCheckbox>
-				</h:column>
-				
-			</h:dataTable>
-		</h:panelGrid>
+					<h:column>
+						<f:facet name="header">Login</f:facet>
+						<h:link value="#{account.login}"></h:link>
+					</h:column>
+					<h:column>
+						<f:facet name="header">Password</f:facet>
+						<h:outputText value="#{account.psw}"></h:outputText>
+					</h:column>
+					<h:column>
+						<f:facet name="header">Surname</f:facet>
+						<h:outputText value="#{account.surname}"></h:outputText>
+					</h:column>
+					<h:column>
+						<f:facet name="header">Name</f:facet>
+						<h:outputText value="#{account.name}"></h:outputText>
+					</h:column>
+					<h:column>
+						<f:facet name="header">Middlename</f:facet>
+						<h:outputText value="#{account.middlename}"></h:outputText>
+					</h:column>
+					<h:column>
+						<f:facet name="header">Is active</f:facet>
+						<h:selectBooleanCheckbox value="#{account.isActive}"></h:selectBooleanCheckbox>
+					</h:column>
+				</h:dataTable>
+			</h:panelGrid>
+		</h:form>
 	</ui:define>
 </ui:composition>
 </html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="WEB-INF/templates/templateAuthorized.xhtml">
+	<ui:define name="content">
+		<h3>Security officer page</h3>
+		<h:form>
+			<h:panelGrid columns="2">
+				<h:outputText value="Login"></h:outputText>
+				<h:inputText id="login" value="#{accountBean.login}"></h:inputText>
+				<h:outputText value="Password"></h:outputText>
+				<h:inputText id="psw" value="#{accountBean.psw}"></h:inputText>
+				<h:outputText value="Surname"></h:outputText>
+				<h:inputText id="surname" value="#{accountBean.surname}"></h:inputText>
+				<h:outputText value="Name"></h:outputText>
+				<h:inputText id="name" value="#{accountBean.name}"></h:inputText>
+				<h:outputText value="Middlename"></h:outputText>
+				<h:inputText id="middlename" value="#{accountBean.middlename}"></h:inputText>
+				<h:outputText value="Is Active"></h:outputText>
+				<h:selectBooleanCheckbox id="isActive" value="#{accountBean.isActive}"></h:selectBooleanCheckbox>
+				<h:outputText value="Account rights"></h:outputText>
+				<h:selectManyCheckbox value="#{accountBean.accountRights}" >
+					<f:selectItem itemValue="administrator" itemLabel="administrator" />
+					<f:selectItem itemValue="accountant" itemLabel="accountant" />
+					<f:selectItem itemValue="analytic" itemLabel="analytic" />
+					<f:selectItem itemValue="securityOfficer" itemLabel="security officer" />
+				</h:selectManyCheckbox>
+				
+				<h:commandButton value="Submit" action="accountResult"></h:commandButton>
+				
+			</h:panelGrid>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

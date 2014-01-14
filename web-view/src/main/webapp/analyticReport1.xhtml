@@ -38,7 +38,7 @@
 				<h:column>
 					<f:facet name="header">Date</f:facet>
 					<h:outputText value="#{item.datePayment}">
-						<f:convertDateTime pattern="dd.MM.yy"></f:convertDateTime>
+						<f:convertDateTime pattern="dd.MM.yyyy"></f:convertDateTime>
 					</h:outputText>
 				</h:column>
 				<h:column>
@@ -50,7 +50,7 @@
 					<h:outputText value="#{item.ticketPrice}"></h:outputText>
 				</h:column>
 				<h:column>
-					<f:facet name="header">Departure date</f:facet>
+					<f:facet name="header">Ticket sum</f:facet>
 					<h:outputText value="#{item.ticketSum}"></h:outputText>
 				</h:column>
 			</h:dataTable>

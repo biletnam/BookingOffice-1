@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="WEB-INF/templates/templateAuthorized.xhtml">
+	<ui:define name="content">
+	<h3>Administrator page</h3>
+		<h:form>
+			<h:panelGrid columns="2">
+				<h:outputText value="Flight number"></h:outputText>
+				<h:outputText id="flightNumber" value="#{flightBean.flightNumber}"></h:outputText>
+				<h:outputText value="Departure"></h:outputText>
+				<h:outputText id="departure" value="#{flightBean.departure}"></h:outputText>
+				<h:outputText value="Arrival"></h:outputText>
+				<h:outputText id="arrival" value="#{flightBean.arrival}"></h:outputText>
+				<h:outputText value="Departure date"></h:outputText>
+				<h:outputText id="dateDeparture" value="#{flightBean.dateDeparture}">
+					<f:convertDateTime pattern="dd.MM.yyyy HH.mm"></f:convertDateTime>
+				</h:outputText>
+				<h:outputText value="Arrival date"></h:outputText>
+				<h:outputText id="dateArrival" value="#{flightBean.dateArrival}">
+					<f:convertDateTime pattern="dd.MM.yyyy HH.mm"></f:convertDateTime>
+				</h:outputText>
+				<h:outputText value="Ticket count"></h:outputText>
+				<h:outputText id="ticketCount" value="#{flightBean.ticketCount}"></h:outputText>
+				<h:outputText value="Ticket price"></h:outputText>
+				<h:outputText id="ticketPrice" value="#{flightBean.ticketPrice}"></h:outputText>
+				
+				<h:commandButton value="Submit" action="flightResult"></h:commandButton>
+
+			</h:panelGrid>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>
