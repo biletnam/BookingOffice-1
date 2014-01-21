@@ -16,6 +16,7 @@ public class Flight {
 	private Timestamp dateDeparture;
 	private Timestamp dateArrival;
 	private int ticketAmount;
+	private int ticketFreeAmount;
 	private double ticketPrice;
 	
 	
@@ -73,6 +74,14 @@ public class Flight {
 	}
 	public int getId() {
 		return id;
+	}
+
+	public int getTicketFreeAmount() {
+		return ticketFreeAmount;
+	}
+
+	public void setTicketFreeAmount(int ticketFreeAmount) {
+		this.ticketFreeAmount = ticketFreeAmount;
 	}
 	
 	
