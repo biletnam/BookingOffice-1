@@ -41,13 +41,13 @@
 				<rich:column>
 					<f:facet name="header">Departure date</f:facet>
 					<h:outputText value="#{item.dateDeparture}">
-						<f:convertDateTime pattern="dd.MM.yy HH:mm"></f:convertDateTime>
+						<f:convertDateTime pattern="dd.MM.yyyy HH:mm"></f:convertDateTime>
 					</h:outputText>
 				</rich:column>
 				<rich:column>
 					<f:facet name="header">Arrival date</f:facet>
 					<h:outputText value="#{item.dateArrival}">
-						<f:convertDateTime pattern="dd.MM.yy HH:mm"></f:convertDateTime>
+						<f:convertDateTime pattern="dd.MM.yyyy HH:mm"></f:convertDateTime>
 					</h:outputText>
 				</rich:column>
 				<rich:column>
@@ -108,12 +108,12 @@
 					<h:outputText value="Departure date" />
 					<h:outputText
 						value="#{administratorBean.editedFlight.dateDeparture}">
-						<f:convertDateTime pattern="dd.MM.yy HH:mm"></f:convertDateTime>
+						<f:convertDateTime pattern="dd.MM.yyyy HH:mm"></f:convertDateTime>
 					</h:outputText>
 					<h:panelGroup />
 					<h:outputText value="Arrival date" />
 					<h:outputText value="#{administratorBean.editedFlight.dateArrival}">
-						<f:convertDateTime pattern="dd.MM.yy HH:mm"></f:convertDateTime>
+						<f:convertDateTime pattern="dd.MM.yyyy HH:mm"></f:convertDateTime>
 					</h:outputText>
 					<h:panelGroup />
 
@@ -164,7 +164,7 @@
 					<rich:calendar
 						value="#{administratorBean.createdFlight.dateDeparture}"
 						id="calendarDeparture" locale="US" popup="true"
-						datePattern="d/M/yy HH:mm" required="true">
+						datePattern="dd.MM.yyyy HH:mm" required="true">
 						
 					</rich:calendar>
 					<h:panelGroup />
@@ -173,7 +173,7 @@
 					<rich:calendar
 						value="#{administratorBean.createdFlight.dateArrival}"
 						id="calendarArrival" locale="US" popup="true"
-						datePattern="d/M/yy HH:mm" required="true">
+						datePattern="dd.MM.yyyy HH:mm" required="true">
 					</rich:calendar>
 					<h:panelGroup />
 
