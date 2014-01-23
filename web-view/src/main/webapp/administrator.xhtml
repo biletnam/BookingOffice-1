@@ -11,7 +11,8 @@
 <ui:composition template="WEB-INF/templates/templateAuthorized.xhtml">
 	<ui:define name="content">
 		<h3>Administrator page</h3>
-		<h:form>
+		
+		<h:form id="form">
 			<h:panelGrid columns="3">
 				<a4j:commandButton value="New flight" render="createGrid"
 					execute="@this" oncomplete="#{rich:component('createPane')}.show()" />
@@ -19,8 +20,6 @@
 				<a4j:commandButton value="Convert tickets" render="out"
 					execute="@form" />
 			</h:panelGrid>
-		</h:form>
-		<h:form id="form">
 			<rich:dataTable value="#{administratorBean.allFlights}" var="item"
 				id="table" iterationStatusVar="it">
 				<rich:column>
@@ -141,14 +140,17 @@
 			</rich:popupPanel>
 
 			<rich:popupPanel header="New Flight" id="createPane"
-				domElementAttachment="parent" width="500" height="220">
+				domElementAttachment="parent" width="500" height="230">
 				<h:panelGrid columns="3" id="createGrid">
 					<h:outputText value="Flight number" />
 					<h:inputText id="flightNumber"
 						value="#{administratorBean.createdFlight.flightNumber}"
-						required="true" />
-					<rich:message for="flightNumber" />
+						required="true" requiredMessage="Flight number is required"
+						converterMessage="Should be a valid flight number"
+						validatorMessage="Should be a valid flight number" />
 					
+					<rich:message id="flightNumberMsg" for="flightNumber" />
+
 					<h:outputText value="Departure" />
 					<h:inputText value="#{administratorBean.createdFlight.departure}"
 						required="true" />
@@ -163,7 +165,7 @@
 						value="#{administratorBean.createdFlight.dateDeparture}"
 						id="calendarDeparture" locale="US" popup="true"
 						datePattern="d/M/yy HH:mm" required="true">
-
+						
 					</rich:calendar>
 					<h:panelGroup />
 

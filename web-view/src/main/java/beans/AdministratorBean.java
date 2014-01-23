@@ -19,8 +19,8 @@ public class AdministratorBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private List<Flight> allFlights = null;
 	private int currentFlightIndex;
-	private Flight editedFlight = new Flight();
-	private Flight createdFlight;
+	private Flight editedFlight;
+	private Flight createdFlight = new Flight();
 	
 	
 	
@@ -114,6 +114,5 @@ public class AdministratorBean implements Serializable {
         allFlights.add(createdFlight);
         setCreatedFlight(new Flight());
     }
-	
 
 }
