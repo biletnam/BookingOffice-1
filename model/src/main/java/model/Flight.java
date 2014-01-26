@@ -1,6 +1,6 @@
 package model;
 
-import java.sql.Timestamp;
+import java.util.Date;
 
 import javax.persistence.*;
 
@@ -9,12 +9,18 @@ public class Flight {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
-	private Timestamp dateCreated;
+	
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date dateCreated;
 	private String flightNumber;
 	private String departure;
 	private String arrival;
-	private Timestamp dateDeparture;
-	private Timestamp dateArrival;
+	
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date dateDeparture;
+	
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date dateArrival;
 	private int ticketAmount;
 	private int ticketFreeAmount;
 	private double ticketPrice;
@@ -35,12 +41,12 @@ public class Flight {
 	}
 
 
-	public Timestamp getDateCreated() {
+	public Date getDateCreated() {
 		return dateCreated;
 	}
 
 
-	public void setDateCreated(Timestamp dateCreated) {
+	public void setDateCreated(Date dateCreated) {
 		this.dateCreated = dateCreated;
 	}
 
@@ -75,22 +81,22 @@ public class Flight {
 	}
 
 
-	public Timestamp getDateDeparture() {
+	public Date getDateDeparture() {
 		return dateDeparture;
 	}
 
 
-	public void setDateDeparture(Timestamp dateDeparture) {
+	public void setDateDeparture(Date dateDeparture) {
 		this.dateDeparture = dateDeparture;
 	}
 
 
-	public Timestamp getDateArrival() {
+	public Date getDateArrival() {
 		return dateArrival;
 	}
 
 
-	public void setDateArrival(Timestamp dateArrival) {
+	public void setDateArrival(Date dateArrival) {
 		this.dateArrival = dateArrival;
 	}
 

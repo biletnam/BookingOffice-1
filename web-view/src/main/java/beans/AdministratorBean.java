@@ -17,16 +17,11 @@ import model.Flight;
 @SessionScoped
 public class AdministratorBean implements Serializable {
 	private static final long serialVersionUID = 1L;
-	private List<Flight> allFlights = null;
+	private List<Flight> allFlights = new ArrayList<>();
 	private int currentFlightIndex;
 	private Flight editedFlight;
 	private Flight createdFlight = new Flight();
 	
-	
-	
-	public AdministratorBean() {
-		setAllFlights(initializeListFlights());;
-	}
 	public List<Flight> getAllFlights() {
 		return allFlights;
 	}
@@ -40,23 +35,6 @@ public class AdministratorBean implements Serializable {
 		this.currentFlightIndex = currentFlightIndex;
 	}
 	public Flight getEditedFlight() {
-		return editedFlight;
-	}
-	public void setEditedFlight(Flight editedFlight) {
-		this.editedFlight = editedFlight;
-	}
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-	
-	public Flight getCreatedFlight() {
-		return createdFlight;
-	}
-	public void setCreatedFlight(Flight createdFlight) {
-		this.createdFlight = createdFlight;
-	}
-	private List<Flight> initializeListFlights() {
-
 		Flight f1 = new Flight();
 		f1.setFlightNumber("PS-711");
 		f1.setDeparture("Kyiv");
@@ -95,13 +73,26 @@ public class AdministratorBean implements Serializable {
 		f2.setTicketAmount(5);
 		f2.setTicketPrice(1500);
 
-		ArrayList<Flight> list = new ArrayList<Flight>();
-		list.add(f1);
-		list.add(f2);
-
-		return list;
+		allFlights = new ArrayList<Flight>();
+		allFlights.add(f1);
+		allFlights.add(f2);
+		
+		return editedFlight;
+	}
+	public void setEditedFlight(Flight editedFlight) {
+		this.editedFlight = editedFlight;
+	}
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 	
+	public Flight getCreatedFlight() {
+		return createdFlight;
+	}
+	public void setCreatedFlight(Flight createdFlight) {
+		this.createdFlight = createdFlight;
+	}
+		
 	public void store() {
         allFlights.set(currentFlightIndex, editedFlight);
     }
