@@ -17,24 +17,13 @@ import model.Flight;
 @SessionScoped
 public class AdministratorBean implements Serializable {
 	private static final long serialVersionUID = 1L;
-	private List<Flight> allFlights = new ArrayList<>();
+	private List<Flight> flights = new ArrayList<>();
 	private int currentFlightIndex;
 	private Flight editedFlight;
 	private Flight createdFlight = new Flight();
+	private String flightNumberFilter;
 	
-	public List<Flight> getAllFlights() {
-		return allFlights;
-	}
-	public void setAllFlights(List<Flight> allFlights) {
-		this.allFlights = allFlights;
-	}
-	public int getCurrentFlightIndex() {
-		return currentFlightIndex;
-	}
-	public void setCurrentFlightIndex(int currentFlightIndex) {
-		this.currentFlightIndex = currentFlightIndex;
-	}
-	public Flight getEditedFlight() {
+	public AdministratorBean() {
 		Flight f1 = new Flight();
 		f1.setFlightNumber("PS-711");
 		f1.setDeparture("Kyiv");
@@ -73,10 +62,25 @@ public class AdministratorBean implements Serializable {
 		f2.setTicketAmount(5);
 		f2.setTicketPrice(1500);
 
-		allFlights = new ArrayList<Flight>();
-		allFlights.add(f1);
-		allFlights.add(f2);
+		flights = new ArrayList<Flight>();
+		flights.add(f1);
+		flights.add(f2);
 		
+	}
+	
+	public List<Flight> getFlights() {
+		return flights;
+	}
+	public void setFlights(List<Flight> flights) {
+		this.flights = flights;
+	}
+	public int getCurrentFlightIndex() {
+		return currentFlightIndex;
+	}
+	public void setCurrentFlightIndex(int currentFlightIndex) {
+		this.currentFlightIndex = currentFlightIndex;
+	}
+	public Flight getEditedFlight() {
 		return editedFlight;
 	}
 	public void setEditedFlight(Flight editedFlight) {
@@ -92,18 +96,29 @@ public class AdministratorBean implements Serializable {
 	public void setCreatedFlight(Flight createdFlight) {
 		this.createdFlight = createdFlight;
 	}
-		
+	
+	public String getFlightNumberFilter() {
+		return flightNumberFilter;
+	}
+
+	public void setFlightNumberFilter(String flightNumberFilter) {
+		this.flightNumberFilter = flightNumberFilter;
+	}
+
 	public void store() {
-        allFlights.set(currentFlightIndex, editedFlight);
+        flights.set(currentFlightIndex, editedFlight);
     }
 	
 	public void remove() {
-        allFlights.remove(allFlights.get(currentFlightIndex));
+        flights.remove(flights.get(currentFlightIndex));
     }
 	
 	public void create() {
-        allFlights.add(createdFlight);
+        flights.add(createdFlight);
         setCreatedFlight(new Flight());
     }
-
+	
+	public void filter() {
+		
+	}
 }
