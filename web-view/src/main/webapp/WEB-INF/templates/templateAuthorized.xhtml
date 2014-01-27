@@ -15,7 +15,21 @@
 
 	<div id="header">
 		<ui:insert name="header">
-			<ui:include src="headerAutorized.xhtml"></ui:include>
+			<ui:include src="header.xhtml"></ui:include>
+		</ui:insert>
+	</div>
+	
+	<div id="menu">
+		<ui:insert name="menu">
+			<h:panelGrid columns="8">
+				<h:link value="Administrator" outcome="administrator"></h:link>  
+				<h:outputText value="|"></h:outputText>
+				<h:link value="Accountant" outcome="accountant" />
+				<h:outputText value="|"></h:outputText>
+				<h:link value="Analytic" outcome="analytic" />
+				<h:outputText value="|"></h:outputText>
+				<h:link value="SecurityOfficer" outcome="securityOfficer" />
+			</h:panelGrid>
 		</ui:insert>
 	</div>
 
