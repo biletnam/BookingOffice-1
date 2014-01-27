@@ -12,7 +12,7 @@ public class Account {
 	private String surname;
 	private String name;
 	private String middlename;
-	private boolean isActive;
+	private boolean active;
 	
 	public Account() {
 		super();
@@ -58,12 +58,12 @@ public class Account {
 		this.middlename = middlename;
 	}
 
-	public boolean getIsActive() {
-		return isActive;
+	public boolean isActive() {
+		return active;
 	}
 
-	public void setIsActive(boolean isActive) {
-		this.isActive = isActive;
+	public void setActive(boolean active) {
+		this.active = active;
 	}
 
 	public int getId() {

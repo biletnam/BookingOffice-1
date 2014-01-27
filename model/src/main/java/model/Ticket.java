@@ -11,7 +11,7 @@ public class Ticket {
 	private int id;
 	private int flightId;
 	private TicketStatus status;
-	private Integer reservationId; //TODO type?
+	private int reservationId;
 	private Timestamp datePayment;
 	
 	public Ticket() {

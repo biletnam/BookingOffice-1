@@ -11,6 +11,7 @@ public class AccountRights {
 	private int id;
 	private int accountId;
 	private AccountRole accountRole;
+	private boolean accountRoleActive;
 	
 	public AccountRights() {
 		super();
@@ -32,6 +33,16 @@ public class AccountRights {
 	public void setAccountRole(AccountRole accountRole) {
 		this.accountRole = accountRole;
 	}
+	
+	public boolean isAccountRoleActive() {
+		return accountRoleActive;
+	}
+
+
+	public void setAccountRoleActive(boolean accountRoleActive) {
+		this.accountRoleActive = accountRoleActive;
+	}
+
 
 	public int getId() {
 		return id;

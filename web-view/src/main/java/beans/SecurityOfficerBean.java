@@ -2,39 +2,58 @@ package beans;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
 import model.Account;
 
-@ManagedBean(name = "securityOfficer", eager = true)
+@ManagedBean(name = "securityOfficerBean", eager = true)
 @SessionScoped
 public class SecurityOfficerBean implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
-	private ArrayList<Account> listAccounts;
-	private ArrayList<String> listAccountRights;
+	private List<Account> accounts;
+	private Account editedAccount;
+	private List<String> editedAccountRights;
+	private Account createdAccount = new Account();
 	
 	public SecurityOfficerBean() {
 		super();
-		setListAccounts(initializeListAccounts());
+		setAccounts(initializeListAccounts());
 	}
 
-	public ArrayList<Account> getListAccounts() {
-		return listAccounts;
+	public List<Account> getAccounts() {
+		return accounts;
 	}
 
-	public void setListAccounts(ArrayList<Account> listAccounts) {
-		this.listAccounts = listAccounts;
+	public void setAccounts(List<Account> accounts) {
+		this.accounts = accounts;
+	}
+	
+	public List<String> getEditedAccountRights() {
+		return editedAccountRights;
 	}
 
-	public ArrayList<String> getListAccountRights() {
-		return listAccountRights;
+	public void setEditedAccountRights(List<String> editedAccountRights) {
+		this.editedAccountRights = editedAccountRights;
 	}
 
-	public void setListAccountRights(ArrayList<String> listAccountRights) {
-		this.listAccountRights = listAccountRights;
+	public Account getEditedAccount() {
+		return editedAccount;
+	}
+
+	public void setEditedAccount(Account editedAccount) {
+		this.editedAccount = editedAccount;
+	}
+
+	public Account getCreatedAccount() {
+		return createdAccount;
+	}
+
+	public void setCreatedAccount(Account createdAccount) {
+		this.createdAccount = createdAccount;
 	}
 
 	public static long getSerialversionuid() {

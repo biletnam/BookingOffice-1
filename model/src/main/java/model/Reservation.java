@@ -14,7 +14,9 @@ public class Reservation {
 	private String customerMiddlename;
 	private String customerAddress;
 	private Timestamp dateReservation;
-	private boolean isPaid;
+	private Timestamp datePayment;
+	
+	private boolean paid;
 	
 	public Reservation() {
 		super();
@@ -60,12 +62,20 @@ public class Reservation {
 		this.dateReservation = dateReservation;
 	}
 
-	public boolean getIsPaid() {
-		return isPaid;
+	public Timestamp getDatePayment() {
+		return datePayment;
 	}
 
-	public void setIsPaid(boolean isPaid) {
-		this.isPaid = isPaid;
+	public void setDatePayment(Timestamp datePayment) {
+		this.datePayment = datePayment;
+	}
+
+	public boolean isPaid() {
+		return paid;
+	}
+
+	public void setPaid(boolean paid) {
+		this.paid = paid;
 	}
 
 	public int getId() {
