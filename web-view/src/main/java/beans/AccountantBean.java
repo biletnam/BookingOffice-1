@@ -5,38 +5,64 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
 import model.Reservation;
 
-@ManagedBean(name = "accountant", eager = true)
+@ManagedBean(name = "accountantBean", eager = true)
 @SessionScoped
 public class AccountantBean implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
-	private ArrayList<Reservation> listOverdueReservations;
+	private List<Reservation> reservations;
+	private int currentReservationIndex;
+	private Reservation editedReservation;
 	
 	public AccountantBean() {
 		super();
-		setListOverdueReservations(initializeListOverdueReservations());
+		setReservations(initializeReservations());
 	}
 
-	public ArrayList<Reservation> getListOverdueReservations() {
-		return listOverdueReservations;
+	
+	public List<Reservation> getReservations() {
+		return reservations;
 	}
 
-	public void setListOverdueReservations(
-			ArrayList<Reservation> listOverdueReservations) {
-		this.listOverdueReservations = listOverdueReservations;
+
+	public void setReservations(List<Reservation> reservations) {
+		this.reservations = reservations;
 	}
 
+	
+	public Reservation getEditedReservation() {
+		return editedReservation;
+	}
+
+	public void setEditedReservation(Reservation editedReservation) {
+		this.editedReservation = editedReservation;
+	}
+
+	public int getCurrentReservationIndex() {
+		return currentReservationIndex;
+	}
+
+	public void setCurrentReservationIndex(int currentReservationIndex) {
+		this.currentReservationIndex = currentReservationIndex;
+	}
+
+
+	public void save() {
+		
+	}
+	
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
 	
-	private ArrayList<Reservation> initializeListOverdueReservations() {
+	private List<Reservation> initializeReservations() {
 
 		Reservation r1 = new Reservation();
 		r1.setCustomerSurname("Surname1");
@@ -62,7 +88,7 @@ public class AccountantBean implements Serializable {
 		r2.setDateReservation(dtReservation);
 		r2.setIsPaid(false);
 
-		ArrayList<Reservation> list = new ArrayList<Reservation>();
+		List<Reservation> list = new ArrayList<Reservation>();
 		list.add(r1);
 		list.add(r2);
 

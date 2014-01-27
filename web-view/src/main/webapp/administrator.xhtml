@@ -25,7 +25,7 @@
 				<a4j:commandButton value="New flight" render="createGrid"
 					execute="@this" oncomplete="#{rich:component('createPane')}.show()" />
 
-				<a4j:commandButton value="Convert tickets" render="out"
+				<a4j:commandButton value="Convert tickets" render=""
 					execute="@this" />
 				<h:panelGroup />
 			</h:panelGrid>
@@ -95,7 +95,7 @@
 
 			<rich:popupPanel id="confirmPane" autosized="true">
             Are you sure you want to delete the row?
-            <a4j:commandButton value="Cancel"
+            	<a4j:commandButton value="Cancel"
 					onclick="#{rich:component('confirmPane')}.hide(); return false;" />
 				<a4j:commandButton value="Delete" onclick="remove(); return false;" />
 			</rich:popupPanel>
@@ -140,7 +140,7 @@
 					<h:panelGroup />
 
 				</h:panelGrid>
-				<a4j:commandButton value="Store" action="#{administratorBean.store}"
+				<a4j:commandButton value="Save" action="#{administratorBean.save}"
 					render="table" execute="editPane"
 					oncomplete="if (#{facesContext.maximumSeverity==null}) {#{rich:component('editPane')}.hide();}" />
 				<a4j:commandButton value="Cancel"

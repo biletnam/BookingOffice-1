@@ -105,7 +105,7 @@ public class AdministratorBean implements Serializable {
 		this.flightNumberFilter = flightNumberFilter;
 	}
 
-	public void store() {
+	public void save() {
         flights.set(currentFlightIndex, editedFlight);
     }
 	

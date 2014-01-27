@@ -4,47 +4,109 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j">
 
 <ui:composition template="WEB-INF/templates/templateAuthorized.xhtml">
 	<ui:define name="content">
 		<h3>Accountant page</h3>
 		<h:form>
-			Overdue reservations
-			<h:panelGrid columns="1">
-				<h:dataTable value="#{accountant.listOverdueReservations}"
-					var="reservation" styleClass="table" headerClass="tableHeader"
-					rowClasses="tableOddRow, tableEvenRow">
+			<rich:dataTable id="table" value="#{accountantBean.reservations}"
+				var="item" iterationStatusVar="it">
+				<rich:column>
+					<f:facet name="header">#</f:facet>
+                	#{it.index}
+            	</rich:column>
+				<rich:column>
+					<f:facet name="header">Surname</f:facet>
+					<h:outputText value="#{item.customerSurname}"></h:outputText>
+				</rich:column>
+				<rich:column>
+					<f:facet name="header">Name</f:facet>
+					<h:outputText value="#{item.customerName}"></h:outputText>
+				</rich:column>
+				<rich:column>
+					<f:facet name="header">Middlename</f:facet>
+					<h:outputText value="#{item.customerMiddlename}"></h:outputText>
+				</rich:column>
+				<rich:column>
+					<f:facet name="header">Address</f:facet>
+					<h:outputText value="#{item.customerAddress}"></h:outputText>
+				</rich:column>
+				<rich:column>
+					<f:facet name="header">Reservation date</f:facet>
+					<h:outputText value="#{item.dateReservation}">
+						<f:convertDateTime pattern="dd.MM.yyyy HH:mm:ss"></f:convertDateTime>
+					</h:outputText>
+				</rich:column>
+				<rich:column>
+					<f:facet name="header">Is paid</f:facet>
+					<h:selectBooleanCheckbox value="#{reservation.isPaid}" disabled="true"
+						onclick="#{rich:component('confirmPane')}.show()">
+					</h:selectBooleanCheckbox>
+				</rich:column>
+				<rich:column>
+					<h:panelGrid columns="1">
+						<a4j:commandLink styleClass="no-decor" render="editGrid"
+							execute="@this" oncomplete="#{rich:component('editPane')}.show()">
+							<h:outputText value="Edit" alt="edit" />
+							<a4j:param value="#{it.index}"
+								assignTo="#{accountantBean.currentReservationIndex}" />
+							<f:setPropertyActionListener
+								target="#{accountantBean.editedReservation}" value="#{item}" />
+						</a4j:commandLink>
+					</h:panelGrid>
+				</rich:column>
+			</rich:dataTable>
 
-					<h:column>
-						<f:facet name="header">Surname</f:facet>
-						<h:outputText value="#{reservation.customerSurname}"></h:outputText>
-					</h:column>
-					<h:column>
-						<f:facet name="header">Name</f:facet>
-						<h:outputText value="#{reservation.customerName}"></h:outputText>
-					</h:column>
-					<h:column>
-						<f:facet name="header">Middlename</f:facet>
-						<h:outputText value="#{reservation.customerMiddlename}"></h:outputText>
-					</h:column>
-					<h:column>
-						<f:facet name="header">Address</f:facet>
-						<h:outputText value="#{reservation.customerAddress}"></h:outputText>
-					</h:column>
-					<h:column>
-						<f:facet name="header">Reservation date</f:facet>
-						<h:outputText value="#{reservation.dateReservation}">
-							<f:convertDateTime pattern="dd.MM.yy HH:mm:ss"></f:convertDateTime>
-						</h:outputText>
-					</h:column>
-					<h:column>
-						<f:facet name="header">Is paid</f:facet>
-						<h:selectBooleanCheckbox value="#{reservation.isPaid}"></h:selectBooleanCheckbox>
-					</h:column>
-				</h:dataTable>
-				<h:commandButton value="Submit changes"></h:commandButton>
-			</h:panelGrid>
+			<rich:popupPanel header="Edit Reservation Details" id="editPane"
+				domElementAttachment="parent" width="500" height="230">
+				<h:panelGrid columns="3" id="editGrid">
+					<h:outputText value="Flight number" />
+					<h:outputText
+						value="#{administratorBean.editedFlight.flightNumber}" />
+					<h:panelGroup />
+					<h:outputText value="Departure" />
+					<h:outputText value="#{administratorBean.editedFlight.departure}" />
+					<h:panelGroup />
+					<h:outputText value="Arrival" />
+					<h:outputText value="#{administratorBean.editedFlight.arrival}" />
+					<h:panelGroup />
+					<h:outputText value="Departure date" />
+					<h:outputText
+						value="#{administratorBean.editedFlight.dateDeparture}">
+						<f:convertDateTime pattern="dd.MM.yyyy HH:mm"></f:convertDateTime>
+					</h:outputText>
+					<h:panelGroup />
+					<h:outputText value="Arrival date" />
+					<h:outputText value="#{administratorBean.editedFlight.dateArrival}">
+						<f:convertDateTime pattern="dd.MM.yyyy HH:mm"></f:convertDateTime>
+					</h:outputText>
+					<h:panelGroup />
+
+					<h:outputText value="Amount of tickets" />
+					<h:inputText value="#{administratorBean.editedFlight.ticketAmount}"
+						id="ticketAmountEdit" required="true"
+						requiredMessage="Amount of tickets is required"
+						converterMessage="Should be a valid amount of tickets"
+						validatorMessage="Should be a valid amount of tickets">
+						<f:validateLongRange minimum="0" maximum="99999999" />
+					</h:inputText>
+					<rich:message id="ticketAmountMsgEdit" for="ticketAmountEdit" />
+
+					<h:outputText value="Ticket price" />
+					<h:outputText value="#{administratorBean.editedFlight.ticketPrice}"></h:outputText>
+					<h:panelGroup />
+
+				</h:panelGrid>
+				<a4j:commandButton value="Save" action="#{administratorBean.save}"
+					render="table" execute="editPane"
+					oncomplete="if (#{facesContext.maximumSeverity==null}) {#{rich:component('editPane')}.hide();}" />
+				<a4j:commandButton value="Cancel"
+					onclick="#{rich:component('editPane')}.hide(); return false;" />
+			</rich:popupPanel>
+
 		</h:form>
 	</ui:define>
 </ui:composition>
