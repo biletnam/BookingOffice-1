@@ -15,7 +15,7 @@ import model.Reservation;
 @ManagedBean(name = "accountantBean", eager = true)
 @SessionScoped
 public class AccountantBean implements Serializable {
-	
+
 	private static final long serialVersionUID = 1L;
 	private List<Reservation> reservations;
 	private int currentReservationIndex;
@@ -26,17 +26,14 @@ public class AccountantBean implements Serializable {
 		setReservations(initializeReservations());
 	}
 
-	
 	public List<Reservation> getReservations() {
 		return reservations;
 	}
-
 
 	public void setReservations(List<Reservation> reservations) {
 		this.reservations = reservations;
 	}
 
-	
 	public Reservation getEditedReservation() {
 		return editedReservation;
 	}
@@ -53,15 +50,14 @@ public class AccountantBean implements Serializable {
 		this.currentReservationIndex = currentReservationIndex;
 	}
 
-
 	public void save() {
-		
+
 	}
-	
+
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-	
+
 	private List<Reservation> initializeReservations() {
 
 		Reservation r1 = new Reservation();
@@ -70,20 +66,24 @@ public class AccountantBean implements Serializable {
 		r1.setCustomerMiddlename("MiddleName1");
 		r1.setCustomerAddress("Address1");
 
-		GregorianCalendar gcReservation = new GregorianCalendar(2013, Calendar.DECEMBER, 04, 10, 0, 14);
-		Timestamp dtReservation = new java.sql.Timestamp(gcReservation.getTime().getTime());
+		GregorianCalendar gcReservation = new GregorianCalendar(2013,
+				Calendar.DECEMBER, 04, 10, 0, 14);
+		Timestamp dtReservation = new java.sql.Timestamp(gcReservation
+				.getTime().getTime());
 
 		r1.setDateReservation(dtReservation);
 		r1.setPaid(false);
-		
+
 		Reservation r2 = new Reservation();
 		r2.setCustomerSurname("Surname2");
 		r2.setCustomerName("Name2");
 		r2.setCustomerMiddlename("MiddleName2");
 		r2.setCustomerAddress("Address2");
 
-		gcReservation = new GregorianCalendar(2013, Calendar.DECEMBER, 05, 10, 0, 14);
-		dtReservation = new java.sql.Timestamp(gcReservation.getTime().getTime());
+		gcReservation = new GregorianCalendar(2013, Calendar.DECEMBER, 05, 10,
+				0, 14);
+		dtReservation = new java.sql.Timestamp(gcReservation.getTime()
+				.getTime());
 
 		r2.setDateReservation(dtReservation);
 		r2.setPaid(false);
