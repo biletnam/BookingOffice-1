@@ -40,14 +40,14 @@ private static ReservationDAOImpl reservationDAOImpl;
 		
 		GregorianCalendar gcReservation = new GregorianCalendar(2013, Calendar.DECEMBER, 10, 4, 37, 0);
 		Timestamp dtReservation = new java.sql.Timestamp(gcReservation.getTime().getTime());
-		boolean isPaid = true;
+		boolean paid = true;
 		
 		r.setCustomerSurname(customerSurname);
 		r.setCustomerName(customerName);
 		r.setCustomerMiddlename(customerMiddlename);
 		r.setCustomerAddress(customerAddress);
 		r.setDateReservation(dtReservation);
-		r.setIsPaid(isPaid);
+		r.setPaid(paid);
 		
 		reservationDAOImpl.create(r);
 		int id = r.getId();
@@ -59,7 +59,7 @@ private static ReservationDAOImpl reservationDAOImpl;
 		assertTrue(customerAddress.equals(rReaded.getCustomerAddress()));
 		
 		assertTrue(dtReservation.equals(rReaded.getDateReservation()));
-		assertTrue(isPaid == rReaded.getIsPaid());
+		assertTrue(paid == rReaded.isPaid());
 		
 		reservationDAOImpl.delete(r);
 	}
@@ -81,7 +81,7 @@ private static ReservationDAOImpl reservationDAOImpl;
 		assertTrue(r.getCustomerAddress().equals(rReaded.getCustomerAddress()));
 		
 		assertTrue(r.getDateReservation().equals(rReaded.getDateReservation()));
-		assertTrue(r.getIsPaid() == rReaded.getIsPaid());
+		assertTrue(r.isPaid() == rReaded.isPaid());
 		
 		customerSurname = "Surname1";
 		r.setCustomerSurname(customerSurname);
@@ -99,7 +99,7 @@ private static ReservationDAOImpl reservationDAOImpl;
 		
 		GregorianCalendar gcReservation = new GregorianCalendar(2013, Calendar.DECEMBER, 23, 4, 37, 0);
 		Timestamp dtReservation = new java.sql.Timestamp(gcReservation.getTime().getTime());
-		boolean isPaid = true;
+		boolean paid = true;
 		
 				
 		r.setCustomerSurname(customerSurname);
@@ -107,7 +107,7 @@ private static ReservationDAOImpl reservationDAOImpl;
 		r.setCustomerMiddlename(customerMiddlename);
 		r.setCustomerAddress(customerAddress);
 		r.setDateReservation(dtReservation);
-		r.setIsPaid(isPaid);		
+		r.setPaid(paid);		
 
 		reservationDAOImpl.create(r);
 
@@ -126,7 +126,7 @@ private static ReservationDAOImpl reservationDAOImpl;
 		
 		GregorianCalendar gcReservation = new GregorianCalendar(2013, Calendar.DECEMBER, 5, 10, 00, 14);
 		Timestamp dtReservation = new java.sql.Timestamp(gcReservation.getTime().getTime());
-		boolean isPaid = true;
+		boolean paid = true;
 		
 		
 		assertTrue(r.getId() == 2);
@@ -136,7 +136,7 @@ private static ReservationDAOImpl reservationDAOImpl;
 		assertTrue(r.getCustomerAddress().equals("Address2"));
 		
 		assertTrue(r.getDateReservation().equals(dtReservation));
-		assertTrue(r.getIsPaid() == isPaid);
+		assertTrue(r.isPaid() == paid);
 	}
 
 	@Test
@@ -145,7 +145,7 @@ private static ReservationDAOImpl reservationDAOImpl;
 		GregorianCalendar gcReservation = new GregorianCalendar(2013, Calendar.DECEMBER, 6, 10, 00, 14);
 		Timestamp dtReservation = new java.sql.Timestamp(gcReservation.getTime().getTime());
 		
-		boolean isPaid = false;
+		boolean paid = false;
 		
 		assertTrue(listR.size() == 1);
 		assertTrue(listR.get(0).getId() == 3);
@@ -154,7 +154,7 @@ private static ReservationDAOImpl reservationDAOImpl;
 		assertTrue(listR.get(0).getCustomerMiddlename().equals("Middlename3"));
 		assertTrue(listR.get(0).getCustomerAddress().equals("Address3"));
 		assertTrue(listR.get(0).getDateReservation().equals(dtReservation));
-		assertTrue(listR.get(0).getIsPaid() == isPaid);
+		assertTrue(listR.get(0).isPaid() == paid);
 		
 	}
 
@@ -168,14 +168,14 @@ private static ReservationDAOImpl reservationDAOImpl;
 		String customerAddress = "Address6";
 		
 		Timestamp dtReservation = new java.sql.Timestamp(Calendar.getInstance().getTime().getTime());
-		boolean isPaid = true;
+		boolean paid = true;
 		
 		r.setCustomerSurname(customerSurname);
 		r.setCustomerName(customerName);
 		r.setCustomerMiddlename(customerMiddlename);
 		r.setCustomerAddress(customerAddress);
 		r.setDateReservation(dtReservation);
-		r.setIsPaid(isPaid);		
+		r.setPaid(paid);		
 
 		reservationDAOImpl.create(r);
 		
@@ -187,7 +187,7 @@ private static ReservationDAOImpl reservationDAOImpl;
 		assertTrue(listR.get(0).getCustomerMiddlename().equals("Middlename6"));
 		assertTrue(listR.get(0).getCustomerAddress().equals("Address6"));
 		assertTrue(listR.get(0).getDateReservation().equals(dtReservation));
-		assertTrue(listR.get(0).getIsPaid() == isPaid);
+		assertTrue(listR.get(0).isPaid() == paid);
 		
 	}
 

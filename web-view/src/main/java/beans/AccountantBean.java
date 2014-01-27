@@ -74,7 +74,7 @@ public class AccountantBean implements Serializable {
 		Timestamp dtReservation = new java.sql.Timestamp(gcReservation.getTime().getTime());
 
 		r1.setDateReservation(dtReservation);
-		r1.setIsPaid(false);
+		r1.setPaid(false);
 		
 		Reservation r2 = new Reservation();
 		r2.setCustomerSurname("Surname2");
@@ -86,7 +86,7 @@ public class AccountantBean implements Serializable {
 		dtReservation = new java.sql.Timestamp(gcReservation.getTime().getTime());
 
 		r2.setDateReservation(dtReservation);
-		r2.setIsPaid(false);
+		r2.setPaid(false);
 
 		List<Reservation> list = new ArrayList<Reservation>();
 		list.add(r1);

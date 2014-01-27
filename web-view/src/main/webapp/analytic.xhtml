@@ -30,14 +30,7 @@
 				<rich:message id="dateStartMsg" for="dateStart" />
 				<h:panelGroup />
 				<rich:message id="dateEndMsg" for="dateEnd" />
-
-				<h:outputText value=""></h:outputText>
-				<h:selectOneRadio value="#{analyticBean.reportType}">
-					<f:selectItem itemValue="byDay" itemLabel="by day"></f:selectItem>
-					<f:selectItem itemValue="byArrival" itemLabel="by arrival"></f:selectItem>
-				</h:selectOneRadio>
-
-				<h:panelGroup />
+				
 				<h:panelGroup />
 			</h:panelGrid>
 			<a4j:commandButton value="View report" render="tabPanel"

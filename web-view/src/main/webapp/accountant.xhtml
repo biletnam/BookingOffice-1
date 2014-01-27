@@ -42,7 +42,7 @@
 				</rich:column>
 				<rich:column>
 					<f:facet name="header">Is paid</f:facet>
-					<h:selectBooleanCheckbox value="#{reservation.isPaid}" disabled="true"
+					<h:selectBooleanCheckbox value="#{reservation.paid}" disabled="true"
 						onclick="#{rich:component('confirmPane')}.show()">
 					</h:selectBooleanCheckbox>
 				</rich:column>

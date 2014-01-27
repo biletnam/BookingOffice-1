@@ -43,7 +43,7 @@ public class SecurityOfficerService {
 	}
 	
 	void deactivateAccount(Account a) {
-		a.setIsActive(false);
+		a.setActive(false);
 		accountDao.update(a);
 	}
 }

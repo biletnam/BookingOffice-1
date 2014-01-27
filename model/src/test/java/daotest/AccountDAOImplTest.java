@@ -31,14 +31,14 @@ public class AccountDAOImplTest extends IntegrationTestBase {
 		String surname = "Surname4";
 		String name = "Name4";
 		String middlename = "Middlename4";
-		boolean isActive = true;
+		boolean active = true;
 		
 		a.setLogin(login);
 		a.setPsw(psw);
 		a.setSurname(surname);
 		a.setName(name);
 		a.setMiddlename(middlename);
-		a.setIsActive(isActive);
+		a.setActive(active);
 
 		accountDAOImpl.create(a);
 		int id = a.getId();
@@ -49,7 +49,7 @@ public class AccountDAOImplTest extends IntegrationTestBase {
 		assertTrue(surname.equals(aReaded.getSurname()));
 		assertTrue(name.equals(aReaded.getName()));
 		assertTrue(middlename.equals(aReaded.getMiddlename()));
-		assertTrue(isActive == aReaded.getIsActive());
+		assertTrue(active == aReaded.isActive());
 		
 		accountDAOImpl.delete(a);
 			
@@ -58,8 +58,8 @@ public class AccountDAOImplTest extends IntegrationTestBase {
 	@Test
 	public void testUpdate() {
 		Account a = accountDAOImpl.read(1);
-		boolean isActive = false;
-		a.setIsActive(isActive);;
+		boolean active = false;
+		a.setActive(active);
 		
 		accountDAOImpl.update(a);
 		
@@ -71,10 +71,10 @@ public class AccountDAOImplTest extends IntegrationTestBase {
 		assertTrue(a.getSurname().equals(aReaded.getSurname()));
 		assertTrue(a.getName().equals(aReaded.getName()));
 		assertTrue(a.getMiddlename().equals(aReaded.getMiddlename()));
-		assertTrue(isActive == aReaded.getIsActive());
+		assertTrue(active == aReaded.isActive());
 		
-		isActive = true;
-		a.setIsActive(isActive);;
+		active = true;
+		a.setActive(active);;
 		
 		accountDAOImpl.update(a);
 		
@@ -89,14 +89,14 @@ public class AccountDAOImplTest extends IntegrationTestBase {
 		String surname = "Surname4";
 		String name = "Name4";
 		String middlename = "Middlename4";
-		boolean isActive = true;
+		boolean active = true;
 		
 		a.setLogin(login);
 		a.setPsw(psw);
 		a.setSurname(surname);
 		a.setName(name);
 		a.setMiddlename(middlename);
-		a.setIsActive(isActive);
+		a.setActive(active);
 		
 		accountDAOImpl.create(a);
 
@@ -120,7 +120,7 @@ public class AccountDAOImplTest extends IntegrationTestBase {
 		assertTrue(a.getSurname().equals("Surname2"));
 		assertTrue(a.getName().equals("Name2"));
 		assertTrue(a.getMiddlename().equals("Middlename2"));
-		assertTrue(a.getIsActive() == true);
+		assertTrue(a.isActive() == true);
 		
 	}
 

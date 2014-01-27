@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.List;
 
 import javax.faces.bean.*;
 
@@ -18,14 +19,14 @@ public class MainBean implements Serializable {
 
 	private Date filterDateDeparture;
 	private String filterArrival;
-	private ArrayList<Flight> listFlights;
+	private List<Flight> flights;
 	
 
 	public MainBean() {
 		super();
 		filterArrival = null;
 		filterDateDeparture = null;
-		listFlights = null;
+		flights = null;
 	}
 
 	public Date getFilterDateDeparture() {
@@ -44,19 +45,19 @@ public class MainBean implements Serializable {
 		this.filterArrival = filterArrival;
 	}
 
-	public ArrayList<Flight> getListFlights() {
-		return listFlights;
+	public List<Flight> getFlights() {
+		return flights;
 	}
 
-	public void setListFlights(ArrayList<Flight> listFlights) {
-		this.listFlights = listFlights;
+	public void setFlights(List<Flight> flights) {
+		this.flights = flights;
 	}
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
 
-	private ArrayList<Flight> initializeListFlights() {
+	private List<Flight> initializeFlights() {
 
 		Flight f1 = new Flight();
 		f1.setFlightNumber("PS-711");
@@ -96,7 +97,7 @@ public class MainBean implements Serializable {
 		f2.setTicketAmount(5);
 		f2.setTicketAmount(1500);
 
-		ArrayList<Flight> list = new ArrayList<Flight>();
+		List<Flight> list = new ArrayList<Flight>();
 		list.add(f1);
 		list.add(f2);
 
@@ -120,7 +121,7 @@ public class MainBean implements Serializable {
 		Date dateDeparture = gcFilter.getTime();
 
 		if (dateDeparture.equals(dtDeparture) && filterArrival.equals("Roma")) {
-			setListFlights(initializeListFlights());
+			setFlights(initializeFlights());
 			return "mainFindFlightsSuccessful";
 		} else {
 			return "mainFindFlightsFailed";

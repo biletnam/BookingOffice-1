@@ -21,7 +21,7 @@ public class SecurityOfficerBean implements Serializable {
 	
 	public SecurityOfficerBean() {
 		super();
-		setAccounts(initializeListAccounts());
+		setAccounts(initializeAccounts());
 	}
 
 	public List<Account> getAccounts() {
@@ -60,7 +60,7 @@ public class SecurityOfficerBean implements Serializable {
 		return serialVersionUID;
 	}
 	
-	private ArrayList<Account> initializeListAccounts() {
+	private List<Account> initializeAccounts() {
 		
 		Account a1 = new Account();
 		a1.setLogin("Login1");
@@ -68,7 +68,7 @@ public class SecurityOfficerBean implements Serializable {
 		a1.setSurname("Surname1");
 		a1.setName("Name1");
 		a1.setMiddlename("MIddlename1");
-		a1.setIsActive(true);
+		a1.setActive(true);
 		
 		Account a2 = new Account();
 		a2.setLogin("Login2");
@@ -76,10 +76,10 @@ public class SecurityOfficerBean implements Serializable {
 		a2.setSurname("Surname2");
 		a2.setName("Name2");
 		a2.setMiddlename("Middlename2");
-		a2.setIsActive(true);
+		a2.setActive(true);
 		
 		
-		ArrayList<Account> list = new ArrayList<>();
+		List<Account> list = new ArrayList<>();
 		list.add(a1);
 		list.add(a2);
 		
