@@ -6,25 +6,27 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
 import model.DataForReport;
 
-@ManagedBean(name = "analytic", eager = true)
+@ManagedBean(name = "analyticBean", eager = true)
 @SessionScoped
 public class AnalyticBean implements Serializable {
-	
+
 	private static final long serialVersionUID = 1L;
 	private Date dateStart;
 	private Date dateEnd;
 	private String reportType;
-	private ArrayList<DataForReport> listReport;
-	
+	private List<DataForReport> report1;
+	private List<DataForReport> report2;
+
 	public AnalyticBean() {
 		super();
-		reportType = "report1";
+		reportType = "byDay";
 	}
 
 	public Date getDateStart() {
@@ -42,7 +44,7 @@ public class AnalyticBean implements Serializable {
 	public void setDateEnd(Date dateEnd) {
 		this.dateEnd = dateEnd;
 	}
-	
+
 	public String getReportType() {
 		return reportType;
 	}
@@ -51,77 +53,81 @@ public class AnalyticBean implements Serializable {
 		this.reportType = reportType;
 	}
 
-	public ArrayList<DataForReport> getListReport() {
-		return listReport;
+	public List<DataForReport> getReport1() {
+		return report1;
 	}
 
-	public void setListReport(ArrayList<DataForReport> listReport) {
-		this.listReport = listReport;
+	public void setReport1(List<DataForReport> report1) {
+		this.report1 = report1;
+	}
+
+	public List<DataForReport> getReport2() {
+		return report2;
+	}
+
+	public void setReport2(List<DataForReport> report2) {
+		this.report2 = report2;
 	}
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-	
-	public String viewReport() {
-		if (reportType.equals("report1")) {
-			setListReport(initializeReport1());
-			return "analyticReport1";
-		} else {
-			setListReport(initializeReport2());
-			return "analyticReport2";
-		}
+
+	public void viewReport() {
+		setReport1(initializeReport1());
+		setReport2(initializeReport2());
 	}
-	
-	private ArrayList<DataForReport> initializeReport1() {
-		ArrayList<DataForReport> list = new ArrayList<>();
-		
+
+	private List<DataForReport> initializeReport1() {
+		List<DataForReport> list = new ArrayList<>();
+
 		DataForReport dfr1 = new DataForReport();
-		
-		GregorianCalendar gcPayment = new GregorianCalendar(2013, Calendar.DECEMBER, 4);
-		Timestamp dtPayment = new java.sql.Timestamp(gcPayment.getTime().getTime());
-		
+
+		GregorianCalendar gcPayment = new GregorianCalendar(2013,
+				Calendar.DECEMBER, 4);
+		Timestamp dtPayment = new java.sql.Timestamp(gcPayment.getTime()
+				.getTime());
+
 		dfr1.setDatePayment(dtPayment);
 		dfr1.setTicketCount(104);
 		dfr1.setTicketPrice(1000);
 		dfr1.setTicketSum(104000);
 		list.add(dfr1);
-		
+
 		DataForReport dfr2 = new DataForReport();
-		
+
 		gcPayment = new GregorianCalendar(2013, Calendar.DECEMBER, 12);
 		dtPayment = new java.sql.Timestamp(gcPayment.getTime().getTime());
-		
+
 		dfr2.setDatePayment(dtPayment);
 		dfr2.setTicketCount(50);
 		dfr2.setTicketPrice(100);
 		dfr2.setTicketSum(5000);
 		list.add(dfr2);
-		
+
 		return list;
 	}
-	
-	private ArrayList<DataForReport> initializeReport2() {
+
+	private List<DataForReport> initializeReport2() {
 		ArrayList<DataForReport> list = new ArrayList<>();
-		
+
 		DataForReport dfr1 = new DataForReport();
-		
+
 		dfr1.setArrival("Roma");
 		dfr1.setTicketCount(200);
 		dfr1.setTicketPrice(40);
 		dfr1.setTicketSum(8000);
 		list.add(dfr1);
-		
+
 		DataForReport dfr2 = new DataForReport();
-		
+
 		dfr2.setArrival("London");
 		dfr2.setTicketCount(10);
 		dfr2.setTicketPrice(2000);
 		dfr2.setTicketSum(20000);
 		list.add(dfr2);
-		
-		return list;	
+
+		return list;
 	}
-	
 
 }
