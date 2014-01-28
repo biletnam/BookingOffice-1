@@ -48,6 +48,16 @@
 					<h:selectBooleanCheckbox value="#{item.active}" disabled="true"></h:selectBooleanCheckbox>
 				</rich:column>
 				<rich:column>
+					<f:facet name="header">Roles</f:facet>
+					<h:selectManyCheckbox
+						value="#{securityOfficerBean.editedAccount.accountRights}" disabled="true">
+						<f:selectItems
+							value="#{securityOfficerBean.editedAccount.accountRights}"
+							var="item" itemLabel="#{item.accountRole}"
+							itemValue="#{item.accountRoleActive}" />
+					</h:selectManyCheckbox>
+				</rich:column>
+				<rich:column>
 					<h:panelGrid columns="1">
 						<a4j:commandLink styleClass="no-decor" render="editGrid"
 							execute="@this" oncomplete="#{rich:component('editPane')}.show()">
@@ -84,10 +94,15 @@
 					<h:selectBooleanCheckbox
 						value="#{securityOfficerBean.editedAccount.active}" />
 					<h:panelGroup />
-					<h:selectManyCheckbox value="#{securityOfficerBean.editedAccount.accountRights}">
-						<f:selectItems value="#{securityOfficerBean.editedAccount.accountRights}" />
+					<h:outputText value="Roles" />
+					<h:selectManyCheckbox
+						value="#{securityOfficerBean.editedAccount.accountRights}">
+						<f:selectItems
+							value="#{securityOfficerBean.editedAccount.accountRights}"
+							var="item" itemLabel="#{item.accountRole}"
+							itemValue="#{item.accountRoleActive}" />
 					</h:selectManyCheckbox>
-					
+
 				</h:panelGrid>
 				<a4j:commandButton value="Save" action="#{securityOfficerBean.save}"
 					render="table" execute="editPane"
