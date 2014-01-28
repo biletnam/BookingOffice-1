@@ -36,17 +36,17 @@ public class AccountRightsDAOImplTest extends IntegrationTestBase {
 	public void testCreate() {
 		AccountRights ar = new AccountRights();
 		
-		int accountId = 1;
+		//int accountId = 1;
 		AccountRole accountRole = AccountRole.ACCOUNTANT;
 		
-		ar.setAccountId(accountId);
+		//ar.setAccountId(accountId);
 		ar.setAccountRole(accountRole);
 		
 		accountRightsDAOImpl.create(ar);
 		int id = ar.getId();
 		AccountRights arReaded = accountRightsDAOImpl.read(id);
 		assertTrue(id == arReaded.getId());
-		assertTrue(accountId == arReaded.getAccountId());
+		//assertTrue(accountId == arReaded.getAccountId());
 		assertTrue(accountRole.equals(arReaded.getAccountRole()));
 		
 		accountRightsDAOImpl.delete(ar);
@@ -64,7 +64,7 @@ public class AccountRightsDAOImplTest extends IntegrationTestBase {
 		AccountRights arReaded = accountRightsDAOImpl.read(1);
 		
 		assertTrue(ar.getId() == arReaded.getId());
-		assertTrue(ar.getAccountId() == arReaded.getAccountId());
+		//assertTrue(ar.getAccountId() == arReaded.getAccountId());
 		assertTrue(accountRole.equals(arReaded.getAccountRole()));
 		
 		accountRole = AccountRole.ADMINISTRATOR;
@@ -77,10 +77,10 @@ public class AccountRightsDAOImplTest extends IntegrationTestBase {
 	public void testDelete() {
 		AccountRights ar = new AccountRights();
 		
-		int accountId = 2;
+		//int accountId = 2;
 		AccountRole accountRole = AccountRole.ACCOUNTANT;
 		
-		ar.setAccountId(accountId);
+		//ar.setAccountId(accountId);
 		ar.setAccountRole(accountRole);
 		
 		accountRightsDAOImpl.create(ar);
@@ -99,7 +99,7 @@ public class AccountRightsDAOImplTest extends IntegrationTestBase {
 		AccountRights ar = accountRightsDAOImpl.read(2);
 		
 		assertTrue(ar.getId() == 2);
-		assertTrue(ar.getAccountId() == 1);
+		//assertTrue(ar.getAccountId() == 1);
 		assertTrue(ar.getAccountRole().equals(AccountRole.ACCOUNTANT));
 		
 	}
@@ -109,7 +109,7 @@ public class AccountRightsDAOImplTest extends IntegrationTestBase {
 		Account a = accountDAOImpl.read(3);
 		List<AccountRights> listAr = accountRightsDAOImpl.getAccountRights(a);
 		assertTrue(listAr.size() == 1);
-		assertTrue(listAr.get(0).getAccountId() == 3);
+		//assertTrue(listAr.get(0).getAccountId() == 3);
 		assertTrue(listAr.get(0).getAccountRole().equals(AccountRole.OFFICER));
 		
 	}

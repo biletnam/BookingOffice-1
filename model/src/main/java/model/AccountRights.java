@@ -7,23 +7,24 @@ import javax.persistence.*;
 @Entity
 public class AccountRights {
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	private int accountId;
+	@ManyToOne
+	@JoinColumn(name="accountId")
+	private Account account;
 	private AccountRole accountRole;
 	private boolean accountRoleActive;
-	
+
 	public AccountRights() {
 		super();
 	}
 
-	
-	public int getAccountId() {
-		return accountId;
+	public Account getAccount() {
+		return account;
 	}
 
-	public void setAccountId(int accountId) {
-		this.accountId = accountId;
+	public void setAccount(Account account) {
+		this.account = account;
 	}
 
 	public AccountRole getAccountRole() {
@@ -33,19 +34,17 @@ public class AccountRights {
 	public void setAccountRole(AccountRole accountRole) {
 		this.accountRole = accountRole;
 	}
-	
+
 	public boolean isAccountRoleActive() {
 		return accountRoleActive;
 	}
-
 
 	public void setAccountRoleActive(boolean accountRoleActive) {
 		this.accountRoleActive = accountRoleActive;
 	}
 
-
 	public int getId() {
 		return id;
 	}
-	
+
 }

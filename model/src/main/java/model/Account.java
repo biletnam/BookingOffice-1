@@ -1,5 +1,7 @@
 package model;
 
+import java.util.List;
+
 import javax.persistence.*;
 
 @Entity
@@ -13,6 +15,8 @@ public class Account {
 	private String name;
 	private String middlename;
 	private boolean active;
+	@OneToMany(mappedBy="account")
+	private List<AccountRights> accountRights;
 	
 	public Account() {
 		super();
@@ -69,5 +73,15 @@ public class Account {
 	public int getId() {
 		return id;
 	}
+
+	public List<AccountRights> getAccountRights() {
+		return accountRights;
+	}
+
+	public void setAccountRights(List<AccountRights> accountRights) {
+		this.accountRights = accountRights;
+	}
+	
+	
 	
 }
