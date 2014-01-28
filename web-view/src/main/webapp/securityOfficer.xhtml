@@ -4,43 +4,59 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j">
 
 <ui:composition template="WEB-INF/templates/templateAuthorized.xhtml">
 	<ui:define name="content">
 		<h3>Security officer page</h3>
 		<h:form>
-			<h:panelGrid columns="1">
-				<h:dataTable value="#{securityOfficer.listAccounts}" var="account"
-					styleClass="table" headerClass="tableHeader"
-					rowClasses="tableOddRow, tableEvenRow">
 
-					<h:column>
-						<f:facet name="header">Login</f:facet>
-						<h:link value="#{account.login}"></h:link>
-					</h:column>
-					<h:column>
-						<f:facet name="header">Password</f:facet>
-						<h:outputText value="#{account.psw}"></h:outputText>
-					</h:column>
-					<h:column>
-						<f:facet name="header">Surname</f:facet>
-						<h:outputText value="#{account.surname}"></h:outputText>
-					</h:column>
-					<h:column>
-						<f:facet name="header">Name</f:facet>
-						<h:outputText value="#{account.name}"></h:outputText>
-					</h:column>
-					<h:column>
-						<f:facet name="header">Middlename</f:facet>
-						<h:outputText value="#{account.middlename}"></h:outputText>
-					</h:column>
-					<h:column>
-						<f:facet name="header">Is active</f:facet>
-						<h:selectBooleanCheckbox value="#{account.isActive}"></h:selectBooleanCheckbox>
-					</h:column>
-				</h:dataTable>
-			</h:panelGrid>
+			<rich:dataTable id="table" value="#{securityOfficerBean.accounts}"
+				var="item" iterationStatusVar="it">
+				<rich:column>
+					<f:facet name="header">#</f:facet>
+                	#{it.index}
+            	</rich:column>
+				<rich:column>
+					<f:facet name="header">Login</f:facet>
+					<h:outputText value="#{item.login}"></h:outputText>
+				</rich:column>
+				<rich:column>
+					<f:facet name="header">Password</f:facet>
+					<h:outputText value="#{item.psw}"></h:outputText>
+				</rich:column>
+				<rich:column>
+					<f:facet name="header">SurName</f:facet>
+					<h:outputText value="#{item.surname}"></h:outputText>
+				</rich:column>
+				<rich:column>
+					<f:facet name="header">Name</f:facet>
+					<h:outputText value="#{item.name}"></h:outputText>
+				</rich:column>
+				<rich:column>
+					<f:facet name="header">Middlename</f:facet>
+					<h:outputText value="#{item.middlename}"></h:outputText>
+				</rich:column>
+				<rich:column>
+					<f:facet name="header">Is active</f:facet>
+					<h:selectBooleanCheckbox value="#{item.active}" disabled="true"></h:selectBooleanCheckbox>
+				</rich:column>
+				<rich:column>
+					<h:panelGrid columns="1">
+						<a4j:commandLink styleClass="no-decor" render="editGrid"
+							execute="@this" oncomplete="#{rich:component('editPane')}.show()">
+							<h:outputText value="Edit" alt="edit" />
+							<a4j:param value="#{it.index}"
+								assignTo="#{accountantBean.currentReservationIndex}" />
+							<f:setPropertyActionListener
+								target="#{accountantBean.editedReservation}" value="#{item}" />
+						</a4j:commandLink>
+					</h:panelGrid>
+				</rich:column>
+			</rich:dataTable>
+			
 		</h:form>
 	</ui:define>
 </ui:composition>

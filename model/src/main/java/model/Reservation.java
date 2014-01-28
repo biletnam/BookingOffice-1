@@ -1,6 +1,7 @@
 package model;
 
-import java.sql.Timestamp;
+
+import java.util.Date;
 
 import javax.persistence.*;
 
@@ -13,8 +14,11 @@ public class Reservation {
 	private String customerName;
 	private String customerMiddlename;
 	private String customerAddress;
-	private Timestamp dateReservation;
-	private Timestamp datePayment;
+	private double sum;
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date dateReservation;
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date datePayment;
 	
 	private boolean paid;
 	
@@ -50,23 +54,31 @@ public class Reservation {
 		return customerAddress;
 	}
 
+	public double getSum() {
+		return sum;
+	}
+
+	public void setSum(double sum) {
+		this.sum = sum;
+	}
+
 	public void setCustomerAddress(String customerAddress) {
 		this.customerAddress = customerAddress;
 	}
 
-	public Timestamp getDateReservation() {
+	public Date getDateReservation() {
 		return dateReservation;
 	}
 
-	public void setDateReservation(Timestamp dateReservation) {
+	public void setDateReservation(Date dateReservation) {
 		this.dateReservation = dateReservation;
 	}
 
-	public Timestamp getDatePayment() {
+	public Date getDatePayment() {
 		return datePayment;
 	}
 
-	public void setDatePayment(Timestamp datePayment) {
+	public void setDatePayment(Date datePayment) {
 		this.datePayment = datePayment;
 	}
 

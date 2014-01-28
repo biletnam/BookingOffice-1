@@ -39,16 +39,25 @@
 					<h:outputText value="#{item.customerAddress}"></h:outputText>
 				</rich:column>
 				<rich:column>
+					<f:facet name="header">Sum</f:facet>
+					<h:outputText value="#{item.sum}"></h:outputText>
+				</rich:column>
+				<rich:column>
 					<f:facet name="header">Reservation date</f:facet>
 					<h:outputText value="#{item.dateReservation}">
 						<f:convertDateTime pattern="dd.MM.yyyy HH:mm:ss"></f:convertDateTime>
 					</h:outputText>
 				</rich:column>
 				<rich:column>
+					<f:facet name="header">Payment date</f:facet>
+					<h:outputText value="#{item.datePayment}">
+						<f:convertDateTime pattern="dd.MM.yyyy HH:mm:ss"></f:convertDateTime>
+					</h:outputText>
+				</rich:column>
+				<rich:column>
 					<f:facet name="header">Is paid</f:facet>
-					<h:selectBooleanCheckbox value="#{reservation.paid}"
-						disabled="true" onclick="#{rich:component('confirmPane')}.show()">
-					</h:selectBooleanCheckbox>
+					<h:selectBooleanCheckbox value="#{item.paid}"
+						disabled="true"></h:selectBooleanCheckbox>
 				</rich:column>
 				<rich:column>
 					<h:panelGrid columns="1">
@@ -65,46 +74,50 @@
 			</rich:dataTable>
 
 			<rich:popupPanel header="Edit Reservation Details" id="editPane"
-				domElementAttachment="parent" width="500" height="230">
+				domElementAttachment="parent" width="500" height="280">
 				<h:panelGrid columns="3" id="editGrid">
-					<h:outputText value="Flight number" />
+					<h:outputText value="Reservation number" />
+					<h:outputText value="#{accountantBean.editedReservation.id}" />
+					<h:panelGroup />
+					<h:outputText value="Surname" />
 					<h:outputText
-						value="#{administratorBean.editedFlight.flightNumber}" />
+						value="#{accountantBean.editedReservation.customerSurname}" />
 					<h:panelGroup />
-					<h:outputText value="Departure" />
-					<h:outputText value="#{administratorBean.editedFlight.departure}" />
-					<h:panelGroup />
-					<h:outputText value="Arrival" />
-					<h:outputText value="#{administratorBean.editedFlight.arrival}" />
-					<h:panelGroup />
-					<h:outputText value="Departure date" />
+					<h:outputText value="Name" />
 					<h:outputText
-						value="#{administratorBean.editedFlight.dateDeparture}">
-						<f:convertDateTime pattern="dd.MM.yyyy HH:mm"></f:convertDateTime>
+						value="#{accountantBean.editedReservation.customerName}" />
+					<h:panelGroup />
+					<h:outputText value="Middlename" />
+					<h:outputText
+						value="#{accountantBean.editedReservation.customerMiddlename}" />
+					<h:panelGroup />
+					<h:outputText value="Address" />
+					<h:outputText
+						value="#{accountantBean.editedReservation.customerAddress}" />
+					<h:panelGroup />
+					<h:outputText value="Sum" />
+					<h:outputText value="#{accountantBean.editedReservation.sum}" />
+					<h:panelGroup />
+					<h:outputText value="Reservation date" />
+					<h:outputText
+						value="#{accountantBean.editedReservation.dateReservation}">
+						<f:convertDateTime pattern="dd.MM.yyyy HH:mm:ss"></f:convertDateTime>
 					</h:outputText>
 					<h:panelGroup />
-					<h:outputText value="Arrival date" />
-					<h:outputText value="#{administratorBean.editedFlight.dateArrival}">
-						<f:convertDateTime pattern="dd.MM.yyyy HH:mm"></f:convertDateTime>
-					</h:outputText>
+					<h:outputText value="Is paid" />
+					<h:selectBooleanCheckbox
+						value="#{accountantBean.editedReservation.paid}"></h:selectBooleanCheckbox>
 					<h:panelGroup />
 
-					<h:outputText value="Amount of tickets" />
-					<h:inputText value="#{administratorBean.editedFlight.ticketAmount}"
-						id="ticketAmountEdit" required="true"
-						requiredMessage="Amount of tickets is required"
-						converterMessage="Should be a valid amount of tickets"
-						validatorMessage="Should be a valid amount of tickets">
-						<f:validateLongRange minimum="0" maximum="99999999" />
-					</h:inputText>
-					<rich:message id="ticketAmountMsgEdit" for="ticketAmountEdit" />
-
-					<h:outputText value="Ticket price" />
-					<h:outputText value="#{administratorBean.editedFlight.ticketPrice}"></h:outputText>
-					<h:panelGroup />
-
+					<h:outputText value="Payment date" />
+					<rich:calendar id="calendarPayment"
+						value="#{accountantBean.editedReservation.datePayment}"
+						locale="US" popup="true" datePattern="dd.MM.yyyy HH:mm"
+						required="true" requiredMessage="Payment date is required">
+					</rich:calendar>
+					<rich:message id="calendarPaymentMsg" for="calendarPayment" />
 				</h:panelGrid>
-				<a4j:commandButton value="Save" action="#{administratorBean.save}"
+				<a4j:commandButton value="Save" action="#{accountantBean.save}"
 					render="table" execute="editPane"
 					oncomplete="if (#{facesContext.maximumSeverity==null}) {#{rich:component('editPane')}.hide();}" />
 				<a4j:commandButton value="Cancel"
