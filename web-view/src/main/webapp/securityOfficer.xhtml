@@ -50,11 +50,11 @@
 				<rich:column>
 					<f:facet name="header">Roles</f:facet>
 					<h:selectManyCheckbox
-						value="#{securityOfficerBean.editedAccount.accountRights}" disabled="true">
+						value="#{item.accountRights}" disabled="true">
 						<f:selectItems
-							value="#{securityOfficerBean.editedAccount.accountRights}"
-							var="item" itemLabel="#{item.accountRole}"
-							itemValue="#{item.accountRoleActive}" />
+							value="#{item.accountRights}"
+							var="i" itemLabel="#{i.accountRole}"
+							itemValue="#{i.accountRoleActive}" />
 					</h:selectManyCheckbox>
 				</rich:column>
 				<rich:column>
@@ -72,7 +72,7 @@
 			</rich:dataTable>
 
 			<rich:popupPanel header="Edit Account Details" id="editPane"
-				domElementAttachment="parent" width="500" height="230">
+				domElementAttachment="parent" width="500" height="240">
 				<h:panelGrid columns="3" id="editGrid">
 					<h:outputText value="Surname" />
 					<h:inputText value="#{securityOfficerBean.editedAccount.surname}" />
@@ -99,8 +99,8 @@
 						value="#{securityOfficerBean.editedAccount.accountRights}">
 						<f:selectItems
 							value="#{securityOfficerBean.editedAccount.accountRights}"
-							var="item" itemLabel="#{item.accountRole}"
-							itemValue="#{item.accountRoleActive}" />
+							var="accountRight" itemLabel="#{accountRight.accountRole}"
+							itemValue="#{accountRight.accountRoleActive}" />
 					</h:selectManyCheckbox>
 
 				</h:panelGrid>

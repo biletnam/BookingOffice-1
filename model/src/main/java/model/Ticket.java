@@ -1,11 +1,13 @@
 package model;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
 import javax.persistence.*;
 
 @Entity
-public class Ticket {
+public class Ticket implements Serializable {
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
