@@ -11,10 +11,9 @@ public class AccountRights implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	@ManyToOne
-	@JoinColumn(name="accountId")
+	@JoinColumn(name = "accountId")
 	private Account account;
 	private AccountRole accountRole;
-	private boolean accountRoleActive;
 
 	public AccountRights() {
 		super();
@@ -34,14 +33,6 @@ public class AccountRights implements Serializable {
 
 	public void setAccountRole(AccountRole accountRole) {
 		this.accountRole = accountRole;
-	}
-
-	public boolean isAccountRoleActive() {
-		return accountRoleActive;
-	}
-
-	public void setAccountRoleActive(boolean accountRoleActive) {
-		this.accountRoleActive = accountRoleActive;
 	}
 
 	public int getId() {
