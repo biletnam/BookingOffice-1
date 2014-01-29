@@ -7,26 +7,56 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.Map;
 
 import javax.faces.bean.*;
 
 import model.Flight;
 
-@ManagedBean(name = "main", eager = true)
+@ManagedBean(name = "mainBean", eager = true)
 @SessionScoped
 public class MainBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private Date filterDateDeparture;
 	private String filterArrival;
+	private int currentFlightIndex;
+	private Flight selectedFlight;
+	private int seats;
 	private List<Flight> flights;
-	
+	private CartBean cart = new CartBean();
 
 	public MainBean() {
 		super();
 		filterArrival = null;
 		filterDateDeparture = null;
 		flights = null;
+		cart = new CartBean();
+
+	}
+
+	public CartBean getCart() {
+		return cart;
+	}
+
+	public void setCart(CartBean cart) {
+		this.cart = cart;
+	}
+
+	public int getCurrentFlightIndex() {
+		return currentFlightIndex;
+	}
+
+	public void setCurrentFlightIndex(int currentFlightIndex) {
+		this.currentFlightIndex = currentFlightIndex;
+	}
+
+	public Flight getSelectedFlight() {
+		return selectedFlight;
+	}
+
+	public void setSelectedFlight(Flight selectedFlight) {
+		this.selectedFlight = selectedFlight;
 	}
 
 	public Date getFilterDateDeparture() {
@@ -51,6 +81,23 @@ public class MainBean implements Serializable {
 
 	public void setFlights(List<Flight> flights) {
 		this.flights = flights;
+	}
+
+	public int getSeats() {
+		return seats;
+	}
+
+	public void setSeats(int seats) {
+		this.seats = seats;
+	}
+
+	public void find() {
+		setFlights(initializeFlights());
+	}
+
+	public void addTickets() {
+		Map<Flight, Integer> tickets = cart.getTickets();
+		tickets.put(selectedFlight, seats);
 	}
 
 	public static long getSerialversionuid() {
@@ -102,30 +149,6 @@ public class MainBean implements Serializable {
 		list.add(f2);
 
 		return list;
-	}
-
-	public String findFlights() {
-
-		GregorianCalendar gcDeparture = new GregorianCalendar(2013,
-				Calendar.DECEMBER, 24);
-		Date dtDeparture = gcDeparture.getTime();
-
-		GregorianCalendar gcFilter = new GregorianCalendar();
-		gcFilter.setTime(filterDateDeparture);
-
-		gcFilter.set(Calendar.HOUR_OF_DAY, 0);
-		gcFilter.set(Calendar.MINUTE, 0);
-		gcFilter.set(Calendar.SECOND, 0);
-		gcFilter.set(Calendar.MILLISECOND, 0);
-
-		Date dateDeparture = gcFilter.getTime();
-
-		if (dateDeparture.equals(dtDeparture) && filterArrival.equals("Roma")) {
-			setFlights(initializeFlights());
-			return "mainFindFlightsSuccessful";
-		} else {
-			return "mainFindFlightsFailed";
-		}
 	}
 
 }
