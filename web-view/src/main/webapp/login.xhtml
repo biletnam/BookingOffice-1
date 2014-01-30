@@ -4,23 +4,26 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j">
 
-<ui:composition template="WEB-INF/templates/template.xhtml">
-	<ui:define name="content">
-		<h3>Login page</h3>
-		<h:form>
-			<h:panelGrid columns="3">
-				<h:outputText value="Login"></h:outputText>
-				<h:inputText id="login" value="#{login.login}"></h:inputText>
-				<h:outputText value=""></h:outputText>
-				<h:outputText value="Password"></h:outputText>
-				<h:inputText id="psw" value="#{login.psw}"></h:inputText>
-				<h:outputText value=""></h:outputText>
-				<h:commandButton value="Submit" action="#{login.checkUser}"></h:commandButton>
-			</h:panelGrid>
+<h:head>
+	<title>Login page</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<h:outputStylesheet library="css" name="style.css" />
+</h:head>
+<h:body>
+	<h:form>
+		<h:panelGrid columns="5">
+			<h:outputText value="Login"></h:outputText>
+			<h:inputText id="login" value="#{login.login}"></h:inputText>
+			<h:outputText value=""></h:outputText>
+			<h:outputText value="Password"></h:outputText>
+			<h:inputText id="psw" value="#{login.psw}"></h:inputText>
+			<h:commandButton value="Submit" action="#{login.checkUser}"></h:commandButton>
+		</h:panelGrid>
+	</h:form>
+</h:body>
 
-		</h:form>
-	</ui:define>
-</ui:composition>
 </html>

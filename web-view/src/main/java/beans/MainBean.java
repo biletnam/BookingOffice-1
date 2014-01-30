@@ -24,7 +24,7 @@ public class MainBean implements Serializable {
 	private Flight selectedFlight;
 	private int seats;
 	private List<Flight> flights;
-	private CartBean cart = new CartBean();
+	private CartBean cart;
 
 	public MainBean() {
 		super();

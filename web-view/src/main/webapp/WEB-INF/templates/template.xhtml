@@ -12,34 +12,46 @@
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<h:outputStylesheet library="css" name="style.css" />
-	<title>Airline Booking Office</title>
+	<title><ui:insert name="title">Page Title</ui:insert></title>
 </h:head>
 
 <h:body>
+	<div id="page">
+		<div id="top">
+			<div id="header">
+				<ui:insert name="header">
+					<ui:include src="header.xhtml"></ui:include>
+				</ui:insert>
+			</div>
+		</div>
 
-	<div id="header">
-		<ui:insert name="header">
-			<ui:include src="header.xhtml"></ui:include>
-		</ui:insert>
-	</div>
-	
-	<div id="cart">
-	</div>
-	
-	<div id="authorization">
-	</div>
+		<div id="panel">
+			<div id="leftPanel">
+				<ui:insert name="leftPanel">
+					<ui:include src="leftPanel.xhtml"></ui:include>
+				</ui:insert>
+			</div>
+			<div id="rightPanel">
+				<ui:insert name="rightPanel">
+					<ui:include src="rightPanel.xhtml"></ui:include>
+				</ui:insert>
+			</div>
 
-	<div id="content">
-		<ui:insert name="content">
-			<ui:include src="content.xhtml"></ui:include>
-		</ui:insert>
-	</div>
+		</div>
 
-	<div id="footer">
-		<ui:insert name="footer">
-			<ui:include src="footer.xhtml"></ui:include>
-		</ui:insert>
+		<div id="center">
+			<div id="content">
+				<ui:insert name="content">
+					<ui:include src="content.xhtml"></ui:include>
+				</ui:insert>
+			</div>
+		</div>
+		
+		<div id="footer">
+			<ui:insert name="footer">
+				<ui:include src="footer.xhtml"></ui:include>
+			</ui:insert>
+		</div>
 	</div>
-
 </h:body>
 </html>

@@ -4,39 +4,62 @@ body {
 	font: 12px/18px Arial;
 	height: 100%;
 	color: #104E8B;
+	/* 	margin: 0px; */
+}
+
+#top {
+/* 	background: #FFCC00; */
+	height: 130px;
+/* 	width: 960px; */
+	border-bottom-style: double;
 }
 
 #header {
-	height: 100px;
-/* 	background: #D2B48C; */
+/* 	background: #CC0000; */
+	height: 110px;
+ 	width: 940px; 
+	float: left;
+	margin: 10px;
+}
+
+#panel {
+/* 	background: #DDCC00; */
+	height: 40px;
+	border-bottom-style: double;
+}
+
+#rightPanel {
+/* 	background: #FF3300; */
+	height: 35px;
+	width: 470px;
+	float: left;
+ 	margin: 2.5px; 
+	/* 	padding: 5px 2.5px; */
+}
+#leftPanel {
+/* 	background: #CC0066; */
+	height: 35px;
+	width: 470px;
+	float: left;
+	margin: 2.5px;
+	/* 	padding: 10px 5px; */
+}
+
+#center {
+/* 	background: #ACCC00; */
+	height: 800px;
+	width: 100%;
 }
 
 #content {
-/* 	background: #FAEBD7; */
+/* 	background: #FF9933; */
+	height: 780px;
+	width: 940px;
+	margin: 10px;
+	float: left;
 }
 
 #footer {
-/* 	background: #F5DEB3; */
-}
-
-.table{ 
-	border-collapse:collapse; 
-	border:1px solid #000000; 
-}
-
- .tableHeader{ 
-	text-align:center; 
-	background:none repeat scroll 0 0 #B5B5B5; 
-	border-bottom:1px solid #000000; 
-	padding:2px; 
-}
-
-.tableOddRow{ 
-	text-align:center; 
-	background:none repeat scroll 0 0 #FFFFFFF; 
-}
-
-.tableEvenRow{ 
-	text-align:center; 
-	background:none repeat scroll 0 0 #D3D3D3; 
+/* 	background: #FFFF99; */
+	height: 30px;
 }

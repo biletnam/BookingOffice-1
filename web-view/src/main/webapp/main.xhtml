@@ -11,7 +11,19 @@
 <ui:composition template="WEB-INF/templates/template.xhtml"
 	xmlns:a4j="http://richfaces.org/a4j"
 	xmlns:rich="http://richfaces.org/rich">
-
+	<ui:define name="authorization">
+		<rich:panel header="Login">
+			<ui:include src="login.xhtml"></ui:include>
+		</rich:panel>
+	</ui:define>
+	
+	<ui:define name="leftPanel">
+		ОМГleft
+	</ui:define>
+	<ui:define name="rightPanel">
+		ОМГ
+	</ui:define>
+	
 	<ui:define name="content">
 		<h3>Customer page</h3>
 		<h:form>
@@ -122,12 +134,13 @@
 					<h:panelGroup />
 
 					<h:outputText value="Sum" />
-					<h:outputText value="#{mainBean.selectedFlight.ticketPrice*mainBean.seats}"></h:outputText>
+					<h:outputText
+						value="#{mainBean.selectedFlight.ticketPrice*mainBean.seats}"></h:outputText>
 					<h:panelGroup />
 
 				</h:panelGrid>
-				<a4j:commandButton value="Add tickets to cart" action="#{mainBean.addTickets}"
-					render="table" execute="addPane"
+				<a4j:commandButton value="Add tickets to cart"
+					action="#{mainBean.addTickets}" render="table" execute="addPane"
 					oncomplete="if (#{facesContext.maximumSeverity==null}) {#{rich:component('addPane')}.hide();}" />
 				<a4j:commandButton value="Cancel"
 					onclick="#{rich:component('addPane')}.hide(); return false;" />
