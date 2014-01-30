@@ -12,7 +12,7 @@ import model.Flight;
 @ManagedBean(name = "cartBean", eager = true)
 @SessionScoped
 public class CartBean implements Serializable {
-	
+
 	private static final long serialVersionUID = 1L;
 	private String customerSurname;
 	private String customerName;
@@ -45,9 +45,15 @@ public class CartBean implements Serializable {
 		this.customerMiddlename = customerMiddlename;
 	}
 
-	
-
 	public double getTicketsSum() {
+
+		double s = 0;
+		for (Map.Entry<Flight, Integer> entry : tickets.entrySet()) {
+			double el = entry.getKey().getTicketPrice() * entry.getValue();
+			s = s + el;
+		}
+
+		setTicketsSum(s);
 		return ticketsSum;
 	}
 
@@ -59,12 +65,12 @@ public class CartBean implements Serializable {
 
 		int a = 0;
 		for (Integer i : tickets.values()) {
-			a = +i;
+			a += i;
 		}
 		setTicketsAmount(a);
 		return ticketsAmount;
 	}
-	
+
 	public void setTicketsAmount(int ticketsAmount) {
 		this.ticketsAmount = ticketsAmount;
 	}

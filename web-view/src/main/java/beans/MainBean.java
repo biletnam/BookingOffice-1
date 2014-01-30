@@ -95,7 +95,7 @@ public class MainBean implements Serializable {
 		setFlights(initializeFlights());
 	}
 
-	public void addTickets() {
+	public void addTicket() {
 		Map<Flight, Integer> tickets = cart.getTickets();
 		tickets.put(selectedFlight, seats);
 	}
@@ -124,7 +124,7 @@ public class MainBean implements Serializable {
 		f1.setDateDeparture(dtDeparture);
 		f1.setDateArrival(dtArrival);
 		f1.setTicketAmount(10);
-		f1.setTicketAmount(1000);
+		f1.setTicketPrice(1000);
 
 		Flight f2 = new Flight();
 		f2.setFlightNumber("AQ-021");
@@ -142,7 +142,7 @@ public class MainBean implements Serializable {
 		f2.setDateDeparture(dtDeparture);
 		f2.setDateArrival(dtArrival);
 		f2.setTicketAmount(5);
-		f2.setTicketAmount(1500);
+		f2.setTicketPrice(1500);
 
 		List<Flight> list = new ArrayList<Flight>();
 		list.add(f1);

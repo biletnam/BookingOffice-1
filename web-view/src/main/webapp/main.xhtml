@@ -13,12 +13,8 @@
 	<ui:define name="authorization">
 		<ui:include src="login.xhtml"></ui:include>
 	</ui:define>
-	<ui:debug />
 	<ui:define name="pan">
-		<h:panelGrid columns="4">
-			<h:outputText value="cartTicketsAmount"></h:outputText>
-			<h:outputText value="#{cartBean.ticketsAmount}"></h:outputText>
-		</h:panelGrid>
+		<ui:include src="cart.xhtml"></ui:include>
 	</ui:define>
 
 	<ui:define name="content">
@@ -82,6 +78,10 @@
 					</h:outputText>
 				</rich:column>
 				<rich:column>
+					<f:facet name="header">Ticket free amount</f:facet>
+					<h:outputText value="#{item.ticketFreeAmount}"></h:outputText>
+				</rich:column>
+				<rich:column>
 					<f:facet name="header">Ticket price</f:facet>
 					<h:outputText value="#{item.ticketPrice}"></h:outputText>
 				</rich:column>
@@ -137,10 +137,78 @@
 
 				</h:panelGrid>
 				<a4j:commandButton value="Add tickets to cart"
-					action="#{mainBean.addTickets}" render="table" execute="addPane"
+					action="#{mainBean.addTicket}" render="table cart"
+					execute="addPane"
 					oncomplete="if (#{facesContext.maximumSeverity==null}) {#{rich:component('addPane')}.hide();}" />
 				<a4j:commandButton value="Cancel"
 					onclick="#{rich:component('addPane')}.hide(); return false;" />
+			</rich:popupPanel>
+
+			<rich:popupPanel header="Edit your cart" id="editCartPane"
+				domElementAttachment="parent" width="500" height="250">
+
+				<rich:dataTable value="#{administratorBean.flights}" var="item"
+					id="tableCart" iterationStatusVar="it">
+					<rich:column>
+						<f:facet name="header">#</f:facet>
+                	#{it.index}
+            	</rich:column>
+					<rich:column>
+						<f:facet name="header">Flight number</f:facet>
+						<h:outputText value="#{item.flightNumber}"></h:outputText>
+					</rich:column>
+					<rich:column>
+						<f:facet name="header">Departure</f:facet>
+						<h:outputText value="#{item.departure}"></h:outputText>
+					</rich:column>
+					<rich:column>
+						<f:facet name="header">Arrival</f:facet>
+						<h:outputText value="#{item.arrival}"></h:outputText>
+					</rich:column>
+					<rich:column>
+						<f:facet name="header">Departure date</f:facet>
+						<h:outputText value="#{item.dateDeparture}">
+							<f:convertDateTime pattern="dd.MM.yyyy HH:mm"></f:convertDateTime>
+						</h:outputText>
+					</rich:column>
+					<rich:column>
+						<f:facet name="header">Arrival date</f:facet>
+						<h:outputText value="#{item.dateArrival}">
+							<f:convertDateTime pattern="dd.MM.yyyy HH:mm"></f:convertDateTime>
+						</h:outputText>
+					</rich:column>
+					<rich:column>
+						<f:facet name="header">Amount of tickets</f:facet>
+						<h:outputText value="#{item.ticketAmount}"></h:outputText>
+					</rich:column>
+					<rich:column>
+						<f:facet name="header">Ticket price</f:facet>
+						<h:outputText value="#{item.ticketPrice}"></h:outputText>
+					</rich:column>
+					<rich:column>
+						<h:panelGrid columns="2">
+							<a4j:commandLink styleClass="no-decor" render="editGrid"
+								execute="@this"
+								oncomplete="#{rich:component('editPane')}.show()">
+								<h:outputText value="Edit" alt="edit" />
+								<a4j:param value="#{it.index}"
+									assignTo="#{administratorBean.currentFlightIndex}" />
+								<f:setPropertyActionListener
+									target="#{administratorBean.editedFlight}" value="#{item}" />
+							</a4j:commandLink>
+
+							<a4j:commandLink styleClass="no-decor" execute="@this"
+								render="@none"
+								oncomplete="#{rich:component('confirmPane')}.show()">
+								<h:outputText value="Delete" alt="delete" />
+								<a4j:param value="#{it.index}"
+									assignTo="#{administratorBean.currentFlightIndex}" />
+							</a4j:commandLink>
+						</h:panelGrid>
+					</rich:column>
+				</rich:dataTable>
+				<a4j:commandButton value="Continue shopping"
+					onclick="#{rich:component('editCartPane')}.hide(); return false;" />
 			</rich:popupPanel>
 
 		</h:form>
