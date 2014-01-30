@@ -15,12 +15,12 @@
 </h:head>
 <h:body>
 	<h:form>
-		<h:panelGrid columns="5">
+		<h:panelGrid columns="2">
 			<h:outputText value="Login"></h:outputText>
 			<h:inputText id="login" value="#{login.login}"></h:inputText>
-			<h:outputText value=""></h:outputText>
 			<h:outputText value="Password"></h:outputText>
 			<h:inputText id="psw" value="#{login.psw}"></h:inputText>
+			<h:panelGroup />
 			<h:commandButton value="Submit" action="#{login.checkUser}"></h:commandButton>
 		</h:panelGrid>
 	</h:form>

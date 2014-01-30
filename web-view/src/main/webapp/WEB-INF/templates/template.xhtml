@@ -23,19 +23,22 @@
 					<ui:include src="header.xhtml"></ui:include>
 				</ui:insert>
 			</div>
+
+			<div id="authorization">
+				<ui:insert name="authorization">
+					<ui:include src="authorization.xhtml"></ui:include>
+				</ui:insert>
+			</div>
+
 		</div>
 
 		<div id="panel">
-			<div id="leftPanel">
-				<ui:insert name="leftPanel">
-					<ui:include src="leftPanel.xhtml"></ui:include>
+			<div id="pan">
+				<ui:insert name="pan">
+					<ui:include src="pan.xhtml"></ui:include>
 				</ui:insert>
 			</div>
-			<div id="rightPanel">
-				<ui:insert name="rightPanel">
-					<ui:include src="rightPanel.xhtml"></ui:include>
-				</ui:insert>
-			</div>
+
 
 		</div>
 
@@ -46,7 +49,7 @@
 				</ui:insert>
 			</div>
 		</div>
-		
+
 		<div id="footer">
 			<ui:insert name="footer">
 				<ui:include src="footer.xhtml"></ui:include>
