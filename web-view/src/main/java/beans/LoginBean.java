@@ -39,7 +39,7 @@ public class LoginBean implements Serializable {
 	}
 
 	
-	public String checkUser() {
+	public String check() {
 		if (login.equals("login") && psw.equals("password")) {
 			return "loginSuccessful";
 		}
