@@ -20,7 +20,7 @@
 			<h:link value="SecurityOfficer" outcome="securityOfficer" />
 		</h:panelGrid>
 	</ui:define>
-	
+
 	<ui:define name="content">
 		<h3>Security officer page</h3>
 		<h:form>
@@ -61,8 +61,9 @@
 				</rich:column>
 				<rich:column>
 					<f:facet name="header">Roles</f:facet>
-					<h:selectManyCheckbox value="#{item.accountRights}"  disabled="true">
-						<f:selectItems value="#{item.accountRights}" var="i"/>
+					<h:selectManyCheckbox value="#{item.accountRights}" disabled="true">
+						<f:selectItems
+							value="#{item.accountRights}" var="i" label="#{i.accountRole}" />
 					</h:selectManyCheckbox>
 				</rich:column>
 				<rich:column>
@@ -107,8 +108,7 @@
 						value="#{securityOfficerBean.editedAccount.accountRights}">
 						<f:selectItems
 							value="#{securityOfficerBean.editedAccount.accountRights}"
-							var="a" itemLabel="#{a.accountRole}"
-							itemValue="#{a.accountRoleActive}" />
+							var="a" itemLabel="#{a.accountRole}" />
 					</h:selectManyCheckbox>
 
 				</h:panelGrid>

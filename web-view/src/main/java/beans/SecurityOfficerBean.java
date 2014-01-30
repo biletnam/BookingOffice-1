@@ -25,6 +25,7 @@ public class SecurityOfficerBean implements Serializable {
 	public SecurityOfficerBean() {
 		super();
 		setAccounts(initializeAccounts());
+		setAvailableAccountRights(intializeAvailableAccountRights());
 	}
 
 	public List<AccountRights> getAvailableAccountRights() {
@@ -76,6 +77,26 @@ public class SecurityOfficerBean implements Serializable {
 
 	}
 
+	private List<AccountRights> intializeAvailableAccountRights() {
+		AccountRights ar11 = new AccountRights();
+		ar11.setAccountRole(AccountRole.ADMINISTRATOR);
+		AccountRights ar12 = new AccountRights();
+		ar12.setAccountRole(AccountRole.ACCOUNTANT);
+		AccountRights ar13 = new AccountRights();
+		ar13.setAccountRole(AccountRole.ANALITYC);
+		AccountRights ar14 = new AccountRights();
+		ar14.setAccountRole(AccountRole.OFFICER);
+		
+		List<AccountRights> accountRights = new ArrayList<>();
+		accountRights.add(ar11);
+		accountRights.add(ar12);
+		accountRights.add(ar13);
+		accountRights.add(ar14);
+		
+		return accountRights;
+		
+	}
+	
 	private List<Account> initializeAccounts() {
 
 		Account a1 = new Account();

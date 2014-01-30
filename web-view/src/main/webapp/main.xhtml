@@ -8,22 +8,22 @@
 	xmlns:rich="http://richfaces.org/rich"
 	xmlns:a4j="http://richfaces.org/a4j">
 
-<ui:composition template="WEB-INF/templates/template.xhtml"
-	xmlns:a4j="http://richfaces.org/a4j"
-	xmlns:rich="http://richfaces.org/rich">
+<ui:composition template="WEB-INF/templates/template.xhtml">
 
-	<ui:define name="leftPanel">
-		ОМГleft
-	</ui:define>
 	<ui:define name="authorization">
-
 		<ui:include src="login.xhtml"></ui:include>
-
+	</ui:define>
+	<ui:debug />
+	<ui:define name="pan">
+		<h:panelGrid columns="4">
+			<h:outputText value="cartTicketsAmount"></h:outputText>
+			<h:outputText value="#{cartBean.ticketsAmount}"></h:outputText>
+		</h:panelGrid>
 	</ui:define>
 
 	<ui:define name="content">
 		<h3>Customer page</h3>
-		<h:form>
+		<h:form id="mainForm">
 			<h:panelGrid columns="3">
 				<h:outputText value="Departure date"></h:outputText>
 				<rich:calendar id="filterCalendarDeparture"
