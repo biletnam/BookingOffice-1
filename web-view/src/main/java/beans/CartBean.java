@@ -1,7 +1,9 @@
 package beans;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.faces.bean.ManagedBean;
@@ -20,6 +22,43 @@ public class CartBean implements Serializable {
 	private double ticketsSum;
 	private int ticketsAmount;
 	private Map<Flight, Integer> tickets = new HashMap<Flight, Integer>();
+	private List<Map.Entry<Flight, Integer>> entries;
+	private int currentEntryIndex;
+	private Map.Entry<Flight, Integer> currentEntry;
+	private int newAmountOfOrderedTickets;
+	
+	public int getNewAmountOfOrderedTickets() {
+		return newAmountOfOrderedTickets;
+	}
+
+	public void setNewAmountOfOrderedTickets(int newAmountOfOrderedTickets) {
+		this.newAmountOfOrderedTickets = newAmountOfOrderedTickets;
+	}
+
+	public int getCurrentEntryIndex() {
+		return currentEntryIndex;
+	}
+
+	public void setCurrentEntryIndex(int currentEntryIndex) {
+		this.currentEntryIndex = currentEntryIndex;
+	}
+
+	public Map.Entry<Flight, Integer> getCurrentEntry() {
+		return currentEntry;
+	}
+
+	public void setCurrentEntry(Map.Entry<Flight, Integer> currentEntry) {
+		this.currentEntry = currentEntry;
+	}
+
+	public List<Map.Entry<Flight, Integer>> getEntries() {
+		entries = new ArrayList<Map.Entry<Flight, Integer>>(tickets.entrySet());
+		return entries;
+	}
+
+	public void setEntries(List<Map.Entry<Flight, Integer>> entries) {
+		this.entries = entries;
+	}
 
 	public String getCustomerSurname() {
 		return customerSurname;
@@ -83,4 +122,7 @@ public class CartBean implements Serializable {
 		this.tickets = tickets;
 	}
 
+	public void updateCurrentEntry() {
+		tickets.put(currentEntry.getKey(), newAmountOfOrderedTickets);
+	}
 }

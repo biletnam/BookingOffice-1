@@ -22,16 +22,16 @@ public class MainBean implements Serializable {
 	private String filterArrival;
 	private int currentFlightIndex;
 	private Flight selectedFlight;
-	private int seats;
+	private int amountOfOrderedTickets;
 	private List<Flight> flights;
-	private CartBean cart;
+	private CartBean cart = new CartBean();
 
 	public MainBean() {
 		super();
 		filterArrival = null;
 		filterDateDeparture = null;
 		flights = null;
-		cart = new CartBean();
+		// cart = new CartBean();
 
 	}
 
@@ -83,12 +83,12 @@ public class MainBean implements Serializable {
 		this.flights = flights;
 	}
 
-	public int getSeats() {
-		return seats;
+	public int getAmountOfOrderedTickets() {
+		return amountOfOrderedTickets;
 	}
 
-	public void setSeats(int seats) {
-		this.seats = seats;
+	public void setAmountOfOrderedTickets(int amountOfOrderedTickets) {
+		this.amountOfOrderedTickets = amountOfOrderedTickets;
 	}
 
 	public void find() {
@@ -97,7 +97,7 @@ public class MainBean implements Serializable {
 
 	public void addTicket() {
 		Map<Flight, Integer> tickets = cart.getTickets();
-		tickets.put(selectedFlight, seats);
+		tickets.put(selectedFlight, amountOfOrderedTickets);
 	}
 
 	public static long getSerialversionuid() {
@@ -124,6 +124,7 @@ public class MainBean implements Serializable {
 		f1.setDateDeparture(dtDeparture);
 		f1.setDateArrival(dtArrival);
 		f1.setTicketAmount(10);
+		f1.setTicketFreeAmount(8);
 		f1.setTicketPrice(1000);
 
 		Flight f2 = new Flight();
@@ -142,6 +143,7 @@ public class MainBean implements Serializable {
 		f2.setDateDeparture(dtDeparture);
 		f2.setDateArrival(dtArrival);
 		f2.setTicketAmount(5);
+		f2.setTicketFreeAmount(3);
 		f2.setTicketPrice(1500);
 
 		List<Flight> list = new ArrayList<Flight>();
