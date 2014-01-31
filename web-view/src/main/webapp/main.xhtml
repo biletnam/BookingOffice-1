@@ -90,6 +90,7 @@
 				</rich:column>
 			</rich:dataTable>
 
+
 			<rich:popupPanel header="Add Tickets to Cart" id="addPane"
 				domElementAttachment="parent" width="500" height="250">
 				<h:panelGrid columns="3" id="addGrid">
@@ -131,11 +132,6 @@
 
 					<h:outputText value="Ticket price" />
 					<h:outputText value="#{mainBean.selectedFlight.ticketPrice}"></h:outputText>
-					<h:panelGroup />
-
-					<h:outputText value="Sum" />
-					<h:outputText
-						value="#{mainBean.selectedFlight.ticketPrice*mainBean.amountOfOrderedTickets}"></h:outputText>
 					<h:panelGroup />
 
 				</h:panelGrid>

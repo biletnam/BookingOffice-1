@@ -162,4 +162,8 @@ public class CartBean implements Serializable {
 	public void updateCurrentEntry() {
 		tickets.put(currentEntry.getKey(), newAmountOfOrderedTickets);
 	}
+	
+	public void createReservation() {
+		
+	}
 }

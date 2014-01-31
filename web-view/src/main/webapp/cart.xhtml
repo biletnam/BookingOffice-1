@@ -102,13 +102,16 @@
 				</rich:column>
 			</rich:dataTable>
 
-			<a4j:commandButton value="Continue shopping"
-				render="cart cartSummary" execute="editCartPane cart cartSummary"
-				onclick="#{rich:component('editCartPane')}.hide(); return false;" />
+			<h:panelGrid columns="2">
+				<a4j:commandButton value="Continue shopping"
+					render="cart cartSummary" execute="editCartPane cart cartSummary"
+					onclick="#{rich:component('editCartPane')}.hide(); return false;" />
 
-			<a4j:commandButton value="!!!"
-				render="cart cartSummary" execute="editCartPane cart cartSummary"
-				onclick="#{rich:component('editCartPane')}.hide(); return false;" />
+				<a4j:commandButton value="Checkout" render=""
+					execute="editCartPane" oncomplete="if (#{facesContext.maximumSeverity==null}) {#{rich:component('checkoutPane')}.show();}"
+					onclick="#{rich:component('checkoutPane')}.show()" />
+			</h:panelGrid>
+
 
 			<h:panelGrid columns="3">
 				<h:outputText value="Surname"></h:outputText>
@@ -132,12 +135,7 @@
 				<rich:message id="addressMsg" for="address"></rich:message>
 
 			</h:panelGrid>
-
-
-
-
 		</rich:popupPanel>
-
 
 		<rich:popupPanel header="Edit Order" id="editCartRowPane"
 			domElementAttachment="parent" width="500" height="230">
@@ -189,6 +187,12 @@
 		<a4j:jsFunction name="remove" action="#{mainBean.removeTicket}"
 			render="tableCart" execute="@this"
 			oncomplete="#{rich:component('confirmPane')}.hide();" />
+
+		<rich:popupPanel id="checkoutPane" autosized="true">
+            Successfully! Thanks for your order
+            	<a4j:commandButton value="Ok"
+				onclick="#{rich:component('checkoutPane')}.hide(); return false; rich:component('editCartPane')}.hide(); return false;" />
+		</rich:popupPanel>
 	</h:form>
 </h:body>
 </html>
