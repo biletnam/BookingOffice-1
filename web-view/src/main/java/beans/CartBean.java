@@ -26,7 +26,44 @@ public class CartBean implements Serializable {
 	private int currentEntryIndex;
 	private Map.Entry<Flight, Integer> currentEntry;
 	private int newAmountOfOrderedTickets;
+	private String surname;
+	private String name;
+	private String middlename;
+	private String address;
 	
+	
+	public String getSurname() {
+		return surname;
+	}
+
+	public void setSurname(String surname) {
+		this.surname = surname;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getMiddlename() {
+		return middlename;
+	}
+
+	public void setMiddlename(String middlename) {
+		this.middlename = middlename;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
 	public int getNewAmountOfOrderedTickets() {
 		return newAmountOfOrderedTickets;
 	}

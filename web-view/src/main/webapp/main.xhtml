@@ -13,14 +13,14 @@
 	<ui:define name="authorization">
 		<ui:include src="login.xhtml"></ui:include>
 	</ui:define>
-	<ui:define name="pan">
+	<ui:define id="cartSummary" name="pan">
 		<ui:include src="cart.xhtml"></ui:include>
 	</ui:define>
 
 	<ui:define name="content">
 		<h3>Customer page</h3>
 		<h:form id="mainForm">
-			<h:panelGrid columns="3">
+			<h:panelGrid id="filterGrid" columns="3">
 				<h:outputText value="Departure date"></h:outputText>
 				<rich:calendar id="filterCalendarDeparture"
 					value="#{mainBean.filterDateDeparture}" locale="US" popup="true"
@@ -33,9 +33,9 @@
 				<h:inputText id="filterArrival" value="#{mainBean.filterArrival}"
 					required="true" requiredMessage="Arrival is required"></h:inputText>
 				<rich:message id="filterArrivalMsg" for="filterArrival" />
-
+				<h:panelGroup />
 				<a4j:commandButton value="Find" render="table"
-					action="#{mainBean.find}" execute="@form" />
+					action="#{mainBean.find}" execute="@this" />
 			</h:panelGrid>
 
 			<rich:dataTable value="#{mainBean.flights}" var="item" id="table"
@@ -118,7 +118,7 @@
 					<h:panelGroup />
 
 					<h:outputText value="Amount of ordered tickets" />
-					<h:inputText id="amountOfOrderedTicket"
+					<h:inputText id="amountOfOrderedTickets"
 						value="#{mainBean.amountOfOrderedTickets}" required="true"
 						requiredMessage="Amount of ordered tickets is required"
 						converterMessage="Should be a valid amount of ordered tickets"
@@ -126,7 +126,8 @@
 						<f:validateLongRange minimum="1"
 							maximum="#{mainBean.selectedFlight.ticketFreeAmount}" />
 					</h:inputText>
-					<h:panelGroup />
+					<rich:message id="amountOfOrderedTicketsMsg"
+						for="amountOfOrderedTickets"></rich:message>
 
 					<h:outputText value="Ticket price" />
 					<h:outputText value="#{mainBean.selectedFlight.ticketPrice}"></h:outputText>

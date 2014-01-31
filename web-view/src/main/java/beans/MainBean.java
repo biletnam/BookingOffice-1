@@ -98,7 +98,14 @@ public class MainBean implements Serializable {
 	public void addTicket() {
 		Map<Flight, Integer> tickets = cart.getTickets();
 		tickets.put(selectedFlight, amountOfOrderedTickets);
+		amountOfOrderedTickets = 0;
 	}
+	
+	public void removeTicket() {
+		Map<Flight, Integer> tickets = cart.getTickets();
+		tickets.remove(cart.getCurrentEntry().getKey());
+	}
+
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
