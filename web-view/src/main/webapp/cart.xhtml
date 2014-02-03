@@ -107,9 +107,9 @@
 					render="cart cartSummary" execute="editCartPane cart cartSummary"
 					onclick="#{rich:component('editCartPane')}.hide(); return false;" />
 
-				<a4j:commandButton value="Checkout" render=""
-					execute="editCartPane" oncomplete="if (#{facesContext.maximumSeverity==null}) {#{rich:component('checkoutPane')}.show();}"
-					onclick="#{rich:component('checkoutPane')}.show()" />
+<!-- 				<a4j:commandButton value="Checkout" render="" -->
+<!-- 					execute="editCartPane" oncomplete="if (#{facesContext.maximumSeverity==null}) {#{rich:component('checkoutPane')}.show();}" -->
+<!-- 					onclick="#{rich:component('checkoutPane')}.show()" /> -->
 			</h:panelGrid>
 
 
