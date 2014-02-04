@@ -16,24 +16,24 @@ public class DAOFactory {
 		return entityManager;
 	}
 	
-	public FlightDAOImpl getFlightDAOImpl() {
-		return new FlightDAOImpl(getEntityManager());
-	}
+//	public FlightDAO getFlightDAOImpl() {
+//		return new FlightDAO(getEntityManager());
+//	}
 
-	public TicketDAOImpl getTicketDAOImpl() {
-		return new TicketDAOImpl(getEntityManager());
-	}
+//	public TicketDAOImpl getTicketDAOImpl() {
+//		return new TicketDAOImpl(getEntityManager());
+//	}
 
-	public ReservationDAOImpl getReservationDAOImpl() {
-		return new ReservationDAOImpl(getEntityManager());
-	}
-
-	public AccountDAOImpl getAccountDAOImpl() {
-		return new AccountDAOImpl(getEntityManager());
-	}
-	
-	public AccountRightsDAOImpl getAccountRightsDAOImpl() {
-		return new AccountRightsDAOImpl(getEntityManager());
-	}
+//	public ReservationDAO getReservationDAOImpl() {
+//		return new ReservationDAO(getEntityManager());
+//	}
+//
+//	public AccountDAOImpl getAccountDAOImpl() {
+//		return new AccountDAOImpl(getEntityManager());
+//	}
+//	
+//	public AccountRightsDAOImpl getAccountRightsDAOImpl() {
+//		return new AccountRightsDAOImpl(getEntityManager());
+//	}
 	
 }

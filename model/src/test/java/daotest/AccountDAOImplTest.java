@@ -5,11 +5,11 @@ import model.Account;
 
 import org.junit.*;
 
-import dao.AccountDAOImpl;
+import dao.AccountDAO;
 import dao.DAOFactory;
 
 public class AccountDAOImplTest extends TestBase {
-	private static AccountDAOImpl accountDAOImpl;
+	private static AccountDAO accountDAOImpl;
 	
 	@BeforeClass
 	public static void getDAO() throws Exception {

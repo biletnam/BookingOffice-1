@@ -14,7 +14,7 @@ import org.junit.*;
 import dao.*;
 
 public class FlightDAOImplTest extends TestBase {
-	private static FlightDAOImpl flightDAOImpl;
+	private static FlightDAO flightDAOImpl;
 		
 	@BeforeClass
 	public static void getDAO() throws Exception {

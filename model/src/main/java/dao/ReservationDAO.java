@@ -1,11 +1,42 @@
 package dao;
 
-import java.util.*;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.List;
 
-import model.*;
+import javax.persistence.TypedQuery;
 
-public interface ReservationDAO extends DAO<Reservation> {
-	List<Reservation> getExpiredReservations();
-	List<Reservation> getActualReservations();
-	
+import model.Reservation;
+
+public class ReservationDAO extends GenericDAOImpl<Reservation> {
+
+	public List<Reservation> getExpiredReservations() {
+		GregorianCalendar gc = (GregorianCalendar) Calendar.getInstance();
+		gc.add(Calendar.DAY_OF_YEAR, -3);
+		Date now = gc.getTime();
+		
+		TypedQuery<Reservation> query = entityManager.createQuery("SELECT r FROM Reservation r where r.dateReservation < ?1 and r.paid = FALSE", Reservation.class);
+		List<Reservation> reservations = null;
+		
+		query.setParameter(1, now);
+		reservations = query.getResultList();	
+		
+		return reservations;
+	}
+
+	public List<Reservation> getActualReservations() {
+		GregorianCalendar gc = (GregorianCalendar) Calendar.getInstance();
+		gc.add(Calendar.DAY_OF_YEAR, -3);
+		Date now = gc.getTime();
+		
+		TypedQuery<Reservation> query = entityManager.createQuery("SELECT r FROM Reservation r where r.dateReservation > ?1", Reservation.class);
+		List<Reservation> reservations = null;
+		
+		query.setParameter(1, now);
+		reservations = query.getResultList();	
+		
+		return reservations;	
+	}
+
 }

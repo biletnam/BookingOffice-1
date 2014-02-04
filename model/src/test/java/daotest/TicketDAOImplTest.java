@@ -16,14 +16,14 @@ import model.TicketStatus;
 import org.junit.*;
 
 import dao.DAOFactory;
-import dao.FlightDAOImpl;
-import dao.ReservationDAOImpl;
-import dao.TicketDAOImpl;
+import dao.FlightDAO;
+import dao.ReservationDAO;
+import dao.TicketDAO;
 
 public class TicketDAOImplTest extends TestBase {
-	private static TicketDAOImpl ticketDAOImpl;
-	private static FlightDAOImpl flightDAOImpl;
-	private static ReservationDAOImpl reservationDAOImpl;
+	private static TicketDAO ticketDAOImpl;
+	private static FlightDAO flightDAOImpl;
+	private static ReservationDAO reservationDAOImpl;
 	
 	@BeforeClass
 	public static void getDAO() throws Exception {

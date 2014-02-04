@@ -12,11 +12,11 @@ import model.Reservation;
 import org.junit.*;
 
 import dao.DAOFactory;
-import dao.ReservationDAOImpl;
+import dao.ReservationDAO;
 
 public class ReservationDAOImplTest extends TestBase {
 
-private static ReservationDAOImpl reservationDAOImpl;
+private static ReservationDAO reservationDAOImpl;
 	
 	@BeforeClass
 	public static void getDAO() throws Exception {

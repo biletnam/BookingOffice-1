@@ -10,13 +10,13 @@ import model.AccountRole;
 
 import org.junit.*;
 
-import dao.AccountDAOImpl;
-import dao.AccountRightsDAOImpl;
+import dao.AccountDAO;
+import dao.AccountRightsDAO;
 import dao.DAOFactory;
 
 public class AccountRightsDAOImplTest extends TestBase {
-	private static AccountRightsDAOImpl accountRightsDAOImpl;
-	private static AccountDAOImpl accountDAOImpl;
+	private static AccountRightsDAO accountRightsDAOImpl;
+	private static AccountDAO accountDAOImpl;
 
 	@BeforeClass
 	public static void getDAO() throws Exception {

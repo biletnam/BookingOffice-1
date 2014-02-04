@@ -1,10 +1,7 @@
 package dao;
 
-import model.*;
+import model.Account;
 
-public interface AccountDAO extends DAO<Account> {
-	//TODO Authorization
-	//TODO Read account rights
-	
-	
+public class AccountDAO extends GenericDAOImpl<Account> {
+
 }
