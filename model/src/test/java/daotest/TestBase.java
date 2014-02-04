@@ -82,14 +82,12 @@ public abstract class TestBase {
 		stmt.execute(command);
 
 		command = "INSERT INTO TICKET (FLIGHTID, STATUS, RESERVATIONID, DATEPAYMENT) VALUES (1, 2, 1, '2013-12-05 10:00:14'),"
-				+ "(1, 2, 1, '2013-12-05 10:00:14'), (1, 1, 3, null), (1, 1, 3, null), "
-				+ "(1, 0, null, null), (1, 0, null, null), (1, 0, null, null), (1, 0, null, null), (1, 0, null, null), (1, 0, null, null)";
+				+ "(1, 2, 1, '2013-12-05 10:00:14'), (1, 1, 3, null), (1, 1, 3, null)";
 		stmt.execute(command);
 
 		command = "INSERT INTO TICKET (FLIGHTID, STATUS, RESERVATIONID, DATEPAYMENT) VALUES (2, 2, 1, '2013-12-05 10:00:14'),"
 				+ "(2, 2, 2, '2013-12-06 10:00:14'), "
-				+ "(2, 1, 3, null), "
-				+ "(2, 0, null, null), (2, 0, null, null)";
+				+ "(2, 1, 3, null)";
 		stmt.execute(command);
 
 		command = "INSERT INTO TICKET (FLIGHTID, STATUS, RESERVATIONID, DATEPAYMENT) VALUES (3, 2, 2, '2013-12-06 10:00:14'),"
@@ -100,7 +98,7 @@ public abstract class TestBase {
 				+ "('Login2', 'Psw2', 'Surname2', 'Name2', 'Middlename2', TRUE), ('Login3', 'Psw3', 'Surname3', 'Name3', 'Middlename3', TRUE)";
 		stmt.execute(command);
 
-		command = "INSERT INTO ACCOUNTRIGHTS (ACCOUNTID, ACCOUNTROLE) VALUES (1, 0), (1, 1), (2, 2), (3, 3)";
+		command = "INSERT INTO ACCOUNTRIGHTS (ACCOUNTID, ACCOUNTROLE, ACCOUNTROLEACTIVE) VALUES (1, 0, true), (1, 1, true), (1, 2, false), (2, 0, false), (2, 1, true), (2, 2, false)";
 		stmt.execute(command);
 
 		connection.close();

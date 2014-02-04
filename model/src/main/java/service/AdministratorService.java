@@ -27,53 +27,53 @@ public class AdministratorService {
 		{
 			Ticket t = new Ticket();
 			t.setFlightId(f.getId());
-			t.setStatus(TicketStatus.FREE);
+			//t.setStatus(TicketStatus.FREE);
 			ticketDao.create(t);
 			//TODO check dates
 		}
 	}
 	
 	void editFlightAmountOfTickets(Flight f) {
-		int ticketAmountNew = f.getTicketAmount();
-		int id = f.getId();
-		int ticketAmount = flightDao.read(id).getTicketAmount();
-		
-		if (ticketAmountNew > ticketAmount) {
-			for (int i = 0; i < ticketAmountNew - ticketAmount; i++)
-			{
-				Ticket t = new Ticket();
-				t.setFlightId(f.getId());
-				t.setStatus(TicketStatus.FREE);
-				ticketDao.create(t);
-			}
-		}
-		else if (ticketAmountNew < ticketAmount) {
-			long amountForDelete = ticketAmount - ticketAmountNew;
-			long amountFree = ticketDao.getAmountOfTicketsForStatusForTheFlight(f, TicketStatus.FREE);
-			if (amountForDelete > amountFree) {
-				//TODO message for deleting flight
-				return;
-			} else if (amountForDelete < amountFree) {
-				List<Ticket> listT = ticketDao.getTicketsForStatusForTheFlight(f, TicketStatus.FREE);
-				int count = 0;
-				for (Ticket t : listT) {
-					ticketDao.delete(t);
-					count++;
-					if (count == amountFree - amountForDelete) {
-						break;
-					}
-				}
-				
-			} else if (amountForDelete == amountFree)
-			{
-				//TODO message for changing flight
-				return;
-			}
-		} else if (ticketAmountNew == ticketAmount)
-		{
-			//TODO message for changing flight
-			return; 
-		}
+//		int ticketAmountNew = f.getTicketAmount();
+//		int id = f.getId();
+//		int ticketAmount = flightDao.read(id).getTicketAmount();
+//		
+//		if (ticketAmountNew > ticketAmount) {
+//			for (int i = 0; i < ticketAmountNew - ticketAmount; i++)
+//			{
+//				Ticket t = new Ticket();
+//				t.setFlightId(f.getId());
+//				//t.setStatus(TicketStatus.FREE);
+//				ticketDao.create(t);
+//			}
+//		}
+//		else if (ticketAmountNew < ticketAmount) {
+//			long amountForDelete = ticketAmount - ticketAmountNew;
+//			long amountFree = ticketDao.getAmountOfTicketsForStatusForTheFlight(f, TicketStatus.FREE);
+//			if (amountForDelete > amountFree) {
+//				//TODO message for deleting flight
+//				return;
+//			} else if (amountForDelete < amountFree) {
+//				//List<Ticket> listT = ticketDao.getTicketsForStatusForTheFlight(f, TicketStatus.FREE);
+//				int count = 0;
+//				for (Ticket t : listT) {
+//					ticketDao.delete(t);
+//					count++;
+//					if (count == amountFree - amountForDelete) {
+//						break;
+//					}
+//				}
+//				
+//			} else if (amountForDelete == amountFree)
+//			{
+//				//TODO message for changing flight
+//				return;
+//			}
+//		} else if (ticketAmountNew == ticketAmount)
+//		{
+//			//TODO message for changing flight
+//			return; 
+//		}
 		
 	}
 	
@@ -91,7 +91,7 @@ public class AdministratorService {
 		List<Ticket> listT= ticketDao.getTicketsForExpiredReservation();
 		for (Ticket t : listT) {
 			t.setReservationId(0);
-			t.setStatus(TicketStatus.FREE);
+			//t.setStatus(TicketStatus.FREE);
 			ticketDao.update(t);
 		}
 		List<Reservation> listR = reservationDao.getExpiredReservations();

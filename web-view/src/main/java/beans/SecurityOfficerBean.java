@@ -84,14 +84,11 @@ public class SecurityOfficerBean implements Serializable {
 		ar12.setAccountRole(AccountRole.ACCOUNTANT);
 		AccountRights ar13 = new AccountRights();
 		ar13.setAccountRole(AccountRole.ANALITYC);
-		AccountRights ar14 = new AccountRights();
-		ar14.setAccountRole(AccountRole.OFFICER);
 		
 		List<AccountRights> accountRights = new ArrayList<>();
 		accountRights.add(ar11);
 		accountRights.add(ar12);
 		accountRights.add(ar13);
-		accountRights.add(ar14);
 		
 		return accountRights;
 		

@@ -92,7 +92,7 @@ public class TicketDAOImplTest extends TestBase {
 	public void testDelete() {
 		Ticket t = new Ticket();
 		int flightId = 1;
-		TicketStatus status = TicketStatus.FREE;
+		TicketStatus status = TicketStatus.BOOKED;
 		GregorianCalendar gcPayment = new GregorianCalendar(2013, Calendar.DECEMBER, 23, 4, 40, 0);
 		Timestamp dtPayment = new java.sql.Timestamp(gcPayment.getTime().getTime());
 		
@@ -128,7 +128,7 @@ public class TicketDAOImplTest extends TestBase {
 	public void testUpdateTicketsStatus() {
 		Ticket t1 = new Ticket();
 		int flightId = 1;
-		TicketStatus status = TicketStatus.FREE;
+		TicketStatus status = TicketStatus.BOOKED;
 		
 		t1.setFlightId(flightId);
 		t1.setStatus(status);
@@ -137,7 +137,7 @@ public class TicketDAOImplTest extends TestBase {
 		int id1 = t1.getId();
 		Ticket t2 = new Ticket();
 		flightId = 2;
-		status = TicketStatus.FREE;
+		status = TicketStatus.BOOKED;
 		
 		t2.setFlightId(flightId);
 		t2.setStatus(status);
@@ -165,7 +165,7 @@ public class TicketDAOImplTest extends TestBase {
 	@Test
 	public void testGetAmountOfTicketsForStatusForTheFlight() {
 		Flight f = flightDAOImpl.read(1);
-		long amount = ticketDAOImpl.getAmountOfTicketsForStatusForTheFlight(f, TicketStatus.FREE);
+		long amount = ticketDAOImpl.getAmountOfTicketsForStatusForTheFlight(f, TicketStatus.BOOKED);
 		assertTrue(amount == 6);
 		
 	}

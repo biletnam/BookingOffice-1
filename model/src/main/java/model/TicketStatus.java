@@ -1,5 +1,5 @@
 package model;
 
 public enum TicketStatus {
-	FREE, BOOKED, SOLD
+	BOOKED, SOLD
 }
