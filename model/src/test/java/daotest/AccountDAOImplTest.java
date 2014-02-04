@@ -8,7 +8,7 @@ import org.junit.*;
 import dao.AccountDAOImpl;
 import dao.DAOFactory;
 
-public class AccountDAOImplTest extends IntegrationTestBase {
+public class AccountDAOImplTest extends TestBase {
 	private static AccountDAOImpl accountDAOImpl;
 	
 	@BeforeClass

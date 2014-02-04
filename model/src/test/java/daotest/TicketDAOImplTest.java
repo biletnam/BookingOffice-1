@@ -20,7 +20,7 @@ import dao.FlightDAOImpl;
 import dao.ReservationDAOImpl;
 import dao.TicketDAOImpl;
 
-public class TicketDAOImplTest extends IntegrationTestBase {
+public class TicketDAOImplTest extends TestBase {
 	private static TicketDAOImpl ticketDAOImpl;
 	private static FlightDAOImpl flightDAOImpl;
 	private static ReservationDAOImpl reservationDAOImpl;

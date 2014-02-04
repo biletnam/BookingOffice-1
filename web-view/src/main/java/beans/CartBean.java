@@ -29,7 +29,7 @@ public class CartBean implements Serializable {
 	private String surname;
 	private String name;
 	private String middlename;
-	private String address;
+	private String email;
 	
 	
 	public String getSurname() {
@@ -56,12 +56,14 @@ public class CartBean implements Serializable {
 		this.middlename = middlename;
 	}
 
-	public String getAddress() {
-		return address;
+	
+
+	public String getEmail() {
+		return email;
 	}
 
-	public void setAddress(String address) {
-		this.address = address;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public int getNewAmountOfOrderedTickets() {

@@ -14,7 +14,7 @@ import org.junit.*;
 import dao.DAOFactory;
 import dao.ReservationDAOImpl;
 
-public class ReservationDAOImplTest extends IntegrationTestBase {
+public class ReservationDAOImplTest extends TestBase {
 
 private static ReservationDAOImpl reservationDAOImpl;
 	
@@ -45,7 +45,7 @@ private static ReservationDAOImpl reservationDAOImpl;
 		r.setCustomerSurname(customerSurname);
 		r.setCustomerName(customerName);
 		r.setCustomerMiddlename(customerMiddlename);
-		r.setCustomerAddress(customerAddress);
+		r.setCustomerEmail(customerAddress);
 		r.setDateReservation(dtReservation);
 		r.setPaid(paid);
 		
@@ -56,7 +56,7 @@ private static ReservationDAOImpl reservationDAOImpl;
 		assertTrue(customerSurname.equals(rReaded.getCustomerSurname()));
 		assertTrue(customerName.equals(rReaded.getCustomerName()));
 		assertTrue(customerMiddlename.equals(rReaded.getCustomerMiddlename()));
-		assertTrue(customerAddress.equals(rReaded.getCustomerAddress()));
+		assertTrue(customerAddress.equals(rReaded.getCustomerEmail()));
 		
 		assertTrue(dtReservation.equals(rReaded.getDateReservation()));
 		assertTrue(paid == rReaded.isPaid());
@@ -78,7 +78,7 @@ private static ReservationDAOImpl reservationDAOImpl;
 		assertTrue(customerSurname.equals(rReaded.getCustomerSurname()));
 		assertTrue(r.getCustomerName().equals(rReaded.getCustomerName()));
 		assertTrue(r.getCustomerMiddlename().equals(rReaded.getCustomerMiddlename()));
-		assertTrue(r.getCustomerAddress().equals(rReaded.getCustomerAddress()));
+		assertTrue(r.getCustomerEmail().equals(rReaded.getCustomerEmail()));
 		
 		assertTrue(r.getDateReservation().equals(rReaded.getDateReservation()));
 		assertTrue(r.isPaid() == rReaded.isPaid());
@@ -105,7 +105,7 @@ private static ReservationDAOImpl reservationDAOImpl;
 		r.setCustomerSurname(customerSurname);
 		r.setCustomerName(customerName);
 		r.setCustomerMiddlename(customerMiddlename);
-		r.setCustomerAddress(customerAddress);
+		r.setCustomerEmail(customerAddress);
 		r.setDateReservation(dtReservation);
 		r.setPaid(paid);		
 
@@ -133,7 +133,7 @@ private static ReservationDAOImpl reservationDAOImpl;
 		assertTrue(r.getCustomerSurname().equals("Surname2"));
 		assertTrue(r.getCustomerName().equals("Name2"));
 		assertTrue(r.getCustomerMiddlename().equals("Middlename2"));
-		assertTrue(r.getCustomerAddress().equals("Address2"));
+		assertTrue(r.getCustomerEmail().equals("Address2"));
 		
 		assertTrue(r.getDateReservation().equals(dtReservation));
 		assertTrue(r.isPaid() == paid);
@@ -152,7 +152,7 @@ private static ReservationDAOImpl reservationDAOImpl;
 		assertTrue(listR.get(0).getCustomerSurname().equals("Surname3"));
 		assertTrue(listR.get(0).getCustomerName().equals("Name3"));
 		assertTrue(listR.get(0).getCustomerMiddlename().equals("Middlename3"));
-		assertTrue(listR.get(0).getCustomerAddress().equals("Address3"));
+		assertTrue(listR.get(0).getCustomerEmail().equals("Address3"));
 		assertTrue(listR.get(0).getDateReservation().equals(dtReservation));
 		assertTrue(listR.get(0).isPaid() == paid);
 		
@@ -173,7 +173,7 @@ private static ReservationDAOImpl reservationDAOImpl;
 		r.setCustomerSurname(customerSurname);
 		r.setCustomerName(customerName);
 		r.setCustomerMiddlename(customerMiddlename);
-		r.setCustomerAddress(customerAddress);
+		r.setCustomerEmail(customerAddress);
 		r.setDateReservation(dtReservation);
 		r.setPaid(paid);		
 
@@ -185,7 +185,7 @@ private static ReservationDAOImpl reservationDAOImpl;
 		assertTrue(listR.get(0).getCustomerSurname().equals("Surname6"));
 		assertTrue(listR.get(0).getCustomerName().equals("Name6"));
 		assertTrue(listR.get(0).getCustomerMiddlename().equals("Middlename6"));
-		assertTrue(listR.get(0).getCustomerAddress().equals("Address6"));
+		assertTrue(listR.get(0).getCustomerEmail().equals("Address6"));
 		assertTrue(listR.get(0).getDateReservation().equals(dtReservation));
 		assertTrue(listR.get(0).isPaid() == paid);
 		

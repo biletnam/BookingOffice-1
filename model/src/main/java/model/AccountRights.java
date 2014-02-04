@@ -14,6 +14,15 @@ public class AccountRights implements Serializable {
 	@JoinColumn(name = "accountId")
 	private Account account;
 	private AccountRole accountRole;
+	private boolean accountRoleActive;
+	
+	public boolean isAccountRoleActive() {
+		return accountRoleActive;
+	}
+
+	public void setAccountRoleActive(boolean accountRoleActive) {
+		this.accountRoleActive = accountRoleActive;
+	}
 
 	public AccountRights() {
 		super();

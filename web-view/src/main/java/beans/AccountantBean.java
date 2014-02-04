@@ -64,7 +64,7 @@ public class AccountantBean implements Serializable {
 		r1.setCustomerSurname("Surname1");
 		r1.setCustomerName("Name1");
 		r1.setCustomerMiddlename("MiddleName1");
-		r1.setCustomerAddress("Address1");
+		r1.setCustomerEmail("Address1");
 
 		GregorianCalendar gcReservation = new GregorianCalendar(2013,
 				Calendar.DECEMBER, 04, 10, 0, 14);
@@ -78,7 +78,7 @@ public class AccountantBean implements Serializable {
 		r2.setCustomerSurname("Surname2");
 		r2.setCustomerName("Name2");
 		r2.setCustomerMiddlename("MiddleName2");
-		r2.setCustomerAddress("Address2");
+		r2.setCustomerEmail("Address2");
 
 		gcReservation = new GregorianCalendar(2013, Calendar.DECEMBER, 05, 10,
 				0, 14);

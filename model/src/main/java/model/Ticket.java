@@ -12,8 +12,8 @@ public class Ticket implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	private int flightId;
-	private TicketStatus status;
 	private int reservationId;
+	private TicketStatus status;
 	private Timestamp datePayment;
 	
 	public Ticket() {

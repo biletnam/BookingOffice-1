@@ -15,13 +15,12 @@ public class Reservation implements Serializable {
 	private String customerSurname;
 	private String customerName;
 	private String customerMiddlename;
-	private String customerAddress;
+	private String customerEmail;
 	private double sum;
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dateReservation;
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date datePayment;
-	
 	private boolean paid;
 	
 	public Reservation() {
@@ -52,9 +51,7 @@ public class Reservation implements Serializable {
 		this.customerMiddlename = customerMiddlename;
 	}
 
-	public String getCustomerAddress() {
-		return customerAddress;
-	}
+	
 
 	public double getSum() {
 		return sum;
@@ -64,8 +61,15 @@ public class Reservation implements Serializable {
 		this.sum = sum;
 	}
 
-	public void setCustomerAddress(String customerAddress) {
-		this.customerAddress = customerAddress;
+	
+	
+
+	public String getCustomerEmail() {
+		return customerEmail;
+	}
+
+	public void setCustomerEmail(String customerEmail) {
+		this.customerEmail = customerEmail;
 	}
 
 	public Date getDateReservation() {

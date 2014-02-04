@@ -14,7 +14,7 @@ import dao.AccountDAOImpl;
 import dao.AccountRightsDAOImpl;
 import dao.DAOFactory;
 
-public class AccountRightsDAOImplTest extends IntegrationTestBase {
+public class AccountRightsDAOImplTest extends TestBase {
 	private static AccountRightsDAOImpl accountRightsDAOImpl;
 	private static AccountDAOImpl accountDAOImpl;
 	

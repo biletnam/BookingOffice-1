@@ -13,7 +13,7 @@ import org.junit.*;
 
 import dao.*;
 
-public class FlightDAOImplTest extends IntegrationTestBase {
+public class FlightDAOImplTest extends TestBase {
 	private static FlightDAOImpl flightDAOImpl;
 		
 	@BeforeClass
