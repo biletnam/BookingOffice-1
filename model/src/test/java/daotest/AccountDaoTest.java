@@ -5,21 +5,19 @@ import model.Account;
 
 import org.junit.*;
 
-import dao.AccountDAO;
-import dao.DAOFactory;
+import dao.AccountDao;
 
-public class AccountDAOImplTest extends TestBase {
-	private static AccountDAO accountDAOImpl;
+public class AccountDaoTest extends TestBase {
+	private static AccountDao accountDao;
 	
 	@BeforeClass
 	public static void getDAO() throws Exception {
-		DAOFactory factory = new DAOFactory();
-		accountDAOImpl = factory.getAccountDAOImpl();
+		accountDao = new AccountDao();
 	}
 
 	@AfterClass
 	public static void tearDown() throws Exception {
-		accountDAOImpl.getEntityManager().close();
+		accountDao.getEntityManager().close();
 	}
 	
 	@Test
@@ -40,9 +38,9 @@ public class AccountDAOImplTest extends TestBase {
 		a.setMiddlename(middlename);
 		a.setActive(active);
 
-		accountDAOImpl.create(a);
+		accountDao.create(a);
 		int id = a.getId();
-		Account aReaded = accountDAOImpl.read(id);
+		Account aReaded = accountDao.read(id);
 		assertTrue(id == aReaded.getId());
 		assertTrue(login.equals(aReaded.getLogin()));
 		assertTrue(psw.equals(aReaded.getPsw()));
@@ -51,19 +49,19 @@ public class AccountDAOImplTest extends TestBase {
 		assertTrue(middlename.equals(aReaded.getMiddlename()));
 		assertTrue(active == aReaded.isActive());
 		
-		accountDAOImpl.delete(a);
+		accountDao.delete(a);
 			
 	}
 
 	@Test
 	public void testUpdate() {
-		Account a = accountDAOImpl.read(1);
+		Account a = accountDao.read(1);
 		boolean active = false;
 		a.setActive(active);
 		
-		accountDAOImpl.update(a);
+		accountDao.update(a);
 		
-		Account aReaded = accountDAOImpl.read(1);
+		Account aReaded = accountDao.read(1);
 		
 		assertTrue(a.getId() == aReaded.getId());
 		assertTrue(a.getLogin().equals(aReaded.getLogin()));
@@ -76,7 +74,7 @@ public class AccountDAOImplTest extends TestBase {
 		active = true;
 		a.setActive(active);;
 		
-		accountDAOImpl.update(a);
+		accountDao.update(a);
 		
 	}
 
@@ -98,21 +96,21 @@ public class AccountDAOImplTest extends TestBase {
 		a.setMiddlename(middlename);
 		a.setActive(active);
 		
-		accountDAOImpl.create(a);
+		accountDao.create(a);
 
 		int id = a.getId();
 		
-		Account aReaded = accountDAOImpl.read(id);
-		accountDAOImpl.delete(aReaded);
+		Account aReaded = accountDao.read(id);
+		accountDao.delete(aReaded);
 		
-		aReaded = accountDAOImpl.read(id);
+		aReaded = accountDao.read(id);
 		assertTrue(aReaded == null);
 		
 	}
 
 	@Test
 	public void testRead() {
-		Account a = accountDAOImpl.read(2);
+		Account a = accountDao.read(2);
 		
 		assertTrue(a.getId() == 2);
 		assertTrue(a.getLogin().equals("Login2"));

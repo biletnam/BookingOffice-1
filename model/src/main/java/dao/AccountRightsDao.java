@@ -7,7 +7,7 @@ import javax.persistence.TypedQuery;
 import model.Account;
 import model.AccountRights;
 
-public class AccountRightsDAO extends GenericDAOImpl<AccountRights> {
+public class AccountRightsDao extends GenericDaoImpl<AccountRights> {
 	
 	public List<AccountRights> getAccountRights(Account account) {
 		TypedQuery<AccountRights> query = entityManager.createQuery(

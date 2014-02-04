@@ -9,10 +9,10 @@ import model.*;
 import dao.*;
 
 public class AccountantService {
-	private ReservationDAO1 reservationDao;
-	private TicketDAO1 ticketDao;
+	private ReservationDao1 reservationDao;
+	private TicketDao1 ticketDao;
 	
-	public AccountantService(ReservationDAO1 reservationDao, TicketDAO1 ticketDao) {
+	public AccountantService(ReservationDao1 reservationDao, TicketDao1 ticketDao) {
 		super();
 		this.reservationDao = reservationDao;
 		this.ticketDao = ticketDao;

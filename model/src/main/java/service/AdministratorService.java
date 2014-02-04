@@ -3,17 +3,17 @@ package service;
 import java.util.List;
 
 import model.*;
-import dao.FlightDAO1;
-import dao.ReservationDAO1;
-import dao.TicketDAO1;
+import dao.FlightDao1;
+import dao.ReservationDao1;
+import dao.TicketDao1;
 
 public class AdministratorService {
-	private FlightDAO1 flightDao;
-	private TicketDAO1 ticketDao;
-	private ReservationDAO1 reservationDao;
+	private FlightDao1 flightDao;
+	private TicketDao1 ticketDao;
+	private ReservationDao1 reservationDao;
 	
-	public AdministratorService(FlightDAO1 flightDao, TicketDAO1 ticketDao,
-			ReservationDAO1 reservationDao) {
+	public AdministratorService(FlightDao1 flightDao, TicketDao1 ticketDao,
+			ReservationDao1 reservationDao) {
 		super();
 		this.flightDao = flightDao;
 		this.ticketDao = ticketDao;

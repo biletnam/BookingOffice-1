@@ -4,7 +4,7 @@ import java.util.*;
 
 import model.*;
 
-public interface AccountRightsDAO1 extends GenericDAO<AccountRights> {
+public interface AccountRightsDao1 extends GenericDao<AccountRights> {
 	List<AccountRights> getAccountRights(Account account);
 	
 }

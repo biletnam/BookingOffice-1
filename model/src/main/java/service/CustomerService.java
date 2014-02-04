@@ -8,12 +8,12 @@ import dao.*;
 
 
 public class CustomerService {
-	private TicketDAO1 ticketDao;
-	private ReservationDAO1 reservationDao;
-	private FlightDAO1 flightDao;
+	private TicketDao1 ticketDao;
+	private ReservationDao1 reservationDao;
+	private FlightDao1 flightDao;
 	
-	public CustomerService(TicketDAO1 ticketDao, ReservationDAO1 reservationDao,
-			FlightDAO1 flightDao) {
+	public CustomerService(TicketDao1 ticketDao, ReservationDao1 reservationDao,
+			FlightDao1 flightDao) {
 		super();
 		this.ticketDao = ticketDao;
 		this.reservationDao = reservationDao;

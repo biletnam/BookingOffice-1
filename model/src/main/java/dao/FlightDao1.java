@@ -5,7 +5,7 @@ import java.util.*;
 
 import model.*;
 
-public interface FlightDAO1 extends GenericDAO<Flight> {
+public interface FlightDao1 extends GenericDao<Flight> {
 	List<Flight> find(String arrival, Date departureDate);
 	
 }

@@ -14,7 +14,7 @@ import model.Reservation;
 import model.Ticket;
 import model.TicketStatus;
 
-public class TicketDAO extends GenericDAOImpl<Ticket> {
+public class TicketDao extends GenericDaoImpl<Ticket> {
 		
 	public void updateTicketsStatus(List<Ticket> tickets, TicketStatus ticketStatus) {
 		for (Ticket t : tickets) {

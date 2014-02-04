@@ -15,29 +15,27 @@ import model.TicketStatus;
 
 import org.junit.*;
 
-import dao.DAOFactory;
-import dao.FlightDAO;
-import dao.ReservationDAO;
-import dao.TicketDAO;
+import dao.FlightDao;
+import dao.ReservationDao;
+import dao.TicketDao;
 
-public class TicketDAOImplTest extends TestBase {
-	private static TicketDAO ticketDAOImpl;
-	private static FlightDAO flightDAOImpl;
-	private static ReservationDAO reservationDAOImpl;
+public class TicketDaoTest extends TestBase {
+	private static TicketDao ticketDao;
+	private static FlightDao flightDao;
+	private static ReservationDao reservationDao;
 	
 	@BeforeClass
 	public static void getDAO() throws Exception {
-		DAOFactory factory = new DAOFactory();
-		ticketDAOImpl = factory.getTicketDAOImpl();
-		flightDAOImpl = factory.getFlightDAOImpl();
-		reservationDAOImpl = factory.getReservationDAOImpl();
+		ticketDao = new TicketDao();
+		flightDao = new FlightDao();
+		reservationDao = new ReservationDao();
 	}
 
 	@AfterClass
 	public static void tearDown() throws Exception {
-		ticketDAOImpl.getEntityManager().close();
-		flightDAOImpl.getEntityManager().close();
-		reservationDAOImpl.getEntityManager().close();
+		ticketDao.getEntityManager().close();
+		flightDao.getEntityManager().close();
+		reservationDao.getEntityManager().close();
 	}
 	
 	@Test
@@ -55,26 +53,26 @@ public class TicketDAOImplTest extends TestBase {
 		t.setReservationId(reservationId);
 		t.setDatePayment(dtPayment);
 		
-		ticketDAOImpl.create(t);
+		ticketDao.create(t);
 		int id = t.getId();
-		Ticket tReaded = ticketDAOImpl.read(id);
+		Ticket tReaded = ticketDao.read(id);
 		assertTrue(id == tReaded.getId());
 		assertTrue(status.equals(tReaded.getStatus()));
 		assertTrue(reservationId == tReaded.getReservationId());
 		assertTrue(dtPayment.equals(tReaded.getDatePayment()));
 		
-		ticketDAOImpl.delete(t);
+		ticketDao.delete(t);
 	}
 
 	@Test
 	public void testUpdate() {
-		Ticket t = ticketDAOImpl.read(1);
+		Ticket t = ticketDao.read(1);
 		TicketStatus status = TicketStatus.BOOKED;
 		t.setStatus(status);
 		
-		ticketDAOImpl.update(t);
+		ticketDao.update(t);
 		
-		Ticket tReaded = ticketDAOImpl.read(1);
+		Ticket tReaded = ticketDao.read(1);
 		
 		assertTrue(t.getId() == tReaded.getId());
 		assertTrue(t.getFlightId() == tReaded.getFlightId());
@@ -85,7 +83,7 @@ public class TicketDAOImplTest extends TestBase {
 		status = TicketStatus.SOLD;
 		t.setStatus(status);
 			
-		ticketDAOImpl.update(t);
+		ticketDao.update(t);
 	}
 
 	@Test
@@ -100,20 +98,20 @@ public class TicketDAOImplTest extends TestBase {
 		t.setStatus(status);
 		t.setDatePayment(dtPayment);
 		
-		ticketDAOImpl.create(t);
+		ticketDao.create(t);
 
 		int id = t.getId();
 		
-		Ticket tReaded = ticketDAOImpl.read(id);
-		ticketDAOImpl.delete(tReaded);
+		Ticket tReaded = ticketDao.read(id);
+		ticketDao.delete(tReaded);
 		
-		tReaded = ticketDAOImpl.read(id);
+		tReaded = ticketDao.read(id);
 		assertTrue(tReaded == null);
 	}
 
 	@Test
 	public void testRead() {
-		Ticket t = ticketDAOImpl.read(2);
+		Ticket t = ticketDao.read(2);
 		GregorianCalendar gcPayment = new GregorianCalendar(2013, Calendar.DECEMBER, 5, 10, 00, 14);
 		Timestamp dtPayment = new java.sql.Timestamp(gcPayment.getTime().getTime());
 		
@@ -133,7 +131,7 @@ public class TicketDAOImplTest extends TestBase {
 		t1.setFlightId(flightId);
 		t1.setStatus(status);
 		
-		ticketDAOImpl.create(t1);
+		ticketDao.create(t1);
 		int id1 = t1.getId();
 		Ticket t2 = new Ticket();
 		flightId = 2;
@@ -142,38 +140,38 @@ public class TicketDAOImplTest extends TestBase {
 		t2.setFlightId(flightId);
 		t2.setStatus(status);
 		
-		ticketDAOImpl.create(t2);
+		ticketDao.create(t2);
 		int id2 = t2.getId();
 		
 		List<Ticket> listT = new ArrayList<>();
 		listT.add(t1);
 		listT.add(t2);
 		
-		ticketDAOImpl.updateTicketsStatus(listT, TicketStatus.SOLD);
+		ticketDao.updateTicketsStatus(listT, TicketStatus.SOLD);
 		
-		Ticket tReaded1 = ticketDAOImpl.read(id1);
-		Ticket tReaded2 = ticketDAOImpl.read(id2);
+		Ticket tReaded1 = ticketDao.read(id1);
+		Ticket tReaded2 = ticketDao.read(id2);
 		
 		assertTrue(tReaded1.getStatus().equals(TicketStatus.SOLD));
 		assertTrue(tReaded2.getStatus().equals(TicketStatus.SOLD));
 		
-		ticketDAOImpl.delete(tReaded1);
-		ticketDAOImpl.delete(tReaded2);
+		ticketDao.delete(tReaded1);
+		ticketDao.delete(tReaded2);
 		
 	}
 
 	@Test
 	public void testGetAmountOfTicketsForStatusForTheFlight() {
-		Flight f = flightDAOImpl.read(1);
-		long amount = ticketDAOImpl.getAmountOfTicketsForStatusForTheFlight(f, TicketStatus.BOOKED);
+		Flight f = flightDao.read(1);
+		long amount = ticketDao.getAmountOfTicketsForStatusForTheFlight(f, TicketStatus.BOOKED);
 		assertTrue(amount == 6);
 		
 	}
 
 	@Test
 	public void testGetTicketsForStatusForTheFlight() {
-		Flight f = flightDAOImpl.read(1);
-		List<Ticket> listT = ticketDAOImpl.getTicketsForStatusForTheFlight(f, TicketStatus.SOLD);
+		Flight f = flightDao.read(1);
+		List<Ticket> listT = ticketDao.getTicketsForStatusForTheFlight(f, TicketStatus.SOLD);
 		assertTrue(listT.size() == 2);
 		assertTrue(listT.get(0).getId() == 1);
 		assertTrue(listT.get(0).getFlightId() == 1);
@@ -183,7 +181,7 @@ public class TicketDAOImplTest extends TestBase {
 
 	@Test
 	public void testGetTicketsForExpiredReservation() {
-		List<Ticket> listT = ticketDAOImpl.getTicketsForExpiredReservation();
+		List<Ticket> listT = ticketDao.getTicketsForExpiredReservation();
 		assertTrue(listT.size() == 9);
 		assertTrue(listT.get(0).getId() == 1);
 		assertTrue(listT.get(0).getFlightId() == 1);
@@ -193,9 +191,9 @@ public class TicketDAOImplTest extends TestBase {
 
 	@Test
 	public void testGetTicketsForReservation() {
-		Reservation r = reservationDAOImpl.read(1);
+		Reservation r = reservationDao.read(1);
 		
-		List<Ticket> listT = ticketDAOImpl.getTicketsForReservation(r);
+		List<Ticket> listT = ticketDao.getTicketsForReservation(r);
 		assertTrue(listT.size() == 3);
 		assertTrue(listT.get(0).getId() == 1);
 		assertTrue(listT.get(0).getFlightId() == 1);
@@ -214,7 +212,7 @@ public class TicketDAOImplTest extends TestBase {
 		Timestamp startDate = new java.sql.Timestamp(gcStart.getTime().getTime());
 		GregorianCalendar gcEnd = new GregorianCalendar(2013, Calendar.DECEMBER, 5, 0, 0, 0);
 		Timestamp endDate = new java.sql.Timestamp(gcEnd.getTime().getTime());
-		ticketDAOImpl.selectDailyDataByArrivalPlace(startDate, endDate);
+		ticketDao.selectDailyDataByArrivalPlace(startDate, endDate);
 	}
 
 }

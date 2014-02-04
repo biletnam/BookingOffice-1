@@ -9,7 +9,7 @@ import javax.persistence.*;
 
 import model.*;
 
-public class FlightDAO extends GenericDAOImpl<Flight> {
+public class FlightDao extends GenericDaoImpl<Flight> {
 
 	public List<Flight> find(String arrival, Date departureDate) {
 		GregorianCalendar gc = new GregorianCalendar();

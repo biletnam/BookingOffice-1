@@ -7,11 +7,11 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-public abstract class GenericDAOImpl<T> implements GenericDAO<T> {
+public abstract class GenericDaoImpl<T> implements GenericDao<T> {
 	protected EntityManager entityManager;
 	private Class<T> type;
 
-	public GenericDAOImpl() {
+	public GenericDaoImpl() {
 		Type t = getClass().getGenericSuperclass();
 		ParameterizedType pt = (ParameterizedType)t;
 		type = (Class)pt.getActualTypeArguments()[0];

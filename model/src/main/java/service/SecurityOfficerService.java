@@ -4,16 +4,16 @@ import java.util.List;
 
 import model.Account;
 import model.AccountRights;
-import dao.AccountDAO1;
-import dao.AccountRightsDAO1;
+import dao.AccountDao1;
+import dao.AccountRightsDao1;
 
 
 public class SecurityOfficerService {
-	private AccountDAO1 accountDao;
-	private AccountRightsDAO1 accountRightsDao;
+	private AccountDao1 accountDao;
+	private AccountRightsDao1 accountRightsDao;
 	
-	public SecurityOfficerService(AccountDAO1 accountDao,
-			AccountRightsDAO1 accountRightsDao) {
+	public SecurityOfficerService(AccountDao1 accountDao,
+			AccountRightsDao1 accountRightsDao) {
 		super();
 		this.accountDao = accountDao;
 		this.accountRightsDao = accountRightsDao;

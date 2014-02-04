@@ -9,7 +9,7 @@ import javax.persistence.TypedQuery;
 
 import model.Reservation;
 
-public class ReservationDAO extends GenericDAOImpl<Reservation> {
+public class ReservationDao extends GenericDaoImpl<Reservation> {
 
 	public List<Reservation> getExpiredReservations() {
 		GregorianCalendar gc = (GregorianCalendar) Calendar.getInstance();

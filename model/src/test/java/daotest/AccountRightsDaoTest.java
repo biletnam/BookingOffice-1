@@ -10,25 +10,23 @@ import model.AccountRole;
 
 import org.junit.*;
 
-import dao.AccountDAO;
-import dao.AccountRightsDAO;
-import dao.DAOFactory;
+import dao.AccountDao;
+import dao.AccountRightsDao;
 
-public class AccountRightsDAOImplTest extends TestBase {
-	private static AccountRightsDAO accountRightsDAOImpl;
-	private static AccountDAO accountDAOImpl;
+public class AccountRightsDaoTest extends TestBase {
+	private static AccountRightsDao accountRightsDao;
+	private static AccountDao accountDao;
 
 	@BeforeClass
 	public static void getDAO() throws Exception {
-		DAOFactory factory = new DAOFactory();
-		accountRightsDAOImpl = factory.getAccountRightsDAOImpl();
-		accountDAOImpl = factory.getAccountDAOImpl();
+		accountRightsDao = new AccountRightsDao();
+		accountDao = new AccountDao();
 	}
 
 	@AfterClass
 	public static void tearDown() throws Exception {
-		accountRightsDAOImpl.getEntityManager().close();
-		accountDAOImpl.getEntityManager().close();
+		accountRightsDao.getEntityManager().close();
+		accountDao.getEntityManager().close();
 	}
 
 	@Test
@@ -37,25 +35,25 @@ public class AccountRightsDAOImplTest extends TestBase {
 		AccountRole accountRole = AccountRole.ACCOUNTANT;
 		ar.setAccountRole(accountRole);
 
-		accountRightsDAOImpl.create(ar);
+		accountRightsDao.create(ar);
 		int id = ar.getId();
-		AccountRights arReaded = accountRightsDAOImpl.read(id);
+		AccountRights arReaded = accountRightsDao.read(id);
 		assertTrue(id == arReaded.getId());
 		assertTrue(accountRole.equals(arReaded.getAccountRole()));
 
-		accountRightsDAOImpl.delete(ar);
+		accountRightsDao.delete(ar);
 
 	}
 
 	@Test
 	public void testUpdate() {
-		AccountRights ar = accountRightsDAOImpl.read(1);
+		AccountRights ar = accountRightsDao.read(1);
 		AccountRole accountRole = AccountRole.ANALITYC;
 		ar.setAccountRole(accountRole);
 
-		accountRightsDAOImpl.update(ar);
+		accountRightsDao.update(ar);
 
-		AccountRights arReaded = accountRightsDAOImpl.read(1);
+		AccountRights arReaded = accountRightsDao.read(1);
 
 		assertTrue(ar.getId() == arReaded.getId());
 		assertTrue(accountRole.equals(arReaded.getAccountRole()));
@@ -63,7 +61,7 @@ public class AccountRightsDAOImplTest extends TestBase {
 		accountRole = AccountRole.ADMINISTRATOR;
 		ar.setAccountRole(accountRole);
 
-		accountRightsDAOImpl.update(ar);
+		accountRightsDao.update(ar);
 	}
 
 	@Test
@@ -74,20 +72,20 @@ public class AccountRightsDAOImplTest extends TestBase {
 
 		ar.setAccountRole(accountRole);
 
-		accountRightsDAOImpl.create(ar);
+		accountRightsDao.create(ar);
 
 		int id = ar.getId();
 
-		AccountRights arReaded = accountRightsDAOImpl.read(id);
-		accountRightsDAOImpl.delete(arReaded);
+		AccountRights arReaded = accountRightsDao.read(id);
+		accountRightsDao.delete(arReaded);
 
-		arReaded = accountRightsDAOImpl.read(id);
+		arReaded = accountRightsDao.read(id);
 		assertTrue(arReaded == null);
 	}
 
 	@Test
 	public void testRead() {
-		AccountRights ar = accountRightsDAOImpl.read(2);
+		AccountRights ar = accountRightsDao.read(2);
 
 		assertTrue(ar.getId() == 2);
 		assertTrue(ar.getAccountRole().equals(AccountRole.ACCOUNTANT));
@@ -96,8 +94,8 @@ public class AccountRightsDAOImplTest extends TestBase {
 
 	@Test
 	public void testGetAccountRights() {
-		Account a = accountDAOImpl.read(3);
-		List<AccountRights> listAr = accountRightsDAOImpl.getAccountRights(a);
+		Account a = accountDao.read(3);
+		List<AccountRights> listAr = accountRightsDao.getAccountRights(a);
 		assertTrue(listAr.size() == 1);
 		assertTrue(listAr.get(0).getAccountRole().equals(AccountRole.ANALITYC));
 

@@ -11,22 +11,21 @@ import model.Reservation;
 
 import org.junit.*;
 
-import dao.DAOFactory;
-import dao.ReservationDAO;
+import dao.ReservationDao;
 
-public class ReservationDAOImplTest extends TestBase {
+public class ReservationDaoTest extends TestBase {
 
-private static ReservationDAO reservationDAOImpl;
+private static ReservationDao reservationDao;
 	
 	@BeforeClass
 	public static void getDAO() throws Exception {
-		DAOFactory factory = new DAOFactory();
-		reservationDAOImpl = factory.getReservationDAOImpl();
+		
+		reservationDao = new ReservationDao();
 	}
 
 	@AfterClass
 	public static void tearDown() throws Exception {
-		reservationDAOImpl.getEntityManager().close();
+		reservationDao.getEntityManager().close();
 	}
 	
 	@Test
@@ -49,9 +48,9 @@ private static ReservationDAO reservationDAOImpl;
 		r.setDateReservation(dtReservation);
 		r.setPaid(paid);
 		
-		reservationDAOImpl.create(r);
+		reservationDao.create(r);
 		int id = r.getId();
-		Reservation rReaded = reservationDAOImpl.read(id);
+		Reservation rReaded = reservationDao.read(id);
 		assertTrue(id == rReaded.getId());
 		assertTrue(customerSurname.equals(rReaded.getCustomerSurname()));
 		assertTrue(customerName.equals(rReaded.getCustomerName()));
@@ -61,18 +60,18 @@ private static ReservationDAO reservationDAOImpl;
 		assertTrue(dtReservation.equals(rReaded.getDateReservation()));
 		assertTrue(paid == rReaded.isPaid());
 		
-		reservationDAOImpl.delete(r);
+		reservationDao.delete(r);
 	}
 
 	@Test
 	public void testUpdate() {
-		Reservation r = reservationDAOImpl.read(1);
+		Reservation r = reservationDao.read(1);
 		String customerSurname = "Surname11";
 		r.setCustomerSurname(customerSurname);
 		
-		reservationDAOImpl.update(r);
+		reservationDao.update(r);
 		
-		Reservation rReaded = reservationDAOImpl.read(1);
+		Reservation rReaded = reservationDao.read(1);
 		
 		assertTrue(r.getId() == rReaded.getId());
 		assertTrue(customerSurname.equals(rReaded.getCustomerSurname()));
@@ -85,7 +84,7 @@ private static ReservationDAO reservationDAOImpl;
 		
 		customerSurname = "Surname1";
 		r.setCustomerSurname(customerSurname);
-		reservationDAOImpl.update(r);
+		reservationDao.update(r);
 	}
 
 	@Test
@@ -109,20 +108,20 @@ private static ReservationDAO reservationDAOImpl;
 		r.setDateReservation(dtReservation);
 		r.setPaid(paid);		
 
-		reservationDAOImpl.create(r);
+		reservationDao.create(r);
 
 		int id = r.getId();
 		
-		Reservation rReaded = reservationDAOImpl.read(id);
-		reservationDAOImpl.delete(rReaded);
+		Reservation rReaded = reservationDao.read(id);
+		reservationDao.delete(rReaded);
 		
-		rReaded = reservationDAOImpl.read(id);
+		rReaded = reservationDao.read(id);
 		assertTrue(rReaded == null);
 	}
 
 	@Test
 	public void testRead() {
-		Reservation r = reservationDAOImpl.read(2);
+		Reservation r = reservationDao.read(2);
 		
 		GregorianCalendar gcReservation = new GregorianCalendar(2013, Calendar.DECEMBER, 5, 10, 00, 14);
 		Timestamp dtReservation = new java.sql.Timestamp(gcReservation.getTime().getTime());
@@ -141,7 +140,7 @@ private static ReservationDAO reservationDAOImpl;
 
 	@Test
 	public void testGetExpiredReservations() {
-		List<Reservation> listR= reservationDAOImpl.getExpiredReservations();
+		List<Reservation> listR= reservationDao.getExpiredReservations();
 		GregorianCalendar gcReservation = new GregorianCalendar(2013, Calendar.DECEMBER, 6, 10, 00, 14);
 		Timestamp dtReservation = new java.sql.Timestamp(gcReservation.getTime().getTime());
 		
@@ -177,9 +176,9 @@ private static ReservationDAO reservationDAOImpl;
 		r.setDateReservation(dtReservation);
 		r.setPaid(paid);		
 
-		reservationDAOImpl.create(r);
+		reservationDao.create(r);
 		
-		List<Reservation> listR= reservationDAOImpl.getActualReservations();
+		List<Reservation> listR= reservationDao.getActualReservations();
 		assertTrue(listR.size() == 1);
 		assertTrue(listR.get(0).getId() == 6);
 		assertTrue(listR.get(0).getCustomerSurname().equals("Surname6"));

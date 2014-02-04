@@ -2,7 +2,7 @@ package dao;
 
 import javax.persistence.*;
 
-public class DAOFactory {
+public class DaoFactory {
 	private static final String UNIT_NAME = "BookingOfficeTest";
 	private EntityManagerFactory factory;
 	private EntityManager entityManager;

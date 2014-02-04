@@ -13,18 +13,17 @@ import org.junit.*;
 
 import dao.*;
 
-public class FlightDAOImplTest extends TestBase {
-	private static FlightDAO flightDAOImpl;
+public class FlightDaoTest extends TestBase {
+	private static FlightDao flightDao;
 		
 	@BeforeClass
 	public static void getDAO() throws Exception {
-		DAOFactory factory = new DAOFactory();
-		flightDAOImpl = factory.getFlightDAOImpl();
+		flightDao = new FlightDao();
 	}
 
 	@AfterClass
 	public static void tearDown() throws Exception {
-		flightDAOImpl.getEntityManager().close();
+		flightDao.getEntityManager().close();
 	}
 	
 	@Test
@@ -58,9 +57,9 @@ public class FlightDAOImplTest extends TestBase {
 		f.setTicketAmount(ticketAmount);
 		f.setTicketPrice(ticketPrice);
 
-		flightDAOImpl.create(f);
+		flightDao.create(f);
 		int id = f.getId();
-		Flight fReaded = flightDAOImpl.read(id);
+		Flight fReaded = flightDao.read(id);
 		assertTrue(id == fReaded.getId());
 		assertTrue(dtCreated.equals(fReaded.getDateCreated()));
 		assertTrue(flightNumber.equals(fReaded.getFlightNumber()));
@@ -71,18 +70,18 @@ public class FlightDAOImplTest extends TestBase {
 		assertTrue(ticketAmount == fReaded.getTicketAmount());
 		assertTrue(ticketPrice == fReaded.getTicketPrice());
 		
-		flightDAOImpl.delete(f);
+		flightDao.delete(f);
 	}
 
 	@Test
 	public void testUpdate() {
-		Flight f = flightDAOImpl.read(1);
+		Flight f = flightDao.read(1);
 		int ticketAmount = 20;
 		f.setTicketAmount(ticketAmount);
 		
-		flightDAOImpl.update(f);
+		flightDao.update(f);
 		
-		Flight fReaded = flightDAOImpl.read(1);
+		Flight fReaded = flightDao.read(1);
 		
 		assertTrue(f.getId() == fReaded.getId());
 		assertTrue(f.getDateCreated().equals(fReaded.getDateCreated()));
@@ -97,7 +96,7 @@ public class FlightDAOImplTest extends TestBase {
 		ticketAmount = 10;
 		f.setTicketAmount(ticketAmount);
 		
-		flightDAOImpl.update(f);
+		flightDao.update(f);
 	}
 
 	@Test
@@ -131,14 +130,14 @@ public class FlightDAOImplTest extends TestBase {
 		f.setTicketAmount(ticketAmount);
 		f.setTicketPrice(ticketPrice);
 
-		flightDAOImpl.create(f);
+		flightDao.create(f);
 
 		int id = f.getId();
 		
-		Flight fReaded = flightDAOImpl.read(id);
-		flightDAOImpl.delete(fReaded);
+		Flight fReaded = flightDao.read(id);
+		flightDao.delete(fReaded);
 		
-		fReaded = flightDAOImpl.read(id);
+		fReaded = flightDao.read(id);
 		assertTrue(fReaded == null);
 	}
 
@@ -154,7 +153,7 @@ public class FlightDAOImplTest extends TestBase {
 		GregorianCalendar gcArrival = new GregorianCalendar(2013, Calendar.DECEMBER, 25, 12, 10, 0);
 		Timestamp dtArrival = new java.sql.Timestamp(gcArrival.getTime().getTime());
 		
-		Flight f = flightDAOImpl.read(2);
+		Flight f = flightDao.read(2);
 		assertTrue(f.getId() == 2);
 		assertTrue(dtCreated.equals(f.getDateCreated()));
 		assertTrue(f.getFlightNumber().equals("AQ-021"));
@@ -171,7 +170,7 @@ public class FlightDAOImplTest extends TestBase {
 		String arrival = "New York";
 		GregorianCalendar gcDeparture = new GregorianCalendar(2013, Calendar.DECEMBER, 28);
 		java.sql.Date dtDeparture = new java.sql.Date(gcDeparture.getTime().getTime());
-		List<Flight> listF = flightDAOImpl.find(arrival, dtDeparture);
+		List<Flight> listF = flightDao.find(arrival, dtDeparture);
 		assertTrue(listF.size() == 1);
 	}
 

@@ -5,7 +5,7 @@ import java.util.*;
 
 import model.*;
 
-public interface TicketDAO1 extends GenericDAO<Ticket> {
+public interface TicketDao1 extends GenericDao<Ticket> {
 	long getAmountOfTicketsForStatusForTheFlight(Flight flight, TicketStatus ticketStatus);
 	List<Ticket> getTicketsForStatusForTheFlight(Flight flight, TicketStatus ticketStatus);
 	List<Ticket> getTicketsForExpiredReservation();
