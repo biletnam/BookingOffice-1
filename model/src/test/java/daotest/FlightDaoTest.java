@@ -70,7 +70,7 @@ public class FlightDaoTest extends TestBase {
 		assertTrue(ticketAmount == fReaded.getTicketAmount());
 		assertTrue(ticketPrice == fReaded.getTicketPrice());
 		
-		flightDao.delete(f);
+		flightDao.delete(id);
 	}
 
 	@Test
@@ -135,7 +135,7 @@ public class FlightDaoTest extends TestBase {
 		int id = f.getId();
 		
 		Flight fReaded = flightDao.read(id);
-		flightDao.delete(fReaded);
+		flightDao.delete(id);
 		
 		fReaded = flightDao.read(id);
 		assertTrue(fReaded == null);

@@ -39,8 +39,10 @@ public class AccountDaoTest extends TestBase {
 		a.setActive(active);
 
 		accountDao.create(a);
+		
 		int id = a.getId();
 		Account aReaded = accountDao.read(id);
+		
 		assertTrue(id == aReaded.getId());
 		assertTrue(login.equals(aReaded.getLogin()));
 		assertTrue(psw.equals(aReaded.getPsw()));
@@ -49,7 +51,7 @@ public class AccountDaoTest extends TestBase {
 		assertTrue(middlename.equals(aReaded.getMiddlename()));
 		assertTrue(active == aReaded.isActive());
 		
-		accountDao.delete(a);
+		accountDao.delete(id);
 			
 	}
 
@@ -101,7 +103,7 @@ public class AccountDaoTest extends TestBase {
 		int id = a.getId();
 		
 		Account aReaded = accountDao.read(id);
-		accountDao.delete(aReaded);
+		accountDao.delete(id);
 		
 		aReaded = accountDao.read(id);
 		assertTrue(aReaded == null);

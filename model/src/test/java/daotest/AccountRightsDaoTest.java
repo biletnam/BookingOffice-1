@@ -41,7 +41,7 @@ public class AccountRightsDaoTest extends TestBase {
 		assertTrue(id == arReaded.getId());
 		assertTrue(accountRole.equals(arReaded.getAccountRole()));
 
-		accountRightsDao.delete(ar);
+		accountRightsDao.delete(id);
 
 	}
 
@@ -77,7 +77,7 @@ public class AccountRightsDaoTest extends TestBase {
 		int id = ar.getId();
 
 		AccountRights arReaded = accountRightsDao.read(id);
-		accountRightsDao.delete(arReaded);
+		accountRightsDao.delete(id);
 
 		arReaded = accountRightsDao.read(id);
 		assertTrue(arReaded == null);
@@ -95,9 +95,9 @@ public class AccountRightsDaoTest extends TestBase {
 	@Test
 	public void testGetAccountRights() {
 		Account a = accountDao.read(3);
-		List<AccountRights> listAr = accountRightsDao.getAccountRights(a);
-		assertTrue(listAr.size() == 1);
-		assertTrue(listAr.get(0).getAccountRole().equals(AccountRole.ANALITYC));
+		List<AccountRights> accountRights = accountRightsDao.getAccountRights(a);
+		assertTrue(accountRights.size() == 1);
+		assertTrue(accountRights.get(0).getAccountRole().equals(AccountRole.ANALITYC));
 
 	}
 

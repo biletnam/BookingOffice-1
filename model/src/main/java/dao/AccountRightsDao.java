@@ -11,7 +11,7 @@ public class AccountRightsDao extends GenericDaoImpl<AccountRights> {
 	
 	public List<AccountRights> getAccountRights(Account account) {
 		TypedQuery<AccountRights> query = entityManager.createQuery(
-				"SELECT ar FROM AccountRights ar WHERE ar.accountId = ?1",
+				"SELECT ar FROM AccountRights ar WHERE ar.account.id = ?1",
 				AccountRights.class);
 
 		List<AccountRights> accountRights = null;

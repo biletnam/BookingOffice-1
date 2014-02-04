@@ -36,7 +36,7 @@ public abstract class TestBase {
 				+ "DATEARRIVAL timestamp not null,"
 				+ "TICKETAMOUNT integer not null,"
 				+ "TICKETPRICE double not null,"
-				+ "TICKETFREE integer not null," + "primary key (ID))";
+				+ "TICKETFREEAMOUNT integer not null," + "primary key (ID))";
 		stmt.execute(command);
 
 		command = "create table RESERVATION (ID integer not null GENERATED ALWAYS AS IDENTITY,"
@@ -44,6 +44,7 @@ public abstract class TestBase {
 				+ "CUSTOMERNAME varchar(50) not null,"
 				+ "CUSTOMERMIDDLENAME varchar(50) not null,"
 				+ "CUSTOMEREMAIL varchar(50) not null,"
+				+ "SUM double not null,"
 				+ "DATERESERVATION timestamp not null,"
 				+ "DATEPAYMENT timestamp,"
 				+ "PAID boolean not null,"
@@ -69,16 +70,16 @@ public abstract class TestBase {
 				+ "VALUES ('2013-12-01 10:30:14', 'TF-140', 'Kyiv', 'New York', '2013-12-28 14:35:00', '2013-12-28 23:55:00', 2, 2000, 0)";
 		stmt.execute(command);
 
-		command = "INSERT INTO RESERVATION (CUSTOMERSURNAME, CUSTOMERNAME, CUSTOMERMIDDLENAME, CUSTOMEREMAIL, DATERESERVATION, DATEPAYMENT, ISPAID)"
-				+ "VALUES ('Surname1', 'Name1', 'Middlename1', 'Address1', '2013-12-04 10:00:14', '2013-12-05 10:00:14', TRUE)";
+		command = "INSERT INTO RESERVATION (CUSTOMERSURNAME, CUSTOMERNAME, CUSTOMERMIDDLENAME, CUSTOMEREMAIL, SUM, DATERESERVATION, DATEPAYMENT, PAID)"
+				+ "VALUES ('Surname1', 'Name1', 'Middlename1', 'Address1', 10000.00, '2013-12-04 10:00:14', '2013-12-05 10:00:14', TRUE)";
 		stmt.execute(command);
 
-		command = "INSERT INTO RESERVATION (CUSTOMERSURNAME, CUSTOMERNAME, CUSTOMERMIDDLENAME, CUSTOMEREMAIL, DATERESERVATION, DATEPAYMENT, ISPAID)"
-				+ "VALUES ('Surname2', 'Name2', 'Middlename2', 'Address2', '2013-12-05 10:00:14', '2013-12-06 10:00:14', TRUE)";
+		command = "INSERT INTO RESERVATION (CUSTOMERSURNAME, CUSTOMERNAME, CUSTOMERMIDDLENAME, CUSTOMEREMAIL, SUM, DATERESERVATION, DATEPAYMENT, PAID)"
+				+ "VALUES ('Surname2', 'Name2', 'Middlename2', 'Address2', 15000.00, '2013-12-05 10:00:14', '2013-12-06 10:00:14', TRUE)";
 		stmt.execute(command);
 
-		command = "INSERT INTO RESERVATION (CUSTOMERSURNAME, CUSTOMERNAME, CUSTOMERMIDDLENAME, CUSTOMEREMAIL, DATERESERVATION, DATEPAYMENT, ISPAID)"
-				+ "VALUES ('Surname3', 'Name3', 'Middlename3', 'Address3', '2013-12-06 10:00:14', null, FALSE)";
+		command = "INSERT INTO RESERVATION (CUSTOMERSURNAME, CUSTOMERNAME, CUSTOMERMIDDLENAME, CUSTOMEREMAIL, SUM, DATERESERVATION, DATEPAYMENT, PAID)"
+				+ "VALUES ('Surname3', 'Name3', 'Middlename3', 'Address3', 20000.00, '2013-12-06 10:00:14', null, FALSE)";
 		stmt.execute(command);
 
 		command = "INSERT INTO TICKET (FLIGHTID, STATUS, RESERVATIONID, DATEPAYMENT) VALUES (1, 2, 1, '2013-12-05 10:00:14'),"
@@ -86,15 +87,14 @@ public abstract class TestBase {
 		stmt.execute(command);
 
 		command = "INSERT INTO TICKET (FLIGHTID, STATUS, RESERVATIONID, DATEPAYMENT) VALUES (2, 2, 1, '2013-12-05 10:00:14'),"
-				+ "(2, 2, 2, '2013-12-06 10:00:14'), "
-				+ "(2, 1, 3, null)";
+				+ "(2, 2, 2, '2013-12-06 10:00:14'), " + "(2, 1, 3, null)";
 		stmt.execute(command);
 
 		command = "INSERT INTO TICKET (FLIGHTID, STATUS, RESERVATIONID, DATEPAYMENT) VALUES (3, 2, 2, '2013-12-06 10:00:14'),"
 				+ "(3, 2, 2, '2013-12-06 10:00:14')";
 		stmt.execute(command);
 
-		command = "INSERT INTO ACCOUNT (LOGIN, PSW, SURNAME, NAME, MIDDLENAME, ISACTIVE) VALUES ('Login1', 'Psw1', 'Surname1', 'Name1', 'Middlename1', TRUE),"
+		command = "INSERT INTO ACCOUNT (LOGIN, PSW, SURNAME, NAME, MIDDLENAME, ACTIVE) VALUES ('Login1', 'Psw1', 'Surname1', 'Name1', 'Middlename1', TRUE),"
 				+ "('Login2', 'Psw2', 'Surname2', 'Name2', 'Middlename2', TRUE), ('Login3', 'Psw3', 'Surname3', 'Name3', 'Middlename3', TRUE)";
 		stmt.execute(command);
 
