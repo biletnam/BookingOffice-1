@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import java.sql.Timestamp;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 
@@ -145,13 +146,13 @@ public class FlightDaoTest extends TestBase {
 	public void testRead() {
 		
 		GregorianCalendar gcCreated = new GregorianCalendar(2013, Calendar.DECEMBER, 01, 10, 20, 0);
-		Timestamp dtCreated = new java.sql.Timestamp(gcCreated.getTime().getTime());
+		Date dtCreated = gcCreated.getTime();
 		
 		GregorianCalendar gcDeparture = new GregorianCalendar(2013, Calendar.DECEMBER, 25, 10, 20, 0);
-		Timestamp dtDeparture = new java.sql.Timestamp(gcDeparture.getTime().getTime());
+		Date dtDeparture = gcDeparture.getTime();
 		
 		GregorianCalendar gcArrival = new GregorianCalendar(2013, Calendar.DECEMBER, 25, 12, 10, 0);
-		Timestamp dtArrival = new java.sql.Timestamp(gcArrival.getTime().getTime());
+		Date dtArrival = gcArrival.getTime();
 		
 		Flight f = flightDao.read(2);
 		assertTrue(f.getId() == 2);
@@ -170,8 +171,8 @@ public class FlightDaoTest extends TestBase {
 		String arrival = "New York";
 		GregorianCalendar gcDeparture = new GregorianCalendar(2013, Calendar.DECEMBER, 28);
 		java.sql.Date dtDeparture = new java.sql.Date(gcDeparture.getTime().getTime());
-		List<Flight> listF = flightDao.find(arrival, dtDeparture);
-		assertTrue(listF.size() == 1);
+		List<Flight> flights = flightDao.find(arrival, dtDeparture);
+		assertTrue(flights.size() == 1);
 	}
 
 }

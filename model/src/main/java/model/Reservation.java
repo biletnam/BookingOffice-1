@@ -1,6 +1,5 @@
 package model;
 
-
 import java.io.Serializable;
 import java.util.Date;
 
@@ -10,21 +9,25 @@ import javax.persistence.*;
 public class Reservation implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String customerSurname;
 	private String customerName;
 	private String customerMiddlename;
 	private String customerEmail;
-	private double sum;
+	private double sumtotal;
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dateReservation;
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date datePayment;
 	private boolean paid;
-	
-	public Reservation() {
-		super();
+
+	public double getSumtotal() {
+		return sumtotal;
+	}
+
+	public void setSumtotal(double sumtotal) {
+		this.sumtotal = sumtotal;
 	}
 
 	public String getCustomerSurname() {
@@ -50,19 +53,6 @@ public class Reservation implements Serializable {
 	public void setCustomerMiddlename(String customerMiddlename) {
 		this.customerMiddlename = customerMiddlename;
 	}
-
-	
-
-	public double getSum() {
-		return sum;
-	}
-
-	public void setSum(double sum) {
-		this.sum = sum;
-	}
-
-	
-	
 
 	public String getCustomerEmail() {
 		return customerEmail;
@@ -100,6 +90,4 @@ public class Reservation implements Serializable {
 		return id;
 	}
 
-
-	
 }

@@ -15,7 +15,7 @@ public class AccountRights implements Serializable {
 	private Account account;
 	private AccountRole accountRole;
 	private boolean accountRoleActive;
-	
+
 	public boolean isAccountRoleActive() {
 		return accountRoleActive;
 	}

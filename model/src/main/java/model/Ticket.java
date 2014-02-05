@@ -1,7 +1,7 @@
 package model;
 
 import java.io.Serializable;
-import java.sql.Timestamp;
+import java.util.Date;
 
 import javax.persistence.*;
 
@@ -9,16 +9,13 @@ import javax.persistence.*;
 public class Ticket implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private int flightId;
 	private int reservationId;
 	private TicketStatus status;
-	private Timestamp datePayment;
-	
-	public Ticket() {
-		super();
-	}
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date datePayment;
 
 	public int getFlightId() {
 		return flightId;
@@ -36,19 +33,11 @@ public class Ticket implements Serializable {
 		this.status = status;
 	}
 
-	public Integer getReservationId() {
-		return reservationId;
-	}
-
-	public void setReservationId(Integer reservationId) {
-		this.reservationId = reservationId;
-	}
-
-	public Timestamp getDatePayment() {
+	public Date getDatePayment() {
 		return datePayment;
 	}
 
-	public void setDatePayment(Timestamp datePayment) {
+	public void setDatePayment(Date datePayment) {
 		this.datePayment = datePayment;
 	}
 
@@ -56,5 +45,11 @@ public class Ticket implements Serializable {
 		return id;
 	}
 
-	
+	public int getReservationId() {
+		return reservationId;
+	}
+
+	public void setReservationId(int reservationId) {
+		this.reservationId = reservationId;
+	}
 }

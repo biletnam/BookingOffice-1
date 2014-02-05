@@ -1,25 +1,24 @@
 package model;
 
-import java.sql.Timestamp;
+import java.util.Date;
 
 public class DataForReport {
-	private Timestamp datePayment;
+	private Date datePayment;
 	private String arrival;
 	private long ticketCount;
 	private double ticketPrice;
 	private double ticketSum;
-	
-	
+
 	public DataForReport() {
 		super();
-	
+
 	}
 
-	public Timestamp getDatePayment() {
+	public Date getDatePayment() {
 		return datePayment;
 	}
 
-	public void setDatePayment(Timestamp datePayment) {
+	public void setDatePayment(Date datePayment) {
 		this.datePayment = datePayment;
 	}
 
@@ -55,6 +54,4 @@ public class DataForReport {
 		this.ticketSum = ticketSum;
 	}
 
-	
-	
 }

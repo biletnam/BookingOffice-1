@@ -9,7 +9,7 @@ import javax.persistence.*;
 public class Account implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String login;
 	private String psw;
@@ -17,12 +17,8 @@ public class Account implements Serializable {
 	private String name;
 	private String middlename;
 	private boolean active;
-	@OneToMany(mappedBy="account")
+	@OneToMany(mappedBy = "account")
 	private List<AccountRights> accountRights;
-	
-	public Account() {
-		super();
-	}
 
 	public String getLogin() {
 		return login;
@@ -83,7 +79,5 @@ public class Account implements Serializable {
 	public void setAccountRights(List<AccountRights> accountRights) {
 		this.accountRights = accountRights;
 	}
-	
-	
-	
+
 }

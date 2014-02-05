@@ -27,7 +27,7 @@ public class AccountantService {
 			int id = r.getId();
 			GregorianCalendar gc = (GregorianCalendar) Calendar.getInstance();
 			Timestamp now = (Timestamp) gc.getTime();
-			//TODO r.setDatePayment(now); set to all tickets of reservation datePayment
+			r.setDatePayment(now); 
 			reservationDao.update(r);
 			List<Ticket> listT = ticketDao.getTicketsForReservation(r);
 			for (Ticket t : listT) {

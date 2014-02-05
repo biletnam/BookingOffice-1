@@ -33,13 +33,16 @@ public class AccountRightsDaoTest extends TestBase {
 	public void testCreate() {
 		AccountRights ar = new AccountRights();
 		AccountRole accountRole = AccountRole.ACCOUNTANT;
+		boolean accountRoleActive = true;
 		ar.setAccountRole(accountRole);
+		ar.setAccountRoleActive(accountRoleActive);
 
 		accountRightsDao.create(ar);
 		int id = ar.getId();
 		AccountRights arReaded = accountRightsDao.read(id);
 		assertTrue(id == arReaded.getId());
 		assertTrue(accountRole.equals(arReaded.getAccountRole()));
+		assertTrue(accountRoleActive == ar.isAccountRoleActive());
 
 		accountRightsDao.delete(id);
 
@@ -69,8 +72,9 @@ public class AccountRightsDaoTest extends TestBase {
 		AccountRights ar = new AccountRights();
 
 		AccountRole accountRole = AccountRole.ACCOUNTANT;
-
+		boolean accountRoleActive = true;
 		ar.setAccountRole(accountRole);
+		ar.setAccountRoleActive(accountRoleActive);
 
 		accountRightsDao.create(ar);
 
@@ -89,15 +93,19 @@ public class AccountRightsDaoTest extends TestBase {
 
 		assertTrue(ar.getId() == 2);
 		assertTrue(ar.getAccountRole().equals(AccountRole.ACCOUNTANT));
+		assertTrue(ar.isAccountRoleActive() == true);
 
 	}
 
 	@Test
 	public void testGetAccountRights() {
-		Account a = accountDao.read(3);
-		List<AccountRights> accountRights = accountRightsDao.getAccountRights(a);
-		assertTrue(accountRights.size() == 1);
-		assertTrue(accountRights.get(0).getAccountRole().equals(AccountRole.ANALITYC));
+		Account a = accountDao.read(2);
+		List<AccountRights> accountRights = accountRightsDao
+				.getAccountRights(a);
+		assertTrue(accountRights.size() == 3);
+		assertTrue(accountRights.get(0).getAccountRole()
+				.equals(AccountRole.ADMINISTRATOR));
+		assertTrue(accountRights.get(0).isAccountRoleActive() == false);
 
 	}
 

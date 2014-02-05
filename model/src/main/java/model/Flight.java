@@ -28,12 +28,6 @@ public class Flight implements Serializable {
 	private int ticketFreeAmount;
 	private double ticketPrice;
 	
-	
-	public Flight() {
-		super();
-	}
-
-
 	public int getId() {
 		return id;
 	}
