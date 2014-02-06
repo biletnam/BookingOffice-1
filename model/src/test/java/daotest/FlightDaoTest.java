@@ -8,6 +8,10 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
 import model.Flight;
 
 import org.junit.*;
@@ -20,6 +24,9 @@ public class FlightDaoTest extends TestBase {
 	@BeforeClass
 	public static void getDAO() throws Exception {
 		flightDao = new FlightDao();
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory("BookingOfficeTest");
+		EntityManager entityManager = factory.createEntityManager();
+		flightDao.setEntityManager(entityManager);
 	}
 
 	@AfterClass

@@ -9,6 +9,10 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
 import model.Flight;
 import model.Reservation;
 import model.Ticket;
@@ -27,9 +31,16 @@ public class TicketDaoTest extends TestBase {
 
 	@BeforeClass
 	public static void getDAO() throws Exception {
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory("BookingOfficeTest");
 		ticketDao = new TicketDao();
+		EntityManager entityManager1 = factory.createEntityManager();
+		ticketDao.setEntityManager(entityManager1);
 		flightDao = new FlightDao();
+		EntityManager entityManager2 = factory.createEntityManager();
+		flightDao.setEntityManager(entityManager2);
 		reservationDao = new ReservationDao();
+		EntityManager entityManager3 = factory.createEntityManager();
+		reservationDao.setEntityManager(entityManager3);
 	}
 
 	@AfterClass

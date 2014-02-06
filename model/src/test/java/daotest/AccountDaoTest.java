@@ -1,6 +1,11 @@
 package daotest;
 
 import static org.junit.Assert.assertTrue;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
 import model.Account;
 
 import org.junit.*;
@@ -13,6 +18,9 @@ public class AccountDaoTest extends TestBase {
 	@BeforeClass
 	public static void getDAO() throws Exception {
 		accountDao = new AccountDao();
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory("BookingOfficeTest");
+		EntityManager entityManager = factory.createEntityManager();
+		accountDao.setEntityManager(entityManager);
 	}
 
 	@AfterClass

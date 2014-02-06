@@ -13,14 +13,8 @@ public abstract class GenericDaoImpl<T> implements GenericDao<T> {
 
 	public GenericDaoImpl() {
 		Type t = getClass().getGenericSuperclass();
-		ParameterizedType pt = (ParameterizedType)t;
-		type = (Class)pt.getActualTypeArguments()[0];
-		EntityManagerFactory factory = Persistence.createEntityManagerFactory("BookingOfficeTest");
-		entityManager = factory.createEntityManager();
-	}
-
-	public EntityManager getEntityManager() {
-		return entityManager;
+		ParameterizedType pt = (ParameterizedType) t;
+		type = (Class) pt.getActualTypeArguments()[0];
 	}
 
 	public Class<T> getType() {
@@ -29,7 +23,7 @@ public abstract class GenericDaoImpl<T> implements GenericDao<T> {
 
 	@Override
 	public T create(T t) {
-		//TODO remove transaction in future
+		// TODO remove transaction in future
 		entityManager.getTransaction().begin();
 		entityManager.persist(t);
 		entityManager.getTransaction().commit();
@@ -43,7 +37,7 @@ public abstract class GenericDaoImpl<T> implements GenericDao<T> {
 
 	@Override
 	public void delete(Object id) {
-		//TODO remove transaction in future
+		// TODO remove transaction in future
 		entityManager.getTransaction().begin();
 		entityManager.remove(entityManager.getReference(type, id));
 		entityManager.getTransaction().commit();
@@ -51,7 +45,15 @@ public abstract class GenericDaoImpl<T> implements GenericDao<T> {
 
 	@Override
 	public T read(Object id) {
-		return (T)entityManager.find(type, id);
+		return (T) entityManager.find(type, id);
+	}
+
+	public void setEntityManager(EntityManager entityManager) {
+		this.entityManager = entityManager;
+	}
+
+	public EntityManager getEntityManager() {
+		return entityManager;
 	}
 
 }

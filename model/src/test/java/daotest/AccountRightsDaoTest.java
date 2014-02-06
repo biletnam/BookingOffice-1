@@ -4,6 +4,10 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
 import model.Account;
 import model.AccountRights;
 import model.AccountRole;
@@ -19,8 +23,13 @@ public class AccountRightsDaoTest extends TestBase {
 
 	@BeforeClass
 	public static void getDAO() throws Exception {
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory("BookingOfficeTest");
 		accountRightsDao = new AccountRightsDao();
+		EntityManager entityManager1 = factory.createEntityManager();
+		accountRightsDao.setEntityManager(entityManager1);
 		accountDao = new AccountDao();
+		EntityManager entityManager2 = factory.createEntityManager();
+		accountDao.setEntityManager(entityManager2);
 	}
 
 	@AfterClass
