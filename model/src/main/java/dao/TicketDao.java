@@ -1,6 +1,5 @@
 package dao;
 
-import java.sql.Timestamp;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -77,31 +76,46 @@ public class TicketDao extends GenericDaoImpl<Ticket> {
 		return tickets;
 	}
 
-	public List<DataForReport> selectDailyDataInTotal(Timestamp startDate,
-			Timestamp endDate) {
-		return null;
+	public List<DataForReport> selectDailyDataInTotal(Date startDate,
+			Date endDate) {
+		TypedQuery<DataForReport> query = entityManager
+				.createQuery(
+						"SELECT new entity.DataForReport(t.datePayment, count(t.id), f.ticketPrice, (count(t.id) * f.ticketPrice)) FROM Ticket t, Flight f "
+								+ "WHERE f.id = t.flightId and t.status = ?3 and t.datePayment between ?1 and ?2 "
+								+ "GROUP BY t.datePayment, f.ticketPrice",
+						DataForReport.class);
+		List<DataForReport> data = null;
+		query.setParameter(1, startDate);
+		query.setParameter(2, endDate);
+		query.setParameter(3, TicketStatus.SOLD);
+		data = query.getResultList();
+		return data;
 	}
 
-	public List<DataForReport> selectDailyDataByArrivalPlace(
+	public List<DataForReport> selectDataByArrivalPlace(
 			Date startDate, Date endDate) {
-
+		
+		TypedQuery<DataForReport> query = entityManager
+				.createQuery(
+						"SELECT new entity.DataForReport(t.datePayment, count(t.id), f.ticketPrice, (count(t.id) * f.ticketPrice)) FROM Ticket t, Flight f "
+								+ "WHERE f.id = t.flightId and t.status = ?3 and t.datePayment between ?1 and ?2 "
+								+ "GROUP BY t.datePayment, f.ticketPrice",
+						DataForReport.class);
+		List<DataForReport> data = null;
+		query.setParameter(1, startDate);
+		query.setParameter(2, endDate);
+		query.setParameter(3, TicketStatus.SOLD);
+		data = query.getResultList();
+		return data;
+		
+		
 //		TypedQuery<DataForReport> query = entityManager
 //				.createQuery(
 //						"SELECT new entity.DataForReport(t.datePayment, count(t.id), f.ticketPrice, count(t.id) * f.ticketPrice) FROM Ticket t, Flight f "
 //								+ "WHERE f.id = t.flightId and t.status = 2 and t.datePayment between ?1 and ?2 "
 //								+ "GROUP BY t.datePayment, f.ticketPrice",
 //						DataForReport.class);
-		TypedQuery<DataForReport> query = entityManager
-				.createQuery(
-						"SELECT new entity.DataForReport(t.datePayment, count(t.id), f.ticketPrice, (count(t.id) * f.ticketPrice)) FROM Ticket t, Flight f",
-						DataForReport.class);
-		List<DataForReport> data = null;
-		query.setParameter(1, startDate);
-		query.setParameter(2, endDate);
-		data = query.getResultList();
-		return data;
-
-		// SELECT TICKET.DATEPAYMENT, count(TICKET.ID), FLIGHT.TICKETPRICE,
+				// SELECT TICKET.DATEPAYMENT, count(TICKET.ID), FLIGHT.TICKETPRICE,
 		// count(TICKET.ID) * FLIGHT.TICKETPRICE FROM TICKET, FLIGHT
 		// WHERE FLIGHT.ID = TICKET.FLIGHTID and TICKET.STATUS = 2 and
 		// TICKET.DATEPAYMENT between '2013-12-05 00:00:00' and '2013-12-06

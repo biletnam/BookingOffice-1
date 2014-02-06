@@ -18,6 +18,7 @@ import org.junit.*;
 import dao.FlightDao;
 import dao.ReservationDao;
 import dao.TicketDao;
+import entity.DataForReport;
 import entity.Flight;
 import entity.Reservation;
 import entity.Ticket;
@@ -225,18 +226,23 @@ public class TicketDaoTest extends TestBase {
 
 	@Test
 	public void testSelectDailyDataInTotal() {
-		// TODO
-	}
-
-	@Test
-	public void testSelectDailyDataByArrivalPlace() {
 		GregorianCalendar gcStart = new GregorianCalendar(2013,
 				Calendar.DECEMBER, 01, 0, 0, 0);
 		Date startDate = gcStart.getTime();
 		GregorianCalendar gcEnd = new GregorianCalendar(2013,
 				Calendar.DECEMBER, 6, 0, 0, 0);
 		Date endDate = gcEnd.getTime();
-		ticketDao.selectDailyDataByArrivalPlace(startDate, endDate);
+		List<DataForReport> data = ticketDao.selectDailyDataInTotal(startDate, endDate);
+		assertTrue(data.size() == 2);
+		assertTrue(data.get(0).getTicketCount() == 2);
+		assertTrue(data.get(0).getTicketPrice() == 1000);
+		assertTrue(data.get(0).getTicketSum() == 2000);
+		
+	}
+
+	@Test
+	public void testSelectDataByArrivalPlace() {
+		//TODO
 	}
 
 }
