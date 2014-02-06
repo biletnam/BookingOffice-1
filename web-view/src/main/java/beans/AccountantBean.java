@@ -10,7 +10,7 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
-import model.Reservation;
+import entity.Reservation;
 
 @ManagedBean(name = "accountantBean", eager = true)
 @SessionScoped

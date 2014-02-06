@@ -2,8 +2,8 @@ package service;
 
 import java.util.List;
 
-import model.*;
 import dao.*;
+import entity.*;
 
 public class AccountantService {
 	private ReservationDao reservationDao;

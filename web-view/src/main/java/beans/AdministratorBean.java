@@ -11,7 +11,7 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
-import model.Flight;
+import entity.Flight;
 
 @ManagedBean(name = "administratorBean", eager = true)
 @SessionScoped

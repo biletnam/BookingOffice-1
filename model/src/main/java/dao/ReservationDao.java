@@ -7,7 +7,7 @@ import java.util.List;
 
 import javax.persistence.TypedQuery;
 
-import model.Reservation;
+import entity.Reservation;
 
 public class ReservationDao extends GenericDaoImpl<Reservation> {
 

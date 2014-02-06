@@ -13,16 +13,15 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-import model.Flight;
-import model.Reservation;
-import model.Ticket;
-import model.TicketStatus;
-
 import org.junit.*;
 
 import dao.FlightDao;
 import dao.ReservationDao;
 import dao.TicketDao;
+import entity.Flight;
+import entity.Reservation;
+import entity.Ticket;
+import entity.TicketStatus;
 
 public class TicketDaoTest extends TestBase {
 	private static TicketDao ticketDao;
@@ -149,7 +148,6 @@ public class TicketDaoTest extends TestBase {
 
 		t1.setFlightId(flightId);
 		t1.setReservationId(3);
-		// TODO Reservation?
 		t1.setStatus(status);
 
 		ticketDao.create(t1);
@@ -160,7 +158,6 @@ public class TicketDaoTest extends TestBase {
 
 		t2.setFlightId(flightId);
 		t2.setReservationId(3);
-		// TODO reservation?
 		t2.setStatus(status);
 
 		ticketDao.create(t2);
@@ -235,11 +232,10 @@ public class TicketDaoTest extends TestBase {
 	public void testSelectDailyDataByArrivalPlace() {
 		GregorianCalendar gcStart = new GregorianCalendar(2013,
 				Calendar.DECEMBER, 01, 0, 0, 0);
-		Timestamp startDate = new java.sql.Timestamp(gcStart.getTime()
-				.getTime());
+		Date startDate = gcStart.getTime();
 		GregorianCalendar gcEnd = new GregorianCalendar(2013,
-				Calendar.DECEMBER, 5, 0, 0, 0);
-		Timestamp endDate = new java.sql.Timestamp(gcEnd.getTime().getTime());
+				Calendar.DECEMBER, 6, 0, 0, 0);
+		Date endDate = gcEnd.getTime();
 		ticketDao.selectDailyDataByArrivalPlace(startDate, endDate);
 	}
 

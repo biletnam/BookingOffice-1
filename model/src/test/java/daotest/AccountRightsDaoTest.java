@@ -8,14 +8,13 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-import model.Account;
-import model.AccountRights;
-import model.AccountRole;
-
 import org.junit.*;
 
 import dao.AccountDao;
 import dao.AccountRightsDao;
+import entity.Account;
+import entity.AccountRights;
+import entity.AccountRole;
 
 public class AccountRightsDaoTest extends TestBase {
 	private static AccountRightsDao accountRightsDao;

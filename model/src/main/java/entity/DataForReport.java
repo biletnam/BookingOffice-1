@@ -1,4 +1,4 @@
-package model;
+package entity;
 
 import java.util.Date;
 
@@ -10,8 +10,16 @@ public class DataForReport {
 	private double ticketSum;
 
 	public DataForReport() {
-		super();
 
+	}
+
+	public DataForReport(Date datePayment, long ticketCount,
+			double ticketPrice, double ticketSum) {
+		super();
+		this.datePayment = datePayment;
+		this.ticketCount = ticketCount;
+		this.ticketPrice = ticketPrice;
+		this.ticketSum = ticketSum;
 	}
 
 	public Date getDatePayment() {

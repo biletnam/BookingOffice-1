@@ -6,11 +6,10 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-import model.Account;
-
 import org.junit.*;
 
 import dao.AccountDao;
+import entity.Account;
 
 public class AccountDaoTest extends TestBase {
 	private static AccountDao accountDao;

@@ -11,7 +11,7 @@ import java.util.Map;
 
 import javax.faces.bean.*;
 
-import model.Flight;
+import entity.Flight;
 
 @ManagedBean(name = "mainBean", eager = true)
 @SessionScoped

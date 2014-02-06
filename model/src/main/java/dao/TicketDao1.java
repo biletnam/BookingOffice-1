@@ -3,7 +3,7 @@ package dao;
 import java.sql.Timestamp;
 import java.util.*;
 
-import model.*;
+import entity.*;
 
 public interface TicketDao1 extends GenericDao<Ticket> {
 	long getAmountOfTicketsForStatusForTheFlight(Flight flight, TicketStatus ticketStatus);

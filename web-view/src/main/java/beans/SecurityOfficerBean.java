@@ -7,9 +7,9 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
-import model.Account;
-import model.AccountRights;
-import model.AccountRole;
+import entity.Account;
+import entity.AccountRights;
+import entity.AccountRole;
 
 @ManagedBean(name = "securityOfficerBean", eager = true)
 @SessionScoped

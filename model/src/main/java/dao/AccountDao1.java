@@ -1,6 +1,6 @@
 package dao;
 
-import model.*;
+import entity.*;
 
 public interface AccountDao1 extends GenericDao<Account> {
 	

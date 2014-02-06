@@ -12,11 +12,10 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-import model.Flight;
-
 import org.junit.*;
 
 import dao.*;
+import entity.Flight;
 
 public class FlightDaoTest extends TestBase {
 	private static FlightDao flightDao;

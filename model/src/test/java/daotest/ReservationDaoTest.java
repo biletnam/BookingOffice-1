@@ -11,11 +11,10 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-import model.Reservation;
-
 import org.junit.*;
 
 import dao.ReservationDao;
+import entity.Reservation;
 
 public class ReservationDaoTest extends TestBase {
 

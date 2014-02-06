@@ -9,7 +9,7 @@ import java.util.Map;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
-import model.Flight;
+import entity.Flight;
 
 @ManagedBean(name = "cartBean", eager = true)
 @SessionScoped

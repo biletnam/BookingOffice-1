@@ -7,7 +7,7 @@ import java.util.List;
 
 import javax.persistence.*;
 
-import model.*;
+import entity.*;
 
 public class FlightDao extends GenericDaoImpl<Flight> {
 

@@ -4,8 +4,6 @@ import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 
 public abstract class GenericDaoImpl<T> implements GenericDao<T> {
 	protected EntityManager entityManager;

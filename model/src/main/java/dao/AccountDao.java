@@ -3,7 +3,7 @@ package dao;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-import model.Account;
+import entity.Account;
 
 public class AccountDao extends GenericDaoImpl<Account> {
 

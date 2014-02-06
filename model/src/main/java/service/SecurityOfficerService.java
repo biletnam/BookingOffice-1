@@ -2,10 +2,10 @@ package service;
 
 import java.util.List;
 
-import model.Account;
-import model.AccountRights;
 import dao.AccountDao1;
 import dao.AccountRightsDao1;
+import entity.Account;
+import entity.AccountRights;
 
 
 public class SecurityOfficerService {

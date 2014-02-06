@@ -2,10 +2,10 @@ package service;
 
 import java.util.List;
 
-import model.*;
 import dao.FlightDao;
 import dao.ReservationDao;
 import dao.TicketDao;
+import entity.*;
 
 public class AdministratorService {
 	private FlightDao flightDao;

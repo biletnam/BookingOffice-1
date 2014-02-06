@@ -4,8 +4,8 @@ import java.util.List;
 
 import javax.persistence.TypedQuery;
 
-import model.Account;
-import model.AccountRights;
+import entity.Account;
+import entity.AccountRights;
 
 public class AccountRightsDao extends GenericDaoImpl<AccountRights> {
 	
