@@ -3,101 +3,38 @@ package service;
 import java.util.List;
 
 import model.*;
-import dao.FlightDao1;
-import dao.ReservationDao1;
-import dao.TicketDao1;
+import dao.FlightDao;
+import dao.ReservationDao;
+import dao.TicketDao;
 
 public class AdministratorService {
-	private FlightDao1 flightDao;
-	private TicketDao1 ticketDao;
-	private ReservationDao1 reservationDao;
+	private FlightDao flightDao;
+	private TicketDao ticketDao;
+	private ReservationDao reservationDao;
+
+	void addFlight(Flight f) {
+		flightDao.create(f);
+	}
 	
-	public AdministratorService(FlightDao1 flightDao, TicketDao1 ticketDao,
-			ReservationDao1 reservationDao) {
-		super();
-		this.flightDao = flightDao;
-		this.ticketDao = ticketDao;
-		this.reservationDao = reservationDao;
+	void editFlight(Flight f) {
+		flightDao.update(f);
+	}
+	
+	void deleteFlight(Flight f) {
+		flightDao.delete(f.getId());;
+	}
+	
+	void convertTickets() {
+		List<Ticket> tickets = ticketDao.getTicketsForExpiredReservation();
+		List<Reservation> reservations = reservationDao.getExpiredReservations();
+		for (Ticket t : tickets) {
+			ticketDao.delete(t.getId());
+		}
+		
+		for (Reservation r : reservations) {
+			reservationDao.delete(r.getId());
+		}
+
 	}
 
-	void addFlightToTheTimeTable(Flight f) {
-		int ticketAmount = f.getTicketAmount();
-		flightDao.create(f);
-		for (int i = 0; i < ticketAmount; i++)
-		{
-			Ticket t = new Ticket();
-			t.setFlightId(f.getId());
-			//t.setStatus(TicketStatus.FREE);
-			ticketDao.create(t);
-			//TODO check dates
-		}
-	}
-	
-	void editFlightAmountOfTickets(Flight f) {
-//		int ticketAmountNew = f.getTicketAmount();
-//		int id = f.getId();
-//		int ticketAmount = flightDao.read(id).getTicketAmount();
-//		
-//		if (ticketAmountNew > ticketAmount) {
-//			for (int i = 0; i < ticketAmountNew - ticketAmount; i++)
-//			{
-//				Ticket t = new Ticket();
-//				t.setFlightId(f.getId());
-//				//t.setStatus(TicketStatus.FREE);
-//				ticketDao.create(t);
-//			}
-//		}
-//		else if (ticketAmountNew < ticketAmount) {
-//			long amountForDelete = ticketAmount - ticketAmountNew;
-//			long amountFree = ticketDao.getAmountOfTicketsForStatusForTheFlight(f, TicketStatus.FREE);
-//			if (amountForDelete > amountFree) {
-//				//TODO message for deleting flight
-//				return;
-//			} else if (amountForDelete < amountFree) {
-//				//List<Ticket> listT = ticketDao.getTicketsForStatusForTheFlight(f, TicketStatus.FREE);
-//				int count = 0;
-//				for (Ticket t : listT) {
-//					ticketDao.delete(t);
-//					count++;
-//					if (count == amountFree - amountForDelete) {
-//						break;
-//					}
-//				}
-//				
-//			} else if (amountForDelete == amountFree)
-//			{
-//				//TODO message for changing flight
-//				return;
-//			}
-//		} else if (ticketAmountNew == ticketAmount)
-//		{
-//			//TODO message for changing flight
-//			return; 
-//		}
-		
-	}
-	
-	void deleteFlightFromTimeTable(Flight f) {
-		long amountUsed = ticketDao.getAmountOfTicketsForStatusForTheFlight(f, TicketStatus.BOOKED) + ticketDao.getAmountOfTicketsForStatusForTheFlight(f, TicketStatus.SOLD);
-		if (amountUsed == 0) {
-			flightDao.delete(f);
-		} else 
-		{
-			//TODO message for deleting flight
-		}
-	}
-	
-	void convertAllBookedTicketsMoreThanThreeDaysAgo() {
-		List<Ticket> listT= ticketDao.getTicketsForExpiredReservation();
-		for (Ticket t : listT) {
-			t.setReservationId(0);
-			//t.setStatus(TicketStatus.FREE);
-			ticketDao.update(t);
-		}
-		List<Reservation> listR = reservationDao.getExpiredReservations();
-		for (Reservation r : listR) {
-			reservationDao.delete(r);
-		}
-		
-	}
 }
