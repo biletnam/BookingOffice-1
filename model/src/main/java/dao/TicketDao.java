@@ -76,11 +76,11 @@ public class TicketDao extends GenericDaoImpl<Ticket> {
 		return tickets;
 	}
 
-	public List<DataForReport> selectDailyDataInTotal(Date startDate,
+	public List<DataForReport> selectDataByDay(Date startDate,
 			Date endDate) {
 		TypedQuery<DataForReport> query = entityManager
 				.createQuery(
-						"SELECT new entity.DataForReport(t.datePayment, count(t.id), f.ticketPrice, (count(t.id) * f.ticketPrice)) FROM Ticket t, Flight f "
+						"SELECT new entity.DataForReport(t.datePayment, count(t.id), (count(t.id) * f.ticketPrice)) FROM Ticket t, Flight f "
 								+ "WHERE f.id = t.flightId and t.status = ?3 and t.datePayment between ?1 and ?2 "
 								+ "GROUP BY t.datePayment, f.ticketPrice",
 						DataForReport.class);
@@ -94,19 +94,20 @@ public class TicketDao extends GenericDaoImpl<Ticket> {
 
 	public List<DataForReport> selectDataByArrivalPlace(
 			Date startDate, Date endDate) {
-		
-		TypedQuery<DataForReport> query = entityManager
-				.createQuery(
-						"SELECT new entity.DataForReport(t.datePayment, count(t.id), f.ticketPrice, (count(t.id) * f.ticketPrice)) FROM Ticket t, Flight f "
-								+ "WHERE f.id = t.flightId and t.status = ?3 and t.datePayment between ?1 and ?2 "
-								+ "GROUP BY t.datePayment, f.ticketPrice",
-						DataForReport.class);
-		List<DataForReport> data = null;
-		query.setParameter(1, startDate);
-		query.setParameter(2, endDate);
-		query.setParameter(3, TicketStatus.SOLD);
-		data = query.getResultList();
-		return data;
+
+		return null;
+//		TypedQuery<DataForReport> query = entityManager
+//				.createQuery(
+//						"SELECT new entity.DataForReport(f.arrival, count(t.id), f.ticketPrice, (count(t.id) * f.ticketPrice)) FROM Ticket t, Flight f "
+//								+ "WHERE f.id = t.flightId and t.status = ?3 and t.datePayment between ?1 and ?2 "
+//								+ "GROUP BY f.arrival, f.ticketPrice",
+//						DataForReport.class);
+//		List<DataForReport> data = null;
+//		query.setParameter(1, startDate);
+//		query.setParameter(2, endDate);
+//		query.setParameter(3, TicketStatus.SOLD);
+//		data = query.getResultList();
+//		return data;
 		
 		
 //		TypedQuery<DataForReport> query = entityManager

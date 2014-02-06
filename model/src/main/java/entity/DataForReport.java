@@ -13,12 +13,10 @@ public class DataForReport {
 
 	}
 
-	public DataForReport(Date datePayment, long ticketCount,
-			double ticketPrice, double ticketSum) {
+	public DataForReport(Date datePayment, long ticketCount, double ticketSum) {
 		super();
 		this.datePayment = datePayment;
 		this.ticketCount = ticketCount;
-		this.ticketPrice = ticketPrice;
 		this.ticketSum = ticketSum;
 	}
 
