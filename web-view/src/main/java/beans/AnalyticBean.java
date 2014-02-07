@@ -90,7 +90,7 @@ public class AnalyticBean implements Serializable {
 
 		dfr1.setDatePayment(dtPayment);
 		dfr1.setTicketCount(104);
-		dfr1.setTicketPrice(1000);
+		//dfr1.setTicketPrice(1000);
 		dfr1.setTicketSum(104000);
 		list.add(dfr1);
 
@@ -101,7 +101,7 @@ public class AnalyticBean implements Serializable {
 
 		dfr2.setDatePayment(dtPayment);
 		dfr2.setTicketCount(50);
-		dfr2.setTicketPrice(100);
+		//dfr2.setTicketPrice(100);
 		dfr2.setTicketSum(5000);
 		list.add(dfr2);
 
@@ -115,7 +115,7 @@ public class AnalyticBean implements Serializable {
 
 		dfr1.setArrival("Roma");
 		dfr1.setTicketCount(200);
-		dfr1.setTicketPrice(40);
+		//dfr1.setTicketPrice(40);
 		dfr1.setTicketSum(8000);
 		list.add(dfr1);
 
@@ -123,7 +123,7 @@ public class AnalyticBean implements Serializable {
 
 		dfr2.setArrival("London");
 		dfr2.setTicketCount(10);
-		dfr2.setTicketPrice(2000);
+		//dfr2.setTicketPrice(2000);
 		dfr2.setTicketSum(20000);
 		list.add(dfr2);
 

@@ -57,7 +57,16 @@ public abstract class TestBase {
 				+ "RESERVATIONID integer constraint RESERVATION_FK references RESERVATION,"
 				+ "DATEPAYMENT timestamp," + "primary key (ID))";
 		stmt.execute(command);
-
+		
+		command= "CREATE VIEW SOLDTICKETS(TICKETID, TICKETDATEPAYMENT, TICKETARRIVAL, TICKETPRICE) "
+				+ "AS SELECT TICKET.ID, DATE(RESERVATION.DATEPAYMENT), FLIGHT.ARRIVAL, FLIGHT.TICKETPRICE "
+				+ "FROM TICKET "
+				+ "INNER JOIN FLIGHT ON TICKET.FLIGHTID=FLIGHT.ID "
+				+ "INNER JOIN RESERVATION ON TICKET.RESERVATIONID=RESERVATION.ID "
+				+ "WHERE RESERVATION.PAID = TRUE";
+		
+		stmt.execute(command);
+		
 		command = "INSERT INTO FLIGHT (DATECREATED, FLIGHTNUMBER, DEPARTURE, ARRIVAL, DATEDEPARTURE, DATEARRIVAL, TICKETAMOUNT, TICKETPRICE, TICKETFREEAMOUNT)"
 				+ "VALUES ('2013-12-01 10:00:14', 'PS-711', 'Kyiv', 'Stambul', '2013-12-24 06:40:00', '2013-12-24 08:40:00', 10, 1000, 0)";
 		stmt.execute(command);
@@ -110,15 +119,17 @@ public abstract class TestBase {
 		Connection connection = getConnection();
 
 		Statement stmt = connection.createStatement();
-		String command = "drop table TICKET";
+		String command = "DROP VIEW SOLDTICKETS";
 		stmt.execute(command);
-		command = "drop table RESERVATION";
+		command = "DROP TABLE TICKET";
 		stmt.execute(command);
-		command = "drop table FLIGHT";
+		command = "DROP TABLE RESERVATION";
 		stmt.execute(command);
-		command = "drop table ACCOUNTRIGHTS";
+		command = "DROP TABLE FLIGHT";
 		stmt.execute(command);
-		command = "drop table ACCOUNT";
+		command = "DROP TABLE ACCOUNTRIGHTS";
+		stmt.execute(command);
+		command = "DROP TABLE ACCOUNT";
 		stmt.execute(command);
 
 		connection.close();

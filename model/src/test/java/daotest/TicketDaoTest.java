@@ -230,13 +230,12 @@ public class TicketDaoTest extends TestBase {
 				Calendar.DECEMBER, 01, 0, 0, 0);
 		Date startDate = gcStart.getTime();
 		GregorianCalendar gcEnd = new GregorianCalendar(2013,
-				Calendar.DECEMBER, 6, 0, 0, 0);
+				Calendar.DECEMBER, 5, 0, 0, 0);
 		Date endDate = gcEnd.getTime();
 		List<DataForReport> data = ticketDao.selectDataByDay(startDate, endDate);
-		assertTrue(data.size() == 2);
-		assertTrue(data.get(0).getTicketCount() == 2);
-		assertTrue(data.get(0).getTicketPrice() == 1000);
-		assertTrue(data.get(0).getTicketSum() == 2000);
+		assertTrue(data.size() == 1);
+		assertTrue(data.get(0).getTicketCount() == 3);
+		assertTrue(data.get(0).getTicketSum() == 3500);
 		
 	}
 

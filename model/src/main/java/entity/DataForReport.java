@@ -3,10 +3,10 @@ package entity;
 import java.util.Date;
 
 public class DataForReport {
+
 	private Date datePayment;
 	private String arrival;
 	private long ticketCount;
-	private double ticketPrice;
 	private double ticketSum;
 
 	public DataForReport() {
@@ -16,6 +16,13 @@ public class DataForReport {
 	public DataForReport(Date datePayment, long ticketCount, double ticketSum) {
 		super();
 		this.datePayment = datePayment;
+		this.ticketCount = ticketCount;
+		this.ticketSum = ticketSum;
+	}
+
+	public DataForReport(String arrival, long ticketCount, double ticketSum) {
+		super();
+		this.arrival = arrival;
 		this.ticketCount = ticketCount;
 		this.ticketSum = ticketSum;
 	}
@@ -42,14 +49,6 @@ public class DataForReport {
 
 	public void setTicketCount(long ticketCount) {
 		this.ticketCount = ticketCount;
-	}
-
-	public double getTicketPrice() {
-		return ticketPrice;
-	}
-
-	public void setTicketPrice(double ticketPrice) {
-		this.ticketPrice = ticketPrice;
 	}
 
 	public double getTicketSum() {

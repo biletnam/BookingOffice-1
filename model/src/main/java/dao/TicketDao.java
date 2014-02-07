@@ -75,21 +75,35 @@ public class TicketDao extends GenericDaoImpl<Ticket> {
 		tickets = query.getResultList();
 		return tickets;
 	}
-
+	
 	public List<DataForReport> selectDataByDay(Date startDate,
 			Date endDate) {
-		TypedQuery<DataForReport> query = entityManager
-				.createQuery(
-						"SELECT new entity.DataForReport(t.datePayment, count(t.id), (count(t.id) * f.ticketPrice)) FROM Ticket t, Flight f "
-								+ "WHERE f.id = t.flightId and t.status = ?3 and t.datePayment between ?1 and ?2 "
-								+ "GROUP BY t.datePayment, f.ticketPrice",
-						DataForReport.class);
+		TypedQuery<DataForReport> query = entityManager.createQuery("SELECT new entity.DataForReport(st.ticketDatePayment, count(st.ticketId), sum(st.ticketPrice)) "
+				+ "FROM SoldTickets st "
+				+ "WHERE st.ticketDatePayment BETWEEN ?1 and ?2 "
+				+ "GROUP BY st.ticketDatePayment", DataForReport.class);
 		List<DataForReport> data = null;
 		query.setParameter(1, startDate);
 		query.setParameter(2, endDate);
-		query.setParameter(3, TicketStatus.SOLD);
 		data = query.getResultList();
+		
 		return data;
+
+//		SELECT SOLDTICKETSBYDAY.TICKETDAYPAYMENT, count(SOLDTICKETSBYDAY.TICKETID), sum(SOLDTICKETSBYDAY.TICKETPRICE) from SOLDTICKETSBYDAY
+//		GROUP BY SOLDTICKETSBYDAY.TICKETDAYPAYMENT;
+		
+//		TypedQuery<DataForReport> query = entityManager
+//				.createQuery(
+//						"SELECT new entity.DataForReport(t.datePayment, count(t.id), (count(t.id) * f.ticketPrice)) FROM Ticket t, Flight f "
+//								+ "WHERE f.id = t.flightId and t.status = ?3 and t.datePayment between ?1 and ?2 "
+//								+ "GROUP BY t.datePayment, f.ticketPrice",
+//						DataForReport.class);
+//		List<DataForReport> data = null;
+//		query.setParameter(1, startDate);
+//		query.setParameter(2, endDate);
+//		query.setParameter(3, TicketStatus.SOLD);
+//		data = query.getResultList();
+//		return data;
 	}
 
 	public List<DataForReport> selectDataByArrivalPlace(
@@ -108,53 +122,6 @@ public class TicketDao extends GenericDaoImpl<Ticket> {
 //		query.setParameter(3, TicketStatus.SOLD);
 //		data = query.getResultList();
 //		return data;
-		
-		
-//		TypedQuery<DataForReport> query = entityManager
-//				.createQuery(
-//						"SELECT new entity.DataForReport(t.datePayment, count(t.id), f.ticketPrice, count(t.id) * f.ticketPrice) FROM Ticket t, Flight f "
-//								+ "WHERE f.id = t.flightId and t.status = 2 and t.datePayment between ?1 and ?2 "
-//								+ "GROUP BY t.datePayment, f.ticketPrice",
-//						DataForReport.class);
-				// SELECT TICKET.DATEPAYMENT, count(TICKET.ID), FLIGHT.TICKETPRICE,
-		// count(TICKET.ID) * FLIGHT.TICKETPRICE FROM TICKET, FLIGHT
-		// WHERE FLIGHT.ID = TICKET.FLIGHTID and TICKET.STATUS = 2 and
-		// TICKET.DATEPAYMENT between '2013-12-05 00:00:00' and '2013-12-06
-		// 00:00:00'
-		// GROUP BY TICKET.DATEPAYMENT, FLIGHT.TICKETPRICE;
 
-		// TODO
-		/*
-		 * TypedQuery<DataForReport> query = entityManager.createQuery(
-		 * "SELECT new entity.DataForReport(r.datePayment, f.arrival, count(t.id), f.ticketPrice, count(t.id) * f.ticketPrice) FROM Ticket t, Reservation r, Flight f "
-		 * +
-		 * "WHERE f.id = t.reservationId and t.status = 2 and r.datePayment between ?1 and ?2 "
-		 * + "GROUP BY r.datePayment, f.arrival, f.ticketPrice",
-		 * DataForReport.class); List<DataForReport> listD = null;
-		 * query.setParameter(1, startDate); query.setParameter(2, endDate);
-		 * listD = query.getResultList(); return listD;
-		 */
-
-		/*
-		 * TypedQuery<DataForReport> query = entityManager.createQuery(
-		 * "SELECT new entity.DataForReport(r.datePayment, f.arrival, count(t.id), f.ticketPrice, count(t.id) * f.ticketPrice) FROM Ticket t, Reservation r, Flight f "
-		 * +
-		 * "WHERE f.id = t.reservationId and t.status = 2 and r.datePayment between ?1 and ?2 "
-		 * + "GROUP BY r.datePayment, f.arrival, f.ticketPrice",
-		 * DataForReport.class); List<DataForReport> listD = null;
-		 * query.setParameter(1, startDate); query.setParameter(2, endDate);
-		 * listD = query.getResultList();
-		 */
-
-		/*
-		 * select DATE(RESERVATION.DATE_PAYMENT) as datePayment, FLIGHT.ARRIVAL,
-		 * count(TICKET.ID), FLIGHT.TICKET_PRICE,
-		 * count(TICKET.ID)*FLIGHT.TICKET_PRICE as sumTicket from TICKET,
-		 * RESERVATION, FLIGHT where FLIGHT.ID = TICKET.FLIGHTID and
-		 * RESERVATION.ID = TICKET.RESERVATIONID and TICKET.STATUS = 3 and
-		 * RESERVATION.DATE_PAYMENT >='2013-12-05 00:00:00' and
-		 * RESERVATION.DATE_PAYMENT < '2013-12-22 00:00:00' group by
-		 * RESERVATION.DATE_PAYMENT, FLIGHT.ARRIVAL, FLIGHT.TICKET_PRICE
-		 */
 	}
 }

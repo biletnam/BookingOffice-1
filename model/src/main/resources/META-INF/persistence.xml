@@ -11,6 +11,7 @@
 		<class>entity.Reservation</class>
 		<class>entity.Account</class>
 		<class>entity.AccountRights</class>
+		<class>entity.SoldTickets</class>
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.EmbeddedDriver" />
 			<property name="javax.persistence.jdbc.url" value="jdbc:derby:..\BookingOfficeDBTest;create=true" />
