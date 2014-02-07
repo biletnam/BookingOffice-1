@@ -55,7 +55,7 @@ public abstract class TestBase {
 				+ "FLIGHTID integer constraint FLIGHT_FK references FLIGHT,"
 				+ "STATUS smallint not null,"
 				+ "RESERVATIONID integer constraint RESERVATION_FK references RESERVATION,"
-				+ "DATEPAYMENT timestamp," + "primary key (ID))";
+				+ "primary key (ID))";
 		stmt.execute(command);
 		
 		command= "CREATE VIEW SOLDTICKETS(TICKETID, TICKETDATEPAYMENT, TICKETARRIVAL, TICKETPRICE) "
@@ -91,16 +91,16 @@ public abstract class TestBase {
 				+ "VALUES ('Surname3', 'Name3', 'Middlename3', 'Address3', 20000.00, '2013-12-06 10:00:14', null, FALSE)";
 		stmt.execute(command);
 
-		command = "INSERT INTO TICKET (FLIGHTID, STATUS, RESERVATIONID, DATEPAYMENT) VALUES (1, 2, 1, '2013-12-05 10:00:14'),"
-				+ "(1, 2, 1, '2013-12-05 10:00:14'), (1, 1, 3, null), (1, 1, 3, null)";
+		command = "INSERT INTO TICKET (FLIGHTID, STATUS, RESERVATIONID) VALUES (1, 2, 1),"
+				+ "(1, 2, 1), (1, 1, 3), (1, 1, 3)";
 		stmt.execute(command);
 
-		command = "INSERT INTO TICKET (FLIGHTID, STATUS, RESERVATIONID, DATEPAYMENT) VALUES (2, 2, 1, '2013-12-05 10:00:14'),"
-				+ "(2, 2, 2, '2013-12-06 10:00:14'), " + "(2, 1, 3, null)";
+		command = "INSERT INTO TICKET (FLIGHTID, STATUS, RESERVATIONID) VALUES (2, 2, 1),"
+				+ "(2, 2, 2), " + "(2, 1, 3)";
 		stmt.execute(command);
 
-		command = "INSERT INTO TICKET (FLIGHTID, STATUS, RESERVATIONID, DATEPAYMENT) VALUES (3, 2, 2, '2013-12-06 10:00:14'),"
-				+ "(3, 2, 2, '2013-12-06 10:00:14')";
+		command = "INSERT INTO TICKET (FLIGHTID, STATUS, RESERVATIONID) VALUES (3, 2, 2),"
+				+ "(3, 2, 2)";
 		stmt.execute(command);
 
 		command = "INSERT INTO ACCOUNT (LOGIN, PSW, SURNAME, NAME, MIDDLENAME, ACTIVE) VALUES ('Login1', 'Psw1', 'Surname1', 'Name1', 'Middlename1', TRUE),"

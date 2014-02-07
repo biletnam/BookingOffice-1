@@ -1,7 +1,6 @@
 package entity;
 
 import java.io.Serializable;
-import java.util.Date;
 
 import javax.persistence.*;
 
@@ -14,9 +13,7 @@ public class Ticket implements Serializable {
 	private int flightId;
 	private int reservationId;
 	private TicketStatus status;
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date datePayment;
-
+	
 	public int getFlightId() {
 		return flightId;
 	}
@@ -31,14 +28,6 @@ public class Ticket implements Serializable {
 
 	public void setStatus(TicketStatus status) {
 		this.status = status;
-	}
-
-	public Date getDatePayment() {
-		return datePayment;
-	}
-
-	public void setDatePayment(Date datePayment) {
-		this.datePayment = datePayment;
 	}
 
 	public int getId() {

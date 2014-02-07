@@ -2,7 +2,6 @@ package daotest;
 
 import static org.junit.Assert.assertTrue;
 
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -57,15 +56,11 @@ public class TicketDaoTest extends TestBase {
 		int flightId = 1;
 		TicketStatus status = TicketStatus.BOOKED;
 		Integer reservationId = 3;
-		GregorianCalendar gcPayment = new GregorianCalendar(2013,
-				Calendar.DECEMBER, 10, 4, 40, 0);
-		Timestamp dtPayment = new java.sql.Timestamp(gcPayment.getTime()
-				.getTime());
-
+		
 		t.setFlightId(flightId);
 		t.setStatus(status);
 		t.setReservationId(reservationId);
-		t.setDatePayment(dtPayment);
+		
 
 		ticketDao.create(t);
 		int id = t.getId();
@@ -73,8 +68,7 @@ public class TicketDaoTest extends TestBase {
 		assertTrue(id == tReaded.getId());
 		assertTrue(status.equals(tReaded.getStatus()));
 		assertTrue(reservationId == tReaded.getReservationId());
-		assertTrue(dtPayment.equals(tReaded.getDatePayment()));
-
+		
 		ticketDao.delete(id);
 	}
 
@@ -92,8 +86,7 @@ public class TicketDaoTest extends TestBase {
 		assertTrue(t.getFlightId() == tReaded.getFlightId());
 		assertTrue(t.getStatus().equals(tReaded.getStatus()));
 		assertTrue(t.getReservationId() == tReaded.getReservationId());
-		assertTrue(t.getDatePayment().equals(tReaded.getDatePayment()));
-
+		
 		status = TicketStatus.SOLD;
 		t.setStatus(status);
 
@@ -105,16 +98,11 @@ public class TicketDaoTest extends TestBase {
 		Ticket t = new Ticket();
 		int flightId = 1;
 		TicketStatus status = TicketStatus.BOOKED;
-		GregorianCalendar gcPayment = new GregorianCalendar(2013,
-				Calendar.DECEMBER, 23, 4, 40, 0);
-		Date dtPayment = gcPayment.getTime();
-
+		
 		t.setFlightId(flightId);
 		t.setStatus(status);
 		t.setReservationId(3);
-		t.setDatePayment(dtPayment);
-		// TODO Reservation
-
+		
 		ticketDao.create(t);
 
 		int id = t.getId();
@@ -129,16 +117,11 @@ public class TicketDaoTest extends TestBase {
 	@Test
 	public void testRead() {
 		Ticket t = ticketDao.read(2);
-		GregorianCalendar gcPayment = new GregorianCalendar(2013,
-				Calendar.DECEMBER, 5, 10, 00, 14);
-		Timestamp dtPayment = new java.sql.Timestamp(gcPayment.getTime()
-				.getTime());
-
+		
 		assertTrue(t.getId() == 2);
 		assertTrue(t.getFlightId() == 1);
 		assertTrue(t.getStatus().equals(TicketStatus.SOLD));
 		assertTrue(t.getReservationId() == 1);
-		assertTrue(t.getDatePayment().equals(dtPayment));
 	}
 
 	@Test
