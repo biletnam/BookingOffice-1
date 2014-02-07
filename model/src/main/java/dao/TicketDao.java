@@ -88,40 +88,21 @@ public class TicketDao extends GenericDaoImpl<Ticket> {
 		data = query.getResultList();
 		
 		return data;
-
-//		SELECT SOLDTICKETSBYDAY.TICKETDAYPAYMENT, count(SOLDTICKETSBYDAY.TICKETID), sum(SOLDTICKETSBYDAY.TICKETPRICE) from SOLDTICKETSBYDAY
-//		GROUP BY SOLDTICKETSBYDAY.TICKETDAYPAYMENT;
-		
-//		TypedQuery<DataForReport> query = entityManager
-//				.createQuery(
-//						"SELECT new entity.DataForReport(t.datePayment, count(t.id), (count(t.id) * f.ticketPrice)) FROM Ticket t, Flight f "
-//								+ "WHERE f.id = t.flightId and t.status = ?3 and t.datePayment between ?1 and ?2 "
-//								+ "GROUP BY t.datePayment, f.ticketPrice",
-//						DataForReport.class);
-//		List<DataForReport> data = null;
-//		query.setParameter(1, startDate);
-//		query.setParameter(2, endDate);
-//		query.setParameter(3, TicketStatus.SOLD);
-//		data = query.getResultList();
-//		return data;
 	}
 
 	public List<DataForReport> selectDataByArrivalPlace(
 			Date startDate, Date endDate) {
 
-		return null;
-//		TypedQuery<DataForReport> query = entityManager
-//				.createQuery(
-//						"SELECT new entity.DataForReport(f.arrival, count(t.id), f.ticketPrice, (count(t.id) * f.ticketPrice)) FROM Ticket t, Flight f "
-//								+ "WHERE f.id = t.flightId and t.status = ?3 and t.datePayment between ?1 and ?2 "
-//								+ "GROUP BY f.arrival, f.ticketPrice",
-//						DataForReport.class);
-//		List<DataForReport> data = null;
-//		query.setParameter(1, startDate);
-//		query.setParameter(2, endDate);
-//		query.setParameter(3, TicketStatus.SOLD);
-//		data = query.getResultList();
-//		return data;
+		TypedQuery<DataForReport> query = entityManager.createQuery("SELECT new entity.DataForReport(st.ticketArrival, count(st.ticketId), sum(st.ticketPrice)) "
+				+ "FROM SoldTickets st "
+				+ "WHERE st.ticketDatePayment BETWEEN ?1 and ?2 "
+				+ "GROUP BY st.ticketArrival", DataForReport.class);
+		List<DataForReport> data = null;
+		query.setParameter(1, startDate);
+		query.setParameter(2, endDate);
+		data = query.getResultList();
+		
+		return data;
 
 	}
 }
