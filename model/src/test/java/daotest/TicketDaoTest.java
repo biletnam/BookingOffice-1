@@ -225,14 +225,14 @@ public class TicketDaoTest extends TestBase {
 	}
 
 	@Test
-	public void testSelectDataByDay() {
+	public void testGetDataByDay() {
 		GregorianCalendar gcStart = new GregorianCalendar(2013,
 				Calendar.DECEMBER, 01, 0, 0, 0);
 		Date startDate = gcStart.getTime();
 		GregorianCalendar gcEnd = new GregorianCalendar(2013,
 				Calendar.DECEMBER, 5, 0, 0, 0);
 		Date endDate = gcEnd.getTime();
-		List<DataForReport> data = ticketDao.selectDataByDay(startDate, endDate);
+		List<DataForReport> data = ticketDao.getDataByDay(startDate, endDate);
 		assertTrue(data.size() == 1);
 		assertTrue(data.get(0).getTicketCount() == 3);
 		assertTrue(data.get(0).getTicketSum() == 3500);
@@ -240,14 +240,14 @@ public class TicketDaoTest extends TestBase {
 	}
 
 	@Test
-	public void testSelectDataByArrivalPlace() {
+	public void testGetDataByArrival() {
 		GregorianCalendar gcStart = new GregorianCalendar(2013,
 				Calendar.DECEMBER, 01, 0, 0, 0);
 		Date startDate = gcStart.getTime();
 		GregorianCalendar gcEnd = new GregorianCalendar(2013,
 				Calendar.DECEMBER, 5, 0, 0, 0);
 		Date endDate = gcEnd.getTime();
-		List<DataForReport> data = ticketDao.selectDataByArrivalPlace(startDate, endDate);
+		List<DataForReport> data = ticketDao.getDataByArrival(startDate, endDate);
 		assertTrue(data.size() == 2);
 		assertTrue(data.get(0).getTicketCount() == 1);
 		assertTrue(data.get(0).getTicketSum() == 1500);

@@ -76,7 +76,7 @@ public class TicketDao extends GenericDaoImpl<Ticket> {
 		return tickets;
 	}
 	
-	public List<DataForReport> selectDataByDay(Date startDate,
+	public List<DataForReport> getDataByDay(Date startDate,
 			Date endDate) {
 		TypedQuery<DataForReport> query = entityManager.createQuery("SELECT new entity.DataForReport(st.ticketDatePayment, count(st.ticketId), sum(st.ticketPrice)) "
 				+ "FROM SoldTickets st "
@@ -90,7 +90,7 @@ public class TicketDao extends GenericDaoImpl<Ticket> {
 		return data;
 	}
 
-	public List<DataForReport> selectDataByArrivalPlace(
+	public List<DataForReport> getDataByArrival(
 			Date startDate, Date endDate) {
 
 		TypedQuery<DataForReport> query = entityManager.createQuery("SELECT new entity.DataForReport(st.ticketArrival, count(st.ticketId), sum(st.ticketPrice)) "
