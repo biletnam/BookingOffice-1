@@ -2,14 +2,24 @@ package service;
 
 import java.util.List;
 
+import javax.inject.Inject;
+import javax.inject.Named;
+
 import dao.FlightDao;
 import dao.ReservationDao;
 import dao.TicketDao;
 import entity.*;
 
+@Named
 public class AdministratorService {
+	
+	@Inject
 	private FlightDao flightDao;
+	
+	@Inject
 	private TicketDao ticketDao;
+	
+	@Inject
 	private ReservationDao reservationDao;
 
 	void addFlight(Flight f) {

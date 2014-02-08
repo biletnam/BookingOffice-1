@@ -2,10 +2,13 @@ package service;
 
 import java.util.Map;
 
+
+import javax.inject.Named;
+
 //import dao.*;
 import entity.*;
 
-
+@Named
 public class CustomerService {
 //	private TicketDao ticketDao;
 //	private ReservationDao reservationDao;

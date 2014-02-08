@@ -2,11 +2,18 @@ package service;
 
 import java.util.List;
 
+import javax.inject.Inject;
+import javax.inject.Named;
+
 import dao.*;
 import entity.*;
 
+@Named
 public class AccountantService {
+	@Inject
 	private ReservationDao reservationDao;
+	
+	@Inject
 	private TicketDao ticketDao;
 
 	List<Reservation> getActualReservation() {
