@@ -7,8 +7,11 @@ import java.util.List;
 
 import javax.persistence.TypedQuery;
 
+import org.springframework.stereotype.Repository;
+
 import entity.Reservation;
 
+@Repository
 public class ReservationDao extends GenericDaoImpl<Reservation> {
 
 	public List<Reservation> getExpiredReservations() {

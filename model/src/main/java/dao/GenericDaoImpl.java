@@ -4,8 +4,14 @@ import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
+import org.springframework.stereotype.Repository;
+
+@Repository
 public abstract class GenericDaoImpl<T> implements GenericDao<T> {
+	
+	@PersistenceContext
 	protected EntityManager entityManager;
 	private Class<T> type;
 

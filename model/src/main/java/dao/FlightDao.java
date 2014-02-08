@@ -7,8 +7,11 @@ import java.util.List;
 
 import javax.persistence.*;
 
+import org.springframework.stereotype.Repository;
+
 import entity.*;
 
+@Repository
 public class FlightDao extends GenericDaoImpl<Flight> {
 
 	public List<Flight> find(String arrival, Date departureDate) {

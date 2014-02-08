@@ -7,12 +7,15 @@ import java.util.List;
 
 import javax.persistence.*;
 
+import org.springframework.stereotype.Repository;
+
 import entity.DataForReport;
 import entity.Flight;
 import entity.Reservation;
 import entity.Ticket;
 import entity.TicketStatus;
 
+@Repository
 public class TicketDao extends GenericDaoImpl<Ticket> {
 
 	public void updateTicketsStatus(List<Ticket> tickets,

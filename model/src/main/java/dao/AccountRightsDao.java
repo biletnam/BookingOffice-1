@@ -4,9 +4,12 @@ import java.util.List;
 
 import javax.persistence.TypedQuery;
 
+import org.springframework.stereotype.Repository;
+
 import entity.Account;
 import entity.AccountRights;
 
+@Repository
 public class AccountRightsDao extends GenericDaoImpl<AccountRights> {
 	
 	public List<AccountRights> getAccountRights(Account account) {
