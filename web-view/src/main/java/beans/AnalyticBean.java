@@ -9,23 +9,29 @@ import java.util.GregorianCalendar;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
+import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.springframework.context.annotation.Scope;
 
+import service.AnalitycService;
+import dao.TicketDao;
 import entity.DataForReport;
 
 @Named
 @ManagedBean(name = "analyticBean", eager = true)
 @Scope("request")
 public class AnalyticBean implements Serializable {
-
 	private static final long serialVersionUID = 1L;
+
+	@Inject
+	private AnalitycService analitycService;
+	
 	private Date dateStart;
 	private Date dateEnd;
 	private String reportType;
-	private List<DataForReport> report1;
-	private List<DataForReport> report2;
+	private List<DataForReport> reportByDay;
+	private List<DataForReport> reportByArrival;
 
 	public AnalyticBean() {
 		super();
@@ -57,19 +63,23 @@ public class AnalyticBean implements Serializable {
 	}
 
 	public List<DataForReport> getReport1() {
-		return report1;
+		return reportByDay;
 	}
 
-	public void setReport1(List<DataForReport> report1) {
-		this.report1 = report1;
+	public List<DataForReport> getReportByDay() {
+		return reportByDay;
 	}
 
-	public List<DataForReport> getReport2() {
-		return report2;
+	public void setReportByDay(List<DataForReport> reportByDay) {
+		this.reportByDay = reportByDay;
 	}
 
-	public void setReport2(List<DataForReport> report2) {
-		this.report2 = report2;
+	public List<DataForReport> getReportByArrival() {
+		return reportByArrival;
+	}
+
+	public void setReportByArrival(List<DataForReport> reportByArrival) {
+		this.reportByArrival = reportByArrival;
 	}
 
 	public static long getSerialversionuid() {
@@ -77,11 +87,16 @@ public class AnalyticBean implements Serializable {
 	}
 
 	public void viewReport() {
+
+		setReportByDay(analitycService.getDataReportByDay(dateStart, dateEnd));
+		setReportByArrival(analitycService.getDataReportByArrival(dateStart, dateEnd));
+/*
 		setReport1(initializeReport1());
 		setReport2(initializeReport2());
+*/
 	}
 
-	private List<DataForReport> initializeReport1() {
+	private List<DataForReport> initializeReportByDay() {
 		List<DataForReport> list = new ArrayList<>();
 
 		DataForReport dfr1 = new DataForReport();
@@ -111,7 +126,7 @@ public class AnalyticBean implements Serializable {
 		return list;
 	}
 
-	private List<DataForReport> initializeReport2() {
+	private List<DataForReport> initializeReportByArrival() {
 		ArrayList<DataForReport> list = new ArrayList<>();
 
 		DataForReport dfr1 = new DataForReport();

@@ -1,6 +1,7 @@
 package service;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -8,6 +9,7 @@ import javax.inject.Named;
 import org.springframework.transaction.annotation.Transactional;
 
 import dao.TicketDao;
+import entity.DataForReport;
 
 @Named
 public class AnalitycService {
@@ -16,12 +18,12 @@ public class AnalitycService {
 	private TicketDao ticketDao;
 	
 	@Transactional
-	void getDataReportByDay(Date startDate, Date endDate) {
-		ticketDao.getDataByDay(startDate, endDate);
+	public List<DataForReport> getDataReportByDay(Date startDate, Date endDate) {
+		return ticketDao.getDataByDay(startDate, endDate);
 	}
 
 	@Transactional
-	void getDataReportByArrival(Date startDate, Date endDate) {
-		ticketDao.getDataByArrival(startDate, endDate);
+	public List<DataForReport> getDataReportByArrival(Date startDate, Date endDate) {
+		return ticketDao.getDataByArrival(startDate, endDate);
 	}
 }

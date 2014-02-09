@@ -51,7 +51,7 @@
 			<rich:tabPanel switchType="ajax" id="tabPanel" headerPosition="top"
 				headerLocation="center">
 				<rich:tab header="Report by day">
-					<rich:dataTable id="reportByDay" value="#{analyticBean.report1}"
+					<rich:dataTable id="reportByDay" value="#{analyticBean.reportByDay}"
 						var="item">
 						<rich:column>
 							<f:facet name="header">Date</f:facet>
@@ -71,7 +71,7 @@
 				</rich:tab>
 				<rich:tab header="Report by arrival">
 					<rich:dataTable id="reportByArrival"
-						value="#{analyticBean.report2}" var="item">
+						value="#{analyticBean.reportByArrival}" var="item">
 						<rich:column>
 							<f:facet name="header">Date</f:facet>
 							<h:outputText value="#{item.arrival}"></h:outputText>
