@@ -3,10 +3,13 @@ package beans;
 import java.io.Serializable;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.inject.Named;
 
-@ManagedBean(name = "login", eager = true)
-@SessionScoped
+import org.springframework.context.annotation.Scope;
+
+@Named
+@ManagedBean(name = "loginBean", eager = true)
+@Scope("session")
 public class LoginBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private String login;

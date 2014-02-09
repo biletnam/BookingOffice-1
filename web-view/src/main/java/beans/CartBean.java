@@ -7,12 +7,15 @@ import java.util.List;
 import java.util.Map;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.inject.Named;
+
+import org.springframework.context.annotation.Scope;
 
 import entity.Flight;
 
+@Named
 @ManagedBean(name = "cartBean", eager = true)
-@SessionScoped
+@Scope("session")
 public class CartBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;

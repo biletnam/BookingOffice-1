@@ -2,8 +2,10 @@ package service;
 
 import java.util.Map;
 
-
 import javax.inject.Named;
+
+
+import org.springframework.transaction.annotation.Transactional;
 
 //import dao.*;
 import entity.*;
@@ -14,6 +16,7 @@ public class CustomerService {
 //	private ReservationDao reservationDao;
 //	private FlightDao flightDao;
 	
+	@Transactional
 	void addReservation(Map<Flight, Integer> tickets) {
 //		reservationDao.create(r);
 //		for (Ticket t : listT) {

@@ -5,6 +5,8 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import org.springframework.transaction.annotation.Transactional;
+
 import dao.*;
 import entity.*;
 
@@ -16,10 +18,12 @@ public class AccountantService {
 	@Inject
 	private TicketDao ticketDao;
 
+	@Transactional
 	List<Reservation> getActualReservation() {
 		return reservationDao.getActualReservations();
 	}
 
+	@Transactional
 	void updateReservation(Reservation r) {
 		reservationDao.update(r);
 		List<Ticket> listT = ticketDao.getTicketsForReservation(r);

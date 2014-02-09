@@ -10,11 +10,15 @@ import java.util.List;
 import java.util.Map;
 
 import javax.faces.bean.*;
+import javax.inject.Named;
+
+import org.springframework.context.annotation.Scope;
 
 import entity.Flight;
 
+@Named
 @ManagedBean(name = "mainBean", eager = true)
-@SessionScoped
+@Scope("request")
 public class MainBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 

@@ -5,14 +5,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.inject.Named;
+
+import org.springframework.context.annotation.Scope;
 
 import entity.Account;
 import entity.AccountRights;
 import entity.AccountRole;
 
+@Named
 @ManagedBean(name = "securityOfficerBean", eager = true)
-@SessionScoped
+@Scope("request")
 public class SecurityOfficerBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
