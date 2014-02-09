@@ -15,19 +15,19 @@ public class Reservation implements Serializable {
 	private String customerName;
 	private String customerMiddlename;
 	private String customerEmail;
-	private double sumtotal;
+	private double sumTotal;
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dateReservation;
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date datePayment;
 	private boolean paid;
 
-	public double getSumtotal() {
-		return sumtotal;
+	public double getSumTotal() {
+		return sumTotal;
 	}
 
-	public void setSumtotal(double sumtotal) {
-		this.sumtotal = sumtotal;
+	public void setSumTotal(double sumTotal) {
+		this.sumTotal = sumTotal;
 	}
 
 	public String getCustomerSurname() {
