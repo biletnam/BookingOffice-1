@@ -47,8 +47,8 @@
 					<h:outputText value="#{item.customerMiddlename}"></h:outputText>
 				</rich:column>
 				<rich:column>
-					<f:facet name="header">Address</f:facet>
-					<h:outputText value="#{item.customerAddress}"></h:outputText>
+					<f:facet name="header">E-mail</f:facet>
+					<h:outputText value="#{item.customerEmail}"></h:outputText>
 				</rich:column>
 				<rich:column>
 					<f:facet name="header">Sum</f:facet>
@@ -102,7 +102,7 @@
 					<h:outputText
 						value="#{accountantBean.editedReservation.customerMiddlename}" />
 					<h:panelGroup />
-					<h:outputText value="Address" />
+					<h:outputText value="E-mail" />
 					<h:outputText
 						value="#{accountantBean.editedReservation.customerEmail}" />
 					<h:panelGroup />
