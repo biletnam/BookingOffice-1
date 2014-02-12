@@ -19,7 +19,6 @@ public class AccountantBean {
 	@Inject
 	private AccountantService accountantServise;
 
-	private static final long serialVersionUID = 1L;
 	private List<Reservation> reservations = new ArrayList<>();
 	private int currentReservationIndex;
 	private Reservation editedReservation = new Reservation();
@@ -60,9 +59,4 @@ public class AccountantBean {
 	public void setCurrentReservationIndex(int currentReservationIndex) {
 		this.currentReservationIndex = currentReservationIndex;
 	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-
 }

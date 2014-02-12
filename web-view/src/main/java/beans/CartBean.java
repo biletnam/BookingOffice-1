@@ -55,8 +55,6 @@ public class CartBean {
 		this.middlename = middlename;
 	}
 
-	
-
 	public String getEmail() {
 		return email;
 	}

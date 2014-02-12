@@ -8,6 +8,7 @@ import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Map;
 
+import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.springframework.context.annotation.Scope;
@@ -23,7 +24,8 @@ public class MainBean {
 	private Flight selectedFlight;
 	private int amountOfOrderedTickets;
 	private List<Flight> flights;
-	private CartBean cart = new CartBean();
+	@Inject
+	private CartBean cart;
 
 	public MainBean() {
 		super();
@@ -31,7 +33,6 @@ public class MainBean {
 		filterDateDeparture = null;
 		flights = null;
 		cart = new CartBean();
-
 	}
 
 	public CartBean getCart() {

@@ -2,7 +2,6 @@ package beans;
 
 import java.util.ArrayList;
 import java.util.Date;
-
 import java.util.List;
 
 import javax.inject.Inject;
@@ -16,7 +15,7 @@ import entity.DataForReport;
 @Named
 @Scope("request")
 public class AnalyticBean {
-	
+
 	@Inject
 	private AnalitycService analitycService;
 
@@ -54,10 +53,6 @@ public class AnalyticBean {
 		this.reportType = reportType;
 	}
 
-	public List<DataForReport> getReport1() {
-		return reportByDay;
-	}
-
 	public List<DataForReport> getReportByDay() {
 		return reportByDay;
 	}
@@ -75,10 +70,9 @@ public class AnalyticBean {
 	}
 
 	public void viewReport() {
-
-		setReportByDay(analitycService.getDataReportByDay(dateStart, dateEnd));
-		setReportByArrival(analitycService.getDataReportByArrival(dateStart,
-				dateEnd));
+		List<DataForReport> reportData = analitycService.getDataReportByDay(dateStart, dateEnd);
+		setReportByDay( reportData);
+		reportData = analitycService.getDataReportByArrival(dateStart, dateEnd);
+		setReportByArrival(reportData);
 	}
-
 }

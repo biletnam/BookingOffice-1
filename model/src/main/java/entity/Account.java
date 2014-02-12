@@ -1,13 +1,12 @@
 package entity;
 
-import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.*;
 
 @Entity
-public class Account implements Serializable {
-	private static final long serialVersionUID = 1L;
+public class Account {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;

@@ -50,7 +50,7 @@
 
 			<rich:tabPanel switchType="ajax" id="tabPanel" headerPosition="top"
 				headerLocation="center">
-				<rich:tab header="Report by day">
+				<rich:tab header="Report by day" switchType="client">
 					<rich:dataTable id="reportByDay" value="#{analyticBean.reportByDay}"
 						var="item">
 						<rich:column>
@@ -69,7 +69,7 @@
 						</rich:column>
 					</rich:dataTable>
 				</rich:tab>
-				<rich:tab header="Report by arrival">
+				<rich:tab header="Report by arrival" switchType="client">
 					<rich:dataTable id="reportByArrival"
 						value="#{analyticBean.reportByArrival}" var="item">
 						<rich:column>

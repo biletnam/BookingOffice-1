@@ -1,14 +1,12 @@
 package entity;
 
-import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.*;
 
 @Entity
-public class Flight implements Serializable {
-	private static final long serialVersionUID = 1L;
-
+public class Flight {
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;

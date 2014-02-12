@@ -70,7 +70,7 @@
 					<h:panelGrid columns="1">
 						<a4j:commandLink styleClass="no-decor" render="editGrid"
 							execute="@this" oncomplete="#{rich:component('editPane')}.show()">
-							<h:outputText value="Edit" alt="edit" />
+							<h:outputText value="Edit" />
 							<a4j:param value="#{it.index}"
 								assignTo="#{securityOfficerBean.currentAccountIndex}" />
 							<f:setPropertyActionListener

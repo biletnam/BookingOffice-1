@@ -1,6 +1,5 @@
 package beans;
 
-
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -16,7 +15,7 @@ import entity.Flight;
 @Named
 @Scope("request")
 public class AdministratorBean {
-	private static final long serialVersionUID = 1L;
+	
 	private List<Flight> flights = new ArrayList<>();
 	private int currentFlightIndex;
 	private Flight editedFlight;
@@ -85,9 +84,6 @@ public class AdministratorBean {
 	}
 	public void setEditedFlight(Flight editedFlight) {
 		this.editedFlight = editedFlight;
-	}
-	public static long getSerialversionuid() {
-		return serialVersionUID;
 	}
 	
 	public Flight getCreatedFlight() {

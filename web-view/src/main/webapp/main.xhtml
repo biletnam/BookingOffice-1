@@ -80,7 +80,7 @@
 					<h:panelGrid columns="2">
 						<a4j:commandLink styleClass="no-decor" render="addGrid"
 							execute="@this" oncomplete="#{rich:component('addPane')}.show()">
-							<h:outputText value="Add to cart" alt="add" />
+							<h:outputText value="Add to cart"/>
 							<a4j:param value="#{it.index}"
 								assignTo="#{mainBean.currentFlightIndex}" />
 							<f:setPropertyActionListener target="#{mainBean.selectedFlight}"
@@ -135,6 +135,7 @@
 					<h:panelGroup />
 
 				</h:panelGrid>
+				
 				<a4j:commandButton value="Add tickets to cart"
 					action="#{mainBean.addTicket}" render="table cart"
 					execute="addPane"
@@ -142,7 +143,6 @@
 				<a4j:commandButton value="Cancel"
 					onclick="#{rich:component('addPane')}.hide(); return false;" />
 			</rich:popupPanel>
-
 		</h:form>
 	</ui:define>
 </ui:composition>
