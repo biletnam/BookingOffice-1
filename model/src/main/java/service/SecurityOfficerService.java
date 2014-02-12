@@ -15,12 +15,12 @@ public class SecurityOfficerService {
 	private AccountDao accountDao;
 
 	@Transactional
-	void addAccount(Account a) {
+	public void addAccount(Account a) {
 		accountDao.create(a);
 	}
 
 	@Transactional
-	void editAccount(Account a) {
+	public void editAccount(Account a) {
 		accountDao.update(a);
 	}
 

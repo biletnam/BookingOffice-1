@@ -194,7 +194,7 @@ public class ReservationDaoTest extends TestBase {
 
 		reservationDao.create(r);
 
-		List<Reservation> reservations = reservationDao.getActualReservations();
+		List<Reservation> reservations = reservationDao.findActualReservations();
 		assertTrue(reservations.size() == 1);
 		assertTrue(reservations.get(0).getId() == 4);
 		assertTrue(reservations.get(0).getCustomerSurname().equals("Surname6"));
