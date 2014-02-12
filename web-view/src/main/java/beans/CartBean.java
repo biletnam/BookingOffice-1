@@ -1,6 +1,5 @@
 package beans;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -14,9 +13,8 @@ import entity.Flight;
 
 @Named
 @Scope("session")
-public class CartBean implements Serializable {
+public class CartBean {
 
-	private static final long serialVersionUID = 1L;
 	private String customerSurname;
 	private String customerName;
 	private String customerMiddlename;

@@ -1,6 +1,5 @@
 package beans;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,9 +13,8 @@ import entity.AccountRole;
 
 @Named
 @Scope("request")
-public class SecurityOfficerBean implements Serializable {
+public class SecurityOfficerBean {
 
-	private static final long serialVersionUID = 1L;
 	private List<Account> accounts;
 	private Account editedAccount;
 	private int currentAccountIndex;
@@ -24,12 +22,16 @@ public class SecurityOfficerBean implements Serializable {
 	private Account createdAccount = new Account();
 
 	public SecurityOfficerBean() {
-		//setAccounts(initializeAccounts());
+		setAccounts(initializeAccounts());
 		setAvailableAccountRights(intializeAvailableAccountRights());
 	}
 
 	public List<AccountRights> getAvailableAccountRights() {
 		return availableAccountRights;
+	}
+	
+	public void setAccounts(List<Account> accounts) {
+		this.accounts = accounts;
 	}
 
 	public void setAvailableAccountRights(
@@ -40,7 +42,6 @@ public class SecurityOfficerBean implements Serializable {
 	public List<Account> getAccounts() {
 		return accounts;
 	}
-
 
 	public Account getEditedAccount() {
 		return editedAccount;
@@ -64,10 +65,6 @@ public class SecurityOfficerBean implements Serializable {
 
 	public void setCurrentAccountIndex(int currentAccountIndex) {
 		this.currentAccountIndex = currentAccountIndex;
-	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
 	}
 
 	public void save() {

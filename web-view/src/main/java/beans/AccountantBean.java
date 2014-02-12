@@ -1,6 +1,5 @@
 package beans;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,7 +14,7 @@ import entity.Reservation;
 
 @Named
 @Scope("request")
-public class AccountantBean implements Serializable {
+public class AccountantBean {
 
 	@Inject
 	private AccountantService accountantServise;

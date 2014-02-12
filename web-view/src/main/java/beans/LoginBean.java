@@ -1,15 +1,13 @@
 package beans;
 
-import java.io.Serializable;
-
 import javax.inject.Named;
 
 import org.springframework.context.annotation.Scope;
 
 @Named
 @Scope("session")
-public class LoginBean implements Serializable {
-	private static final long serialVersionUID = 1L;
+public class LoginBean {
+	
 	private String login;
 	private String psw;
 	
@@ -34,11 +32,6 @@ public class LoginBean implements Serializable {
 	public void setPsw(String psw) {
 		this.psw = psw;
 	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-
 	
 	public String check() {
 		if (login.equals("login") && psw.equals("password")) {

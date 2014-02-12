@@ -1,7 +1,6 @@
 package beans;
 
 
-import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -16,7 +15,7 @@ import entity.Flight;
 
 @Named
 @Scope("request")
-public class AdministratorBean implements Serializable {
+public class AdministratorBean {
 	private static final long serialVersionUID = 1L;
 	private List<Flight> flights = new ArrayList<>();
 	private int currentFlightIndex;

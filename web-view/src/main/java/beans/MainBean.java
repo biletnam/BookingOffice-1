@@ -1,6 +1,5 @@
 package beans;
 
-import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -17,9 +16,7 @@ import entity.Flight;
 
 @Named
 @Scope("request")
-public class MainBean implements Serializable {
-	private static final long serialVersionUID = 1L;
-
+public class MainBean {
 	private Date filterDateDeparture;
 	private String filterArrival;
 	private int currentFlightIndex;
@@ -33,7 +30,7 @@ public class MainBean implements Serializable {
 		filterArrival = null;
 		filterDateDeparture = null;
 		flights = null;
-		// cart = new CartBean();
+		cart = new CartBean();
 
 	}
 
@@ -102,15 +99,10 @@ public class MainBean implements Serializable {
 		tickets.put(selectedFlight, amountOfOrderedTickets);
 		amountOfOrderedTickets = 0;
 	}
-	
+
 	public void removeTicket() {
 		Map<Flight, Integer> tickets = cart.getTickets();
 		tickets.remove(cart.getCurrentEntry().getKey());
-	}
-
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
 	}
 
 	private List<Flight> initializeFlights() {

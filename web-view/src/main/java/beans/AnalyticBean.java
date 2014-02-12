@@ -1,6 +1,5 @@
 package beans;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -16,9 +15,8 @@ import entity.DataForReport;
 
 @Named
 @Scope("request")
-public class AnalyticBean implements Serializable {
-	private static final long serialVersionUID = 1L;
-
+public class AnalyticBean {
+	
 	@Inject
 	private AnalitycService analitycService;
 
@@ -74,10 +72,6 @@ public class AnalyticBean implements Serializable {
 
 	public void setReportByArrival(List<DataForReport> reportByArrival) {
 		this.reportByArrival = reportByArrival;
-	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
 	}
 
 	public void viewReport() {
