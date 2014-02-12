@@ -28,7 +28,7 @@ public class ReservationDao extends GenericDaoImpl<Reservation> {
 		return reservations;
 	}
 
-	public List<Reservation> getActualReservations() {
+	public List<Reservation> findActualReservations() {
 		GregorianCalendar gc = (GregorianCalendar) Calendar.getInstance();
 		gc.add(Calendar.DAY_OF_YEAR, -3);
 		Date now = gc.getTime();

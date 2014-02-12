@@ -19,12 +19,18 @@ public class AccountantService {
 	private TicketDao ticketDao;
 
 	@Transactional
-	List<Reservation> getActualReservation() {
-		return reservationDao.getActualReservations();
+	public Reservation updateReservation(Reservation r) {
+		return reservationDao.update(r);
+	}
+	
+	@Transactional
+	public List<Reservation> findActualReservations() {
+		return reservationDao.findActualReservations();
 	}
 
 	@Transactional
-	void updateReservation(Reservation r) {
+	public void update_Reservation(Reservation r) {
+		//TODO
 		reservationDao.update(r);
 		List<Ticket> listT = ticketDao.getTicketsForReservation(r);
 		for (Ticket t : listT) {

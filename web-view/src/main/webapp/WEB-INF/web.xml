@@ -11,7 +11,7 @@
 
 	<!-- The welcome page -->
 	<welcome-file-list>
-		<welcome-file>index.xhtml</welcome-file>
+		<welcome-file>main.xhtml</welcome-file>
 	</welcome-file-list>
 
 	<!-- RichFaces -->

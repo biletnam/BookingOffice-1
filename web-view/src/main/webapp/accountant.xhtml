@@ -24,6 +24,8 @@
 	<ui:define name="content">
 		<h3>Accountant page</h3>
 		<h:form>
+			<a4j:commandButton value="Find actual reservations" render="table"
+				action="accountantBean.findActualReservations" execute="@form" />
 			<rich:dataTable id="table" value="#{accountantBean.reservations}"
 				var="item" iterationStatusVar="it">
 				<rich:column>
@@ -52,7 +54,7 @@
 				</rich:column>
 				<rich:column>
 					<f:facet name="header">Sum</f:facet>
-					<h:outputText value="#{item.sum}"></h:outputText>
+					<h:outputText value="#{item.sumTotal}"></h:outputText>
 				</rich:column>
 				<rich:column>
 					<f:facet name="header">Reservation date</f:facet>
@@ -128,8 +130,9 @@
 					</rich:calendar>
 					<rich:message id="calendarPaymentMsg" for="calendarPayment" />
 				</h:panelGrid>
-				<a4j:commandButton value="Save" action="#{accountantBean.save}"
-					render="table" execute="editPane"
+				<a4j:commandButton value="Save"
+					action="#{accountantBean.saveReservation}" render="table"
+					execute="editPane"
 					oncomplete="if (#{facesContext.maximumSeverity==null}) {#{rich:component('editPane')}.hide();}" />
 				<a4j:commandButton value="Cancel"
 					onclick="#{rich:component('editPane')}.hide(); return false;" />
