@@ -6,7 +6,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.faces.bean.ManagedBean;
 import javax.inject.Named;
 
 import org.springframework.context.annotation.Scope;
@@ -14,7 +13,6 @@ import org.springframework.context.annotation.Scope;
 import entity.Flight;
 
 @Named
-@ManagedBean(name = "cartBean", eager = true)
 @Scope("session")
 public class CartBean implements Serializable {
 

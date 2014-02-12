@@ -6,7 +6,6 @@ import java.util.Date;
 
 import java.util.List;
 
-import javax.faces.bean.ManagedBean;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -16,7 +15,6 @@ import service.AnalitycService;
 import entity.DataForReport;
 
 @Named
-@ManagedBean(name = "analyticBean", eager = true)
 @Scope("request")
 public class AnalyticBean implements Serializable {
 	private static final long serialVersionUID = 1L;

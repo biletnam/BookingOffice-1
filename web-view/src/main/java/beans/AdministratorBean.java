@@ -8,7 +8,6 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
 
-import javax.faces.bean.ManagedBean;
 import javax.inject.Named;
 
 import org.springframework.context.annotation.Scope;
@@ -16,7 +15,6 @@ import org.springframework.context.annotation.Scope;
 import entity.Flight;
 
 @Named
-@ManagedBean(name = "administratorBean", eager = true)
 @Scope("request")
 public class AdministratorBean implements Serializable {
 	private static final long serialVersionUID = 1L;

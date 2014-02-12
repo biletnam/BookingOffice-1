@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.faces.bean.ManagedBean;
+import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -14,7 +14,6 @@ import service.AccountantService;
 import entity.Reservation;
 
 @Named
-@ManagedBean(name = "accountantBean", eager = true)
 @Scope("request")
 public class AccountantBean implements Serializable {
 
@@ -26,6 +25,11 @@ public class AccountantBean implements Serializable {
 	private int currentReservationIndex;
 	private Reservation editedReservation = new Reservation();
 
+	@PostConstruct
+	public void init() {
+		setReservations(accountantServise.findActualReservations());
+	}
+	
 	public void saveReservation() {
 		accountantServise.updateReservation(editedReservation);
 	}

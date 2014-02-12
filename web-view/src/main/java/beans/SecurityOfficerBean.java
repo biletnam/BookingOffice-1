@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.faces.bean.ManagedBean;
 import javax.inject.Named;
 
 import org.springframework.context.annotation.Scope;
@@ -14,7 +13,6 @@ import entity.AccountRights;
 import entity.AccountRole;
 
 @Named
-@ManagedBean(name = "securityOfficerBean", eager = true)
 @Scope("request")
 public class SecurityOfficerBean implements Serializable {
 
@@ -26,8 +24,7 @@ public class SecurityOfficerBean implements Serializable {
 	private Account createdAccount = new Account();
 
 	public SecurityOfficerBean() {
-		super();
-		setAccounts(initializeAccounts());
+		//setAccounts(initializeAccounts());
 		setAvailableAccountRights(intializeAvailableAccountRights());
 	}
 
@@ -44,9 +41,6 @@ public class SecurityOfficerBean implements Serializable {
 		return accounts;
 	}
 
-	public void setAccounts(List<Account> accounts) {
-		this.accounts = accounts;
-	}
 
 	public Account getEditedAccount() {
 		return editedAccount;
