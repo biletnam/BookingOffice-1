@@ -14,43 +14,56 @@ import entity.*;
 
 @Named
 public class AdministratorService {
-	
+
 	@Inject
 	private FlightDao flightDao;
-	
+
 	@Inject
 	private TicketDao ticketDao;
-	
+
 	@Inject
 	private ReservationDao reservationDao;
 
 	@Transactional
-	void addFlight(Flight f) {
+	public void addFlight(Flight f) {
 		flightDao.create(f);
 	}
-	
+
 	@Transactional
-	void editFlight(Flight f) {
+	public void editFlight(Flight f) {
 		flightDao.update(f);
 	}
-	
+
 	@Transactional
-	void deleteFlight(Flight f) {
-		flightDao.delete(f.getId());;
+	public void deleteFlight(Flight f) {
+		flightDao.delete(f.getId());
+		;
 	}
-	
+
 	@Transactional
-	void convertTickets() {
+	public void convertTickets() {
 		List<Ticket> tickets = ticketDao.getTicketsForExpiredReservation();
-		List<Reservation> reservations = reservationDao.getExpiredReservations();
+		List<Reservation> reservations = reservationDao
+				.getExpiredReservations();
 		for (Ticket t : tickets) {
 			ticketDao.delete(t.getId());
 		}
-		
+
 		for (Reservation r : reservations) {
 			reservationDao.delete(r.getId());
 		}
 
+	}
+
+	@Transactional
+	public List<Flight> findFlights(String flightNumber) {
+		List<Flight> flights = null;
+		if (flightNumber != null) {
+			flights = flightDao.findByFlightNumber(flightNumber);
+		} else {
+			flights = flightDao.findAll();
+		}
+		return flights;
 	}
 
 }

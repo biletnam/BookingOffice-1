@@ -14,7 +14,7 @@ import entity.*;
 @Repository
 public class FlightDao extends GenericDaoImpl<Flight> {
 
-	public List<Flight> find(String arrival, Date departureDate) {
+	public List<Flight> findByArrivalAndDepartureDate(String arrival, Date departureDate) {
 		GregorianCalendar gc = new GregorianCalendar();
 		gc.setTime(departureDate);
 		gc.add(Calendar.DAY_OF_YEAR, 1);
@@ -23,12 +23,30 @@ public class FlightDao extends GenericDaoImpl<Flight> {
 				.createQuery(
 						"SELECT f FROM Flight f WHERE f.arrival = ?1 and (f.dateDeparture BETWEEN ?2 and ?3)",
 						Flight.class);
-		List<Flight> listF = null;
 		query.setParameter(1, arrival);
 		query.setParameter(2, departureDate);
 		query.setParameter(3, departureDate2);
-		listF = query.getResultList();
-		return listF;
+		List<Flight> flights = query.getResultList();
+		return flights;
+	}
+	
+	public List<Flight> findByFlightNumber(String flightNumber) {
+		TypedQuery<Flight> query = entityManager
+				.createQuery(
+						"SELECT f FROM Flight f WHERE f.flightNumber like ?1",
+						Flight.class);
+		query.setParameter(1, "%" + flightNumber + "%");
+		List<Flight> flights = query.getResultList();
+		return flights;
+	}
+	
+	public List<Flight> findAll() {
+		TypedQuery<Flight> query = entityManager
+				.createQuery(
+						"SELECT f FROM Flight f",
+						Flight.class);
+		List<Flight> flights =  query.getResultList();
+		return flights;
 	}
 
 }
