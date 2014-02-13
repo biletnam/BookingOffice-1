@@ -1,6 +1,5 @@
 package beans;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -19,7 +18,7 @@ public class AccountantBean {
 	@Inject
 	private AccountantService accountantServise;
 
-	private List<Reservation> reservations = new ArrayList<>();
+	private List<Reservation> reservations;
 	private int currentReservationIndex;
 	private Reservation editedReservation;
 
