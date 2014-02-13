@@ -33,7 +33,7 @@ public class ReservationDao extends GenericDaoImpl<Reservation> {
 		gc.add(Calendar.DAY_OF_YEAR, -3);
 		Date now = gc.getTime();
 		
-		TypedQuery<Reservation> query = entityManager.createQuery("SELECT r FROM Reservation r where r.dateReservation > ?1", Reservation.class);
+		TypedQuery<Reservation> query = entityManager.createQuery("SELECT r FROM Reservation r where r.dateReservation > ?1 and r.paid = false", Reservation.class);
 		List<Reservation> reservations = null;
 		
 		query.setParameter(1, now);

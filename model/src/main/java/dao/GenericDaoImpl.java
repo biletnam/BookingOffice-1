@@ -27,10 +27,7 @@ public abstract class GenericDaoImpl<T> implements GenericDao<T> {
 
 	@Override
 	public T create(T t) {
-		// TODO remove transaction in future
-		entityManager.getTransaction().begin();
 		entityManager.persist(t);
-		entityManager.getTransaction().commit();
 		return t;
 	}
 
@@ -41,10 +38,7 @@ public abstract class GenericDaoImpl<T> implements GenericDao<T> {
 
 	@Override
 	public void delete(Object id) {
-		// TODO remove transaction in future
-		entityManager.getTransaction().begin();
 		entityManager.remove(entityManager.getReference(type, id));
-		entityManager.getTransaction().commit();
 	}
 
 	@Override

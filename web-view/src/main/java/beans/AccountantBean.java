@@ -21,7 +21,7 @@ public class AccountantBean {
 
 	private List<Reservation> reservations = new ArrayList<>();
 	private int currentReservationIndex;
-	private Reservation editedReservation = new Reservation();
+	private Reservation editedReservation;
 
 	@PostConstruct
 	public void init() {
