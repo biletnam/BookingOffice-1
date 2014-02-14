@@ -16,13 +16,13 @@
 
 	<ui:define name="content">
 		<h3>Accountant page</h3>
-		<h:form>
+		<h:form id="formAccountant">
 			<h:panelGrid columns="1">
 				<h:outputText value="Actual reservations"></h:outputText>
-				<a4j:commandButton value="Refresh" render="table"
+				<a4j:commandButton value="Refresh" render="tableAccountant"
 					action="accountantBean.findActualReservations" execute="@form" />
 			</h:panelGrid>
-			<rich:dataTable id="table" value="#{accountantBean.reservations}"
+			<rich:dataTable id="tableAccountant" value="#{accountantBean.reservations}"
 				var="item">
 				<rich:column>
 					<f:facet name="header">Reservation number</f:facet>
@@ -66,10 +66,10 @@
 				</rich:column>
 				<rich:column>
 					<h:panelGrid columns="1">
-						<a4j:commandLink action="reservationEdit" execute="@this">
+						<a4j:commandLink execute="@this" render="editReservationGrid" oncomplete="#{rich:component('editPane')}.show()">
 							<h:outputText value="Edit" />
 							<f:setPropertyActionListener
-								target="#{reservationBackingBean.itemId}" value="#{item.id}" />
+								target="#{backingBean.reservationId}" value="#{item.id}" />
 						</a4j:commandLink>
 					</h:panelGrid>
 				</rich:column>
