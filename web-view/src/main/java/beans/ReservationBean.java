@@ -14,17 +14,19 @@ import entity.Reservation;
 public class ReservationBean {
 	@Inject
 	private AccountantService accountantService;
+	@Inject
+	private ReservationBackingBean backingBean;
 	private Reservation reservation;
 
 	@PostConstruct
 	public void init() {
-		reservation = new Reservation();
+		reservation = accountantService.readReservation(backingBean.getItemId());
 	}
-	
+
 	public void saveReservation() {
 		accountantService.updateReservation(reservation);
 	}
-	
+
 	public Reservation getReservation() {
 		return reservation;
 	}
@@ -40,7 +42,14 @@ public class ReservationBean {
 	public void setAccountantService(AccountantService accountantService) {
 		this.accountantService = accountantService;
 	}
-	
-	
 
+	public ReservationBackingBean getBackingBean() {
+		return backingBean;
+	}
+
+	public void setBackingBean(ReservationBackingBean backingBean) {
+		this.backingBean = backingBean;
+	}
+
+	
 }

@@ -10,17 +10,8 @@
 
 <ui:composition template="WEB-INF/templates/template.xhtml">
 	<ui:define name="title">Accountant page - Airline booking office</ui:define>
-	<ui:define name="authorization"></ui:define>
 	<ui:define name="pan">
-		<h:panelGrid columns="8">
-			<h:link value="Administrator" outcome="administrator"></h:link>  
-				<h:outputText value="|"></h:outputText>
-			<h:link value="Accountant" outcome="accountant" />
-			<h:outputText value="|"></h:outputText>
-			<h:link value="Analytic" outcome="analytic" />
-			<h:outputText value="|"></h:outputText>
-			<h:link value="SecurityOfficer" outcome="securityOfficer" />
-		</h:panelGrid>
+		<ui:include src="panel.xhtml"></ui:include>
 	</ui:define>
 
 	<ui:define name="content">
@@ -32,11 +23,7 @@
 					action="accountantBean.findActualReservations" execute="@form" />
 			</h:panelGrid>
 			<rich:dataTable id="table" value="#{accountantBean.reservations}"
-				var="item" iterationStatusVar="it">
-				<rich:column>
-					<f:facet name="header">#</f:facet>
-                	#{it.index}
-            	</rich:column>
+				var="item">
 				<rich:column>
 					<f:facet name="header">Reservation number</f:facet>
 					<h:outputText value="#{item.id}"></h:outputText>
@@ -79,13 +66,10 @@
 				</rich:column>
 				<rich:column>
 					<h:panelGrid columns="1">
-						<a4j:commandLink styleClass="no-decor" render="editGrid"
-							execute="@this" oncomplete="#{rich:component('editPane')}.show()">
+						<a4j:commandLink action="reservationEdit" execute="@this">
 							<h:outputText value="Edit" />
-							<a4j:param value="#{it.index}"
-								assignTo="#{accountantBean.currentReservationIndex}" />
 							<f:setPropertyActionListener
-								target="#{reservationBean.reservation}" value="#{item}" />
+								target="#{reservationBackingBean.itemId}" value="#{item.id}" />
 						</a4j:commandLink>
 					</h:panelGrid>
 				</rich:column>
@@ -93,7 +77,7 @@
 
 			<rich:popupPanel header="Edit Reservation Details" id="editPane"
 				domElementAttachment="parent" autosized="true">
-				<ui:include src="reservation.xhtml"></ui:include>
+				<ui:include src="reservationEdit.xhtml"></ui:include>
 			</rich:popupPanel>
 		</h:form>
 	</ui:define>
