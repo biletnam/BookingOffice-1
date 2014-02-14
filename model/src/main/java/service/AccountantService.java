@@ -24,6 +24,11 @@ public class AccountantService {
 	}
 	
 	@Transactional
+	public Reservation readReservation(Object id) {
+		return reservationDao.read(id);
+	}
+	
+	@Transactional
 	public List<Reservation> findActualReservations() {
 		return reservationDao.findActualReservations();
 	}
