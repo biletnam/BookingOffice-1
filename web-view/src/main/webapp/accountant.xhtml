@@ -85,64 +85,16 @@
 							<a4j:param value="#{it.index}"
 								assignTo="#{accountantBean.currentReservationIndex}" />
 							<f:setPropertyActionListener
-								target="#{accountantBean.editedReservation}" value="#{item}" />
+								target="#{reservationBean.reservation}" value="#{item}" />
 						</a4j:commandLink>
 					</h:panelGrid>
 				</rich:column>
 			</rich:dataTable>
 
 			<rich:popupPanel header="Edit Reservation Details" id="editPane"
-				domElementAttachment="parent" width="500" height="280">
-				<h:panelGrid columns="3" id="editGrid">
-					<h:outputText value="Reservation number" />
-					<h:outputText value="#{accountantBean.editedReservation.id}" />
-					<h:panelGroup />
-					<h:outputText value="Surname" />
-					<h:outputText
-						value="#{accountantBean.editedReservation.customerSurname}" />
-					<h:panelGroup />
-					<h:outputText value="Name" />
-					<h:outputText
-						value="#{accountantBean.editedReservation.customerName}" />
-					<h:panelGroup />
-					<h:outputText value="Middlename" />
-					<h:outputText
-						value="#{accountantBean.editedReservation.customerMiddlename}" />
-					<h:panelGroup />
-					<h:outputText value="E-mail" />
-					<h:outputText
-						value="#{accountantBean.editedReservation.customerEmail}" />
-					<h:panelGroup />
-					<h:outputText value="Sum" />
-					<h:outputText value="#{accountantBean.editedReservation.sumTotal}" />
-					<h:panelGroup />
-					<h:outputText value="Reservation date" />
-					<h:outputText
-						value="#{accountantBean.editedReservation.dateReservation}">
-						<f:convertDateTime pattern="dd.MM.yyyy HH:mm:ss"></f:convertDateTime>
-					</h:outputText>
-					<h:panelGroup />
-					<h:outputText value="Is paid" />
-					<h:selectBooleanCheckbox
-						value="#{accountantBean.editedReservation.paid}"></h:selectBooleanCheckbox>
-					<h:panelGroup />
-
-					<h:outputText value="Payment date" />
-					<rich:calendar id="calendarPayment"
-						value="#{accountantBean.editedReservation.datePayment}"
-						locale="US" popup="true" datePattern="dd.MM.yyyy HH:mm"
-						required="true" requiredMessage="Payment date is required">
-					</rich:calendar>
-					<rich:message id="calendarPaymentMsg" for="calendarPayment" />
-				</h:panelGrid>
-				<a4j:commandButton value="Save"
-					action="#{accountantBean.saveReservation}" render="table"
-					execute="editPane"
-					oncomplete="if (#{facesContext.maximumSeverity==null}) {#{rich:component('editPane')}.hide();}" />
-				<a4j:commandButton value="Cancel"
-					onclick="#{rich:component('editPane')}.hide(); return false;" />
+				domElementAttachment="parent" autosized="true">
+				<ui:include src="reservation.xhtml"></ui:include>
 			</rich:popupPanel>
-
 		</h:form>
 	</ui:define>
 </ui:composition>
