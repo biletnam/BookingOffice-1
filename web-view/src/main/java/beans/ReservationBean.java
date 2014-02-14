@@ -15,12 +15,12 @@ public class ReservationBean {
 	@Inject
 	private AccountantService accountantService;
 	@Inject
-	private ReservationBackingBean backingBean;
+	private BackingBean backingBean;
 	private Reservation reservation;
 
 	@PostConstruct
 	public void init() {
-		reservation = accountantService.readReservation(backingBean.getItemId());
+		reservation = accountantService.readReservation(backingBean.getReservationId());
 	}
 
 	public void saveReservation() {
@@ -43,11 +43,11 @@ public class ReservationBean {
 		this.accountantService = accountantService;
 	}
 
-	public ReservationBackingBean getBackingBean() {
+	public BackingBean getBackingBean() {
 		return backingBean;
 	}
 
-	public void setBackingBean(ReservationBackingBean backingBean) {
+	public void setBackingBean(BackingBean backingBean) {
 		this.backingBean = backingBean;
 	}
 

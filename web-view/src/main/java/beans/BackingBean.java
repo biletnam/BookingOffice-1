@@ -9,16 +9,15 @@ import org.springframework.context.annotation.Scope;
 @SuppressWarnings("serial")
 @Named
 @Scope("session")
-public class ReservationBackingBean implements Serializable {
-	private int itemId;
+public class BackingBean implements Serializable {
+	private int reservationId;
 
-	public int getItemId() {
-		return itemId;
+	public int getReservationId() {
+		return reservationId;
 	}
 
-	public void setItemId(int itemId) {
-		this.itemId = itemId;
+	public void setReservationId(int reservationId) {
+		this.reservationId = reservationId;
 	}
-
 	
 }
