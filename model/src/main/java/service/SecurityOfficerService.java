@@ -1,5 +1,7 @@
 package service;
 
+import java.util.List;
+
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -15,13 +17,28 @@ public class SecurityOfficerService {
 	private AccountDao accountDao;
 
 	@Transactional
-	public void addAccount(Account a) {
-		accountDao.create(a);
+	public Account createAccount(Account a) {
+		return accountDao.create(a);
 	}
 
 	@Transactional
-	public void editAccount(Account a) {
-		accountDao.update(a);
+	public Account updateAccount(Account a) {
+		return accountDao.update(a);
+	}
+	
+	@Transactional
+	public Account readAccount(Object id) {
+		return accountDao.read(id);
+	}
+	
+	@Transactional
+	public void deleteAccount(Object id) {
+		accountDao.delete(id);
+	}
+	
+	@Transactional
+	public List<Account> findAllAccounts() {
+		return accountDao.findAll();
 	}
 
 }

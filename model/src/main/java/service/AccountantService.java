@@ -19,13 +19,23 @@ public class AccountantService {
 	private TicketDao ticketDao;
 
 	@Transactional
-	public Reservation updateReservation(Reservation r) {
-		return reservationDao.update(r);
+	public Reservation createReservation(Reservation r) {
+		return reservationDao.create(r);
 	}
 	
 	@Transactional
 	public Reservation readReservation(Object id) {
 		return reservationDao.read(id);
+	}
+	
+	@Transactional
+	public Reservation updateReservation(Reservation r) {
+		return reservationDao.update(r);
+	}
+	
+	@Transactional
+	public void deleteReservation(Object id) {
+		reservationDao.delete(id);
 	}
 	
 	@Transactional

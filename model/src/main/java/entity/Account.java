@@ -16,7 +16,7 @@ public class Account {
 	private String name;
 	private String middlename;
 	private boolean active;
-	@OneToMany(mappedBy = "account")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "account")
 	private List<AccountRights> accountRights;
 
 	public String getLogin() {

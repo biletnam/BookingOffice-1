@@ -11,31 +11,19 @@
 <ui:composition template="WEB-INF/templates/template.xhtml">
 	<ui:define name="title">Security officer page - Airline booking office</ui:define>
 	<ui:define name="pan">
-		<h:panelGrid columns="8">
-			<h:link value="Administrator" outcome="administrator"></h:link>  
-				<h:outputText value="|"></h:outputText>
-			<h:link value="Accountant" outcome="accountant" />
-			<h:outputText value="|"></h:outputText>
-			<h:link value="Analytic" outcome="analytic" />
-			<h:outputText value="|"></h:outputText>
-			<h:link value="SecurityOfficer" outcome="securityOfficer" />
-		</h:panelGrid>
+		<ui:include src="panel.xhtml"></ui:include>
 	</ui:define>
 
 	<ui:define name="content">
 		<h3>Security officer page</h3>
-		<h:form>
-			<h:panelGrid columns="2">
-				<a4j:commandButton value="New account" render="createGrid"
+		<h:form id="securityOfficerForm">
+			<h:panelGrid columns="1">
+				<h:outputText value="User accounts"></h:outputText>
+				<a4j:commandButton value="New account" render="createSecurityOfficerGrid"
 					execute="@this" oncomplete="#{rich:component('createPane')}.show()" />
-				<h:panelGroup />
 			</h:panelGrid>
-			<rich:dataTable id="table" value="#{securityOfficerBean.accounts}"
+			<rich:dataTable id="securityOfficerTable" value="#{securityOfficerBean.accounts}"
 				var="item" iterationStatusVar="it">
-				<rich:column>
-					<f:facet name="header">#</f:facet>
-                	#{it.index}
-            	</rich:column>
 				<rich:column>
 					<f:facet name="header">SurName</f:facet>
 					<h:outputText value="#{item.surname}"></h:outputText>
@@ -64,7 +52,7 @@
 					<f:facet name="header">Roles</f:facet>
 					<h:selectManyCheckbox value="#{item.accountRights}" disabled="true">
 						<f:selectItems
-							value="#{item.accountRights}" var="i" label="#{i.accountRole}" />
+							value="#{item.accountRights}" var="i" itemLabel="#{i.accountRole}" />
 					</h:selectManyCheckbox>
 				</rich:column>
 				<rich:column>

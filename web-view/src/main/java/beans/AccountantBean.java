@@ -17,18 +17,11 @@ public class AccountantBean {
 
 	@Inject
 	private AccountantService accountantServise;
-
 	private List<Reservation> reservations;
-	private int currentReservationIndex;
-	private Reservation editedReservation;
-
-	@PostConstruct
-	public void init() {
-		setReservations(accountantServise.findActualReservations());
-	}
 	
-	public void saveReservation() {
-		accountantServise.updateReservation(editedReservation);
+	@PostConstruct
+	public void initialize() {
+		setReservations(accountantServise.findActualReservations());
 	}
 	
 	public void findActualReservations() {
@@ -43,19 +36,4 @@ public class AccountantBean {
 		this.reservations = reservations;
 	}
 
-	public Reservation getEditedReservation() {
-		return editedReservation;
-	}
-
-	public void setEditedReservation(Reservation editedReservation) {
-		this.editedReservation = editedReservation;
-	}
-
-	public int getCurrentReservationIndex() {
-		return currentReservationIndex;
-	}
-
-	public void setCurrentReservationIndex(int currentReservationIndex) {
-		this.currentReservationIndex = currentReservationIndex;
-	}
 }

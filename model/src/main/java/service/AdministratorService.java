@@ -17,27 +17,29 @@ public class AdministratorService {
 
 	@Inject
 	private FlightDao flightDao;
-
 	@Inject
 	private TicketDao ticketDao;
-
 	@Inject
 	private ReservationDao reservationDao;
 
 	@Transactional
-	public void addFlight(Flight f) {
-		flightDao.create(f);
+	public Flight createFlight(Flight f) {
+		return flightDao.create(f);
 	}
 
 	@Transactional
-	public void editFlight(Flight f) {
-		flightDao.update(f);
+	public Flight readFlight(Object id) {
+		return flightDao.read(id);
 	}
 
 	@Transactional
-	public void deleteFlight(Flight f) {
-		flightDao.delete(f.getId());
-		;
+	public Flight updateFlight(Flight f) {
+		return flightDao.update(f);
+	}
+
+	@Transactional
+	public void deleteFlight(Object id) {
+		flightDao.delete(id);
 	}
 
 	@Transactional
