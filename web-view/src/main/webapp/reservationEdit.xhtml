@@ -13,7 +13,7 @@
 </h:head>
 
 <h:body>
-	<h:form>
+	<h:form id="editReservationForm">
 		<h:panelGrid columns="3" id="editReservationGrid">
 			<h:outputText value="Reservation number" />
 			<h:outputText value="#{reservationBean.reservation.id}" />
@@ -52,11 +52,10 @@
 			<rich:message id="calendarPaymentMsg" for="calendarPayment" />
 		</h:panelGrid>
 		<a4j:commandButton value="Save"
-			action="#{reservationBean.saveReservation}" execute="editPane"
-			oncomplete="if (#{facesContext.maximumSeverity==null}) {#{rich:component('editPane')}.hide();}" />
+			action="#{reservationBean.saveReservation}" execute="editReservationPane"
+			oncomplete="if (#{facesContext.maximumSeverity==null}) {#{rich:component('editReservationPane')}.hide();}" />
 		<a4j:commandButton value="Cancel"
-			onclick="#{rich:component('editPane')}.hide(); return false;" />
-
+			onclick="#{rich:component('editReservationPane')}.hide(); return false;" />
 	</h:form>
 </h:body>
 
