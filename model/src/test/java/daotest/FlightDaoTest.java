@@ -64,7 +64,10 @@ public class FlightDaoTest extends TestBase {
 		f.setTicketAmount(ticketAmount);
 		f.setTicketPrice(ticketPrice);
 
+		flightDao.getEntityManager().getTransaction().begin();
 		flightDao.create(f);
+		flightDao.getEntityManager().getTransaction().commit();
+		
 		int id = f.getId();
 		Flight fReaded = flightDao.read(id);
 		assertTrue(id == fReaded.getId());
@@ -77,7 +80,9 @@ public class FlightDaoTest extends TestBase {
 		assertTrue(ticketAmount == fReaded.getTicketAmount());
 		assertTrue(ticketPrice == fReaded.getTicketPrice());
 		
+		flightDao.getEntityManager().getTransaction().begin();
 		flightDao.delete(id);
+		flightDao.getEntityManager().getTransaction().commit();
 	}
 
 	@Test
@@ -86,7 +91,9 @@ public class FlightDaoTest extends TestBase {
 		int ticketAmount = 20;
 		f.setTicketAmount(ticketAmount);
 		
+		flightDao.getEntityManager().getTransaction().begin();
 		flightDao.update(f);
+		flightDao.getEntityManager().getTransaction().commit();
 		
 		Flight fReaded = flightDao.read(1);
 		
@@ -103,7 +110,9 @@ public class FlightDaoTest extends TestBase {
 		ticketAmount = 10;
 		f.setTicketAmount(ticketAmount);
 		
+		flightDao.getEntityManager().getTransaction().begin();
 		flightDao.update(f);
+		flightDao.getEntityManager().getTransaction().commit();
 	}
 
 	@Test
@@ -137,12 +146,17 @@ public class FlightDaoTest extends TestBase {
 		f.setTicketAmount(ticketAmount);
 		f.setTicketPrice(ticketPrice);
 
+		flightDao.getEntityManager().getTransaction().begin();
 		flightDao.create(f);
+		flightDao.getEntityManager().getTransaction().commit();
 
 		int id = f.getId();
 		
 		Flight fReaded = flightDao.read(id);
+		
+		flightDao.getEntityManager().getTransaction().begin();
 		flightDao.delete(id);
+		flightDao.getEntityManager().getTransaction().commit();
 		
 		fReaded = flightDao.read(id);
 		assertTrue(fReaded == null);
@@ -154,20 +168,12 @@ public class FlightDaoTest extends TestBase {
 		GregorianCalendar gcCreated = new GregorianCalendar(2013, Calendar.DECEMBER, 01, 10, 20, 0);
 		Date dtCreated = gcCreated.getTime();
 		
-		//GregorianCalendar gcDeparture = new GregorianCalendar(2013, Calendar.DECEMBER, 25, 10, 20, 0);
-		//Date dtDeparture = gcDeparture.getTime();
-		
-		//GregorianCalendar gcArrival = new GregorianCalendar(2013, Calendar.DECEMBER, 25, 12, 10, 0);
-		//Date dtArrival = gcArrival.getTime();
-		
 		Flight f = flightDao.read(2);
 		assertTrue(f.getId() == 2);
 		assertTrue(dtCreated.equals(f.getDateCreated()));
 		assertTrue(f.getFlightNumber().equals("AQ-021"));
 		assertTrue(f.getDeparture().equals("Kyiv"));
 		assertTrue(f.getArrival().equals("Roma"));
-		//assertTrue(f.getDateDeparture().equals(dtDeparture));
-		//assertTrue(f.getDateArrival().equals(dtArrival));
 		assertTrue(f.getTicketAmount() == 5);
 		assertTrue(f.getTicketPrice() == 1500);
 	}

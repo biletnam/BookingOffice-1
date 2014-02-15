@@ -1,7 +1,5 @@
 package entity;
 
-import java.util.List;
-
 import javax.persistence.*;
 
 @Entity
@@ -15,10 +13,9 @@ public class Account {
 	private String surname;
 	private String name;
 	private String middlename;
+	private AccountRole accountRole;
 	private boolean active;
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "account")
-	private List<AccountRights> accountRights;
-
+	
 	public String getLogin() {
 		return login;
 	}
@@ -71,12 +68,12 @@ public class Account {
 		return id;
 	}
 
-	public List<AccountRights> getAccountRights() {
-		return accountRights;
+	public AccountRole getAccountRole() {
+		return accountRole;
 	}
 
-	public void setAccountRights(List<AccountRights> accountRights) {
-		this.accountRights = accountRights;
+	public void setAccountRole(AccountRole accountRole) {
+		this.accountRole = accountRole;
 	}
 
 }

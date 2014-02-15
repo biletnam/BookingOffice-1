@@ -61,15 +61,19 @@ public class TicketDaoTest extends TestBase {
 		t.setStatus(status);
 		t.setReservationId(reservationId);
 		
-
+		ticketDao.getEntityManager().getTransaction().begin();
 		ticketDao.create(t);
+		ticketDao.getEntityManager().getTransaction().commit();
+
 		int id = t.getId();
 		Ticket tReaded = ticketDao.read(id);
 		assertTrue(id == tReaded.getId());
 		assertTrue(status.equals(tReaded.getStatus()));
 		assertTrue(reservationId == tReaded.getReservationId());
 		
+		ticketDao.getEntityManager().getTransaction().begin();
 		ticketDao.delete(id);
+		ticketDao.getEntityManager().getTransaction().commit();
 	}
 
 	@Test
@@ -78,7 +82,9 @@ public class TicketDaoTest extends TestBase {
 		TicketStatus status = TicketStatus.BOOKED;
 		t.setStatus(status);
 
+		ticketDao.getEntityManager().getTransaction().begin();
 		ticketDao.update(t);
+		ticketDao.getEntityManager().getTransaction().commit();
 
 		Ticket tReaded = ticketDao.read(1);
 
@@ -90,7 +96,9 @@ public class TicketDaoTest extends TestBase {
 		status = TicketStatus.SOLD;
 		t.setStatus(status);
 
+		ticketDao.getEntityManager().getTransaction().begin();
 		ticketDao.update(t);
+		ticketDao.getEntityManager().getTransaction().commit();
 	}
 
 	@Test
@@ -103,12 +111,17 @@ public class TicketDaoTest extends TestBase {
 		t.setStatus(status);
 		t.setReservationId(3);
 		
+		ticketDao.getEntityManager().getTransaction().begin();
 		ticketDao.create(t);
+		ticketDao.getEntityManager().getTransaction().commit();
 
 		int id = t.getId();
 
 		Ticket tReaded = ticketDao.read(id);
+		
+		ticketDao.getEntityManager().getTransaction().begin();
 		ticketDao.delete(id);
+		ticketDao.getEntityManager().getTransaction().commit();
 
 		tReaded = ticketDao.read(id);
 		assertTrue(tReaded == null);
@@ -134,7 +147,10 @@ public class TicketDaoTest extends TestBase {
 		t1.setReservationId(3);
 		t1.setStatus(status);
 
+		ticketDao.getEntityManager().getTransaction().begin();
 		ticketDao.create(t1);
+		ticketDao.getEntityManager().getTransaction().commit();
+		
 		int id1 = t1.getId();
 		Ticket t2 = new Ticket();
 		flightId = 2;
@@ -144,7 +160,10 @@ public class TicketDaoTest extends TestBase {
 		t2.setReservationId(3);
 		t2.setStatus(status);
 
+		ticketDao.getEntityManager().getTransaction().begin();
 		ticketDao.create(t2);
+		ticketDao.getEntityManager().getTransaction().commit();
+		
 		int id2 = t2.getId();
 
 		List<Ticket> tickets = new ArrayList<>();
@@ -159,8 +178,10 @@ public class TicketDaoTest extends TestBase {
 		assertTrue(tReaded1.getStatus().equals(TicketStatus.SOLD));
 		assertTrue(tReaded2.getStatus().equals(TicketStatus.SOLD));
 
+		ticketDao.getEntityManager().getTransaction().begin();
 		ticketDao.delete(id1);
 		ticketDao.delete(id2);
+		ticketDao.getEntityManager().getTransaction().commit();
 
 	}
 

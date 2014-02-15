@@ -10,6 +10,7 @@ import org.junit.*;
 
 import dao.AccountDao;
 import entity.Account;
+import entity.AccountRole;
 
 public class AccountDaoTest extends TestBase {
 	private static AccountDao accountDao;
@@ -36,6 +37,7 @@ public class AccountDaoTest extends TestBase {
 		String surname = "Surname4";
 		String name = "Name4";
 		String middlename = "Middlename4";
+		AccountRole accountRole = AccountRole.ADMINISTRATOR;
 		boolean active = true;
 		
 		a.setLogin(login);
@@ -43,9 +45,12 @@ public class AccountDaoTest extends TestBase {
 		a.setSurname(surname);
 		a.setName(name);
 		a.setMiddlename(middlename);
+		a.setAccountRole(accountRole);
 		a.setActive(active);
 
+		accountDao.getEntityManager().getTransaction().begin();
 		accountDao.create(a);
+		accountDao.getEntityManager().getTransaction().commit();
 		
 		int id = a.getId();
 		Account aReaded = accountDao.read(id);
@@ -56,9 +61,12 @@ public class AccountDaoTest extends TestBase {
 		assertTrue(surname.equals(aReaded.getSurname()));
 		assertTrue(name.equals(aReaded.getName()));
 		assertTrue(middlename.equals(aReaded.getMiddlename()));
+		assertTrue(accountRole.equals(aReaded.getAccountRole()));
 		assertTrue(active == aReaded.isActive());
 		
+		accountDao.getEntityManager().getTransaction().begin();
 		accountDao.delete(id);
+		accountDao.getEntityManager().getTransaction().commit();
 			
 	}
 
@@ -68,7 +76,9 @@ public class AccountDaoTest extends TestBase {
 		boolean active = false;
 		a.setActive(active);
 		
+		accountDao.getEntityManager().getTransaction().begin();
 		accountDao.update(a);
+		accountDao.getEntityManager().getTransaction().commit();
 		
 		Account aReaded = accountDao.read(1);
 		
@@ -83,8 +93,9 @@ public class AccountDaoTest extends TestBase {
 		active = true;
 		a.setActive(active);;
 		
+		accountDao.getEntityManager().getTransaction().begin();
 		accountDao.update(a);
-		
+		accountDao.getEntityManager().getTransaction().commit();
 	}
 
 	@Test
@@ -96,6 +107,7 @@ public class AccountDaoTest extends TestBase {
 		String surname = "Surname4";
 		String name = "Name4";
 		String middlename = "Middlename4";
+		AccountRole accountRole = AccountRole.ADMINISTRATOR;
 		boolean active = true;
 		
 		a.setLogin(login);
@@ -103,14 +115,19 @@ public class AccountDaoTest extends TestBase {
 		a.setSurname(surname);
 		a.setName(name);
 		a.setMiddlename(middlename);
+		a.setAccountRole(accountRole);
 		a.setActive(active);
 		
+		accountDao.getEntityManager().getTransaction().begin();
 		accountDao.create(a);
+		accountDao.getEntityManager().getTransaction().commit();
 
 		int id = a.getId();
 		
 		Account aReaded = accountDao.read(id);
+		accountDao.getEntityManager().getTransaction().begin();
 		accountDao.delete(id);
+		accountDao.getEntityManager().getTransaction().commit();
 		
 		aReaded = accountDao.read(id);
 		assertTrue(aReaded == null);

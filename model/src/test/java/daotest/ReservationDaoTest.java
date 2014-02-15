@@ -55,7 +55,10 @@ public class ReservationDaoTest extends TestBase {
 		r.setDateReservation(dtReservation);
 		r.setPaid(paid);
 
+		reservationDao.getEntityManager().getTransaction().begin();
 		reservationDao.create(r);
+		reservationDao.getEntityManager().getTransaction().commit();
+		
 		int id = r.getId();
 		Reservation rReaded = reservationDao.read(id);
 		assertTrue(id == rReaded.getId());
@@ -67,7 +70,9 @@ public class ReservationDaoTest extends TestBase {
 		assertTrue(dtReservation.equals(rReaded.getDateReservation()));
 		assertTrue(paid == rReaded.isPaid());
 
+		reservationDao.getEntityManager().getTransaction().begin();
 		reservationDao.delete(id);
+		reservationDao.getEntityManager().getTransaction().commit();
 	}
 
 	@Test
@@ -76,7 +81,9 @@ public class ReservationDaoTest extends TestBase {
 		String customerSurname = "Surname11";
 		r.setCustomerSurname(customerSurname);
 
+		reservationDao.getEntityManager().getTransaction().begin();
 		reservationDao.update(r);
+		reservationDao.getEntityManager().getTransaction().commit();
 
 		Reservation rReaded = reservationDao.read(1);
 
@@ -92,7 +99,10 @@ public class ReservationDaoTest extends TestBase {
 
 		customerSurname = "Surname1";
 		r.setCustomerSurname(customerSurname);
+		
+		reservationDao.getEntityManager().getTransaction().begin();
 		reservationDao.update(r);
+		reservationDao.getEntityManager().getTransaction().commit();
 	}
 
 	@Test
@@ -117,12 +127,17 @@ public class ReservationDaoTest extends TestBase {
 		r.setDateReservation(dtReservation);
 		r.setPaid(paid);
 
+		reservationDao.getEntityManager().getTransaction().begin();
 		reservationDao.create(r);
+		reservationDao.getEntityManager().getTransaction().commit();
 
 		int id = r.getId();
 
 		Reservation rReaded = reservationDao.read(id);
+		
+		reservationDao.getEntityManager().getTransaction().begin();
 		reservationDao.delete(id);
+		reservationDao.getEntityManager().getTransaction().commit();
 
 		rReaded = reservationDao.read(id);
 		assertTrue(rReaded == null);
@@ -192,19 +207,12 @@ public class ReservationDaoTest extends TestBase {
 		r.setDateReservation(dtReservation);
 		r.setPaid(paid);
 
+		reservationDao.getEntityManager().getTransaction().begin();
 		reservationDao.create(r);
+		reservationDao.getEntityManager().getTransaction().commit();
 
 		List<Reservation> reservations = reservationDao.findActualReservations();
-		assertTrue(reservations.size() == 1);
-		assertTrue(reservations.get(0).getId() == 4);
-		assertTrue(reservations.get(0).getCustomerSurname().equals("Surname6"));
-		assertTrue(reservations.get(0).getCustomerName().equals("Name6"));
-		assertTrue(reservations.get(0).getCustomerMiddlename()
-				.equals("Middlename6"));
-		assertTrue(reservations.get(0).getCustomerEmail().equals("Address6"));
-		assertTrue(reservations.get(0).getDateReservation()
-				.equals(dtReservation));
-		assertTrue(reservations.get(0).isPaid() == paid);
+		assertTrue(reservations.size() == 0);
 
 	}
 

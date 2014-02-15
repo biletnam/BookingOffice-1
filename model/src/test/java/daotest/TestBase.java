@@ -18,13 +18,8 @@ public abstract class TestBase {
 				+ "SURNAME varchar(50) not null,"
 				+ "NAME varchar(50) not null,"
 				+ "MIDDLENAME varchar(50) not null,"
-				+ "ACTIVE boolean not null," + "primary key (ID))";
-		stmt.execute(command);
-
-		command = "create table ACCOUNTRIGHTS(ID integer not null GENERATED ALWAYS AS IDENTITY,"
-				+ "ACCOUNTID integer constraint ACCOUNT_FK references ACCOUNT,"
 				+ "ACCOUNTROLE smallint not null,"
-				+ "ACCOUNTROLEACTIVE boolean not null," + "primary key (ID))";
+				+ "ACTIVE boolean not null," + "primary key (ID))";
 		stmt.execute(command);
 
 		command = "create table FLIGHT(ID integer not null GENERATED ALWAYS AS IDENTITY,"
@@ -103,11 +98,8 @@ public abstract class TestBase {
 				+ "(3, 2, 2)";
 		stmt.execute(command);
 
-		command = "INSERT INTO ACCOUNT (LOGIN, PSW, SURNAME, NAME, MIDDLENAME, ACTIVE) VALUES ('Login1', 'Psw1', 'Surname1', 'Name1', 'Middlename1', TRUE),"
-				+ "('Login2', 'Psw2', 'Surname2', 'Name2', 'Middlename2', TRUE), ('Login3', 'Psw3', 'Surname3', 'Name3', 'Middlename3', TRUE)";
-		stmt.execute(command);
-
-		command = "INSERT INTO ACCOUNTRIGHTS (ACCOUNTID, ACCOUNTROLE, ACCOUNTROLEACTIVE) VALUES (1, 0, true), (1, 1, true), (1, 2, false), (2, 0, false), (2, 1, true), (2, 2, false)";
+		command = "INSERT INTO ACCOUNT (LOGIN, PSW, SURNAME, NAME, MIDDLENAME, ACCOUNTROLE, ACTIVE) VALUES ('Login1', 'Psw1', 'Surname1', 'Name1', 'Middlename1', 0, TRUE),"
+				+ "('Login2', 'Psw2', 'Surname2', 'Name2', 'Middlename2', 1, TRUE), ('Login3', 'Psw3', 'Surname3', 'Name3', 'Middlename3', 2, TRUE)";
 		stmt.execute(command);
 
 		connection.close();
@@ -126,8 +118,6 @@ public abstract class TestBase {
 		command = "DROP TABLE RESERVATION";
 		stmt.execute(command);
 		command = "DROP TABLE FLIGHT";
-		stmt.execute(command);
-		command = "DROP TABLE ACCOUNTRIGHTS";
 		stmt.execute(command);
 		command = "DROP TABLE ACCOUNT";
 		stmt.execute(command);
