@@ -4,37 +4,53 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j">
 
-<ui:composition template="WEB-INF/templates/template.xhtml">
-	<ui:define name="content">
-		<h3>Security officer page</h3>
-		<h:form>
-			<h:panelGrid columns="2">
-				<h:outputText value="Login"></h:outputText>
-				<h:inputText id="login" value="#{accountBean.login}"></h:inputText>
-				<h:outputText value="Password"></h:outputText>
-				<h:inputText id="psw" value="#{accountBean.psw}"></h:inputText>
-				<h:outputText value="Surname"></h:outputText>
-				<h:inputText id="surname" value="#{accountBean.surname}"></h:inputText>
-				<h:outputText value="Name"></h:outputText>
-				<h:inputText id="name" value="#{accountBean.name}"></h:inputText>
-				<h:outputText value="Middlename"></h:outputText>
-				<h:inputText id="middlename" value="#{accountBean.middlename}"></h:inputText>
-				<h:outputText value="Is Active"></h:outputText>
-				<h:selectBooleanCheckbox id="isActive" value="#{accountBean.isActive}"></h:selectBooleanCheckbox>
-				<h:outputText value="Account rights"></h:outputText>
-				<h:selectManyCheckbox value="#{accountBean.accountRights}" >
-					<f:selectItem itemValue="administrator" itemLabel="administrator" />
-					<f:selectItem itemValue="accountant" itemLabel="accountant" />
-					<f:selectItem itemValue="analytic" itemLabel="analytic" />
-					<f:selectItem itemValue="securityOfficer" itemLabel="security officer" />
-				</h:selectManyCheckbox>
-				
-				<h:commandButton value="Submit" action="accountResult"></h:commandButton>
-				
-			</h:panelGrid>
-		</h:form>
-	</ui:define>
-</ui:composition>
+<h:head>
+	<title>Account page</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<h:outputStylesheet library="css" name="style.css" />
+</h:head>
+
+<h:body>
+	<h:form id="accountForm">
+		<h:panelGrid columns="3" id="accountGrid">
+			<h:outputText value="Surname" />
+			<h:inputText value="#{accountBean.account.surname}" />
+			<h:panelGroup />
+			<h:outputText value="Name" />
+			<h:inputText value="#{accountBean.account.name}" />
+			<h:panelGroup />
+			<h:outputText value="Middlename" />
+			<h:inputText value="#{accountBean.account.middlename}" />
+			<h:panelGroup />
+			<h:outputText value="Login" />
+			<h:inputText value="#{accountBean.account.login}" />
+			<h:panelGroup />
+			<h:outputText value="Password" />
+			<h:inputText value="#{accountBean.account.psw}" />
+			<h:panelGroup />
+			<h:outputText value="Is active" />
+			<h:selectBooleanCheckbox
+				value="#{accountBean.account.active}" />
+			<h:panelGroup />
+			<h:outputText value="Roles" />
+			<h:selectManyCheckbox
+				value="#{accountBean.account.accountRights}">
+				<f:selectItems
+					value="#{accountBean.account.accountRights}" var="a"
+					itemLabel="#{a.accountRole}" />
+			</h:selectManyCheckbox>
+
+		</h:panelGrid>
+		<a4j:commandButton value="Save" action="#{accountBean.saveAccount}"
+			render="table" execute="accountPane"
+			oncomplete="if (#{facesContext.maximumSeverity==null}) {#{rich:component('accountPane')}.hide();}" />
+		<a4j:commandButton value="Cancel"
+			onclick="#{rich:component('accountPane')}.hide(); return false;" />
+	</h:form>
+</h:body>
+
 </html>

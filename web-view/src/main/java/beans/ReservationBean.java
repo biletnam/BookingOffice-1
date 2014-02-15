@@ -19,8 +19,8 @@ public class ReservationBean {
 	private Reservation reservation;
 
 	@PostConstruct
-	public void init() {
-		reservation = accountantService.readReservation(backingBean.getReservationId());
+	public void initialize() {
+		setReservation(accountantService.readReservation(backingBean.getReservationId()));
 	}
 
 	public void saveReservation() {

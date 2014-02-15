@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Scope;
 @Scope("session")
 public class BackingBean implements Serializable {
 	private int reservationId;
+	private int accountId;
 
 	public int getReservationId() {
 		return reservationId;
@@ -18,6 +19,14 @@ public class BackingBean implements Serializable {
 
 	public void setReservationId(int reservationId) {
 		this.reservationId = reservationId;
+	}
+
+	public int getAccountId() {
+		return accountId;
+	}
+
+	public void setAccountId(int accountId) {
+		this.accountId = accountId;
 	}
 	
 }

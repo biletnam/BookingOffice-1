@@ -21,26 +21,23 @@ public class SecurityOfficerBean {
 	@Inject
 	private SecurityOfficerService securityOfficerService;	
 	private List<Account> accounts;
-	private Account editedAccount;
-	private int currentAccountIndex;
-	private List<AccountRights> availableAccountRights;
-	private Account createdAccount = new Account();
+	private static List<AccountRights> availableAccountRights;
+	
 
 	@PostConstruct
 	public void initialize() {
 		setAccounts(securityOfficerService.findAllAccounts());
 		
-		AccountRights ar11 = new AccountRights();
-		ar11.setAccountRole(AccountRole.ADMINISTRATOR);
-		AccountRights ar12 = new AccountRights();
-		ar12.setAccountRole(AccountRole.ACCOUNTANT);
-		AccountRights ar13 = new AccountRights();
-		ar13.setAccountRole(AccountRole.ANALITYC);
-		
 		availableAccountRights = new ArrayList<>();
-		availableAccountRights.add(ar11);
-		availableAccountRights.add(ar12);
-		availableAccountRights.add(ar13);
+		AccountRights ar = new AccountRights();
+		ar.setAccountRole(AccountRole.ADMINISTRATOR);
+		availableAccountRights.add(ar);
+		ar = new AccountRights();
+		availableAccountRights.add(ar);
+		ar.setAccountRole(AccountRole.ACCOUNTANT);
+		ar = new AccountRights();
+		ar.setAccountRole(AccountRole.ANALITYC);
+		availableAccountRights.add(ar);
 	}
 	
 	public List<AccountRights> getAvailableAccountRights() {
@@ -51,41 +48,8 @@ public class SecurityOfficerBean {
 		this.accounts = accounts;
 	}
 
-	public void setAvailableAccountRights(
-			List<AccountRights> availableAccountRights) {
-		this.availableAccountRights = availableAccountRights;
-	}
-
 	public List<Account> getAccounts() {
 		return accounts;
-	}
-
-	public Account getEditedAccount() {
-		return editedAccount;
-	}
-
-	public void setEditedAccount(Account editedAccount) {
-		this.editedAccount = editedAccount;
-	}
-
-	public Account getCreatedAccount() {
-		return createdAccount;
-	}
-
-	public void setCreatedAccount(Account createdAccount) {
-		this.createdAccount = createdAccount;
-	}
-
-	public int getCurrentAccountIndex() {
-		return currentAccountIndex;
-	}
-
-	public void setCurrentAccountIndex(int currentAccountIndex) {
-		this.currentAccountIndex = currentAccountIndex;
-	}
-
-	public void save() {
-
 	}
 
 }

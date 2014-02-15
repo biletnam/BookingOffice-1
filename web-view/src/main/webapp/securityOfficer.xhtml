@@ -19,11 +19,13 @@
 		<h:form id="securityOfficerForm">
 			<h:panelGrid columns="1">
 				<h:outputText value="User accounts"></h:outputText>
-				<a4j:commandButton value="New account" render="createSecurityOfficerGrid"
-					execute="@this" oncomplete="#{rich:component('createPane')}.show()" />
+				<a4j:commandButton value="New account"
+					render="createSecurityOfficerGrid" execute="@this"
+					oncomplete="#{rich:component('createPane')}.show()" />
 			</h:panelGrid>
-			<rich:dataTable id="securityOfficerTable" value="#{securityOfficerBean.accounts}"
-				var="item" iterationStatusVar="it">
+			<rich:dataTable id="securityOfficerTable"
+				value="#{securityOfficerBean.accounts}" var="item"
+				iterationStatusVar="it">
 				<rich:column>
 					<f:facet name="header">SurName</f:facet>
 					<h:outputText value="#{item.surname}"></h:outputText>
@@ -51,61 +53,25 @@
 				<rich:column>
 					<f:facet name="header">Roles</f:facet>
 					<h:selectManyCheckbox value="#{item.accountRights}" disabled="true">
-						<f:selectItems
-							value="#{item.accountRights}" var="i" itemLabel="#{i.accountRole}" />
+						<f:selectItems value="#{item.accountRights}" var="i"
+							itemLabel="#{i.accountRole}" />
 					</h:selectManyCheckbox>
 				</rich:column>
 				<rich:column>
 					<h:panelGrid columns="1">
-						<a4j:commandLink styleClass="no-decor" render="editGrid"
-							execute="@this" oncomplete="#{rich:component('editPane')}.show()">
+						<a4j:commandLink execute="@this" render="accountGrid"
+							oncomplete="#{rich:component('accountPane')}.show()">
 							<h:outputText value="Edit" />
-							<a4j:param value="#{it.index}"
-								assignTo="#{securityOfficerBean.currentAccountIndex}" />
-							<f:setPropertyActionListener
-								target="#{securityOfficerBean.editedAccount}" value="#{item}" />
+							<f:setPropertyActionListener target="#{backingBean.accountId}"
+								value="#{item.id}" />
 						</a4j:commandLink>
 					</h:panelGrid>
 				</rich:column>
 			</rich:dataTable>
 
-			<rich:popupPanel header="Edit Account Details" id="editPane"
-				domElementAttachment="parent" width="500" height="240">
-				<h:panelGrid columns="3" id="editGrid">
-					<h:outputText value="Surname" />
-					<h:inputText value="#{securityOfficerBean.editedAccount.surname}" />
-					<h:panelGroup />
-					<h:outputText value="Name" />
-					<h:inputText value="#{securityOfficerBean.editedAccount.name}" />
-					<h:panelGroup />
-					<h:outputText value="Middlename" />
-					<h:inputText
-						value="#{securityOfficerBean.editedAccount.middlename}" />
-					<h:panelGroup />
-					<h:outputText value="Login" />
-					<h:inputText value="#{securityOfficerBean.editedAccount.login}" />
-					<h:panelGroup />
-					<h:outputText value="Password" />
-					<h:inputText value="#{securityOfficerBean.editedAccount.psw}" />
-					<h:panelGroup />
-					<h:outputText value="Is active" />
-					<h:selectBooleanCheckbox
-						value="#{securityOfficerBean.editedAccount.active}" />
-					<h:panelGroup />
-					<h:outputText value="Roles" />
-					<h:selectManyCheckbox
-						value="#{securityOfficerBean.editedAccount.accountRights}">
-						<f:selectItems
-							value="#{securityOfficerBean.editedAccount.accountRights}"
-							var="a" itemLabel="#{a.accountRole}" />
-					</h:selectManyCheckbox>
-
-				</h:panelGrid>
-				<a4j:commandButton value="Save" action="#{securityOfficerBean.save}"
-					render="table" execute="editPane"
-					oncomplete="if (#{facesContext.maximumSeverity==null}) {#{rich:component('editPane')}.hide();}" />
-				<a4j:commandButton value="Cancel"
-					onclick="#{rich:component('editPane')}.hide(); return false;" />
+			<rich:popupPanel header="Create Account/Edit Account Details"
+				id="accountPane" domElementAttachment="parent" autosized="true">
+				<ui:include src="account.xhtml"></ui:include>
 			</rich:popupPanel>
 
 		</h:form>
