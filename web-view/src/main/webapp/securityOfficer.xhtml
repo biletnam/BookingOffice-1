@@ -19,13 +19,15 @@
 		<h:form id="securityOfficerForm">
 			<h:panelGrid columns="1">
 				<h:outputText value="User accounts"></h:outputText>
-				<a4j:commandButton value="New account"
-					render="createSecurityOfficerGrid" execute="@this"
-					oncomplete="#{rich:component('createPane')}.show()" />
+				<a4j:commandButton value="New account" render="accountGrid"
+					execute="@this"
+					oncomplete="#{rich:component('accountPane')}.show()">
+					<f:setPropertyActionListener target="#{backingBean.accountId}"
+						value="#{item.id}" />
+				</a4j:commandButton>
 			</h:panelGrid>
 			<rich:dataTable id="securityOfficerTable"
-				value="#{securityOfficerBean.accounts}" var="item"
-				iterationStatusVar="it">
+				value="#{securityOfficerBean.accounts}" var="item">
 				<rich:column>
 					<f:facet name="header">SurName</f:facet>
 					<h:outputText value="#{item.surname}"></h:outputText>
@@ -43,20 +45,14 @@
 					<h:outputText value="#{item.login}"></h:outputText>
 				</rich:column>
 				<rich:column>
-					<f:facet name="header">Password</f:facet>
-					<h:outputText value="#{item.psw}"></h:outputText>
+					<f:facet name="header">Roles</f:facet>
+					<h:outputText value="#{item.accountRole.name}"></h:outputText>
 				</rich:column>
 				<rich:column>
 					<f:facet name="header">Is active</f:facet>
 					<h:selectBooleanCheckbox value="#{item.active}" disabled="true"></h:selectBooleanCheckbox>
 				</rich:column>
-				<rich:column>
-					<f:facet name="header">Roles</f:facet>
-					<h:selectManyCheckbox value="#{item.accountRights}" disabled="true">
-						<f:selectItems value="#{item.accountRights}" var="i"
-							itemLabel="#{i.accountRole}" />
-					</h:selectManyCheckbox>
-				</rich:column>
+
 				<rich:column>
 					<h:panelGrid columns="1">
 						<a4j:commandLink execute="@this" render="accountGrid"

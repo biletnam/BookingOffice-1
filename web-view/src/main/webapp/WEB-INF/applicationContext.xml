@@ -16,7 +16,7 @@
 		<property name="url" value="jdbc:derby:..\BookingOfficeDB;create=true" />
 	</bean>
 	
-	<jdbc:initialize-database data-source="dataSource">
+	<jdbc:initialize-database data-source="dataSource" ignore-failures="DROPS">
 		<jdbc:script location="classpath:sql/drop.sql" />
 		<jdbc:script location="classpath:sql/schema.sql" />
 		<jdbc:script location="classpath:sql/data.sql" />

@@ -18,35 +18,42 @@
 	<h:form id="accountForm">
 		<h:panelGrid columns="3" id="accountGrid">
 			<h:outputText value="Surname" />
-			<h:inputText value="#{accountBean.account.surname}" />
-			<h:panelGroup />
+			<h:inputText id="accountSurname"
+				value="#{accountBean.account.surname}" required="true"
+				requiredMessage="Surname is required" />
+			<rich:message id="accountSurnameMsg" for="accountSurname"></rich:message>
 			<h:outputText value="Name" />
-			<h:inputText value="#{accountBean.account.name}" />
-			<h:panelGroup />
+			<h:inputText id="accountName" value="#{accountBean.account.name}"
+				required="true" requiredMessage="Name is required" />
+			<rich:message id="accountNameMsg" for="accountName"></rich:message>
 			<h:outputText value="Middlename" />
-			<h:inputText value="#{accountBean.account.middlename}" />
-			<h:panelGroup />
+			<h:inputText id="accountMiddlename"
+				value="#{accountBean.account.middlename}" required="true"
+				requiredMessage="Middlename is required" />
+			<rich:message id="accountMiddlenameMsg" for="accountMiddlename"></rich:message>
 			<h:outputText value="Login" />
-			<h:inputText value="#{accountBean.account.login}" />
-			<h:panelGroup />
+			<h:inputText id="accountLogin" value="#{accountBean.account.login}"
+				required="true" requiredMessage="Login is required" />
+			<rich:message id="accountLoginMsg" for="accountLogin"></rich:message>
 			<h:outputText value="Password" />
-			<h:inputText value="#{accountBean.account.psw}" />
-			<h:panelGroup />
-			<h:outputText value="Is active" />
-			<h:selectBooleanCheckbox
-				value="#{accountBean.account.active}" />
-			<h:panelGroup />
+			<h:inputText id="accountPsw" value="#{accountBean.account.psw}"
+				required="true" requiredMessage="Password is equired" />
+			<rich:message id="accountPswMsg" for="accountPsw"></rich:message>
 			<h:outputText value="Roles" />
-			<h:selectManyCheckbox
-				value="#{accountBean.account.accountRights}">
-				<f:selectItems
-					value="#{accountBean.account.accountRights}" var="a"
-					itemLabel="#{a.accountRole}" />
-			</h:selectManyCheckbox>
+			<h:selectOneMenu id="accountRole"
+				value="#{accountBean.account.accountRole}" required="true"
+				requiredMessage="Role is required">
+				<f:selectItems value="#{backingBean.accountRoles}" var="ar"
+					itemValue="#{ar}" itemLabel="#{ar.name}" />
+			</h:selectOneMenu>
+			<rich:message id="accountRoleMsg" for="accountRole"></rich:message>
+			<h:outputText value="Is active" />
+			<h:selectBooleanCheckbox id="accountActive" value="#{accountBean.account.active}" />
+			<rich:message id="accountActiveMsg" for="accountActive"></rich:message>
 
 		</h:panelGrid>
 		<a4j:commandButton value="Save" action="#{accountBean.saveAccount}"
-			render="table" execute="accountPane"
+			execute="accountPane"
 			oncomplete="if (#{facesContext.maximumSeverity==null}) {#{rich:component('accountPane')}.hide();}" />
 		<a4j:commandButton value="Cancel"
 			onclick="#{rich:component('accountPane')}.hide(); return false;" />

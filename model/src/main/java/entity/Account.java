@@ -13,6 +13,7 @@ public class Account {
 	private String surname;
 	private String name;
 	private String middlename;
+	@Enumerated(EnumType.ORDINAL)
 	private AccountRole accountRole;
 	private boolean active;
 	

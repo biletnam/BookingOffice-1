@@ -5,6 +5,7 @@ public enum AccountRole {
 	private String name;
 	
 	private AccountRole(String name) {
+		this.name = name;
 	}
 
 	public String getName() {
