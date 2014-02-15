@@ -11,50 +11,35 @@
 <ui:composition template="WEB-INF/templates/template.xhtml">
 	<ui:define name="title">Analytic page - Airline booking office</ui:define>
 	<ui:define name="pan">
-		<h:panelGrid columns="8">
-			<h:link value="Administrator" outcome="administrator"></h:link>  
-				<h:outputText value="|"></h:outputText>
-			<h:link value="Accountant" outcome="accountant" />
-			<h:outputText value="|"></h:outputText>
-			<h:link value="Analytic" outcome="analytic" />
-			<h:outputText value="|"></h:outputText>
-			<h:link value="SecurityOfficer" outcome="securityOfficer" />
-		</h:panelGrid>
+		<ui:include src="panel.xhtml"></ui:include>
 	</ui:define>
-	
+
 	<ui:define name="content">
 		<h3>Analytic page</h3>
 		<h:form id="form">
-			<h:panelGrid columns="4">
+			<h:panelGrid columns="3">
 				<h:outputText value="Start date"></h:outputText>
 				<rich:calendar id="dateStart" value="#{analyticBean.dateStart}"
 					locale="US" popup="true" datePattern="dd.MM.yyyy" required="true"
 					requiredMessage="Start date is required">
 				</rich:calendar>
-
+				<rich:message id="dateStartMsg" for="dateStart" />
 				<h:outputText value="End date"></h:outputText>
-
 				<rich:calendar id="dateEnd" value="#{analyticBean.dateEnd}"
 					locale="US" popup="true" datePattern="dd.MM.yyyy" required="true"
 					requiredMessage="End date is required"
 					validatorMessage="Should be a  valid end date">
 				</rich:calendar>
-
-				<h:panelGroup />
-				<rich:message id="dateStartMsg" for="dateStart" />
-				<h:panelGroup />
 				<rich:message id="dateEndMsg" for="dateEnd" />
-				
-				<h:panelGroup />
+				<a4j:commandButton value="View report" render="tabPanel"
+					action="#{analyticBean.viewReport}" execute="@form" />
 			</h:panelGrid>
-			<a4j:commandButton value="View report" render="tabPanel"
-				action="#{analyticBean.viewReport}" execute="@form" />
 
 			<rich:tabPanel switchType="ajax" id="tabPanel" headerPosition="top"
 				headerLocation="center">
 				<rich:tab header="Report by day" switchType="client">
-					<rich:dataTable id="reportByDay" value="#{analyticBean.reportByDay}"
-						var="item">
+					<rich:dataTable id="reportByDay"
+						value="#{analyticBean.reportByDay}" var="item">
 						<rich:column>
 							<f:facet name="header">Date</f:facet>
 							<h:outputText value="#{item.datePayment}">
