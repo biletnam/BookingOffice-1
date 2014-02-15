@@ -13,14 +13,15 @@ import entity.AccountRole;
 @Named
 @Scope("session")
 public class BackingBean implements Serializable {
-	
+
 	private int reservationId;
 	private int accountId;
+	private String accountCommand = "create";
 	private AccountRole[] accountRoles = AccountRole.values();
 
 	@PostConstruct
 	public void initialize() {
-		
+
 	}
 
 	public int getReservationId() {
@@ -42,4 +43,17 @@ public class BackingBean implements Serializable {
 	public AccountRole[] getAccountRoles() {
 		return accountRoles;
 	}
+
+	public void setAccountRoles(AccountRole[] accountRoles) {
+		this.accountRoles = accountRoles;
+	}
+
+	public String getAccountCommand() {
+		return accountCommand;
+	}
+
+	public void setAccountCommand(String accountCommand) {
+		this.accountCommand = accountCommand;
+	}
+	
 }
