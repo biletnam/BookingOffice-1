@@ -4,12 +4,8 @@ CREATE TABLE ACCOUNT(ID integer not null GENERATED ALWAYS AS IDENTITY,
 				SURNAME varchar(50) not null,
 				NAME varchar(50) not null,
 				MIDDLENAME varchar(50) not null,
+				ACCOUNTROLE smallint not null, 
 				ACTIVE boolean not null, primary key (ID));
-
-CREATE TABLE ACCOUNTRIGHTS(ID integer not null GENERATED ALWAYS AS IDENTITY,
-				ACCOUNTID integer constraint ACCOUNT_FK references ACCOUNT,
-				ACCOUNTROLE smallint not null,
-				ACCOUNTROLEACTIVE boolean not null, primary key (ID));
 
 CREATE TABLE FLIGHT(ID integer not null GENERATED ALWAYS AS IDENTITY,
 				DATECREATED timestamp not null,

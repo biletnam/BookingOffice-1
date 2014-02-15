@@ -23,7 +23,5 @@ INSERT INTO TICKET (FLIGHTID, STATUS, RESERVATIONID) VALUES (2, 2, 1),
 INSERT INTO TICKET (FLIGHTID, STATUS, RESERVATIONID) VALUES (3, 2, 2),
 				(3, 2, 2);
 		
-INSERT INTO ACCOUNT (LOGIN, PSW, SURNAME, NAME, MIDDLENAME, ACTIVE) VALUES ('Login1', 'Psw1', 'Surname1', 'Name1', 'Middlename1', TRUE),
-				('Login2', 'Psw2', 'Surname2', 'Name2', 'Middlename2', TRUE), ('Login3', 'Psw3', 'Surname3', 'Name3', 'Middlename3', TRUE);
-
-INSERT INTO ACCOUNTRIGHTS (ACCOUNTID, ACCOUNTROLE, ACCOUNTROLEACTIVE) VALUES (1, 0, true), (1, 1, true), (1, 2, false), (2, 0, false), (2, 1, true), (2, 2, false);
+INSERT INTO ACCOUNT (LOGIN, PSW, SURNAME, NAME, MIDDLENAME, ACCOUNTROLE, ACTIVE) VALUES ('Login1', 'Psw1', 'Surname1', 'Name1', 'Middlename1', 0, TRUE),
+				('Login2', 'Psw2', 'Surname2', 'Name2', 'Middlename2', 1, TRUE), ('Login3', 'Psw3', 'Surname3', 'Name3', 'Middlename3', 2, TRUE);
