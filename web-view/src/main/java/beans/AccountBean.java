@@ -20,11 +20,20 @@ public class AccountBean {
 
 	@PostConstruct
 	public void initialize() {
-		setAccount(securityOfficerService.readAccount(backingBean.getAccountId()));
+		if (backingBean.getAccountId() == 0){
+			setAccount(new Account());
+		} else {
+			setAccount(securityOfficerService.readAccount(backingBean.getAccountId()));
+		}
+		
 	}
 	
 	public void saveAccount() {
-		securityOfficerService.updateAccount(account);
+		if (account.getId() == 0) {
+			securityOfficerService.createAccount(account);
+		} else {
+			securityOfficerService.updateAccount(account);
+		}
 	}
 	
 	public SecurityOfficerService getSecurityOfficerService() {

@@ -23,7 +23,7 @@
 					execute="@this"
 					oncomplete="#{rich:component('accountPane')}.show()">
 					<f:setPropertyActionListener target="#{backingBean.accountId}"
-						value="#{item.id}" />
+						value="#{0}" />
 				</a4j:commandButton>
 			</h:panelGrid>
 			<rich:dataTable id="securityOfficerTable"
@@ -66,7 +66,7 @@
 			</rich:dataTable>
 
 			<rich:popupPanel header="Create Account/Edit Account Details"
-				id="accountPane" domElementAttachment="parent" autosized="true">
+				id="accountPane" domElementAttachment="parent" autosized="true" >
 				<ui:include src="account.xhtml"></ui:include>
 			</rich:popupPanel>
 
