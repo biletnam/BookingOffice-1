@@ -40,7 +40,8 @@
 				requiredMessage="Amount of tickets is required"
 				converterMessage="Should be a valid amount of tickets"
 				validatorMessage="Should be a valid amount of tickets">
-				<f:validateLongRange minimum="1" maximum="99999999" />
+				<f:validateLongRange minimum="#{flightBean.flight.ticketFreeAmount}"
+					maximum="99999999" />
 			</h:inputText>
 			<rich:message id="ticketAmountMsgEdit" for="ticketAmountEdit" />
 			<h:outputText value="Amount of free tickets" />
@@ -52,10 +53,10 @@
 
 		</h:panelGrid>
 		<a4j:commandButton value="Save" action="#{flightBean.saveFlight}"
-			render="table" execute="editPane"
-			oncomplete="if (#{facesContext.maximumSeverity==null}) {#{rich:component('editPane')}.hide();}" />
+			execute="editFlightPane"
+			oncomplete="if (#{facesContext.maximumSeverity==null}) {#{rich:component('editFlightPane')}.hide();}" />
 		<a4j:commandButton value="Cancel"
-			onclick="#{rich:component('editPane')}.hide(); return false;" />
+			onclick="#{rich:component('editFlightPane')}.hide(); return false;" />
 	</h:form>
 </h:body>
 </html>

@@ -58,7 +58,11 @@ public class FlightBean {
 	}
 
 	public void saveFlight() {
-
+		if (flight.getId() == 0) {
+			administratorService.createFlight(flight);
+		} else {
+			administratorService.updateFlight(flight);
+		}
 	}
 
 }
