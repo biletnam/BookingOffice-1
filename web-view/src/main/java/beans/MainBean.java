@@ -8,16 +8,20 @@ import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Map;
 
+import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.springframework.context.annotation.Scope;
 
+import service.AdministratorService;
 import entity.Flight;
 
 @Named
 @Scope("request")
 public class MainBean {
+	@Inject
+	private AdministratorService administratorService;
 	private Date filterDateDeparture;
 	private String filterArrival;
 	private int currentFlightIndex;
@@ -27,14 +31,11 @@ public class MainBean {
 	@Inject
 	private CartBean cart;
 
-	public MainBean() {
-		super();
-		filterArrival = null;
-		filterDateDeparture = null;
-		flights = null;
-		cart = new CartBean();
+	@PostConstruct
+	public void initialize() {
+		
 	}
-
+	
 	public CartBean getCart() {
 		return cart;
 	}

@@ -17,13 +17,14 @@ public class AdministratorBean {
 	
 	@Inject
 	private AdministratorService administratorService;
-	
+	@Inject
+	private BackingBean backingBean;
 	private List<Flight> flights;
-	private String flightNumberFilter;
+	
 	
 	@PostConstruct
 	public void initialize() {
-		setFlights(administratorService.findFlights(flightNumberFilter));
+		setFlights(administratorService.findFlights(backingBean.getFlightNumberFilter()));
 	}
 	
 	public List<Flight> getFlights() {
@@ -33,16 +34,8 @@ public class AdministratorBean {
 		this.flights = flights;
 	}
 	
-	public String getFlightNumberFilter() {
-		return flightNumberFilter;
-	}
-
-	public void setFlightNumberFilter(String flightNumberFilter) {
-		this.flightNumberFilter = flightNumberFilter;
-	}
-	
 	public void filterFlights() {
-		setFlights(administratorService.findFlights(flightNumberFilter));
+		
 	}
 
 	public long getAmountOfExpiredReservation() {

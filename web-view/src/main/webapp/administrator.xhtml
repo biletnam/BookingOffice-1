@@ -22,7 +22,7 @@
 			<h:panelGrid columns="4">
 				<h:outputText value="Flight number"></h:outputText>
 				<h:inputText id="flightNumberFilter"
-					value="#{administratorBean.flightNumberFilter}"></h:inputText>
+					value="#{backingBean.flightNumberFilter}"></h:inputText>
 				<a4j:commandButton value="Filter" render="administratorTable"
 					action="#{administratorBean.filterFlights}" execute="@this" />
 				<rich:message id="flightNumberFilterMsg" for="flightNumberFilter"></rich:message>

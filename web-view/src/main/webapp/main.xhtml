@@ -19,21 +19,17 @@
 
 	<ui:define name="content">
 		<h3>Customer page</h3>
-		<h:form id="mainForm">
-			<h:panelGrid id="filterGrid" columns="3">
+
+		<h:form id="customerForm">
+			<h:panelGrid columns="3">
 				<h:outputText value="Departure date"></h:outputText>
 				<rich:calendar id="filterCalendarDeparture"
 					value="#{mainBean.filterDateDeparture}" locale="US" popup="true"
-					datePattern="dd.MM.yyyy" required="true"
-					requiredMessage="Departure date is required">
+					datePattern="dd.MM.yyyy">
 				</rich:calendar>
-				<rich:message id="filterCalendarDepartureMsg"
-					for="filterCalendarDeparture" />
-				<h:outputText value="Arrival"></h:outputText>
-				<h:inputText id="filterArrival" value="#{mainBean.filterArrival}"
-					required="true" requiredMessage="Arrival is required"></h:inputText>
-				<rich:message id="filterArrivalMsg" for="filterArrival" />
 				<h:panelGroup />
+				<h:outputText value="Arrival"></h:outputText>
+				<h:inputText id="filterArrival" value="#{mainBean.filterArrival}"></h:inputText>
 				<a4j:commandButton value="Find" render="table"
 					action="#{mainBean.find}" execute="@this" />
 			</h:panelGrid>
@@ -80,7 +76,7 @@
 					<h:panelGrid columns="2">
 						<a4j:commandLink styleClass="no-decor" render="addGrid"
 							execute="@this" oncomplete="#{rich:component('addPane')}.show()">
-							<h:outputText value="Add to cart"/>
+							<h:outputText value="Add to cart" />
 							<a4j:param value="#{it.index}"
 								assignTo="#{mainBean.currentFlightIndex}" />
 							<f:setPropertyActionListener target="#{mainBean.selectedFlight}"
@@ -135,7 +131,7 @@
 					<h:panelGroup />
 
 				</h:panelGrid>
-				
+
 				<a4j:commandButton value="Add tickets to cart"
 					action="#{mainBean.addTicket}" render="table cart"
 					execute="addPane"

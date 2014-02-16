@@ -18,6 +18,7 @@ public class BackingBean implements Serializable {
 	private int accountId;
 	private AccountRole[] accountRoles = AccountRole.values();
 	private int flightId;
+	private String flightNumberFilter;
 
 	@PostConstruct
 	public void initialize() {
@@ -54,6 +55,14 @@ public class BackingBean implements Serializable {
 
 	public void setFlightId(int flightId) {
 		this.flightId = flightId;
+	}
+
+	public String getFlightNumberFilter() {
+		return flightNumberFilter;
+	}
+
+	public void setFlightNumberFilter(String flightNumberFilter) {
+		this.flightNumberFilter = flightNumberFilter;
 	}
 
 }
