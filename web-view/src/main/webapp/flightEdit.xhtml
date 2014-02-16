@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j">
+<h:head>
+	<title>Flight edit page</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<h:outputStylesheet library="css" name="style.css" />
+</h:head>
+
+<h:body>
+	<h:form id="editFlightForm">
+		<h:panelGrid columns="3" id="editFlightGrid">
+			<h:outputText value="Flight number" />
+			<h:outputText value="#{flightBean.flight.flightNumber}" />
+			<h:panelGroup />
+			<h:outputText value="Departure" />
+			<h:outputText value="#{flightBean.flight.departure}" />
+			<h:panelGroup />
+			<h:outputText value="Arrival" />
+			<h:outputText value="#{flightBean.flight.arrival}" />
+			<h:panelGroup />
+			<h:outputText value="Departure date" />
+			<h:outputText value="#{flightBean.flight.dateDeparture}">
+				<f:convertDateTime pattern="dd.MM.yyyy HH:mm"></f:convertDateTime>
+			</h:outputText>
+			<h:panelGroup />
+			<h:outputText value="Arrival date" />
+			<h:outputText value="#{flightBean.flight.dateArrival}">
+				<f:convertDateTime pattern="dd.MM.yyyy HH:mm"></f:convertDateTime>
+			</h:outputText>
+			<h:panelGroup />
+			<h:outputText value="Amount of tickets" />
+			<h:inputText value="#{flightBean.flight.ticketAmount}"
+				id="ticketAmountEdit" required="true"
+				requiredMessage="Amount of tickets is required"
+				converterMessage="Should be a valid amount of tickets"
+				validatorMessage="Should be a valid amount of tickets">
+				<f:validateLongRange minimum="1" maximum="99999999" />
+			</h:inputText>
+			<rich:message id="ticketAmountMsgEdit" for="ticketAmountEdit" />
+			<h:outputText value="Amount of free tickets" />
+			<h:outputText value="#{flightBean.flight.ticketFreeAmount}" />
+			<h:panelGroup />
+			<h:outputText value="Ticket price" />
+			<h:outputText value="#{flightBean.flight.ticketPrice}"></h:outputText>
+			<h:panelGroup />
+
+		</h:panelGrid>
+		<a4j:commandButton value="Save" action="#{flightBean.saveFlight}"
+			render="table" execute="editPane"
+			oncomplete="if (#{facesContext.maximumSeverity==null}) {#{rich:component('editPane')}.hide();}" />
+		<a4j:commandButton value="Cancel"
+			onclick="#{rich:component('editPane')}.hide(); return false;" />
+	</h:form>
+</h:body>
+</html>

@@ -17,6 +17,7 @@ public class BackingBean implements Serializable {
 	private int reservationId;
 	private int accountId;
 	private AccountRole[] accountRoles = AccountRole.values();
+	private int flightId;
 
 	@PostConstruct
 	public void initialize() {
@@ -46,5 +47,13 @@ public class BackingBean implements Serializable {
 	public void setAccountRoles(AccountRole[] accountRoles) {
 		this.accountRoles = accountRoles;
 	}
-	
+
+	public int getFlightId() {
+		return flightId;
+	}
+
+	public void setFlightId(int flightId) {
+		this.flightId = flightId;
+	}
+
 }
