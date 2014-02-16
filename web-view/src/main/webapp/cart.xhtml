@@ -15,7 +15,7 @@
 
 <h:body>
 	<h:form>
-		<h:panelGrid id="cart" columns="8">
+		<h:panelGrid id="cartSummaryGrid" columns="8">
 			<h:outputText value="Tickets in your cart"></h:outputText>
 			<h:outputText value="#{cartBean.ticketsAmount}"></h:outputText>
 			<h:outputText value="Order subtotal"></h:outputText>
@@ -31,9 +31,9 @@
 		</h:panelGrid>
 
 		<rich:popupPanel header="Edit your cart" id="editCartPane"
-			domElementAttachment="parent" width="800" height="250">
+			domElementAttachment="parent" autosized="true">
 
-			<rich:dataTable value="#{cart.entries}" var="item"
+			<rich:dataTable value="#{cartBean.entries}" var="item"
 				id="tableCart" iterationStatusVar="it">
 				<rich:column>
 					<f:facet name="header">#</f:facet>
@@ -82,11 +82,11 @@
 							oncomplete="#{rich:component('editCartRowPane')}.show()">
 							<h:outputText value="Edit" alt="edit" />
 							<a4j:param value="#{it.index}"
-								assignTo="#{cart.currentEntryIndex}" />
+								assignTo="#{cartBean.currentEntryIndex}" />
 							<a4j:param value="#{item.value}"
-								assignTo="#{cart.newAmountOfOrderedTickets}" />
+								assignTo="#{cartBean.newAmountOfOrderedTickets}" />
 							<f:setPropertyActionListener
-								target="#{cart.currentEntry}" value="#{item}" />
+								target="#{cartBean.currentEntry}" value="#{item}" />
 						</a4j:commandLink>
 
 						<a4j:commandLink styleClass="no-decor" execute="@this"
@@ -94,9 +94,9 @@
 							oncomplete="#{rich:component('confirmPane')}.show()">
 							<h:outputText value="Delete" alt="delete" />
 							<a4j:param value="#{it.index}"
-								assignTo="#{cart.currentEntryIndex}" />
+								assignTo="#{cartBean.currentEntryIndex}" />
 							<f:setPropertyActionListener
-								target="#{cart.currentEntry}" value="#{item}" />
+								target="#{cartBean.currentEntry}" value="#{item}" />
 						</a4j:commandLink>
 					</h:panelGrid>
 				</rich:column>

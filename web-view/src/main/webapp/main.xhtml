@@ -73,7 +73,7 @@
 					<f:facet name="header">Action</f:facet>
 					<h:panelGrid columns="2">
 						<a4j:commandLink styleClass="no-decor" render="addToCartGrid"
-							execute="@this" oncomplete="#{rich:component('addPane')}.show()">
+							execute="@this" oncomplete="#{rich:component('addToCartPane')}.show()">
 							<h:outputText value="Add to cart" />
 							<f:setPropertyActionListener target="#{backingBean.flightId}"
 								value="#{item.id}" />
@@ -82,7 +82,7 @@
 				</rich:column>
 			</rich:dataTable>
 
-			<rich:popupPanel header="Add Tickets to Cart" id="addPane"
+			<rich:popupPanel header="Add Tickets to Cart" id="addToCartPane"
 				domElementAttachment="parent" autosized="true">
 				<ui:include src="addToCart.xhtml"></ui:include>
 			</rich:popupPanel>
