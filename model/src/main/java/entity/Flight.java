@@ -1,5 +1,6 @@
 package entity;
 
+import java.util.Calendar;
 import java.util.Date;
 
 import javax.persistence.*;
@@ -25,6 +26,11 @@ public class Flight {
 	private int ticketAmount;
 	private int ticketFreeAmount;
 	private double ticketPrice;
+	
+	@PrePersist
+    protected void onCreate() {
+		dateCreated = Calendar.getInstance().getTime();
+    }
 	
 	public int getId() {
 		return id;
