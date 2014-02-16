@@ -25,7 +25,8 @@ public class BackingBean implements Serializable {
 
 	@PostConstruct
 	public void initialize() {
-
+		flightNumberFilter = "";
+		filterArrival = "";
 	}
 
 	public int getReservationId() {

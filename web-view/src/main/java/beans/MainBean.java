@@ -20,10 +20,12 @@ public class MainBean {
 	private int currentFlightIndex;
 	private Flight selectedFlight;
 	private List<Flight> flights;
+	@Inject
+	private BackingBean backingBean;
 
 	@PostConstruct
 	public void initialize() {
-		setFlights(administratorService.findFlightsAll());
+		setFlights(administratorService.findFlightsByDateDepartureAndArrival(backingBean.getFilterDateDeparture(), backingBean.getFilterArrival()));
 	}
 	
 	public int getCurrentFlightIndex() {

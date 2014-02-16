@@ -17,9 +17,9 @@
 	<h:form>
 		<h:panelGrid id="cart" columns="8">
 			<h:outputText value="Tickets in your cart"></h:outputText>
-			<h:outputText value="#{cart.ticketsAmount}"></h:outputText>
+			<h:outputText value="#{cartBean.ticketsAmount}"></h:outputText>
 			<h:outputText value="Order subtotal"></h:outputText>
-			<h:outputText value="#{cart.ticketsSum}"></h:outputText>
+			<h:outputText value="#{cartBean.ticketsSum}"></h:outputText>
 			<a4j:commandButton styleClass="no-decor" render="tableCart"
 				execute="@this" value="Edit your cart"
 				oncomplete="#{rich:component('editCartPane')}.show()">
