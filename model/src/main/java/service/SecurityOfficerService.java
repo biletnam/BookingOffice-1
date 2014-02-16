@@ -40,5 +40,10 @@ public class SecurityOfficerService {
 	public List<Account> findAllAccounts() {
 		return accountDao.findAll();
 	}
+	
+	@Transactional
+	public Account checkUser(String login, String psw) {
+		return accountDao.check(login, psw);
+	}
 
 }
