@@ -21,7 +21,7 @@ public class FlightBean {
 	@PostConstruct
 	public void initialize() {
 		if (backingBean.getFlightId() == 0) {
-
+			setFlight(new Flight());
 		} else {
 			setFlight(administratorService
 					.readFlight(backingBean.getFlightId()));
@@ -54,7 +54,7 @@ public class FlightBean {
 	}
 
 	public void deleteFlight() {
-
+		administratorService.deleteFlight(flight.getId());
 	}
 
 	public void saveFlight() {

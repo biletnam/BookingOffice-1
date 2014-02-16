@@ -22,18 +22,22 @@
 				<h:outputText value="Flight number"></h:outputText>
 				<h:inputText id="flightNumberFilter"
 					value="#{administratorBean.flightNumberFilter}"></h:inputText>
-				<a4j:commandButton value="Filter" render="table"
+				<a4j:commandButton value="Filter" render="administratorTable"
 					action="#{administratorBean.filterFlights}" execute="@this" />
 				<rich:message id="flightNumberFilterMsg" for="flightNumberFilter"></rich:message>
 			</h:panelGrid>
 
 			<h:panelGrid columns="2">
-				<a4j:commandButton value="New flight" render="createGrid"
-					execute="@this" oncomplete="#{rich:component('createPane')}.show()" />
+				<a4j:commandButton value="New flight" render="createFlightGrid"
+					execute="@this"
+					oncomplete="#{rich:component('createFlightPane')}.show()">
+					<f:setPropertyActionListener target="#{backingBean.flightId}"
+						value="#{0}" />
+				</a4j:commandButton>
 				<a4j:commandButton value="Convert tickets" render="" execute="@this" />
 			</h:panelGrid>
 			<rich:dataTable value="#{administratorBean.flights}" var="item"
-				id="table">
+				id="administratorTable">
 				<rich:column>
 					<f:facet name="header">Number</f:facet>
 					<h:outputText value="#{item.flightNumber}"></h:outputText>
@@ -79,11 +83,9 @@
 								value="#{item.id}" />
 						</a4j:commandLink>
 
-						<a4j:commandLink execute="@this" render="@none"
+						<a4j:commandLink execute="@this"
 							oncomplete="#{rich:component('confirmDeleteFlightPane')}.show()">
 							<h:outputText value="Delete" alt="delete" />
-							<f:setPropertyActionListener target="#{backingBean.flightId}"
-								value="#{item.id}" />
 						</a4j:commandLink>
 					</h:panelGrid>
 				</rich:column>
@@ -93,95 +95,25 @@
 				domElementAttachment="parent" autosized="true">
 				<ui:include src="flightEdit.xhtml"></ui:include>
 			</rich:popupPanel>
-			
-			
-			<a4j:jsFunction name="remove" action="#{flightBean.deleteFlight}"
-				render="table" execute="@this"
-				oncomplete="#{rich:component('confirmPane')}.hide();" />
 
-			<rich:popupPanel id="confirmPane" autosized="true">
+			<rich:popupPanel header="New Flight" id="createFlightPane"
+				domElementAttachment="parent" autosized="true">
+				<ui:include src="flightCreate.xhtml"></ui:include>
+			</rich:popupPanel>
+
+			<a4j:jsFunction name="remove" action="#{flightBean.deleteFlight}"
+				render="administratorTable" execute="@this"
+				oncomplete="#{rich:component('confirmDeleteFlightPane')}.hide();" />
+
+			<rich:popupPanel id="confirmDeleteFlightPane" autosized="true">
             Are you sure you want to delete the row?
             	<a4j:commandButton value="Cancel"
-					onclick="#{rich:component('confirmPane')}.hide(); return false;" />
+					onclick="#{rich:component('confirmDeleteFlightPane')}.hide(); return false;" />
 				<a4j:commandButton value="Delete" onclick="remove(); return false;" />
 			</rich:popupPanel>
 
-			
-
-			<rich:popupPanel header="New Flight" id="createPane"
-				domElementAttachment="parent" width="500" height="230">
-				<h:panelGrid columns="3" id="createGrid">
-					<h:outputText value="Flight number" />
-					<h:inputText id="flightNumber"
-						value="#{flightBean.flight.flightNumber}"
-						required="true" requiredMessage="Flight number is required"
-						converterMessage="Should be a valid flight number"
-						validatorMessage="Should be a valid flight number" />
-					<rich:message id="flightNumberMsg" for="flightNumber" />
-
-					<h:outputText value="Departure" />
-					<h:inputText id="departure"
-						value="#{flightBean.flight.departure}"
-						required="true" requiredMessage="Departure is required"
-						converterMessage="Should be a valid departure"
-						validatorMessage="Should be a valid departure" />
-					<rich:message id="departureMsg" for="departure" />
-
-					<h:outputText value="Arrival" />
-					<h:inputText id="arrival"
-						value="#{flightBean.flight.arrival}" required="true"
-						requiredMessage="Arrival is required"
-						converterMessage="Should be a valid arrival"
-						validatorMessage="Should be a valid arrival" />
-					<rich:message id="arrivalMsg" for="arrival" />
-
-					<h:outputText value="Departure date" />
-					<rich:calendar id="calendarDeparture"
-						value="#{flightBean.flight.dateDeparture}"
-						locale="US" popup="true" datePattern="dd.MM.yyyy HH:mm"
-						required="true" requiredMessage="Departure date is required">
-					</rich:calendar>
-					<rich:message id="calendarDepartureMsg" for="calendarDeparture" />
-
-					<h:outputText value="Arrival date" />
-					<rich:calendar id="calendarArrival"
-						value="#{flightBean.flight.dateArrival}" locale="US"
-						popup="true" datePattern="dd.MM.yyyy HH:mm" required="true"
-						requiredMessage="Arrival date is required">
-					</rich:calendar>
-					<rich:message id="calendarArrivalMsg" for="calendarArrival" />
-
-					<h:outputText value="Amount of tickets" />
-					<h:inputText id="ticketAmountCreate"
-						value="#{flightBean.flight.ticketAmount}"
-						required="true" requiredMessage="Amount of tickets is required"
-						converterMessage="Should be a valid amount of tickets"
-						validatorMessage="Should be a valid amount of tickets">
-						<f:validateLongRange minimum="1" maximum="99999999" />
-					</h:inputText>
-					<rich:message id="ticketAmountMsgCreate" for="ticketAmountCreate" />
-
-					<h:outputText value="Ticket price" />
-					<h:inputText id="ticketPrice"
-						value="#{flightBean.flight.ticketPrice}"
-						required="true" requiredMessage="Ticket price is required"
-						converterMessage="Should be a valid ticket price"
-						validatorMessage="Should be a valid ticket price">
-						<f:validateDoubleRange minimum="0.00" maximum="99999999" />
-					</h:inputText>
-					<rich:message id="ticketPriceMsg" for="ticketPrice" />
-
-				</h:panelGrid>
-				<a4j:commandButton value="Create"
-					action="#{flightBean.saveFlight}" render="table"
-					execute="createPane"
-					oncomplete="if (#{facesContext.maximumSeverity==null}) {#{rich:component('createPane')}.hide();}" />
-				<a4j:commandButton value="Cancel"
-					onclick="#{rich:component('createPane')}.hide(); return false;" />
-			</rich:popupPanel>
 		</h:form>
 	</ui:define>
-
 
 </ui:composition>
 </html>
