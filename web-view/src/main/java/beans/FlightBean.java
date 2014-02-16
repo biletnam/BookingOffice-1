@@ -78,9 +78,10 @@ public class FlightBean {
 		}
 	}
 
-	public void addTickets() {
+	public void addTicketsToCart() {
 		Map<Flight, Integer> tickets = cart.getTickets();
 		tickets.put(flight, amountOfOrderedTickets);
+		
 	}
 	
 }
