@@ -33,7 +33,7 @@ public class MainBean {
 
 	@PostConstruct
 	public void initialize() {
-		
+		setFlights(administratorService.findFlightsAll());
 	}
 	
 	public CartBean getCart() {

@@ -24,7 +24,7 @@ public class AdministratorBean {
 	
 	@PostConstruct
 	public void initialize() {
-		setFlights(administratorService.findFlights(backingBean.getFlightNumberFilter()));
+		setFlights(administratorService.findFlightsByNumber(backingBean.getFlightNumberFilter()));
 	}
 	
 	public List<Flight> getFlights() {

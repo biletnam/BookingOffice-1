@@ -58,12 +58,12 @@ public class AdministratorService {
 	}
 
 	@Transactional
-	public List<Flight> findAllFlights() {
+	public List<Flight> findFlightsAll() {
 		return flightDao.findAll();
 	}
 	
 	@Transactional
-	public List<Flight> findFlights(String flightNumber) {
+	public List<Flight> findFlightsByNumber(String flightNumber) {
 		List<Flight> flights = null;
 		if (flightNumber != null) {
 			flights = flightDao.findByFlightNumber(flightNumber);
