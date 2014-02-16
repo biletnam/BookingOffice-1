@@ -32,5 +32,5 @@ public class SecurityOfficerBean {
 	public List<Account> getAccounts() {
 		return accounts;
 	}
-
+	
 }

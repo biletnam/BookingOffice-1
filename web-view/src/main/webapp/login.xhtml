@@ -17,11 +17,11 @@
 	<h:form id="loginForm">
 		<h:panelGrid columns="2">
 			<h:outputText value="Login"></h:outputText>
-			<h:inputText id="login" value="#{login.login}"></h:inputText>
+			<h:inputText id="login" value="#{loginBean.login}"></h:inputText>
 			<h:outputText value="Password"></h:outputText>
-			<h:inputText id="psw" value="#{login.psw}"></h:inputText>
+			<h:inputSecret id="psw" value="#{loginBean.psw}"></h:inputSecret>
 			<h:panelGroup />
-			<h:commandButton value="Submit" action="#{login.check}"></h:commandButton>
+			<h:commandButton value="Submit" action="#{loginBean.checkUser}"></h:commandButton>
 		</h:panelGrid>
 	</h:form>
 </h:body>

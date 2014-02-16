@@ -1,20 +1,29 @@
 package beans;
 
+import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.springframework.context.annotation.Scope;
 
+import entity.Account;
+import service.SecurityOfficerService;
+
 @Named
 @Scope("session")
 public class LoginBean {
-	
+	@Inject
+	private SecurityOfficerService securityOfficerService;
+
 	private String login;
 	private String psw;
-	
-	public LoginBean() {
-		super();
-		this.login = null;
-		this.psw = null;
+	private Account account;
+
+	public Account getAccount() {
+		return account;
+	}
+
+	public void setAccount(Account account) {
+		this.account = account;
 	}
 
 	public String getLogin() {
@@ -32,14 +41,25 @@ public class LoginBean {
 	public void setPsw(String psw) {
 		this.psw = psw;
 	}
-	
-	public String check() {
-		if (login.equals("login") && psw.equals("password")) {
-			return "loginSuccessful";
-		}
-		else 
-		{
-			return "loginFailed";
+
+	public String checkUser() {
+		if (login.equals("officer") && psw.equals("officer")) {
+			setAccount(new Account());
+			account.setSurname("Security");
+			account.setName("officer");
+			return "securityOfficer";
+		} else {
+			account = securityOfficerService.checkUser(login, psw);
+			if (account != null) {
+				return account.getAccountRole().getName().toLowerCase();
+			} else {
+				return "loginFailed";
+			}
 		}
 	}
+	
+	public String logout() {
+		return "main";
+	}
+	
 }

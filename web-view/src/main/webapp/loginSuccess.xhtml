@@ -5,13 +5,17 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core">
-
-<ui:composition template="WEB-INF/templates/template.xhtml">
-<ui:define name="content">
-		<h:form>
-			<h3>Login page</h3>
-			Login successful
-		</h:form>
-	</ui:define>
-</ui:composition>
+<h:head>
+	<title>Login success</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<h:outputStylesheet library="css" name="style.css" />
+</h:head>
+<h:body>
+	<h:form id="logoutForm">
+		<h:panelGrid columns="1">
+			<h:outputText value="Wellcome, #{loginBean.account.surname} #{loginBean.account.name}!"></h:outputText>
+			<h:commandButton value="Logout" action="#{loginBean.logout}"></h:commandButton>
+		</h:panelGrid>
+	</h:form>
+</h:body>
 </html>
