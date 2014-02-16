@@ -32,7 +32,6 @@ public class CartBean implements Serializable {
 	private String middlename;
 	private String email;
 	
-	
 	public String getSurname() {
 		return surname;
 	}
@@ -166,5 +165,11 @@ public class CartBean implements Serializable {
 	
 	public void createReservation() {
 		
+	}
+	
+
+
+	public void removeTicket() {
+//		tickets.remove(cart.getCurrentEntry().getKey());
 	}
 }

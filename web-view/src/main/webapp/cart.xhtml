@@ -17,9 +17,9 @@
 	<h:form>
 		<h:panelGrid id="cart" columns="8">
 			<h:outputText value="Tickets in your cart"></h:outputText>
-			<h:outputText value="#{mainBean.cart.ticketsAmount}"></h:outputText>
+			<h:outputText value="#{cart.ticketsAmount}"></h:outputText>
 			<h:outputText value="Order subtotal"></h:outputText>
-			<h:outputText value="#{mainBean.cart.ticketsSum}"></h:outputText>
+			<h:outputText value="#{cart.ticketsSum}"></h:outputText>
 			<a4j:commandButton styleClass="no-decor" render="tableCart"
 				execute="@this" value="Edit your cart"
 				oncomplete="#{rich:component('editCartPane')}.show()">
@@ -33,7 +33,7 @@
 		<rich:popupPanel header="Edit your cart" id="editCartPane"
 			domElementAttachment="parent" width="800" height="250">
 
-			<rich:dataTable value="#{mainBean.cart.entries}" var="item"
+			<rich:dataTable value="#{cart.entries}" var="item"
 				id="tableCart" iterationStatusVar="it">
 				<rich:column>
 					<f:facet name="header">#</f:facet>
@@ -82,11 +82,11 @@
 							oncomplete="#{rich:component('editCartRowPane')}.show()">
 							<h:outputText value="Edit" alt="edit" />
 							<a4j:param value="#{it.index}"
-								assignTo="#{mainBean.cart.currentEntryIndex}" />
+								assignTo="#{cart.currentEntryIndex}" />
 							<a4j:param value="#{item.value}"
-								assignTo="#{mainBean.cart.newAmountOfOrderedTickets}" />
+								assignTo="#{cart.newAmountOfOrderedTickets}" />
 							<f:setPropertyActionListener
-								target="#{mainBean.cart.currentEntry}" value="#{item}" />
+								target="#{cart.currentEntry}" value="#{item}" />
 						</a4j:commandLink>
 
 						<a4j:commandLink styleClass="no-decor" execute="@this"
@@ -94,9 +94,9 @@
 							oncomplete="#{rich:component('confirmPane')}.show()">
 							<h:outputText value="Delete" alt="delete" />
 							<a4j:param value="#{it.index}"
-								assignTo="#{mainBean.cart.currentEntryIndex}" />
+								assignTo="#{cart.currentEntryIndex}" />
 							<f:setPropertyActionListener
-								target="#{mainBean.cart.currentEntry}" value="#{item}" />
+								target="#{cart.currentEntry}" value="#{item}" />
 						</a4j:commandLink>
 					</h:panelGrid>
 				</rich:column>
@@ -115,22 +115,22 @@
 
 			<h:panelGrid columns="3">
 				<h:outputText value="Surname"></h:outputText>
-				<h:inputText id="surname" value="#{mainBean.cart.surname}"
+				<h:inputText id="surname" value="#{cart.surname}"
 					required="true" requiredMessage="Surname is required"></h:inputText>
 				<rich:message id="surnameMsg" for="surname"></rich:message>
 
 				<h:outputText value="Name"></h:outputText>
-				<h:inputText id="name" value="#{mainBean.cart.name}" required="true"
+				<h:inputText id="name" value="#{cart.name}" required="true"
 					requiredMessage="Name is required"></h:inputText>
 				<rich:message id="nameMsg" for="name"></rich:message>
 
 				<h:outputText value="Middlename"></h:outputText>
-				<h:inputText id="middlename" value="#{mainBean.cart.middlename}"
+				<h:inputText id="middlename" value="#{cart.middlename}"
 					required="true" requiredMessage="Middlename is required"></h:inputText>
 				<rich:message id="middlenameMsg" for="middlename"></rich:message>
 
 				<h:outputText value="E-mail"></h:outputText>
-				<h:inputText id="email" value="#{mainBean.cart.email}"
+				<h:inputText id="email" value="#{cart.email}"
 					required="true" requiredMessage="E-mail is required"></h:inputText>
 				<rich:message id="emailMsg" for="email"></rich:message>
 
@@ -141,36 +141,36 @@
 			domElementAttachment="parent" width="500" height="230">
 			<h:panelGrid columns="3" id="editCartRowGrid">
 				<h:outputText value="Flight number" />
-				<h:outputText value="#{mainBean.cart.currentEntry.key.flightNumber}" />
+				<h:outputText value="#{cart.currentEntry.key.flightNumber}" />
 				<h:panelGroup />
 				<h:outputText value="Departure" />
-				<h:outputText value="#{mainBean.cart.currentEntry.key.departure}" />
+				<h:outputText value="#{cart.currentEntry.key.departure}" />
 				<h:panelGroup />
 				<h:outputText value="Arrival" />
-				<h:outputText value="#{mainBean.cart.currentEntry.key.arrival}" />
+				<h:outputText value="#{cart.currentEntry.key.arrival}" />
 				<h:panelGroup />
 				<h:outputText value="Amount of free tickets" />
 				<h:outputText
-					value="#{mainBean.cart.currentEntry.key.ticketFreeAmount}" />
+					value="#{cart.currentEntry.key.ticketFreeAmount}" />
 				<h:panelGroup />
 				<h:outputText value="Amount of ordered tickets" />
-				<h:outputText value="#{mainBean.cart.currentEntry.value}" />
+				<h:outputText value="#{cart.currentEntry.value}" />
 				<h:panelGroup />
 
 				<h:outputText value="New Amount of ordered tickets" />
-				<h:inputText value="#{mainBean.cart.newAmountOfOrderedTickets}"
+				<h:inputText value="#{cart.newAmountOfOrderedTickets}"
 					id="ticketOrderedAmountEdit" required="true"
 					requiredMessage="Amount of tickets is required"
 					converterMessage="Should be a valid amount of tickets"
 					validatorMessage="Should be a valid amount of tickets">
 					<f:validateLongRange minimum="1"
-						maximum="#{mainBean.cart.currentEntry.key.ticketFreeAmount}" />
+						maximum="#{cart.currentEntry.key.ticketFreeAmount}" />
 				</h:inputText>
 				<rich:message id="ticketOrderedAmountMsgEdit"
 					for="ticketOrderedAmountEdit" />
 			</h:panelGrid>
 			<a4j:commandButton value="Save"
-				action="#{mainBean.cart.updateCurrentEntry}" render="tableCart"
+				action="#{cart.updateCurrentEntry}" render="tableCart"
 				execute="editCartRowPane"
 				oncomplete="if (#{facesContext.maximumSeverity==null}) {#{rich:component('editCartRowPane')}.hide();}" />
 			<a4j:commandButton value="Cancel"
@@ -184,7 +184,7 @@
 			<a4j:commandButton value="Delete" onclick="remove(); return false;" />
 		</rich:popupPanel>
 
-		<a4j:jsFunction name="remove" action="#{mainBean.removeTicket}"
+		<a4j:jsFunction name="remove" action="#{removeTicket}"
 			render="tableCart" execute="@this"
 			oncomplete="#{rich:component('confirmPane')}.hide();" />
 

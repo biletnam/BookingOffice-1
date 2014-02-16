@@ -1,5 +1,7 @@
 package beans;
 
+import java.util.Map;
+
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -17,7 +19,10 @@ public class FlightBean {
 	@Inject
 	private BackingBean backingBean;
 	private Flight flight;
-
+	private int amountOfOrderedTickets;
+	@Inject
+	private CartBean cart;
+	
 	@PostConstruct
 	public void initialize() {
 		if (backingBean.getFlightId() == 0) {
@@ -53,6 +58,14 @@ public class FlightBean {
 		this.flight = flight;
 	}
 
+	public int getAmountOfOrderedTickets() {
+		return amountOfOrderedTickets;
+	}
+
+	public void setAmountOfOrderedTickets(int amountOfOrderedTickets) {
+		this.amountOfOrderedTickets = amountOfOrderedTickets;
+	}
+
 	public void deleteFlight() {
 		administratorService.deleteFlight(flight.getId());
 	}
@@ -65,4 +78,9 @@ public class FlightBean {
 		}
 	}
 
+	public void addTickets() {
+		Map<Flight, Integer> tickets = cart.getTickets();
+		tickets.put(flight, amountOfOrderedTickets);
+	}
+	
 }

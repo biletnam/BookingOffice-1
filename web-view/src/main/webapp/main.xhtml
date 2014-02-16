@@ -75,11 +75,8 @@
 						<a4j:commandLink styleClass="no-decor" render="addToCartGrid"
 							execute="@this" oncomplete="#{rich:component('addPane')}.show()">
 							<h:outputText value="Add to cart" />
-
-							<a4j:param value="#{it.index}"
-								assignTo="#{mainBean.currentFlightIndex}" />
-							<f:setPropertyActionListener target="#{mainBean.selectedFlight}"
-								value="#{item}" />
+							<f:setPropertyActionListener target="#{backingBean.flightId}"
+								value="#{item.id}" />
 						</a4j:commandLink>
 					</h:panelGrid>
 				</rich:column>
@@ -87,55 +84,7 @@
 
 			<rich:popupPanel header="Add Tickets to Cart" id="addPane"
 				domElementAttachment="parent" autosized="true">
-				<h:panelGrid columns="3" id="addToCartGrid">
-					<h:outputText value="Flight number" />
-					<h:outputText value="#{mainBean.selectedFlight.flightNumber}" />
-					<h:panelGroup />
-					<h:outputText value="Departure" />
-					<h:outputText value="#{mainBean.selectedFlight.departure}" />
-					<h:panelGroup />
-					<h:outputText value="Arrival" />
-					<h:outputText value="#{mainBean.selectedFlight.arrival}" />
-					<h:panelGroup />
-					<h:outputText value="Departure date" />
-					<h:outputText value="#{mainBean.selectedFlight.dateDeparture}">
-						<f:convertDateTime pattern="dd.MM.yyyy HH:mm"></f:convertDateTime>
-					</h:outputText>
-					<h:panelGroup />
-					<h:outputText value="Arrival date" />
-					<h:outputText value="#{mainBean.selectedFlight.dateArrival}">
-						<f:convertDateTime pattern="dd.MM.yyyy HH:mm"></f:convertDateTime>
-					</h:outputText>
-					<h:panelGroup />
-
-					<h:outputText value="Free tickets" />
-					<h:outputText value="#{mainBean.selectedFlight.ticketFreeAmount}" />
-					<h:panelGroup />
-
-					<h:outputText value="Quantity" />
-					<h:inputText id="amountOfOrderedTickets"
-						value="#{mainBean.amountOfOrderedTickets}" required="true"
-						requiredMessage="Amount of ordered tickets is required"
-						converterMessage="Should be a valid amount of ordered tickets"
-						validatorMessage="Should be a valid amount of ordered tickets">
-						<f:validateLongRange minimum="1"
-							maximum="#{mainBean.selectedFlight.ticketFreeAmount}" />
-					</h:inputText>
-					<rich:message id="amountOfOrderedTicketsMsg"
-						for="amountOfOrderedTickets"></rich:message>
-
-					<h:outputText value="Ticket price" />
-					<h:outputText value="#{mainBean.selectedFlight.ticketPrice}"></h:outputText>
-					<h:panelGroup />
-
-				</h:panelGrid>
-
-				<a4j:commandButton value="Add"
-					action="#{mainBean.addTicket}" render="table cart"
-					execute="addPane"
-					oncomplete="if (#{facesContext.maximumSeverity==null}) {#{rich:component('addPane')}.hide();}" />
-				<a4j:commandButton value="Cancel"
-					onclick="#{rich:component('addPane')}.hide(); return false;" />
+				<ui:include src="addToCart.xhtml"></ui:include>
 			</rich:popupPanel>
 
 		</h:form>

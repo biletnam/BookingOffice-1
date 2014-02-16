@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j">
+<h:head>
+	<title>Add to cart page</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<h:outputStylesheet library="css" name="style.css" />
+</h:head>
+<h:body>
+	<h:panelGrid columns="3" id="addToCartGrid">
+		<h:outputText value="Flight number" />
+		<h:outputText value="#{flightBean.flight.flightNumber}" />
+		<h:panelGroup />
+		<h:outputText value="Departure" />
+		<h:outputText value="#{flightBean.flight.departure}" />
+		<h:panelGroup />
+		<h:outputText value="Arrival" />
+		<h:outputText value="#{flightBean.flight.arrival}" />
+		<h:panelGroup />
+		<h:outputText value="Departure date" />
+		<h:outputText value="#{flightBean.flight.dateDeparture}">
+			<f:convertDateTime pattern="dd.MM.yyyy HH:mm"></f:convertDateTime>
+		</h:outputText>
+		<h:panelGroup />
+		<h:outputText value="Arrival date" />
+		<h:outputText value="#{flightBean.flight.dateArrival}">
+			<f:convertDateTime pattern="dd.MM.yyyy HH:mm"></f:convertDateTime>
+		</h:outputText>
+		<h:panelGroup />
+
+		<h:outputText value="Free tickets" />
+		<h:outputText value="#{flightBean.flight.ticketFreeAmount}" />
+		<h:panelGroup />
+
+		<h:outputText value="Quantity" />
+		<h:inputText id="amountOfOrderedTickets"
+			value="#{flightBean.amountOfOrderedTickets}" required="true"
+			requiredMessage="Amount of ordered tickets is required"
+			converterMessage="Should be a valid amount of ordered tickets"
+			validatorMessage="Should be a valid amount of ordered tickets">
+			<f:validateLongRange minimum="1"
+				maximum="#{flightBean.flight.ticketFreeAmount}" />
+		</h:inputText>
+		<rich:message id="amountOfOrderedTicketsMsg"
+			for="amountOfOrderedTickets"></rich:message>
+
+		<h:outputText value="Ticket price" />
+		<h:outputText value="#{flightBean.flight.ticketPrice}"></h:outputText>
+		<h:panelGroup />
+
+	</h:panelGrid>
+
+	<a4j:commandButton value="Add" action="#{flightBean.addTickets}"
+		render="table cart" execute="addPane"
+		oncomplete="if (#{facesContext.maximumSeverity==null}) {#{rich:component('addPane')}.hide();}" />
+	<a4j:commandButton value="Cancel"
+		onclick="#{rich:component('addPane')}.hide(); return false;" />
+</h:body>
+</html>
