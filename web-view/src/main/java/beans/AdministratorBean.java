@@ -42,7 +42,7 @@ public class AdministratorBean {
 	}
 	
 	public void filterFlights() {
-		
+		setFlights(administratorService.findFlights(flightNumberFilter));
 	}
 
 	public long getAmountOfExpiredReservation() {

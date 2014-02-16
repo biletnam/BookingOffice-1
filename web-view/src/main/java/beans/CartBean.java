@@ -1,5 +1,6 @@
 package beans;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -11,9 +12,10 @@ import org.springframework.context.annotation.Scope;
 
 import entity.Flight;
 
+@SuppressWarnings("serial")
 @Named
 @Scope("session")
-public class CartBean {
+public class CartBean implements Serializable {
 
 	private String customerSurname;
 	private String customerName;

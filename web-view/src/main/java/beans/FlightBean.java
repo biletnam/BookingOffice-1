@@ -6,8 +6,8 @@ import javax.inject.Named;
 
 import org.springframework.context.annotation.Scope;
 
-import service.AdministratorService;
 import entity.Flight;
+import service.AdministratorService;
 
 @Named
 @Scope("request")
