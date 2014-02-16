@@ -40,7 +40,7 @@ public class AccountantService {
 	
 	@Transactional
 	public List<Reservation> findActualReservations() {
-		return reservationDao.findActualReservations();
+		return reservationDao.findActual();
 	}
 
 	@Transactional

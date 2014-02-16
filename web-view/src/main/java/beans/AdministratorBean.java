@@ -44,5 +44,13 @@ public class AdministratorBean {
 	public void filterFlights() {
 		
 	}
+
+	public long getAmountOfExpiredReservation() {
+		return administratorService.countExpiredReservations();
+	}
 	
+	public void converExpiredReservations() {
+		administratorService.convertExpiredReservations();
+	}
+
 }

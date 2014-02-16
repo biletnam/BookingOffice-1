@@ -166,7 +166,7 @@ public class ReservationDaoTest extends TestBase {
 	@Test
 	public void testGetExpiredReservations() {
 		List<Reservation> reservations = reservationDao
-				.getExpiredReservations();
+				.findExpired();
 		GregorianCalendar gcReservation = new GregorianCalendar(2013,
 				Calendar.DECEMBER, 6, 10, 00, 14);
 		Timestamp dtReservation = new java.sql.Timestamp(gcReservation
@@ -211,7 +211,7 @@ public class ReservationDaoTest extends TestBase {
 		reservationDao.create(r);
 		reservationDao.getEntityManager().getTransaction().commit();
 
-		List<Reservation> reservations = reservationDao.findActualReservations();
+		List<Reservation> reservations = reservationDao.findActual();
 		assertTrue(reservations.size() == 0);
 
 	}

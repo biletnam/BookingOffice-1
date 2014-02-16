@@ -43,10 +43,10 @@ public class AdministratorService {
 	}
 
 	@Transactional
-	public void convertTickets() {
+	public void convertExpiredReservations() {
 		List<Ticket> tickets = ticketDao.getTicketsForExpiredReservation();
 		List<Reservation> reservations = reservationDao
-				.getExpiredReservations();
+				.findExpired();
 		for (Ticket t : tickets) {
 			ticketDao.delete(t.getId());
 		}
@@ -72,5 +72,11 @@ public class AdministratorService {
 		}
 		return flights;
 	}
+	
+	@Transactional
+	public long countExpiredReservations() {
+		return reservationDao.countExpired();
+	}
+	
 
 }

@@ -14,7 +14,7 @@ import entity.Reservation;
 @Repository
 public class ReservationDao extends GenericDaoImpl<Reservation> {
 
-	public List<Reservation> getExpiredReservations() {
+	public List<Reservation> findExpired() {
 		GregorianCalendar gc = (GregorianCalendar) Calendar.getInstance();
 		gc.add(Calendar.DAY_OF_YEAR, -3);
 		Date now = gc.getTime();
@@ -27,8 +27,20 @@ public class ReservationDao extends GenericDaoImpl<Reservation> {
 		
 		return reservations;
 	}
+	
+	public long countExpired() {
+		GregorianCalendar gc = (GregorianCalendar) Calendar.getInstance();
+		gc.add(Calendar.DAY_OF_YEAR, -3);
+		Date now = gc.getTime();
+		
+		TypedQuery<Long> query = entityManager.createQuery("SELECT count(r) FROM Reservation r where r.dateReservation < ?1 and r.paid = FALSE", Long.class);
+		query.setParameter(1, now);
+		long amountOfExpiredReservations = query.getSingleResult();	
+		
+		return amountOfExpiredReservations;
+	}
 
-	public List<Reservation> findActualReservations() {
+	public List<Reservation> findActual() {
 		GregorianCalendar gc = (GregorianCalendar) Calendar.getInstance();
 		gc.add(Calendar.DAY_OF_YEAR, -3);
 		Date now = gc.getTime();
