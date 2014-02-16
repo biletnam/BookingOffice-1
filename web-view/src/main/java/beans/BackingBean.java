@@ -1,6 +1,7 @@
 package beans;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Named;
@@ -19,6 +20,8 @@ public class BackingBean implements Serializable {
 	private AccountRole[] accountRoles = AccountRole.values();
 	private int flightId;
 	private String flightNumberFilter;
+	private Date filterDateDeparture;
+	private String filterArrival;
 
 	@PostConstruct
 	public void initialize() {
@@ -65,4 +68,19 @@ public class BackingBean implements Serializable {
 		this.flightNumberFilter = flightNumberFilter;
 	}
 
+	public Date getFilterDateDeparture() {
+		return filterDateDeparture;
+	}
+
+	public void setFilterDateDeparture(Date filterDateDeparture) {
+		this.filterDateDeparture = filterDateDeparture;
+	}
+
+	public String getFilterArrival() {
+		return filterArrival;
+	}
+
+	public void setFilterArrival(String filterArrival) {
+		this.filterArrival = filterArrival;
+	}
 }
