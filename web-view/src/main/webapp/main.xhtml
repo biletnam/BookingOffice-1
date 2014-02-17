@@ -82,11 +82,10 @@
 				<f:facet name="header">Action</f:facet>
 				<h:panelGrid columns="2">
 					<h:form>
-						<a4j:commandLink styleClass="no-decor" render="addToCartGrid"
-							execute="@this"
+						<a4j:commandLink render="addToCartGrid" execute="@this"
 							oncomplete="#{rich:component('addToCartPane')}.show()">
 							<h:outputText value="Add to cart" />
-							<f:setPropertyActionListener target="#{backingBean.flightId}"
+							<f:setPropertyActionListener target="#{backingBean.flightCartId}"
 								value="#{item.id}" />
 						</a4j:commandLink>
 					</h:form>

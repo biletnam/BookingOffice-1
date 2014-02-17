@@ -25,11 +25,11 @@ public class FlightBean {
 	
 	@PostConstruct
 	public void initialize() {
-		if (backingBean.getFlightId() == 0) {
+		if (backingBean.getFlightCartId() == 0) {
 			setFlight(new Flight());
 		} else {
 			setFlight(administratorService
-					.readFlight(backingBean.getFlightId()));
+					.readFlight(backingBean.getFlightCartId()));
 		}
 	}
 
