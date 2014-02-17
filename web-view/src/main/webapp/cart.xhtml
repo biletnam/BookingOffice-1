@@ -27,13 +27,13 @@
 				<h:outputText value="Name"></h:outputText>
 				<h:outputText value="Middlename"></h:outputText>
 				<h:outputText value="E-mail"></h:outputText>
-				<h:inputText id="surname" value="#{cartBean.surname}"
+				<h:inputText id="surname" value="#{cartBean.customerSurname}"
 					required="true" requiredMessage="Surname is required"></h:inputText>
-				<h:inputText id="name" value="#{cartBean.name}" required="true"
+				<h:inputText id="name" value="#{cartBean.customerName}" required="true"
 					requiredMessage="Name is required"></h:inputText>
-				<h:inputText id="middlename" value="#{cartBean.middlename}"
+				<h:inputText id="middlename" value="#{cartBean.customerMiddlename}"
 					required="true" requiredMessage="Middlename is required"></h:inputText>
-				<h:inputText id="email" value="#{cartBean.email}" required="true"
+				<h:inputText id="email" value="#{cartBean.customerEmail}" required="true"
 					requiredMessage="E-mail is required"></h:inputText>
 				<rich:message id="surnameMsg" for="surname"></rich:message>
 				<rich:message id="nameMsg" for="name"></rich:message>
@@ -49,7 +49,7 @@
 				<h:outputText value="#{cartBean.ticketsSum}"></h:outputText>
 				<h:panelGroup />
 				<a4j:commandButton value="Acccept" render="editCartTable"
-					execute="@this" action="#{cartBean.createReservation}"/>
+					execute="@form" action="#{cartBean.createReservation}"/>
 			</h:panelGrid>
 			
 			<rich:popupPanel id="confirmPane" autosized="true">
@@ -95,13 +95,13 @@
 				</rich:column>
 				<rich:column>
 					<f:facet name="header">Quantity</f:facet>
-					<h:inputText id="quantity" value="#{item.value}" size="3"
+					<h:outputText id="quantity" value="#{item.value}" size="3"
 						required="true" requiredMessage="Quantity is required"
 						converterMessage="Should be a valid quantity"
 						validatorMessage="Should be a valid quantity">
-						<f:validateLongRange minimum="1"
-							maximum="#{item.key.ticketFreeAmount}" />
-					</h:inputText>
+<!-- 						<f:validateLongRange minimum="1" -->
+<!-- 							maximum="#{item.key.ticketFreeAmount}" /> -->
+					</h:outputText>
 				</rich:column>
 				<rich:column>
 					<f:facet name="header">Price</f:facet>
@@ -122,7 +122,6 @@
 							<f:setPropertyActionListener target="#{cartBean.currentEntry}"
 								value="#{item}" />
 						</a4j:commandLink>
-
 					</h:panelGrid>
 				</rich:column>
 				<rich:column>
