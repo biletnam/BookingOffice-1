@@ -145,6 +145,6 @@ public class CartBean implements Serializable {
 	}
 
 	public void deleteTicket() {
-		tickets.remove(getCurrentEntry().getClass());
+		tickets.remove(getCurrentEntry().getKey());
 	}
 }

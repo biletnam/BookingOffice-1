@@ -56,7 +56,7 @@
 	</h:panelGrid>
 
 	<a4j:commandButton value="Add" action="#{flightBean.addTicketsToCart}"
-		render="customerTable cartSummaryGrid" execute="addToCartPane"
+		render="customerTable cartSummaryGrid cartSummaryForm" execute="addToCartPane"
 		oncomplete="if (#{facesContext.maximumSeverity==null}) {#{rich:component('addToCartPane')}.hide();}" />
 	<a4j:commandButton value="Cancel"
 		onclick="#{rich:component('addToCartPane')}.hide(); return false;" />

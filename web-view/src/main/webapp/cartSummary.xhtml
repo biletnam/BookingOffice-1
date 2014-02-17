@@ -23,9 +23,9 @@
 			<h:outputText value="#{cartBean.ticketsSum}"></h:outputText>
 		</h:panelGrid>
 
-		<h:form>
+		<h:form id="cartSummaryForm">
 			<h:commandButton render="tableCart" execute="@this"
-				value="Proceed to checkout" action="cart">
+				value="Proceed to checkout" action="cart" rendered="#{cartBean.ticketsAmount > 0}">
 			</h:commandButton>
 		</h:form>
 	</h:panelGrid>
