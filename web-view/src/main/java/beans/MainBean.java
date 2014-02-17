@@ -53,7 +53,7 @@ public class MainBean {
 	}
 
 	public void findFlights() {
-
+		setFlights(administratorService.findFlightsByDateDepartureAndArrival(backingBean.getFilterDateDeparture(), backingBean.getFilterArrival()));
 	}
 
 }
