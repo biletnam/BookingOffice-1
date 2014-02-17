@@ -14,23 +14,20 @@
 </h:head>
 
 <h:body>
-	<h:form>
+	<h:panelGrid columns="2">
+
 		<h:panelGrid id="cartSummaryGrid" columns="8">
 			<h:outputText value="Tickets in your cart"></h:outputText>
 			<h:outputText value="#{cartBean.ticketsAmount}"></h:outputText>
 			<h:outputText value="Order subtotal"></h:outputText>
 			<h:outputText value="#{cartBean.ticketsSum}"></h:outputText>
-			
-			<a4j:commandButton render="tableCart" execute="@this"
-				value="Proceed to checkout"
-				oncomplete="#{rich:component('editCartPane')}.show()">
-			</a4j:commandButton>
 		</h:panelGrid>
 
-		<rich:popupPanel header="Edit your cart" id="editCartPane"
-			domElementAttachment="parent" autosized="true">
-			<ui:include src="cartEdit.xhtml"></ui:include>
-		</rich:popupPanel>
-	</h:form>
+		<h:form>
+			<h:commandButton render="tableCart" execute="@this"
+				value="Proceed to checkout" action="cart">
+			</h:commandButton>
+		</h:form>
+	</h:panelGrid>
 </h:body>
 </html>
