@@ -6,20 +6,25 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.springframework.context.annotation.Scope;
 
+import service.CustomerService;
 import entity.Flight;
 
 @SuppressWarnings("serial")
 @Named
 @Scope("session")
 public class CartBean implements Serializable {
-
+	@Inject
+	private CustomerService customerService;
+	
 	private String customerSurname;
 	private String customerName;
 	private String customerMiddlename;
+	private String customerEmail;
 	private double ticketsSum;
 	private int ticketsAmount;
 	private Map<Flight, Integer> tickets = new HashMap<Flight, Integer>();
@@ -27,41 +32,13 @@ public class CartBean implements Serializable {
 	private int currentEntryIndex;
 	private Map.Entry<Flight, Integer> currentEntry;
 	private int newAmountOfOrderedTickets;
-	private String surname;
-	private String name;
-	private String middlename;
-	private String email;
-	
-	public String getSurname() {
-		return surname;
+
+	public String getCustomerEmail() {
+		return customerEmail;
 	}
 
-	public void setSurname(String surname) {
-		this.surname = surname;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getMiddlename() {
-		return middlename;
-	}
-
-	public void setMiddlename(String middlename) {
-		this.middlename = middlename;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
+	public void setCustomerEmail(String customerEmail) {
+		this.customerEmail = customerEmail;
 	}
 
 	public int getNewAmountOfOrderedTickets() {
@@ -164,7 +141,7 @@ public class CartBean implements Serializable {
 	}
 	
 	public void createReservation() {
-		
+		customerService.createReservation(entries, customerSurname, customerName, customerMiddlename, customerEmail, getTicketsSum());
 	}
 
 	public void deleteTicket() {

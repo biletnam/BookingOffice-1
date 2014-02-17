@@ -1,5 +1,6 @@
 package entity;
 
+import java.util.Calendar;
 import java.util.Date;
 
 import javax.persistence.*;
@@ -21,6 +22,11 @@ public class Reservation {
 	private Date datePayment;
 	private boolean paid;
 
+	@PrePersist
+    protected void onCreate() {
+		dateReservation = Calendar.getInstance().getTime();
+    }
+	
 	public double getSumTotal() {
 		return sumTotal;
 	}
