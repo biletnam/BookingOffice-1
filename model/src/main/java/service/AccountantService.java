@@ -14,9 +14,6 @@ import entity.*;
 public class AccountantService {
 	@Inject
 	private ReservationDao reservationDao;
-	
-	@Inject
-	private TicketDao ticketDao;
 
 	@Transactional
 	public Reservation createReservation(Reservation r) {
@@ -41,18 +38,6 @@ public class AccountantService {
 	@Transactional
 	public List<Reservation> findActualReservations() {
 		return reservationDao.findActual();
-	}
-
-	@Transactional
-	public void update_Reservation(Reservation r) {
-		//TODO
-		reservationDao.update(r);
-		List<Ticket> listT = ticketDao.getTicketsForReservation(r);
-		for (Ticket t : listT) {
-			t.setReservationId(r.getId());
-			t.setStatus(TicketStatus.SOLD);
-			ticketDao.update(t);
-		}
 	}
 
 }
