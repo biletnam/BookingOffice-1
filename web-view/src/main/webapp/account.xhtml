@@ -53,7 +53,7 @@
 
 		</h:panelGrid>
 		<a4j:commandButton value="Save" action="#{accountBean.saveAccount}"
-			execute="accountPane"
+			execute="accountPane" render="securityOfficerTable"
 			oncomplete="if (#{facesContext.maximumSeverity==null}) {#{rich:component('accountPane')}.hide();}" />
 		<a4j:commandButton value="Cancel"
 			onclick="#{rich:component('accountPane')}.hide(); return false;" />
