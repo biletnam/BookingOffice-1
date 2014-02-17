@@ -39,8 +39,6 @@
 				<rich:message id="nameMsg" for="name"></rich:message>
 				<rich:message id="middlenameMsg" for="middlename"></rich:message>
 				<rich:message id="emailMsg" for="email"></rich:message>
-
-
 			</h:panelGrid>
 
 			<h:panelGrid columns="3">
@@ -50,8 +48,8 @@
 				<h:outputText value="Order subtotal"></h:outputText>
 				<h:outputText value="#{cartBean.ticketsSum}"></h:outputText>
 				<h:panelGroup />
-				<h:commandButton value="Acccept" render="editCartTable"
-					execute="@this" />
+				<a4j:commandButton value="Acccept" render="editCartTable"
+					execute="@this" action="#{cartBean.createReservation}"/>
 			</h:panelGrid>
 			
 			<rich:popupPanel id="confirmPane" autosized="true">
@@ -64,12 +62,6 @@
 			<a4j:jsFunction name="remove" action="#{cartBean.deleteTicket}"
 				render="tableCart" execute="@this"
 				oncomplete="#{rich:component('confirmPane')}.hide();" />
-
-			<rich:popupPanel id="checkoutPane" autosized="true">
-            Successfully! Thanks for your order
-            	<a4j:commandButton value="Ok"
-					onclick="#{rich:component('checkoutPane')}.hide(); return false; rich:component('editCartPane')}.hide(); return false;" />
-			</rich:popupPanel>
 
 			<rich:dataTable id="editCartTable" value="#{cartBean.entries}"
 				var="item">
@@ -133,15 +125,12 @@
 
 					</h:panelGrid>
 				</rich:column>
-
 				<rich:column>
 					<f:facet name="header">Notice</f:facet>
 					<rich:message id="quantityMsg" for="quantity"></rich:message>
 				</rich:column>
 			</rich:dataTable>
-
 		</h:form>
-
 	</ui:define>
 </ui:composition>
 </html>
