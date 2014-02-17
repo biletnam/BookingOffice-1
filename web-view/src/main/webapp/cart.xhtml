@@ -61,7 +61,7 @@
 				<a4j:commandButton value="Delete" onclick="remove(); return false;" />
 			</rich:popupPanel>
 
-			<a4j:jsFunction name="remove" action="#{removeTicket}"
+			<a4j:jsFunction name="remove" action="#{cartBean.deleteTicket}"
 				render="tableCart" execute="@this"
 				oncomplete="#{rich:component('confirmPane')}.hide();" />
 
