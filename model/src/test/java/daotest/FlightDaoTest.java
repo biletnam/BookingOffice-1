@@ -71,7 +71,6 @@ public class FlightDaoTest extends TestBase {
 		int id = f.getId();
 		Flight fReaded = flightDao.read(id);
 		assertTrue(id == fReaded.getId());
-		assertTrue(dtCreated.equals(fReaded.getDateCreated()));
 		assertTrue(flightNumber.equals(fReaded.getFlightNumber()));
 		assertTrue(departure.equals(fReaded.getDeparture()));
 		assertTrue(arrival.equals(fReaded.getArrival()));
