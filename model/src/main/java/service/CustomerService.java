@@ -19,7 +19,6 @@ public class CustomerService {
 	@Inject
 	private ReservationDao reservationDao;
 
-	@Inject
 	@Transactional
 	public void createReservation(List<Map.Entry<Flight, Integer>> tickets,
 			String customerSurname, String customerName,
@@ -35,6 +34,8 @@ public class CustomerService {
 		for (Map.Entry<Flight, Integer> entry : tickets) {
 			Flight flight = entry.getKey();
 			int quantity = entry.getValue();
+			int freeTickets = flight.getTicketFreeAmount() - entry.getValue();
+			flight.setTicketFreeAmount(freeTickets);
 			for (int i = 1; i <= quantity; i++) {
 				Ticket ticket = new Ticket();
 				ticket.setFlightId(flight.getId());
@@ -45,9 +46,4 @@ public class CustomerService {
 		}
 
 	}
-
-	// List<Flight> findNecesseryFlights(String arrival, Date departureDate) {
-	// return flightDao.find(arrival, departureDate);
-	// }
-
 }
