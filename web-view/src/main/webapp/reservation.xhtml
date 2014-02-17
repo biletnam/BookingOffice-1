@@ -39,10 +39,6 @@
 				<f:convertDateTime pattern="dd.MM.yyyy HH:mm:ss"></f:convertDateTime>
 			</h:outputText>
 			<h:panelGroup />
-			<h:outputText value="Is paid" />
-			<h:selectBooleanCheckbox value="#{reservationBean.reservation.paid}"></h:selectBooleanCheckbox>
-			<h:panelGroup />
-
 			<h:outputText value="Payment date" />
 			<rich:calendar id="calendarPayment"
 				value="#{reservationBean.reservation.datePayment}" locale="US"
@@ -50,9 +46,13 @@
 				requiredMessage="Payment date is required">
 			</rich:calendar>
 			<rich:message id="calendarPaymentMsg" for="calendarPayment" />
+			<h:outputText value="Is paid" />
+			<h:selectBooleanCheckbox value="#{reservationBean.reservation.paid}"></h:selectBooleanCheckbox>
+			<h:panelGroup />
 		</h:panelGrid>
 		<a4j:commandButton value="Save"
-			action="#{reservationBean.saveReservation}" execute="editReservationPane"
+			action="#{reservationBean.saveReservation}"
+			execute="editReservationPane" render="accountantTable"
 			oncomplete="if (#{facesContext.maximumSeverity==null}) {#{rich:component('editReservationPane')}.hide();}" />
 		<a4j:commandButton value="Cancel"
 			onclick="#{rich:component('editReservationPane')}.hide(); return false;" />
