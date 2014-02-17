@@ -30,68 +30,72 @@
 				<h:panelGroup />
 				<h:outputText value="Arrival"></h:outputText>
 				<h:inputText id="filterArrival" value="#{backingBean.filterArrival}"></h:inputText>
-				<a4j:commandButton value="Find" render="table"
+				<a4j:commandButton value="Find" render="customerTable"
 					action="#{mainBean.findFlights}" execute="@this" />
 			</h:panelGrid>
+		</h:form>
+		<h:form id="customerTableForm">
+			<rich:dataTable id="customerTable" value="#{mainBean.flights}"
+				var="item">
+				<rich:column>
+					<f:facet name="header">Flight number</f:facet>
+					<h:outputText value="#{item.flightNumber}"></h:outputText>
+				</rich:column>
+				<rich:column>
+					<f:facet name="header">Departure</f:facet>
+					<h:outputText value="#{item.departure}"></h:outputText>
+				</rich:column>
+				<rich:column>
+					<f:facet name="header">Arrival</f:facet>
+					<h:outputText value="#{item.arrival}"></h:outputText>
+				</rich:column>
+				<rich:column>
+					<f:facet name="header">Departure date</f:facet>
+					<h:outputText value="#{item.dateDeparture}">
+						<f:convertDateTime pattern="dd.MM.yyyy HH:mm"></f:convertDateTime>
+					</h:outputText>
+				</rich:column>
+				<rich:column>
+					<f:facet name="header">Arrival date</f:facet>
+					<h:outputText value="#{item.dateArrival}">
+						<f:convertDateTime pattern="dd.MM.yyyy HH:mm"></f:convertDateTime>
+					</h:outputText>
+				</rich:column>
+				<rich:column>
+					<f:facet name="header">Free tickets</f:facet>
+					<h:outputText value="#{item.ticketFreeAmount}"></h:outputText>
+				</rich:column>
+				<rich:column>
+					<f:facet name="header">Price</f:facet>
+					<h:outputText value="#{item.ticketPrice}"></h:outputText>
+				</rich:column>
 
+				<rich:column>
+					<f:facet name="header">Action</f:facet>
+					<h:panelGrid columns="2">
 
+						<a4j:commandLink render="addToCartGrid" execute="@this"
+							oncomplete="#{rich:component('addToCartPane')}.show()">
+							<h:outputText value="Add to cart" />
+							<!-- 							<a4j:ajax event="click" reRender="customerTable"></a4j:ajax> -->
+							<!-- 							<a4j:param name="flightCartId" value="#{item.id}" assignTo="#{backingBean.flightCartId}"/> -->
+							<f:setPropertyActionListener target="#{backingBean.flightCartId}"
+								value="#{item.id}" />
+						</a4j:commandLink>
 
+					</h:panelGrid>
+				</rich:column>
+			</rich:dataTable>
+		</h:form>
+
+		<h:form>
 			<rich:popupPanel header="Add Tickets to Cart" id="addToCartPane"
 				domElementAttachment="parent" autosized="true">
 				<ui:include src="addToCart.xhtml"></ui:include>
 			</rich:popupPanel>
-
 		</h:form>
 
-		<rich:dataTable id="customerTable" value="#{mainBean.flights}"
-			var="item">
-			<rich:column>
-				<f:facet name="header">Flight number</f:facet>
-				<h:outputText value="#{item.flightNumber}"></h:outputText>
-			</rich:column>
-			<rich:column>
-				<f:facet name="header">Departure</f:facet>
-				<h:outputText value="#{item.departure}"></h:outputText>
-			</rich:column>
-			<rich:column>
-				<f:facet name="header">Arrival</f:facet>
-				<h:outputText value="#{item.arrival}"></h:outputText>
-			</rich:column>
-			<rich:column>
-				<f:facet name="header">Departure date</f:facet>
-				<h:outputText value="#{item.dateDeparture}">
-					<f:convertDateTime pattern="dd.MM.yyyy HH:mm"></f:convertDateTime>
-				</h:outputText>
-			</rich:column>
-			<rich:column>
-				<f:facet name="header">Arrival date</f:facet>
-				<h:outputText value="#{item.dateArrival}">
-					<f:convertDateTime pattern="dd.MM.yyyy HH:mm"></f:convertDateTime>
-				</h:outputText>
-			</rich:column>
-			<rich:column>
-				<f:facet name="header">Free tickets</f:facet>
-				<h:outputText value="#{item.ticketFreeAmount}"></h:outputText>
-			</rich:column>
-			<rich:column>
-				<f:facet name="header">Price</f:facet>
-				<h:outputText value="#{item.ticketPrice}"></h:outputText>
-			</rich:column>
 
-			<rich:column>
-				<f:facet name="header">Action</f:facet>
-				<h:panelGrid columns="2">
-					<h:form>
-						<a4j:commandLink render="addToCartGrid" execute="@this"
-							oncomplete="#{rich:component('addToCartPane')}.show()">
-							<h:outputText value="Add to cart" />
-							<f:setPropertyActionListener target="#{backingBean.flightCartId}"
-								value="#{item.id}" />
-						</a4j:commandLink>
-					</h:form>
-				</h:panelGrid>
-			</rich:column>
-		</rich:dataTable>
 	</ui:define>
 </ui:composition>
 </html>
