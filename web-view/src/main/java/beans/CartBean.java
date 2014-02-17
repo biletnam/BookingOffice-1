@@ -166,10 +166,8 @@ public class CartBean implements Serializable {
 	public void createReservation() {
 		
 	}
-	
 
-
-	public void removeTicket() {
-//		tickets.remove(cart.getCurrentEntry().getKey());
+	public void deleteTicket() {
+		tickets.remove(getCurrentEntry().getClass());
 	}
 }
