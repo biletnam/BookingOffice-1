@@ -26,11 +26,10 @@ public class CartBean implements Serializable {
 	private String customerMiddlename;
 	private String customerEmail;
 	private double ticketsSum;
-	private int ticketsAmount;
 	private Map<Flight, Integer> tickets = new HashMap<Flight, Integer>();
 	private List<Map.Entry<Flight, Integer>> entries;
-	private int currentEntryIndex;
 	private Map.Entry<Flight, Integer> currentEntry;
+	private int currentEntryIndex;
 	private int newAmountOfOrderedTickets;
 
 	public String getCustomerEmail() {
@@ -47,14 +46,6 @@ public class CartBean implements Serializable {
 
 	public void setNewAmountOfOrderedTickets(int newAmountOfOrderedTickets) {
 		this.newAmountOfOrderedTickets = newAmountOfOrderedTickets;
-	}
-
-	public int getCurrentEntryIndex() {
-		return currentEntryIndex;
-	}
-
-	public void setCurrentEntryIndex(int currentEntryIndex) {
-		this.currentEntryIndex = currentEntryIndex;
 	}
 
 	public Map.Entry<Flight, Integer> getCurrentEntry() {
@@ -116,16 +107,11 @@ public class CartBean implements Serializable {
 
 	public int getTicketsAmount() {
 
-		int a = 0;
+		int ticketsAmount = 0;
 		for (Integer i : tickets.values()) {
-			a += i;
+			ticketsAmount += i;
 		}
-		setTicketsAmount(a);
 		return ticketsAmount;
-	}
-
-	public void setTicketsAmount(int ticketsAmount) {
-		this.ticketsAmount = ticketsAmount;
 	}
 
 	public Map<Flight, Integer> getTickets() {
@@ -144,7 +130,26 @@ public class CartBean implements Serializable {
 		customerService.createReservation(entries, customerSurname, customerName, customerMiddlename, customerEmail, getTicketsSum());
 	}
 
+	public String cancelReservation() {
+		tickets.clear();
+		setCustomerSurname(null);
+		setCustomerName(null);
+		setCustomerMiddlename(null);
+		setCustomerEmail(null);
+		return "main";
+	}
+	
 	public void deleteTicket() {
 		tickets.remove(getCurrentEntry().getKey());
 	}
+
+	public int getCurrentEntryIndex() {
+		return currentEntryIndex;
+	}
+
+	public void setCurrentEntryIndex(int currentEntryIndex) {
+		this.currentEntryIndex = currentEntryIndex;
+	}
+	
+	
 }

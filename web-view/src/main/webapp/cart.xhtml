@@ -20,6 +20,8 @@
 		<h:form>
 			<h:commandButton value="Continue shopping" render="customerTable"
 				action="main" execute="@this" />
+			<h:commandButton value="Cancel order" render="customerTable"
+				action="#{cartBean.cancelReservation}" execute="@this" />
 		</h:form>
 		<h:form>
 			<h:panelGrid columns="4">
@@ -29,12 +31,12 @@
 				<h:outputText value="E-mail"></h:outputText>
 				<h:inputText id="surname" value="#{cartBean.customerSurname}"
 					required="true" requiredMessage="Surname is required"></h:inputText>
-				<h:inputText id="name" value="#{cartBean.customerName}" required="true"
-					requiredMessage="Name is required"></h:inputText>
+				<h:inputText id="name" value="#{cartBean.customerName}"
+					required="true" requiredMessage="Name is required"></h:inputText>
 				<h:inputText id="middlename" value="#{cartBean.customerMiddlename}"
 					required="true" requiredMessage="Middlename is required"></h:inputText>
-				<h:inputText id="email" value="#{cartBean.customerEmail}" required="true"
-					requiredMessage="E-mail is required"></h:inputText>
+				<h:inputText id="email" value="#{cartBean.customerEmail}"
+					required="true" requiredMessage="E-mail is required"></h:inputText>
 				<rich:message id="surnameMsg" for="surname"></rich:message>
 				<rich:message id="nameMsg" for="name"></rich:message>
 				<rich:message id="middlenameMsg" for="middlename"></rich:message>
@@ -48,20 +50,10 @@
 				<h:outputText value="Order subtotal"></h:outputText>
 				<h:outputText value="#{cartBean.ticketsSum}"></h:outputText>
 				<h:panelGroup />
-				<a4j:commandButton value="Acccept" render="editCartTable"
-					execute="@form" action="#{cartBean.createReservation}"/>
-			</h:panelGrid>
-			
-			<rich:popupPanel id="confirmPane" autosized="true">
-            Are you sure you want to delete the row?
-            	<a4j:commandButton value="Cancel"
-					onclick="#{rich:component('confirmPane')}.hide(); return false;" />
-				<a4j:commandButton value="Delete" onclick="remove(); return false;" />
-			</rich:popupPanel>
 
-			<a4j:jsFunction name="remove" action="#{cartBean.deleteTicket}"
-				render="tableCart" execute="@this"
-				oncomplete="#{rich:component('confirmPane')}.hide();" />
+				<a4j:commandButton value="Confirm order" render="editCartTable"
+					execute="@this" action="#{cartBean.createReservation}" />
+			</h:panelGrid>
 
 			<rich:dataTable id="editCartTable" value="#{cartBean.entries}"
 				var="item">
@@ -99,8 +91,8 @@
 						required="true" requiredMessage="Quantity is required"
 						converterMessage="Should be a valid quantity"
 						validatorMessage="Should be a valid quantity">
-<!-- 						<f:validateLongRange minimum="1" -->
-<!-- 							maximum="#{item.key.ticketFreeAmount}" /> -->
+						<!-- 						<f:validateLongRange minimum="1" -->
+						<!-- 							maximum="#{item.key.ticketFreeAmount}" /> -->
 					</h:outputText>
 				</rich:column>
 				<rich:column>
@@ -114,7 +106,7 @@
 				<rich:column>
 					<f:facet name="header">Action</f:facet>
 					<h:panelGrid columns="2">
-						<a4j:commandLink execute="@this"
+						<a4j:commandLink execute="@this" render="editCartTable"
 							oncomplete="#{rich:component('confirmPane')}.show()">
 							<h:outputText value="Delete" />
 							<a4j:param value="#{it.index}"
@@ -130,6 +122,22 @@
 				</rich:column>
 			</rich:dataTable>
 		</h:form>
+
+		<h:form>
+			<rich:popupPanel id="confirmPane" autosized="true">
+            Are you sure you want to delete the row?
+            	<a4j:commandButton value="Cancel" render="editCartTable"
+					onclick="#{rich:component('confirmPane')}.hide(); return false;" />
+				<a4j:commandButton value="Delete" onclick="remove(); return false;" />
+			</rich:popupPanel>
+		</h:form>
+
+		<h:form>
+			<a4j:jsFunction name="remove" action="#{cartBean.deleteTicket}"
+				render="editCartTable" execute="@this"
+				oncomplete="#{rich:component('confirmPane')}.hide();" />
+		</h:form>
+
 	</ui:define>
 </ui:composition>
 </html>
