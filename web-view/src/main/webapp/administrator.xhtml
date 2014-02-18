@@ -18,9 +18,9 @@
 
 	<ui:define name="content">
 		<h3>Administrator page</h3>
-		
+
 		<h:form id="administratorForm">
-			
+
 			<h:panelGrid columns="4">
 				<h:outputText value="Flight number"></h:outputText>
 				<h:inputText id="flightNumberFilter"
@@ -37,8 +37,11 @@
 					<f:setPropertyActionListener target="#{backingBean.flightId}"
 						value="#{0}" />
 				</a4j:commandButton>
-				<a4j:commandButton value="Convert expired reservation" render="expiredReservation" execute="@this" />
-				<h:outputText id="expiredReservation" value="Expired reservations for now #{administratorBean.amountOfExpiredReservation}"></h:outputText>
+				<a4j:commandButton value="Convert expired reservation"
+					render="administratorTable expiredReservation" execute="@this"
+					action="#{administratorBean.convertExpiredReservations}" />
+				<h:outputText id="expiredReservation"
+					value="Expired reservations for now #{administratorBean.amountOfExpiredReservation}"></h:outputText>
 			</h:panelGrid>
 			<rich:dataTable value="#{administratorBean.flights}" var="item"
 				id="administratorTable">
