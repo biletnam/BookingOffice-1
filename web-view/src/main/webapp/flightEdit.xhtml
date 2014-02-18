@@ -38,14 +38,17 @@
 			<h:inputText value="#{flightBean.flight.ticketAmount}"
 				id="ticketAmountEdit" required="true"
 				requiredMessage="Amount of tickets is required"
-				converterMessage="Should be a valid amount of tickets"
-				validatorMessage="Should be a valid amount of tickets">
-				<f:validateLongRange minimum="#{flightBean.flight.ticketFreeAmount}"
-					maximum="99999999" />
+				converterMessage="Should be a valid amount of tickets">
+
+				<!-- 				<f:validateLongRange minimum="#{flightBean.flight.ticketFreeAmount}" -->
+				<!-- 					maximum="99999999" /> -->
 			</h:inputText>
 			<rich:message id="ticketAmountMsgEdit" for="ticketAmountEdit" />
 			<h:outputText value="Amount of free tickets" />
 			<h:outputText value="#{flightBean.flight.ticketFreeAmount}" />
+			<h:panelGroup />
+			<h:outputText value="Amount of sold tickets" />
+			<h:outputText value="#{flightBean.amountOfSoldTickets}" />
 			<h:panelGroup />
 			<h:outputText value="Ticket price" />
 			<h:outputText value="#{flightBean.flight.ticketPrice}"></h:outputText>
