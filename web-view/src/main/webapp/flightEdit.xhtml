@@ -55,9 +55,9 @@
 			<h:panelGroup />
 		</h:panelGrid>
 		<a4j:commandButton value="Save" action="#{flightBean.saveFlight}"
-			execute="editFlightPane"
+			execute="editFlightPane" render="administratorTable"
 			oncomplete="if (#{facesContext.maximumSeverity==null}) {#{rich:component('editFlightPane')}.hide();}" />
-		<a4j:commandButton value="Cancel"
+		<a4j:commandButton value="Cancel" render="administratorTable"
 			onclick="#{rich:component('editFlightPane')}.hide(); return false;" />
 	</h:form>
 </h:body>

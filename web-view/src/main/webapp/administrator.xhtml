@@ -95,7 +95,7 @@
 								value="#{item.id}" />
 						</a4j:commandLink>
 
-						<a4j:commandLink execute="@this"
+						<a4j:commandLink execute="@this" rendered="#{item.ticketFreeAmount == 0}"
 							oncomplete="#{rich:component('confirmDeleteFlightPane')}.show()">
 							<h:outputText value="Delete" />
 							<a4j:param value="#{item.id}" assignTo="#{backingBean.flightId}" />

@@ -67,9 +67,9 @@
 			<rich:message id="ticketPriceMsg" for="ticketPrice" />
 		</h:panelGrid>
 		<a4j:commandButton value="Save" action="#{flightBean.saveFlight}"
-			execute="createFlightPane"
+			execute="createFlightPane" render="administratorTable"
 			oncomplete="if (#{facesContext.maximumSeverity==null}) {#{rich:component('createFlightPane')}.hide();}" />
-		<a4j:commandButton value="Cancel"
+		<a4j:commandButton value="Cancel" render="administratorTable"
 			onclick="#{rich:component('createFlightPane')}.hide(); return false;" />
 	</h:form>
 </h:body>

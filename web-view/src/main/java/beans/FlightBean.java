@@ -25,11 +25,11 @@ public class FlightBean {
 	
 	@PostConstruct
 	public void initialize() {
-		if (backingBean.getFlightCartId() == 0) {
+		if (backingBean.getFlightId() == 0) {
 			setFlight(new Flight());
 		} else {
 			setFlight(administratorService
-					.readFlight(backingBean.getFlightCartId()));
+					.readFlight(backingBean.getFlightId()));
 		}
 	}
 
@@ -82,6 +82,10 @@ public class FlightBean {
 		Map<Flight, Integer> tickets = cart.getTickets();
 		tickets.put(flight, amountOfOrderedTickets);
 		
+	}
+	
+	public long getAmountOfSoldTickets() {
+		return administratorService.countSoldTickets(flight);
 	}
 	
 }
