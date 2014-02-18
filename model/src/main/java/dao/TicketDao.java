@@ -108,4 +108,13 @@ public class TicketDao extends GenericDaoImpl<Ticket> {
 		return data;
 
 	}
+	
+	public long countSold(Flight flight) {
+		TypedQuery<Long> query = entityManager.createQuery("SELECT count(t) FROM Ticket t where t.flightId = ?1", Long.class);
+		int flightId = flight.getId();
+		query.setParameter(1, flightId);
+		long amountOfSoldTickets = query.getSingleResult();	
+		
+		return amountOfSoldTickets;
+	}
 }
