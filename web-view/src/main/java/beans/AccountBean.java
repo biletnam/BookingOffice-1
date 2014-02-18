@@ -36,6 +36,10 @@ public class AccountBean {
 		}
 	}
 	
+	public void deleteAccount() {
+		securityOfficerService.deleteAccount(backingBean.getAccountId());
+	}
+	
 	public SecurityOfficerService getSecurityOfficerService() {
 		return securityOfficerService;
 	}
