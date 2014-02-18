@@ -16,7 +16,7 @@ public class Ticket  {
 		return flightId;
 	}
 
-	public void setFlightId(int flightId) {
+	public void setFlightId(Integer flightId) {
 		this.flightId = flightId;
 	}
 
@@ -36,7 +36,7 @@ public class Ticket  {
 		return reservationId;
 	}
 
-	public void setReservationId(int reservationId) {
+	public void setReservationId(Integer reservationId) {
 		this.reservationId = reservationId;
 	}
 }

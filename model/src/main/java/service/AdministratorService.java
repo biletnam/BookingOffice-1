@@ -45,13 +45,17 @@ public class AdministratorService {
 
 	@Transactional
 	public void convertExpiredReservations() {
-		List<Ticket> tickets = ticketDao.getTicketsForExpiredReservation();
 		List<Reservation> reservations = reservationDao.findExpired();
-		for (Ticket t : tickets) {
-			ticketDao.delete(t.getId());
-		}
-
 		for (Reservation r : reservations) {
+			List<Ticket> tickets = ticketDao.getTicketsForReservation(r);
+			for (Ticket t : tickets) {
+				int flightId = t.getFlightId();
+				Flight flight = flightDao.read(flightId);
+				int ticketFreeAmount = flight.getTicketFreeAmount();
+				ticketFreeAmount = ticketFreeAmount + 1;
+				flight.setTicketFreeAmount(ticketFreeAmount);
+				ticketDao.delete(t.getId());
+			}
 			reservationDao.delete(r.getId());
 		}
 
@@ -81,12 +85,13 @@ public class AdministratorService {
 			flights = flightDao.findAll();
 		} else if (dateDeparture != null && arrival.equals("")) {
 			flights = flightDao.findByDateDeparture(dateDeparture);
-		} else if (dateDeparture == null && !arrival.equals("")){
+		} else if (dateDeparture == null && !arrival.equals("")) {
 			flights = flightDao.findByArrival(arrival);
 		} else {
-			flights = flightDao.findByDateDepartureAndArrival(dateDeparture, arrival);
+			flights = flightDao.findByDateDepartureAndArrival(dateDeparture,
+					arrival);
 		}
-		
+
 		return flights;
 	}
 

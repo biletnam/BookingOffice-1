@@ -42,7 +42,7 @@ public class AdministratorBean {
 		return administratorService.countExpiredReservations();
 	}
 	
-	public void converExpiredReservations() {
+	public void convertExpiredReservations() {
 		administratorService.convertExpiredReservations();
 	}
 
