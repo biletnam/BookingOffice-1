@@ -19,7 +19,6 @@ public class BackingBean implements Serializable {
 	private int accountId;
 	private AccountRole[] accountRoles = AccountRole.values();
 	private int flightId;
-	private int flightCartId;
 	private String flightNumberFilter;
 	private Date filterDateDeparture;
 	private String filterArrival;
@@ -84,14 +83,6 @@ public class BackingBean implements Serializable {
 
 	public void setFilterArrival(String filterArrival) {
 		this.filterArrival = filterArrival;
-	}
-
-	public int getFlightCartId() {
-		return flightCartId;
-	}
-
-	public void setFlightCartId(int flightCartId) {
-		this.flightCartId = flightCartId;
 	}
 	
 }
