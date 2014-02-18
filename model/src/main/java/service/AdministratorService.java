@@ -34,8 +34,17 @@ public class AdministratorService {
 	}
 
 	@Transactional
-	public Flight updateFlight(Flight f) {
-		return flightDao.update(f);
+	public boolean updateFlight(Flight f) {
+		Flight flight = flightDao.read(f.getId());
+		int newTicketAmount = f.getTicketAmount();
+		int ticketFreeAmount = flight.getTicketFreeAmount();
+		int ticketAmount = flight.getTicketAmount();
+		if (newTicketAmount >= ticketAmount - ticketFreeAmount) {
+			flightDao.update(f);
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	@Transactional
@@ -98,6 +107,11 @@ public class AdministratorService {
 	@Transactional
 	public long countExpiredReservations() {
 		return reservationDao.countExpired();
+	}
+	
+	@Transactional
+	public long countSoldTickets(Flight flight) {
+		return ticketDao.countSold(flight);
 	}
 
 }
