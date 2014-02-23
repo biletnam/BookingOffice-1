@@ -43,7 +43,9 @@
 			<rich:calendar id="calendarPayment"
 				value="#{reservationBean.reservation.datePayment}" locale="US"
 				popup="true" datePattern="dd.MM.yyyy HH:mm" required="true"
-				requiredMessage="Payment date is required">
+				requiredMessage="Payment date is required"
+				validatorMessage="Payment date must be after date of reservation for less then 3 days"
+				validator="#{reservationBean.validate}">
 			</rich:calendar>
 			<rich:message id="calendarPaymentMsg" for="calendarPayment" />
 			<h:outputText value="Is paid" />

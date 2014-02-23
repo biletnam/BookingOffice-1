@@ -1,6 +1,14 @@
 package beans;
 
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
+import javax.faces.component.UIComponent;
+import javax.faces.context.FacesContext;
+import javax.faces.validator.ValidatorException;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -51,5 +59,20 @@ public class ReservationBean {
 		this.backingBean = backingBean;
 	}
 
-	
+	public void validate(FacesContext context, UIComponent component, Object value)
+			throws ValidatorException {
+		
+		Date datePayment = (Date)value;
+		Date dateReservation = reservation.getDateReservation();
+		
+		GregorianCalendar gc = new GregorianCalendar();
+		gc.setTime(dateReservation);
+		gc.add(Calendar.DAY_OF_YEAR, 3);
+		Date datePaymentEnds = gc.getTime();
+		
+		
+		if (datePayment.before(dateReservation) || datePayment.after(datePaymentEnds)) {
+			throw new ValidatorException(new FacesMessage());
+		}
+	}
 }
