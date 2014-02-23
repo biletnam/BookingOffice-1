@@ -131,6 +131,7 @@ public class CartBean implements Serializable {
 	}
 
 	public String cancelReservation() {
+		customerService.cancelReservation(entries);
 		clearBean();
 		return "main";
 	}

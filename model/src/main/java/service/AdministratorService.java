@@ -32,6 +32,8 @@ public class AdministratorService {
 	public Flight readFlight(Object id) {
 		return flightDao.read(id);
 	}
+	
+
 
 	@Transactional
 	public boolean updateFlight(Flight f) {

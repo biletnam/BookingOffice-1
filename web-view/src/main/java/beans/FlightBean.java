@@ -10,12 +10,15 @@ import org.springframework.context.annotation.Scope;
 
 import entity.Flight;
 import service.AdministratorService;
+import service.CustomerService;
 
 @Named
 @Scope("request")
 public class FlightBean {
 	@Inject
 	private AdministratorService administratorService;
+	@Inject 
+	private CustomerService customerService;
 	@Inject
 	private BackingBean backingBean;
 	private Flight flight;
@@ -79,8 +82,10 @@ public class FlightBean {
 	}
 
 	public void addTicketsToCart() {
+		customerService.updateFlightCart(flight, amountOfOrderedTickets);
 		Map<Flight, Integer> tickets = cart.getTickets();
 		tickets.put(flight, amountOfOrderedTickets);
+		
 		
 	}
 	

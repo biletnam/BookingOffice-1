@@ -8,6 +8,7 @@ import javax.inject.Named;
 
 import org.springframework.transaction.annotation.Transactional;
 
+import dao.FlightDao;
 import dao.ReservationDao;
 import dao.TicketDao;
 import entity.*;
@@ -18,6 +19,8 @@ public class CustomerService {
 	private TicketDao ticketDao;
 	@Inject
 	private ReservationDao reservationDao;
+	@Inject
+	private FlightDao flightDao;
 
 	@Transactional
 	public void createReservation(List<Map.Entry<Flight, Integer>> tickets,
@@ -45,5 +48,24 @@ public class CustomerService {
 			}
 		}
 
+	}
+	
+	@Transactional
+	public void cancelReservation(List<Map.Entry<Flight, Integer>> tickets) {
+		for(Map.Entry<Flight, Integer> entry : tickets) {
+			Flight flightEntry = entry.getKey();
+			Flight flight = flightDao.read(flightEntry.getId());
+			int ticketFreeAmount = flight.getTicketFreeAmount() + entry.getValue();
+			flight.setTicketFreeAmount(ticketFreeAmount);
+			flightDao.update(flight);
+		}
+	}
+	
+	@Transactional
+	public void updateFlightCart(Flight f, int amount) {
+		Flight flight = flightDao.read(f.getId());
+		int ticketFreeAmount = flight.getTicketFreeAmount() - amount;
+		flight.setTicketFreeAmount(ticketFreeAmount);
+		flightDao.update(flight);
 	}
 }
