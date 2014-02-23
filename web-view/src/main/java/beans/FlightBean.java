@@ -3,6 +3,10 @@ package beans;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
+import javax.faces.component.UIComponent;
+import javax.faces.context.FacesContext;
+import javax.faces.validator.ValidatorException;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -85,8 +89,6 @@ public class FlightBean {
 		customerService.updateFlightCart(flight, amountOfOrderedTickets);
 		Map<Flight, Integer> tickets = cart.getTickets();
 		tickets.put(flight, amountOfOrderedTickets);
-		
-		
 	}
 	
 	public long getAmountOfSoldTickets() {
@@ -96,5 +98,15 @@ public class FlightBean {
 	public long getAmountOfBookedTickets() {
 		return administratorService.countBookedTickets(flight);
 	}
+
 	
+	public void validate(FacesContext context, UIComponent component, Object value)
+			throws ValidatorException {
+		int ticketFreeAmount = getFlight().getTicketFreeAmount();
+		int ticketOrderedAmount = (int)value;
+		
+		if (ticketOrderedAmount > ticketFreeAmount) {
+			throw new ValidatorException(new FacesMessage());
+		}
+	}
 }

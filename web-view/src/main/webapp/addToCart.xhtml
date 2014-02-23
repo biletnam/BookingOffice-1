@@ -42,9 +42,7 @@
 			value="#{flightBean.amountOfOrderedTickets}" required="true"
 			requiredMessage="Amount of ordered tickets is required"
 			converterMessage="Should be a valid amount of ordered tickets"
-			validatorMessage="Should be a valid amount of ordered tickets">
-			<!-- 			<f:validateLongRange minimum="1" -->
-			<!-- 				maximum="#{flightBean.flight.ticketFreeAmount}" /> -->
+			validatorMessage="Amount of ordered tickets must be less than amount of free tickets" validator="#{flightBean.validate}">
 		</h:inputText>
 		<rich:message id="amountOfOrderedTicketsMsg"
 			for="amountOfOrderedTickets"></rich:message>
