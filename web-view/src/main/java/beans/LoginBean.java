@@ -49,7 +49,12 @@ public class LoginBean {
 			account.setName("officer");
 			return "securityOfficer";
 		} else {
-			account = securityOfficerService.checkUser(login, psw);
+			try {
+				account = securityOfficerService.checkUser(login, psw);
+			} catch (Exception e) {
+
+			}
+
 			if (account != null) {
 				return account.getAccountRole().getName().toLowerCase();
 			} else {
@@ -57,9 +62,16 @@ public class LoginBean {
 			}
 		}
 	}
-	
+
+	private void clearBean() {
+		setLogin(null);
+		setPsw(null);
+		setAccount(null);
+	}
+
 	public String logout() {
+		clearBean();
 		return "main";
 	}
-	
+
 }

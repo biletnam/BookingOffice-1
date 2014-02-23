@@ -7,10 +7,20 @@
 	xmlns:f="http://java.sun.com/jsf/core">
 
 <ui:composition template="WEB-INF/templates/template.xhtml">
+	<ui:define name="title">Login failed - Airline booking office</ui:define>
+	<ui:define name="authorization">
+		<ui:include src="login.xhtml"></ui:include>
+	</ui:define>
+	<ui:define id="cartSummary" name="pan">
+		<ui:include src="cartSummary.xhtml"></ui:include>
+	</ui:define>
 	<ui:define name="content">
-	    <h:form>
+		<h:form>
 			<h3>Login page</h3>
-			Login failed
+			<h:panelGrid columns="1">
+				<h:outputText value="Unsuccessful login attempt"></h:outputText>
+				<h:commandLink value="Go to main page" action="main"></h:commandLink>
+			</h:panelGrid>
 		</h:form>
 	</ui:define>
 </ui:composition>

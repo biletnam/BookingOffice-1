@@ -3,26 +3,25 @@
 body {
 	font: 14px/18px Arial, Verdana, sans-serif;
 	height: 100%;
-/* 	color: #104E8B; */
+	/* 	color: #104E8B; */
 	color: #0B356C;
 	/* 	margin: 0px; */
 }
 
 #top {
-/* 	background: #FFCC00; */
+	background: #99CCFF;
 	height: 100px;
 	/* 	width: 960px; */
-	border-bottom-style: double;
-	
+	/* 	border-bottom-style: double; */
 }
 
 #header {
-/* 	background: #CC0000; */
+	/* 	background: #CC0000; */
 	height: 80px;
 	width: 930px;
 	float: left;
 	margin: 10px;
-	border: 1px dashed;
+	/* 	border: 1px dashed; */
 }
 
 #headerText {
@@ -30,47 +29,47 @@ body {
 }
 
 #authorization {
-/* 	background: #FF3300; */
+	/* 	background: #FF3300; */
 	height: 80px;
 	width: 250px;
 	float: left;
 	margin: 10px;
 	/* 	padding: 5px 2.5px; */
-	border: 1px dashed;
+	/* 	border: 1px dashed; */
 }
 
 #panel {
-/* 	background: #DDCC00; */
-	height: 55px;
-	border-bottom-style: double;
+	background: #CAE1FF;
+	height: 40px;
+	/* 	border-bottom-style: double; */
 }
 
 #pan {
-/* 	background: #CC0066; */
-	height: 35px;
+	/* 	background: #CC0066; */
+	height: 25px;
 	width: 1200px;
 	float: left;
-	margin: 10px;
+	margin: 5px;
 	/* 	padding: 10px 5px; */
-	border: 1px dashed;
+	/* 	border: 1px dashed;*/
 }
 
 #center {
-/* 	background: #ACCC00; */
+	/* 	background: #ACCC00; */
 	height: 800px;
 	width: 100%;
 }
 
 #content {
-/* 	background: #FF9933; */
+	/* 	background: #FF9933; */
 	height: 780px;
 	width: 1200px;
 	margin: 10px;
 	float: left;
-	border: 1px dashed;
+	/* 	border: 1px dashed; */
 }
 
 #footer {
-/* 	background: #FFFF99; */
+	/* 	background: #FFFF99; */
 	height: 30px;
 }
