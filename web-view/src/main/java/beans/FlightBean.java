@@ -88,4 +88,8 @@ public class FlightBean {
 		return administratorService.countSoldTickets(flight);
 	}
 	
+	public long getAmountOfBookedTickets() {
+		return administratorService.countBookedTickets(flight);
+	}
+	
 }

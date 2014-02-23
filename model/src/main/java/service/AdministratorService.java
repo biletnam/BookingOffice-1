@@ -113,5 +113,10 @@ public class AdministratorService {
 	public long countSoldTickets(Flight flight) {
 		return ticketDao.countSold(flight);
 	}
+	
+	@Transactional
+	public long countBookedTickets(Flight flight) {
+		return ticketDao.countBooked(flight);
+	}
 
 }

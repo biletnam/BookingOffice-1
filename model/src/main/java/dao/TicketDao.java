@@ -110,9 +110,20 @@ public class TicketDao extends GenericDaoImpl<Ticket> {
 	}
 	
 	public long countSold(Flight flight) {
-		TypedQuery<Long> query = entityManager.createQuery("SELECT count(t) FROM Ticket t where t.flightId = ?1", Long.class);
+		TypedQuery<Long> query = entityManager.createQuery("SELECT count(t) FROM Ticket t where t.flightId = ?1 and t.status = ?2", Long.class);
 		int flightId = flight.getId();
 		query.setParameter(1, flightId);
+		query.setParameter(2, TicketStatus.SOLD);
+		long amountOfSoldTickets = query.getSingleResult();	
+		
+		return amountOfSoldTickets;
+	}
+	
+	public long countBooked(Flight flight) {
+		TypedQuery<Long> query = entityManager.createQuery("SELECT count(t) FROM Ticket t where t.flightId = ?1 and t.status = ?2", Long.class);
+		int flightId = flight.getId();
+		query.setParameter(1, flightId);
+		query.setParameter(2, TicketStatus.BOOKED);
 		long amountOfSoldTickets = query.getSingleResult();	
 		
 		return amountOfSoldTickets;
