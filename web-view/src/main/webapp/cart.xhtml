@@ -14,7 +14,6 @@
 		<ui:include src="login.xhtml"></ui:include>
 	</ui:define>
 	<ui:define id="cartSummary" name="pan">
-		<ui:include src="cartSummary.xhtml"></ui:include>
 	</ui:define>
 	<ui:define name="content">
 		<h3>Cart page</h3>
@@ -25,6 +24,16 @@
 				action="#{cartBean.cancelReservation}" execute="@this" />
 		</h:form>
 		<h:form id = "customerInfoForm">
+			<h:panelGrid id = "customerCartInfoGrid" columns="3">
+				<h:outputText value="Tickets in your cart"></h:outputText>
+				<h:outputText value="#{cartBean.ticketsAmount}"></h:outputText>
+				<h:panelGroup />
+				<h:outputText value="Order subtotal"></h:outputText>
+				<h:outputText value="#{cartBean.ticketsSum}"></h:outputText>
+				<h:panelGroup />
+				
+			</h:panelGrid>
+			
 			<h:panelGrid id="customerInfoGrid" columns="4">
 				<h:outputText value="Surname"></h:outputText>
 				<h:outputText value="Name"></h:outputText>
@@ -42,16 +51,7 @@
 				<rich:message id="nameMsg" for="name"></rich:message>
 				<rich:message id="middlenameMsg" for="middlename"></rich:message>
 				<rich:message id="emailMsg" for="email"></rich:message>
-			</h:panelGrid>
-
-			<h:panelGrid columns="3">
-				<h:outputText value="Tickets in your cart"></h:outputText>
-				<h:outputText value="#{cartBean.ticketsAmount}"></h:outputText>
-				<h:panelGroup />
-				<h:outputText value="Order subtotal"></h:outputText>
-				<h:outputText value="#{cartBean.ticketsSum}"></h:outputText>
-				<h:panelGroup />
-
+				
 				<a4j:commandButton value="Confirm order" render="editCartTable"
 					execute="@form" action="#{cartBean.createReservation}" />
 			</h:panelGrid>
@@ -135,7 +135,7 @@
 
 		<h:form>
 			<a4j:jsFunction name="remove" action="#{cartBean.deleteTicket}"
-				render="editCartTable" execute="@this"
+				render="editCartTable, customerCartInfoGrid" execute="@this"
 				oncomplete="#{rich:component('confirmPane')}.hide();" />
 		</h:form>
 
