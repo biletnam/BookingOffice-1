@@ -35,7 +35,7 @@ public class AdministratorBean {
 	}
 	
 	public void filterFlights() {
-		
+		setFlights(administratorService.findFlightsByNumber(backingBean.getFlightNumberFilter()));
 	}
 
 	public long getAmountOfExpiredReservation() {

@@ -15,37 +15,33 @@ import entity.*;
 public class FlightDao extends GenericDaoImpl<Flight> {
 
 	public List<Flight> findByFlightNumber(String flightNumber) {
-		TypedQuery<Flight> query = entityManager
-				.createQuery(
-						"SELECT f FROM Flight f WHERE f.flightNumber = ?1",
-						Flight.class);
-		query.setParameter(1, flightNumber);
+		TypedQuery<Flight> query = entityManager.createQuery(
+				"SELECT f FROM Flight f WHERE f.flightNumber like ?1",
+				Flight.class);
+		query.setParameter(1, "%" + flightNumber + "%");
 		List<Flight> flights = query.getResultList();
 		return flights;
 	}
-	
+
 	public List<Flight> findActualAll() {
 		Date now = Calendar.getInstance().getTime();
 		TypedQuery<Flight> query = entityManager
-				.createQuery(
-						"SELECT f FROM Flight f where dateDeparture > ?1",
+				.createQuery("SELECT f FROM Flight f where dateDeparture > ?1",
 						Flight.class);
 		query.setParameter(1, now);
-		List<Flight> flights =  query.getResultList();
+		List<Flight> flights = query.getResultList();
 		return flights;
 	}
-	
+
 	public List<Flight> findAll() {
-		TypedQuery<Flight> query = entityManager
-				.createQuery(
-						"SELECT f FROM Flight f",
-						Flight.class);
-		List<Flight> flights =  query.getResultList();
+		TypedQuery<Flight> query = entityManager.createQuery(
+				"SELECT f FROM Flight f", Flight.class);
+		List<Flight> flights = query.getResultList();
 		return flights;
 	}
-	
+
 	public List<Flight> findActualByDateDeparture(Date dateDeparture) {
-		
+
 		GregorianCalendar gc = new GregorianCalendar();
 		gc.setTime(dateDeparture);
 		gc.set(Calendar.HOUR_OF_DAY, 0);
@@ -56,7 +52,7 @@ public class FlightDao extends GenericDaoImpl<Flight> {
 		gc.add(Calendar.DAY_OF_YEAR, 1);
 		Date endDate = gc.getTime();
 		Date now = Calendar.getInstance().getTime();
-		
+
 		TypedQuery<Flight> query = entityManager
 				.createQuery(
 						"SELECT f FROM Flight f WHERE f.dateDeparture > ?3 and (f.dateDeparture between ?1 and ?2)",
@@ -67,21 +63,22 @@ public class FlightDao extends GenericDaoImpl<Flight> {
 		List<Flight> flights = query.getResultList();
 		return flights;
 	}
-	
+
 	public List<Flight> findActualByArrival(String arrival) {
 		Date now = Calendar.getInstance().getTime();
-		
+
 		TypedQuery<Flight> query = entityManager
 				.createQuery(
-						"SELECT f FROM Flight f WHERE f.arrival = ?1 and f.dateDeparture > ?2",
+						"SELECT f FROM Flight f WHERE f.arrival like ?1 and f.dateDeparture > ?2",
 						Flight.class);
-		query.setParameter(1, arrival);
+		query.setParameter(1, "%" + arrival + "%");
 		query.setParameter(2, now);
 		List<Flight> flights = query.getResultList();
 		return flights;
 	}
-	
-	public List<Flight> findActualByDateDepartureAndArrival(Date dateDeparture, String arrival) {
+
+	public List<Flight> findActualByDateDepartureAndArrival(Date dateDeparture,
+			String arrival) {
 		GregorianCalendar gc = new GregorianCalendar();
 		gc.setTime(dateDeparture);
 		gc.set(Calendar.HOUR_OF_DAY, 0);
@@ -92,12 +89,12 @@ public class FlightDao extends GenericDaoImpl<Flight> {
 		gc.add(Calendar.DAY_OF_YEAR, 1);
 		Date endDate = gc.getTime();
 		Date now = Calendar.getInstance().getTime();
-		
+
 		TypedQuery<Flight> query = entityManager
 				.createQuery(
-						"SELECT f FROM Flight f WHERE f.arrival = ?1 and f.dateDeparture > ?4 and (f.dateDeparture BETWEEN ?2 and ?3)",
+						"SELECT f FROM Flight f WHERE f.arrival like ?1 and f.dateDeparture > ?4 and (f.dateDeparture BETWEEN ?2 and ?3)",
 						Flight.class);
-		query.setParameter(1, arrival);
+		query.setParameter(1, "%" + arrival + "%");
 		query.setParameter(2, startDate);
 		query.setParameter(3, endDate);
 		query.setParameter(4, now);

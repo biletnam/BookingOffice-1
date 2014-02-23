@@ -79,7 +79,7 @@ public class AdministratorService {
 	public List<Flight> findFlightsByNumber(String flightNumber) {
 		List<Flight> flights = null;
 		if (flightNumber.equals("")) {
-			flights = flightDao.findActualAll();
+			flights = flightDao.findAll();
 		} else {
 			flights = flightDao.findByFlightNumber(flightNumber);
 		}
