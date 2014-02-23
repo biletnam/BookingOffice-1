@@ -72,14 +72,14 @@ public class AdministratorService {
 
 	@Transactional
 	public List<Flight> findFlightsAll() {
-		return flightDao.findAll();
+		return flightDao.findActualAll();
 	}
 
 	@Transactional
 	public List<Flight> findFlightsByNumber(String flightNumber) {
 		List<Flight> flights = null;
 		if (flightNumber.equals("")) {
-			flights = flightDao.findAll();
+			flights = flightDao.findActualAll();
 		} else {
 			flights = flightDao.findByFlightNumber(flightNumber);
 		}
@@ -87,17 +87,17 @@ public class AdministratorService {
 	}
 
 	@Transactional
-	public List<Flight> findFlightsByDateDepartureAndArrival(
+	public List<Flight> findActualFlightsByDateDepartureAndArrival(
 			Date dateDeparture, String arrival) {
 		List<Flight> flights = null;
 		if (dateDeparture == null && arrival.equals("")) {
-			flights = flightDao.findAll();
+			flights = flightDao.findActualAll();
 		} else if (dateDeparture != null && arrival.equals("")) {
-			flights = flightDao.findByDateDeparture(dateDeparture);
+			flights = flightDao.findActualByDateDeparture(dateDeparture);
 		} else if (dateDeparture == null && !arrival.equals("")) {
-			flights = flightDao.findByArrival(arrival);
+			flights = flightDao.findActualByArrival(arrival);
 		} else {
-			flights = flightDao.findByDateDepartureAndArrival(dateDeparture,
+			flights = flightDao.findActualByDateDepartureAndArrival(dateDeparture,
 					arrival);
 		}
 

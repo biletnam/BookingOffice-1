@@ -31,7 +31,7 @@
 				<h:outputText value="Arrival"></h:outputText>
 				<h:inputText id="filterArrival" value="#{backingBean.filterArrival}"></h:inputText>
 				<a4j:commandButton value="Find" render="customerTable"
-					action="#{mainBean.findFlights}" execute="@this" />
+					action="#{mainBean.findFlights}" execute="@form" />
 			</h:panelGrid>
 		</h:form>
 		<h:form id="customerTableForm">

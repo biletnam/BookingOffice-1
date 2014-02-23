@@ -182,7 +182,7 @@ public class FlightDaoTest extends TestBase {
 		String arrival = "New York";
 		GregorianCalendar gcDeparture = new GregorianCalendar(2013, Calendar.DECEMBER, 28);
 		java.sql.Date dtDeparture = new java.sql.Date(gcDeparture.getTime().getTime());
-		List<Flight> flights = flightDao.findByDateDepartureAndArrival(dtDeparture, arrival);
+		List<Flight> flights = flightDao.findActualByDateDepartureAndArrival(dtDeparture, arrival);
 		assertTrue(flights.size() == 1);
 	}
 

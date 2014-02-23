@@ -25,7 +25,7 @@ public class MainBean {
 
 	@PostConstruct
 	public void initialize() {
-		setFlights(administratorService.findFlightsByDateDepartureAndArrival(backingBean.getFilterDateDeparture(), backingBean.getFilterArrival()));
+		setFlights(administratorService.findActualFlightsByDateDepartureAndArrival(backingBean.getFilterDateDeparture(), backingBean.getFilterArrival()));
 	}
 	
 	public int getCurrentFlightIndex() {
@@ -53,7 +53,7 @@ public class MainBean {
 	}
 
 	public void findFlights() {
-		setFlights(administratorService.findFlightsByDateDepartureAndArrival(backingBean.getFilterDateDeparture(), backingBean.getFilterArrival()));
+		setFlights(administratorService.findActualFlightsByDateDepartureAndArrival(backingBean.getFilterDateDeparture(), backingBean.getFilterArrival()));
 	}
 
 }
