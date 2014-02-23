@@ -58,6 +58,7 @@ public class LoginBean {
 			if (account != null) {
 				return account.getAccountRole().getName().toLowerCase();
 			} else {
+				clearBean();
 				return "loginFailed";
 			}
 		}
