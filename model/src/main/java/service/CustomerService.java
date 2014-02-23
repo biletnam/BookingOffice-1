@@ -37,8 +37,7 @@ public class CustomerService {
 		for (Map.Entry<Flight, Integer> entry : tickets) {
 			Flight flight = entry.getKey();
 			int quantity = entry.getValue();
-			int freeTickets = flight.getTicketFreeAmount() - entry.getValue();
-			flight.setTicketFreeAmount(freeTickets);
+			
 			for (int i = 1; i <= quantity; i++) {
 				Ticket ticket = new Ticket();
 				ticket.setFlightId(flight.getId());
