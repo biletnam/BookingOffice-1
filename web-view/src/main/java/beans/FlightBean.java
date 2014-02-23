@@ -1,5 +1,8 @@
 package beans;
 
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
@@ -29,6 +32,7 @@ public class FlightBean {
 	private int amountOfOrderedTickets;
 	@Inject
 	private CartBean cart;
+	private Date dateDepartureValidation; 
 	
 	@PostConstruct
 	public void initialize() {
@@ -98,14 +102,46 @@ public class FlightBean {
 	public long getAmountOfBookedTickets() {
 		return administratorService.countBookedTickets(flight);
 	}
-
 	
+	public Date getDateDepartureValidation() {
+		return dateDepartureValidation;
+	}
+
+	public void setDateDepartureValidation(Date dateDepartureValidation) {
+		this.dateDepartureValidation = dateDepartureValidation;
+	}
+
 	public void validate(FacesContext context, UIComponent component, Object value)
 			throws ValidatorException {
 		int ticketFreeAmount = getFlight().getTicketFreeAmount();
 		int ticketOrderedAmount = (int)value;
 		
 		if (ticketOrderedAmount > ticketFreeAmount) {
+			throw new ValidatorException(new FacesMessage());
+		}
+	}
+	
+	public void validateDateDeparture(FacesContext context, UIComponent component, Object value)
+			throws ValidatorException {
+		Date dateDeparture = (Date) value;
+		setDateDepartureValidation(dateDeparture);
+		Date dateDepartureStarts = Calendar.getInstance().getTime();
+		GregorianCalendar gc = new GregorianCalendar();
+		gc.setTime(dateDepartureStarts);
+		gc.add(Calendar.DAY_OF_YEAR, 3);
+		dateDepartureStarts = gc.getTime();
+		
+		if (dateDeparture.before(dateDepartureStarts)) {
+			throw new ValidatorException(new FacesMessage());
+		}
+	}
+	
+	public void validateDateArrival(FacesContext context, UIComponent component, Object value)
+			throws ValidatorException {
+		Date dateArrival = (Date) value;
+		Date dateDeparture = getDateDepartureValidation();
+		
+		if (dateDeparture == null || dateDeparture.after(dateArrival)) {
 			throw new ValidatorException(new FacesMessage());
 		}
 	}
