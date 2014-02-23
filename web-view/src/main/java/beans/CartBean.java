@@ -126,8 +126,12 @@ public class CartBean implements Serializable {
 		tickets.put(currentEntry.getKey(), newAmountOfOrderedTickets);
 	}
 	
-	public void createReservation() {
+	public String createReservation() {
 		customerService.createReservation(entries, customerSurname, customerName, customerMiddlename, customerEmail, getTicketsSum());
+		clearBean();
+		
+		return "reservationSuccess";
+		
 	}
 
 	public String cancelReservation() {

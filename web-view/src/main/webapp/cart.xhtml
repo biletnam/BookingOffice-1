@@ -17,14 +17,15 @@
 		<ui:include src="cartSummary.xhtml"></ui:include>
 	</ui:define>
 	<ui:define name="content">
+		<h3>Cart page</h3>
 		<h:form>
 			<h:commandButton value="Continue shopping" render="customerTable"
 				action="main" execute="@this" />
 			<h:commandButton value="Cancel order" render="customerTable"
 				action="#{cartBean.cancelReservation}" execute="@this" />
 		</h:form>
-		<h:form>
-			<h:panelGrid columns="4">
+		<h:form id = "customerInfoForm">
+			<h:panelGrid id="customerInfoGrid" columns="4">
 				<h:outputText value="Surname"></h:outputText>
 				<h:outputText value="Name"></h:outputText>
 				<h:outputText value="Middlename"></h:outputText>
@@ -52,7 +53,7 @@
 				<h:panelGroup />
 
 				<a4j:commandButton value="Confirm order" render="editCartTable"
-					execute="@this" action="#{cartBean.createReservation}" />
+					execute="@form" action="#{cartBean.createReservation}" />
 			</h:panelGrid>
 
 			<rich:dataTable id="editCartTable" value="#{cartBean.entries}"

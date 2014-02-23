@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="WEB-INF/templates/template.xhtml">
+	<ui:define name="title">Login failed - Airline booking office</ui:define>
+	<ui:define name="authorization">
+		<ui:include src="login.xhtml"></ui:include>
+	</ui:define>
+	<ui:define id="cartSummary" name="pan">
+		<ui:include src="cartSummary.xhtml"></ui:include>
+	</ui:define>
+	<ui:define name="content">
+		<h:form>
+			<h3>Cart page</h3>
+			<h:panelGrid columns="1">
+				<h:outputText value="Thank you for order"></h:outputText>
+				<h:commandLink value="Go to main page" action="main"></h:commandLink>
+			</h:panelGrid>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>
