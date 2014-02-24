@@ -83,7 +83,9 @@ public class FlightBean {
 
 	public void saveFlight() {
 		if (flight.getId() == 0) {
+			flight.setTicketFreeAmount(flight.getTicketAmount());
 			administratorService.createFlight(flight);
+			
 		} else {
 			administratorService.updateFlight(flight);
 		}
