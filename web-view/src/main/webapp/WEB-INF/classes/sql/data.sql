@@ -37,5 +37,5 @@ INSERT INTO TICKET (FLIGHTID, STATUS, RESERVATIONID) VALUES (5, 2, 5),
 INSERT INTO TICKET (FLIGHTID, STATUS, RESERVATIONID) VALUES (4, 1, 6);
 INSERT INTO TICKET (FLIGHTID, STATUS, RESERVATIONID) VALUES (5, 1, 7), (5, 1, 7);
 		
-INSERT INTO ACCOUNT (LOGIN, PSW, SURNAME, NAME, MIDDLENAME, ACCOUNTROLE, ACTIVE) VALUES ('administrator', 'administrator', 'Smith', 'James', '', 0, TRUE),
-				('accountant', 'accountant', 'Adams', 'Alice', '', 1, TRUE), ('analytic', 'analytic', 'Carl', 'Cracker', '', 2, TRUE);
+INSERT INTO ACCOUNT (LOGIN, PSW, SURNAME, NAME, MIDDLENAME, ACCOUNTROLE, ACTIVE) VALUES ('administrator', 'administrator', 'Smith', 'James', 'Jameson', 0, TRUE),
+				('accountant', 'accountant', 'Adams', 'Alice', 'Alinson', 1, TRUE), ('analytic', 'analytic', 'Cracker', 'Carl', 'Carlson', 2, TRUE);
