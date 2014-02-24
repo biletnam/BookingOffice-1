@@ -23,17 +23,17 @@
 			<h:commandButton value="Cancel order" render="customerTable"
 				action="#{cartBean.cancelReservation}" execute="@this" />
 		</h:form>
-		<h:form id = "customerInfoForm">
-			<h:panelGrid id = "customerCartInfoGrid" columns="3">
+		<h:form id="customerInfoForm">
+			<h:panelGrid id="customerCartInfoGrid" columns="3">
 				<h:outputText value="Tickets in your cart"></h:outputText>
 				<h:outputText value="#{cartBean.ticketsAmount}"></h:outputText>
 				<h:panelGroup />
 				<h:outputText value="Order subtotal"></h:outputText>
 				<h:outputText value="#{cartBean.ticketsSum}"></h:outputText>
 				<h:panelGroup />
-				
+
 			</h:panelGrid>
-			
+
 			<h:panelGrid id="customerInfoGrid" columns="4">
 				<h:outputText value="Surname"></h:outputText>
 				<h:outputText value="Name"></h:outputText>
@@ -51,7 +51,7 @@
 				<rich:message id="nameMsg" for="name"></rich:message>
 				<rich:message id="middlenameMsg" for="middlename"></rich:message>
 				<rich:message id="emailMsg" for="email"></rich:message>
-				
+
 				<a4j:commandButton value="Confirm order" render="editCartTable"
 					execute="@form" action="#{cartBean.createReservation}" />
 			</h:panelGrid>
@@ -83,18 +83,17 @@
 					</h:outputText>
 				</rich:column>
 				<rich:column>
-					<f:facet name="header">Free tickets</f:facet>
-					<h:outputText value="#{item.key.ticketFreeAmount}"></h:outputText>
-				</rich:column>
-				<rich:column>
 					<f:facet name="header">Quantity</f:facet>
-					<h:outputText id="quantity" value="#{item.value}" size="3"
-						required="true" requiredMessage="Quantity is required"
-						converterMessage="Should be a valid quantity"
-						validatorMessage="Should be a valid quantity">
-						<!-- 						<f:validateLongRange minimum="1" -->
-						<!-- 							maximum="#{item.key.ticketFreeAmount}" /> -->
-					</h:outputText>
+					<h:panelGrid columns="2">
+						<h:outputText id="quantity" value="#{item.value}" size="3">
+						</h:outputText>
+						<!-- 						<a4j:commandLink execute="@this" render="editOrderedAmountGrid" -->
+						<!-- 							oncomplete="#{rich:component('editOrderedAmountPane')}.show()"> -->
+						<!-- 							<h:outputText value="Edit" /> -->
+						<!-- 							<f:setPropertyActionListener target="#{cartBean.currentEntry}" -->
+						<!-- 								value="#{item}" /> -->
+						<!-- 						</a4j:commandLink> -->
+					</h:panelGrid>
 				</rich:column>
 				<rich:column>
 					<f:facet name="header">Price</f:facet>
@@ -110,16 +109,12 @@
 						<a4j:commandLink execute="@this" render="editCartTable"
 							oncomplete="#{rich:component('confirmPane')}.show()">
 							<h:outputText value="Delete" />
-							<a4j:param value="#{it.index}"
-								assignTo="#{cartBean.currentEntryIndex}" />
+							<!-- 							<a4j:param value="#{it.index}" -->
+							<!-- 								assignTo="#{cartBean.currentEntryIndex}" /> -->
 							<f:setPropertyActionListener target="#{cartBean.currentEntry}"
 								value="#{item}" />
 						</a4j:commandLink>
 					</h:panelGrid>
-				</rich:column>
-				<rich:column>
-					<f:facet name="header">Notice</f:facet>
-					<rich:message id="quantityMsg" for="quantity"></rich:message>
 				</rich:column>
 			</rich:dataTable>
 		</h:form>
@@ -139,6 +134,31 @@
 				oncomplete="#{rich:component('confirmPane')}.hide();" />
 		</h:form>
 
+		<h:form>
+			<rich:popupPanel header="Edit ordered amount"
+				id="editOrderedAmountPane" domElementAttachment="parent"
+				autosized="true">
+				<h:panelGrid id="editOrderedAmountGrid" columns="3">
+					<h:outputText value="Ordered amount"></h:outputText>
+					<h:outputText value="#{cartBean.currentEntry.value}"></h:outputText>
+					<h:panelGroup />
+					<h:outputText value="New ordered amount"></h:outputText>
+					<h:inputText value="#{cartBean.newTicketOrderedAmount}" size="3"></h:inputText>
+					<h:panelGroup />
+					<h:outputText value="You can order"></h:outputText>
+					<h:outputText
+						value="#{cartBean.currentEntry.key.ticketFreeAmount + cartBean.currentEntry.value}"></h:outputText>
+					<h:panelGroup />
+				</h:panelGrid>
+				<a4j:commandButton value="Save"
+					action="#{cartBean.editCartOrderedAmount}"
+					execute="editOrderedAmountPane"
+					render="editCartTable, customerCartInfoGrid"
+					oncomplete="if (#{facesContext.maximumSeverity==null}) {#{rich:component('editOrderedAmountPane')}.hide();}" />
+				<a4j:commandButton value="Cancel" render="editCartTable"
+					onclick="#{rich:component('editOrderedAmountPane')}.hide(); return false;" />
+			</rich:popupPanel>
+		</h:form>
 	</ui:define>
 </ui:composition>
 </html>

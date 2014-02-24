@@ -20,7 +20,7 @@ import entity.Flight;
 public class CartBean implements Serializable {
 	@Inject
 	private CustomerService customerService;
-	
+
 	private String customerSurname;
 	private String customerName;
 	private String customerMiddlename;
@@ -30,7 +30,8 @@ public class CartBean implements Serializable {
 	private List<Map.Entry<Flight, Integer>> entries;
 	private Map.Entry<Flight, Integer> currentEntry;
 	private int currentEntryIndex;
-	private int newAmountOfOrderedTickets;
+	private int newTicketOrderedAmount;
+	
 
 	public String getCustomerEmail() {
 		return customerEmail;
@@ -40,12 +41,12 @@ public class CartBean implements Serializable {
 		this.customerEmail = customerEmail;
 	}
 
-	public int getNewAmountOfOrderedTickets() {
-		return newAmountOfOrderedTickets;
+	public int getNewTicketOrderedAmount() {
+		return newTicketOrderedAmount;
 	}
 
-	public void setNewAmountOfOrderedTickets(int newAmountOfOrderedTickets) {
-		this.newAmountOfOrderedTickets = newAmountOfOrderedTickets;
+	public void setNewTicketOrderedAmount(int newTicketOrderedAmount) {
+		this.newTicketOrderedAmount = newTicketOrderedAmount;
 	}
 
 	public Map.Entry<Flight, Integer> getCurrentEntry() {
@@ -123,15 +124,17 @@ public class CartBean implements Serializable {
 	}
 
 	public void updateCurrentEntry() {
-		tickets.put(currentEntry.getKey(), newAmountOfOrderedTickets);
+		tickets.put(currentEntry.getKey(), newTicketOrderedAmount);
 	}
-	
+
 	public String createReservation() {
-		customerService.createReservation(entries, customerSurname, customerName, customerMiddlename, customerEmail, getTicketsSum());
+		customerService.createReservation(entries, customerSurname,
+				customerName, customerMiddlename, customerEmail,
+				getTicketsSum());
 		clearBean();
-		
+
 		return "reservationSuccess";
-		
+
 	}
 
 	public String cancelReservation() {
@@ -139,7 +142,7 @@ public class CartBean implements Serializable {
 		clearBean();
 		return "main";
 	}
-	
+
 	private void clearBean() {
 		tickets.clear();
 		setCustomerSurname(null);
@@ -147,9 +150,10 @@ public class CartBean implements Serializable {
 		setCustomerMiddlename(null);
 		setCustomerEmail(null);
 	}
-	
+
 	public void deleteTicket() {
-		customerService.updateFlightCart(getCurrentEntry().getKey(), -getCurrentEntry().getValue());
+		customerService.updateFlightCart(getCurrentEntry().getKey(),
+				-getCurrentEntry().getValue());
 		tickets.remove(getCurrentEntry().getKey());
 	}
 
@@ -160,6 +164,10 @@ public class CartBean implements Serializable {
 	public void setCurrentEntryIndex(int currentEntryIndex) {
 		this.currentEntryIndex = currentEntryIndex;
 	}
-	
-	
+
+	public void editCartOrderedAmount() {
+		tickets.put(currentEntry.getKey(), newTicketOrderedAmount);
+		setNewTicketOrderedAmount(0);
+	}
+
 }
