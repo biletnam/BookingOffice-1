@@ -24,7 +24,7 @@ import service.CustomerService;
 public class FlightBean {
 	@Inject
 	private AdministratorService administratorService;
-	@Inject 
+	@Inject
 	private CustomerService customerService;
 	@Inject
 	private BackingBean backingBean;
@@ -32,8 +32,8 @@ public class FlightBean {
 	private int amountOfOrderedTickets;
 	@Inject
 	private CartBean cart;
-	private Date dateDepartureValidation; 
-	
+	private Date dateDepartureValidation;
+
 	@PostConstruct
 	public void initialize() {
 		if (backingBean.getFlightId() == 0) {
@@ -85,7 +85,6 @@ public class FlightBean {
 		if (flight.getId() == 0) {
 			flight.setTicketFreeAmount(flight.getTicketAmount());
 			administratorService.createFlight(flight);
-			
 		} else {
 			administratorService.updateFlight(flight);
 		}
@@ -96,15 +95,15 @@ public class FlightBean {
 		Map<Flight, Integer> tickets = cart.getTickets();
 		tickets.put(flight, amountOfOrderedTickets);
 	}
-	
+
 	public long getAmountOfSoldTickets() {
 		return administratorService.countSoldTickets(flight);
 	}
-	
+
 	public long getAmountOfBookedTickets() {
 		return administratorService.countBookedTickets(flight);
 	}
-	
+
 	public Date getDateDepartureValidation() {
 		return dateDepartureValidation;
 	}
@@ -113,18 +112,18 @@ public class FlightBean {
 		this.dateDepartureValidation = dateDepartureValidation;
 	}
 
-	public void validate(FacesContext context, UIComponent component, Object value)
-			throws ValidatorException {
+	public void validate(FacesContext context, UIComponent component,
+			Object value) throws ValidatorException {
 		int ticketFreeAmount = getFlight().getTicketFreeAmount();
-		int ticketOrderedAmount = (int)value;
-		
+		int ticketOrderedAmount = (int) value;
+
 		if (ticketOrderedAmount > ticketFreeAmount) {
 			throw new ValidatorException(new FacesMessage());
 		}
 	}
-	
-	public void validateDateDeparture(FacesContext context, UIComponent component, Object value)
-			throws ValidatorException {
+
+	public void validateDateDeparture(FacesContext context,
+			UIComponent component, Object value) throws ValidatorException {
 		Date dateDeparture = (Date) value;
 		setDateDepartureValidation(dateDeparture);
 		Date dateDepartureStarts = Calendar.getInstance().getTime();
@@ -132,18 +131,27 @@ public class FlightBean {
 		gc.setTime(dateDepartureStarts);
 		gc.add(Calendar.DAY_OF_YEAR, 3);
 		dateDepartureStarts = gc.getTime();
-		
+
 		if (dateDeparture.before(dateDepartureStarts)) {
 			throw new ValidatorException(new FacesMessage());
 		}
 	}
-	
-	public void validateDateArrival(FacesContext context, UIComponent component, Object value)
-			throws ValidatorException {
+
+	public void validateDateArrival(FacesContext context,
+			UIComponent component, Object value) throws ValidatorException {
 		Date dateArrival = (Date) value;
 		Date dateDeparture = getDateDepartureValidation();
-		
+
 		if (dateDeparture == null || dateDeparture.after(dateArrival)) {
+			throw new ValidatorException(new FacesMessage());
+		}
+	}
+
+	public void validateTicketAmount(FacesContext context,
+			UIComponent component, Object value) throws ValidatorException {
+		int ticketAmountNew = (int) value;
+		
+		if (ticketAmountNew < (getFlight().getTicketAmount() - getFlight().getTicketFreeAmount())) {
 			throw new ValidatorException(new FacesMessage());
 		}
 	}
