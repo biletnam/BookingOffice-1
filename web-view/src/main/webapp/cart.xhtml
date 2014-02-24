@@ -85,8 +85,9 @@
 				<rich:column>
 					<f:facet name="header">Quantity</f:facet>
 					<h:panelGrid columns="2">
-						<h:outputText id="quantity" value="#{item.value}" size="3">
-						</h:outputText>
+						<h:inputText id="quantity" value="#{cartBean.tickets[item.key]}"
+							size="3">
+						</h:inputText>
 						<!-- 						<a4j:commandLink execute="@this" render="editOrderedAmountGrid" -->
 						<!-- 							oncomplete="#{rich:component('editOrderedAmountPane')}.show()"> -->
 						<!-- 							<h:outputText value="Edit" /> -->
