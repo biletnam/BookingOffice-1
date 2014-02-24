@@ -37,9 +37,11 @@
 				<a4j:commandButton value="Convert expired reservation"
 					render="administratorTable expiredReservation" execute="@this"
 					action="#{administratorBean.convertExpiredReservations}" />
+
 				<h:outputText id="expiredReservation"
 					value="Expired reservations for now #{administratorBean.amountOfExpiredReservation}"></h:outputText>
 			</h:panelGrid>
+
 
 			<rich:dataTable value="#{administratorBean.flights}" var="item"
 				id="administratorTable">
@@ -81,7 +83,7 @@
 					<f:facet name="header">Free</f:facet>
 					<h:outputText value="#{item.ticketFreeAmount}"></h:outputText>
 				</rich:column>
-				
+
 				<rich:column>
 					<f:facet name="header">Ticket price</f:facet>
 					<h:outputText value="#{item.ticketPrice}"></h:outputText>
@@ -96,7 +98,8 @@
 								value="#{item.id}" />
 						</a4j:commandLink>
 
-						<a4j:commandLink execute="@this" rendered="#{item.ticketAmount - item.ticketFreeAmount == 0}"
+						<a4j:commandLink execute="@this"
+							rendered="#{item.ticketAmount - item.ticketFreeAmount == 0}"
 							oncomplete="#{rich:component('confirmDeleteFlightPane')}.show()">
 							<h:outputText value="Delete" />
 							<a4j:param value="#{item.id}" assignTo="#{backingBean.flightId}" />
@@ -128,9 +131,11 @@
 		<h:form>
 			<rich:popupPanel id="confirmDeleteFlightPane" autosized="true">
             Are you sure you want to delete the row?
-            	<a4j:commandButton value="Cancel" render="administratorTable"
+            	<a4j:commandButton value="Cancel"
+					render="administratorTable"
 					onclick="#{rich:component('confirmDeleteFlightPane')}.hide(); return false;" />
-				<a4j:commandButton value="Delete" onclick="remove(); return false;" render="administratorTable" />
+				<a4j:commandButton value="Delete" onclick="remove(); return false;"
+					render="administratorTable" />
 			</rich:popupPanel>
 		</h:form>
 	</ui:define>
