@@ -66,8 +66,6 @@ public class ReservationDaoTest extends TestBase {
 		assertTrue(customerName.equals(rReaded.getCustomerName()));
 		assertTrue(customerMiddlename.equals(rReaded.getCustomerMiddlename()));
 		assertTrue(customerAddress.equals(rReaded.getCustomerEmail()));
-
-		assertTrue(dtReservation.equals(rReaded.getDateReservation()));
 		assertTrue(paid == rReaded.isPaid());
 
 		reservationDao.getEntityManager().getTransaction().begin();
@@ -184,35 +182,6 @@ public class ReservationDaoTest extends TestBase {
 		assertTrue(reservations.get(0).getDateReservation()
 				.equals(dtReservation));
 		assertTrue(reservations.get(0).isPaid() == paid);
-
-	}
-
-	@Test
-	public void testGetActualReservations() {
-		Reservation r = new Reservation();
-
-		String customerSurname = "Surname6";
-		String customerName = "Name6";
-		String customerMiddlename = "Middlename6";
-		String customerAddress = "Address6";
-
-		Timestamp dtReservation = new java.sql.Timestamp(Calendar.getInstance()
-				.getTime().getTime());
-		boolean paid = true;
-
-		r.setCustomerSurname(customerSurname);
-		r.setCustomerName(customerName);
-		r.setCustomerMiddlename(customerMiddlename);
-		r.setCustomerEmail(customerAddress);
-		r.setDateReservation(dtReservation);
-		r.setPaid(paid);
-
-		reservationDao.getEntityManager().getTransaction().begin();
-		reservationDao.create(r);
-		reservationDao.getEntityManager().getTransaction().commit();
-
-		List<Reservation> reservations = reservationDao.findActual();
-		assertTrue(reservations.size() == 0);
 
 	}
 

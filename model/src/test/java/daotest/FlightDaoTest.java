@@ -177,13 +177,4 @@ public class FlightDaoTest extends TestBase {
 		assertTrue(f.getTicketPrice() == 1500);
 	}
 
-	@Test
-	public void testFind() {
-		String arrival = "New York";
-		GregorianCalendar gcDeparture = new GregorianCalendar(2013, Calendar.DECEMBER, 28);
-		java.sql.Date dtDeparture = new java.sql.Date(gcDeparture.getTime().getTime());
-		List<Flight> flights = flightDao.findActualByDateDepartureAndArrival(dtDeparture, arrival);
-		assertTrue(flights.size() == 1);
-	}
-
 }
