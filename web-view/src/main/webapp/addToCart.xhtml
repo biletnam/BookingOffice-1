@@ -24,12 +24,12 @@
 		<h:panelGroup />
 		<h:outputText value="Departure date" />
 		<h:outputText value="#{flightBean.flight.dateDeparture}">
-			<f:convertDateTime pattern="dd.MM.yyyy HH:mm"></f:convertDateTime>
+			<f:convertDateTime pattern="dd.MM.yyyy HH:mm" timeZone="#{backingBean.timeZone}"></f:convertDateTime>
 		</h:outputText>
 		<h:panelGroup />
 		<h:outputText value="Arrival date" />
 		<h:outputText value="#{flightBean.flight.dateArrival}">
-			<f:convertDateTime pattern="dd.MM.yyyy HH:mm"></f:convertDateTime>
+			<f:convertDateTime pattern="dd.MM.yyyy HH:mm" timeZone="#{backingBean.timeZone}"></f:convertDateTime>
 		</h:outputText>
 		<h:panelGroup />
 

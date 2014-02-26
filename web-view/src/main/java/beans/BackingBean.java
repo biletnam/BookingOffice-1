@@ -1,7 +1,9 @@
 package beans;
 
 import java.io.Serializable;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.TimeZone;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Named;
@@ -27,6 +29,14 @@ public class BackingBean implements Serializable {
 	public void initialize() {
 		flightNumberFilter = "";
 		filterArrival = "";
+	}
+
+	public Date getCurrentTime() {
+		return Calendar.getInstance().getTime();
+	}
+
+	public TimeZone getTimeZone() {
+		return TimeZone.getTimeZone("Europe/Kiev");
 	}
 
 	public int getReservationId() {
@@ -84,5 +94,5 @@ public class BackingBean implements Serializable {
 	public void setFilterArrival(String filterArrival) {
 		this.filterArrival = filterArrival;
 	}
-	
+
 }

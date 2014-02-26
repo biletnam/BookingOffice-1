@@ -24,8 +24,8 @@
 				<a4j:commandButton value="Refresh" render="accountantTable"
 					action="accountantBean.findActualReservations" execute="@form" />
 			</h:panelGrid>
-			<rich:dataTable id="accountantTable" value="#{accountantBean.reservations}"
-				var="item">
+			<rich:dataTable id="accountantTable"
+				value="#{accountantBean.reservations}" var="item">
 				<rich:column>
 					<f:facet name="header">Number</f:facet>
 					<h:outputText value="#{item.id}"></h:outputText>
@@ -53,13 +53,15 @@
 				<rich:column>
 					<f:facet name="header">Reservation date</f:facet>
 					<h:outputText value="#{item.dateReservation}">
-						<f:convertDateTime pattern="dd.MM.yyyy HH:mm:ss"></f:convertDateTime>
+						<f:convertDateTime pattern="dd.MM.yyyy HH:mm:ss"
+							timeZone="#{backingBean.timeZone}"></f:convertDateTime>
 					</h:outputText>
 				</rich:column>
 				<rich:column>
 					<f:facet name="header">Payment date</f:facet>
 					<h:outputText value="#{item.datePayment}">
-						<f:convertDateTime pattern="dd.MM.yyyy HH:mm:ss"></f:convertDateTime>
+						<f:convertDateTime pattern="dd.MM.yyyy HH:mm:ss"
+							timeZone="#{backingBean.timeZone}"></f:convertDateTime>
 					</h:outputText>
 				</rich:column>
 				<rich:column>
@@ -69,7 +71,8 @@
 				<rich:column>
 					<f:facet name="header">Action</f:facet>
 					<h:panelGrid columns="1">
-						<a4j:commandLink execute="@this" render="editReservationGrid" oncomplete="#{rich:component('editReservationPane')}.show()">
+						<a4j:commandLink execute="@this" render="editReservationGrid"
+							oncomplete="#{rich:component('editReservationPane')}.show()">
 							<h:outputText value="Edit" />
 							<f:setPropertyActionListener
 								target="#{backingBean.reservationId}" value="#{item.id}" />
@@ -80,11 +83,12 @@
 
 		</h:form>
 		<h:form id="accountantPopupForm">
-			<rich:popupPanel header="Edit Reservation Details" id="editReservationPane"
-				domElementAttachment="parent" autosized="true">
+			<rich:popupPanel header="Edit Reservation Details"
+				id="editReservationPane" domElementAttachment="parent"
+				autosized="true">
 				<ui:include src="reservation.xhtml"></ui:include>
 			</rich:popupPanel>
-		
+
 		</h:form>
 	</ui:define>
 </ui:composition>

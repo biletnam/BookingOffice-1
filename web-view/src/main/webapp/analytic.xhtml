@@ -23,14 +23,16 @@
 				<h:outputText value="Start date"></h:outputText>
 				<rich:calendar id="dateStart" value="#{analyticBean.dateStart}"
 					locale="US" popup="true" datePattern="dd.MM.yyyy" required="true"
-					requiredMessage="Start date is required">
+					requiredMessage="Start date is required"
+					timeZone="#{backingBean.timeZone}">
 				</rich:calendar>
 				<rich:message id="dateStartMsg" for="dateStart" />
 				<h:outputText value="End date"></h:outputText>
 				<rich:calendar id="dateEnd" value="#{analyticBean.dateEnd}"
 					locale="US" popup="true" datePattern="dd.MM.yyyy" required="true"
 					requiredMessage="End date is required"
-					validatorMessage="Should be a  valid end date">
+					validatorMessage="Should be a  valid end date"
+					timeZone="#{backingBean.timeZone}">
 				</rich:calendar>
 				<rich:message id="dateEndMsg" for="dateEnd" />
 				<a4j:commandButton value="View report" render="tabPanel"
@@ -45,7 +47,8 @@
 						<rich:column>
 							<f:facet name="header">Date</f:facet>
 							<h:outputText value="#{item.datePayment}">
-								<f:convertDateTime pattern="dd.MM.yyyy"></f:convertDateTime>
+								<f:convertDateTime pattern="dd.MM.yyyy"
+									timeZone="#{backingBean.timeZone}"></f:convertDateTime>
 							</h:outputText>
 						</rich:column>
 						<rich:column>
@@ -62,7 +65,7 @@
 					<rich:dataTable id="reportByArrival"
 						value="#{analyticBean.reportByArrival}" var="item">
 						<rich:column>
-							<f:facet name="header">Date</f:facet>
+							<f:facet name="header">Arrival</f:facet>
 							<h:outputText value="#{item.arrival}"></h:outputText>
 						</rich:column>
 						<rich:column>

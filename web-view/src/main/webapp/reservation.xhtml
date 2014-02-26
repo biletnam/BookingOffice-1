@@ -36,13 +36,15 @@
 			<h:panelGroup />
 			<h:outputText value="Reservation date" />
 			<h:outputText value="#{reservationBean.reservation.dateReservation}">
-				<f:convertDateTime pattern="dd.MM.yyyy HH:mm:ss"></f:convertDateTime>
+				<f:convertDateTime pattern="dd.MM.yyyy HH:mm:ss" timeZone="#{backingBean.timeZone}"></f:convertDateTime>
 			</h:outputText>
 			<h:panelGroup />
 			<h:outputText value="Payment date" />
 			<rich:calendar id="calendarPayment"
 				value="#{reservationBean.reservation.datePayment}" locale="US"
-				popup="true" datePattern="dd.MM.yyyy HH:mm" required="true"
+				defaultTime="#{backingBean.currentTime}"
+				timeZone="#{backingBean.timeZone}" popup="true"
+				datePattern="dd.MM.yyyy HH:mm" required="true"
 				requiredMessage="Payment date is required"
 				validatorMessage="Payment date must be after date of reservation for less then 3 days"
 				validator="#{reservationBean.validate}">

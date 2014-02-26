@@ -28,7 +28,8 @@ public class ReservationBean {
 
 	@PostConstruct
 	public void initialize() {
-		setReservation(accountantService.readReservation(backingBean.getReservationId()));
+		setReservation(accountantService.readReservation(backingBean
+				.getReservationId()));
 	}
 
 	public void saveReservation() {
@@ -59,19 +60,19 @@ public class ReservationBean {
 		this.backingBean = backingBean;
 	}
 
-	public void validate(FacesContext context, UIComponent component, Object value)
-			throws ValidatorException {
-		
-		Date datePayment = (Date)value;
+	public void validate(FacesContext context, UIComponent component,
+			Object value) throws ValidatorException {
+
+		Date datePayment = (Date) value;
 		Date dateReservation = reservation.getDateReservation();
-		
+
 		GregorianCalendar gc = new GregorianCalendar();
 		gc.setTime(dateReservation);
 		gc.add(Calendar.DAY_OF_YEAR, 3);
 		Date datePaymentEnds = gc.getTime();
-		
-		
-		if (datePayment.before(dateReservation) || datePayment.after(datePaymentEnds)) {
+
+		if (datePayment.before(dateReservation)
+				|| datePayment.after(datePaymentEnds)) {
 			throw new ValidatorException(new FacesMessage());
 		}
 	}
