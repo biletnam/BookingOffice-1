@@ -46,7 +46,7 @@
 				value="#{flightBean.flight.dateArrival}" locale="US" popup="true"
 				datePattern="dd.MM.yyyy HH:mm" required="true"
 				requiredMessage="Arrival date is required" validatorMessage="Arrival date must be after departure date" validator="#{flightBean.validateDateArrival}"
-				timeZone="#{backingBean.timeZone}" currentDate="#{backingBean.currentTime}">
+				timeZone="#{backingBean.timeZone}" defaultTime="#{backingBean.currentTime}">
 			</rich:calendar>
 			<rich:message id="calendarArrivalMsg" for="calendarArrival" />
 			<h:outputText value="Amount of tickets" />
