@@ -24,11 +24,14 @@
 		</h:panelGrid>
 
 		<h:form id="cartSummaryForm">
-			<h:panelGrid id="cartSummaryFormGrid">
+			<h:panelGrid id="cartSummaryFormGrid" columns="2">
 				<h:commandButton render="tableCart" execute="@this"
 					value="Proceed to checkout" action="cart"
 					rendered="#{cartBean.ticketsAmount > 0}">
 				</h:commandButton>
+				<h:commandButton value="Cancel order" render="customerTable"
+					action="#{cartBean.cancelReservation}" execute="@this"
+					rendered="#{cartBean.ticketsAmount > 0}" />
 			</h:panelGrid>
 		</h:form>
 	</h:panelGrid>
